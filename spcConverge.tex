@@ -36,9 +36,6 @@
 
 \newcommand{\argmin}{\operatornamewithlimits{argmin}}
 \newcommand{\argmax}{\operatornamewithlimits{argmax}}
-%\def\checkmark{\tikz\fill[scale=0.4](0,.35) -- (.25,0) -- (1,.7) -- (.25,.15) -- cycle;} 
-%\DeclareMathOperator*{\argmax}{arg\,max}
-
 
 \def \Eix {
 	\mathbb{E}\left[~\text{I}(\bm{x})~\right]
@@ -184,22 +181,11 @@ In the Lockwood example a simple threshold stopping rule falsly claims convergen
 
 
 
-\begin{itemize}
-	%
-	\item Thus it is common to observe stopping rules based on constant threshold values of the EI, with algorithms claiming convergence upon first sight of a maximum EI value below this threshold. 
-	%
-	\item Recall that the EI is a metric derived from the predictive distribution of the GP surrogate model; as such the EI improvement is itself a random variable.
-	%
-	\item Thus such a threshold test of convergence over simplifies the dynamics of convergence in this setting, as quite small EI values should be expected with some regularity based on the particular topology of the problem and the stochasticity of the criterion itself.
-	%
-	\item A theoretically more reasonable approach might be to monitor the EI improvement as a series of values, then search for consistency among the distribution of the most recently observed values as iterations of the routine pass.
-	%for monitoring convergence in this setting
-	\item Such a search for stationarity among the series of EI values is certainly a valuable endeavor; however Figure (\ref{introFig}) shows that this is not enough to ensure robust identification of convergence among a broad range of potential objective applications.
-	%
-	\item Figure (\ref{introFig}) empirically demonstrates that simply employing either a simple threshold test, or a test of stationarity, always incorrectly identifies convergence in at least one of the shown cases.
-	%case both implimeneting either of  that just as monitoring monitoring stationarity of the series fail, just as 
-\end{itemize}
-
+%
+%
+% VVV --- MASTERS PROJECT --- VVV 
+%
+%
 
 % 	%
 % 	Convergence is a bit of a loaded word, that is used in many different quantitative contexts.
