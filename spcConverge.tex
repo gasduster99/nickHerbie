@@ -36,6 +36,9 @@
 
 \newcommand{\argmin}{\operatornamewithlimits{argmin}}
 \newcommand{\argmax}{\operatornamewithlimits{argmax}}
+%\def\checkmark{\tikz\fill[scale=0.4](0,.35) -- (.25,0) -- (1,.7) -- (.25,.15) -- cycle;} 
+%\DeclareMathOperator*{\argmax}{arg\,max}
+
 
 \def \Eix {
 	\mathbb{E}\left[~\text{I}(\bm{x})~\right]
@@ -56,9 +59,7 @@
 \begin{document}
 % 
 %
-\title{\bf{ 
-	\mbox{Robust Convergence in Gaussian Process Surrogate} Model Optimization, via Statistical Process Control
-}}
+\title{Assessing Convergence in Gaussian Process Surrogate Model Optimization}
 \author{Nicholas R. Grunloh and Herbert K. H. Lee}
 \date{}
 \maketitle
@@ -73,11 +74,11 @@ Identifying convergence in numerical optimization is an ever-present, difficult,
 %, sequential design,
 The statistical framework provided by Gaussian Process surrogate model optimization provides useful secondary measures for tracking optimization progress; however the identification of convergence via these criteria has often provided only limited success and often requires a more subjective analysis. % it these measures still subjective. % that can be used to identify convergence. 
 %to track the expected improvement criterion to make
-Here we use ideas originally introduced in the field of Statistical Process Control (SPC) to define convergence in the context of an robust and objective convergence heuristic. 
+Here we use ideas originally introduced in the field of Statistical Process Control to define convergence in the context of an robust and objective convergence heuristic. 
 % to remove this subjectivity from the identification of convergence.
 The Exponentially Weighted Moving Average (EWMA) chart provides an ideal starting point for adaptation to track convergence via the EWMA convergence chart introduced here.
 \\\\
-{\bf \color{red}Keywords:} Emulator, Expected Improvement, Exponentially Weighted Moving Average.
+{\bf \color{red}Keywords:} Computer Model, Derivative-free Optimization, Emulator, Expected Improvement.
 \end{abstract}
  
 \doublespacing
@@ -90,22 +91,68 @@ The Exponentially Weighted Moving Average (EWMA) chart provides an ideal startin
 %
 %
 
+%% ______ a wide range of objective function applications.
+%%notable {\color{red}In the absence of derivative information, numerical optimization} is a 
+%%Derivative-free optimization's independence; optimization routine
+%%In the world of derivative-free optimization; In the absence of derivative informationderivative-free
+%Releasing numerical optimization from its dependence on derivative information, has made black-box optimization a powerful and flexible tool for solving a wide range of engineering problems.
+%%
+%Of primary interest here, is the application of derivative-free optimization on computationally expensive black-box objective functions, such as computer simultions.
+%%{\color{red}, in the real world}
+%Often computer simulations can function as fast, cost-effective, development test beds for processes that are otherwise too expensive, or dangerous, to test physically. 
+%% complexcase study
+%For example, the Lockwood pump-and-treat simulator, discussed in more detail in section {\color{red}XX}, computationally simulates the flow of contaminated groundwater alongside the Yellowstone River as numerical solutions to coupled systems {\color{red}cite}.
+%%, as efficiently as possible control
+%The focus of the Lockwood simulation is to optimize the management of this contaminated groundwater flow, so as to avoid contamination of the river.
+%%control schemes
+%However, the space of possible management schemes is large, and it is hard to identify when derivative-free optimization has converged to an optimal solution.
+%%Due to the computational expense of such simulators, it is often desirable to optimize while evaluating the simulation as seldomly as possible, without sacrificing the quality of the solution.
+%Due to the computational expense of such simulators, it is desirable to do effective optimization with as few simulation evaluations as possible.
+%%This is achieved; The idea is to achieve this end
+%This is achieved by efficiently exploring the solution space and limiting the number of function evaluations by robustly recognizing convergence.
+
 %
-Releasing numerical optimization from its dependence on derivative information, has made black-box optimization a powerful and flexible tool for solving a wide range of engineering problems.
 %
-Of primary interest here, is the application of derivative-free optimization on computationally expensive black-box objective functions, such as computer simultions.
+
 %
-Often computer simulations can function as fast, cost-effective, development test beds for processes that are otherwise too expensive, or dangerous, to test physically. 
-% complexcase study
-For example, the Lockwood pump-and-treat simulator, discussed in more detail in section {\color{red}XX}, computationally simulates the flow of contaminated groundwater alongside the Yellowstone River as numerical solutions to coupled systems {\color{red}cite}.
+Black-box derivative-free optimization is an important problem with a
+wide variety of applications, especially in the realm of computer
+simulations.  
 %
-The focus of the Lockwood simulation is to optimize the management of this contaminated groundwater flow, so as to avoid contamination of the river.
-%control schemes
-However, the space of possible management schemes is large, and it is hard to identify when derivative-free optimization has converged to an optimal solution.
-%Due to the computational expense of such simulators, it is often desirable to optimize while evaluating the simulation as seldomly as possible, without sacrificing the quality of the solution.
-Due to the computational expense of such simulators, it is desirable to do effective optimization with as few simulation evaluations as possible.
-%This is achieved; The idea is to achieve this end
-This is achieved by efficiently exploring the solution space and limiting the number of function evaluations by robustly recognizing convergence.
+When dealing with computationally expensive computer
+models, a key question is that of convergence of the optimization.
+%
+Because each function evaluation is expensive, one wants to terminate
+the optimization as early as possible.  
+%
+However for complex simluators, the response surface may be ill-behaved and optimization
+routines can easily become trapped in a local mode, so one needs to
+run the optimization sufficiently long to achieve a robust solution.
+%
+In this paper, we provide an automated method for assessing convergence of 
+Gaussian process surrogate model optimization by bringing in elements
+of Statistical Process Control.
+
+%
+%
+
+%
+Our motivating example is a hydrology application, the Lockwood
+pump-and-treat problem {\color{red}cite}, discussed in more detail in Section
+{\color{red}XX}, wherein contamination in the groundwater near the
+Yellowstone River is remediated via a set of treatment wells.  
+%
+The goal is to minimize the cost of running the wells while ensuring that
+no contamination enters the river.  
+%
+The contamination constraint results in a complicated boundary that is unknown in advance and
+requires evaluation of the simulator, and thus finding the global
+constrained minimum is a difficult problem and it is easy for
+optimization routines to at least temporarily get stuck in a local
+minimum.  
+%
+Without knowing the answer in advance, how do we know when
+to terminate the optimization routine?
 
 
 %
@@ -113,11 +160,17 @@ This is achieved by efficiently exploring the solution space and limiting the nu
 
 %related to; is often employed for optimization of computer simulation experiments.
 %, a relatively quick, statistical model of the objective function output; this modle serves as surrogate of the objective function itself and .
-Gaussian Process surrogate model optimization is a derivative-free numerical optimization routine that reduces the number of neccissary objective function evalutations by using each evaluation as data to construct a statistical surrogate model of the objective function.
+The context of this paper is Gaussian Process surrogate model
+optimization, a statistical modeling approach to derivative-free
+numerical optimization routine that constructs a fast approximation to
+the expensive computer simulation using a statistical surrogate model.
 %
-The surrogate model is relatively fast to work with, as compared with a large computer simulation, and analysis of the surrogate model allows for efficient exploration the objective solution space.  
+%The surrogate model is relatively fast to work with, as compared with a large computer simulation, and 
+Analysis of the surrogate model allows for efficient exploration the objective solution space.  
 %
-Typically a Gaussian Process (GP) surrogate model is chosen for its robustness, relative ease of computation, and the predictive framework that arises naturally from its Bayesian representation \cite{santnerBook}{\color{red}cite}.
+Typically a Gaussian Process (GP) surrogate model is chosen for its
+robustness, relative ease of computation, and its predictive framework
+\cite{santnerBook}{\color{red}cite}.
 %   landscape of the simulation parameters 
 Arising naturally from the GP predictive distribution{\color{red}cite}, the maximum Expected Improvement (EI) criterion has shown to be a valuable criterion for assessing future points of exploration on the objective function {\color{red}cite}, and furthermore the EI shows promise for use as a convergence criterion {\color{red}cite}.
 %The maximum Expected Improvement (EI) criterion has shown to be a valuable criterion, arising naturally from the GP predictive distribution {\color{red}cite}.
@@ -132,7 +185,7 @@ Arising naturally from the GP predictive distribution{\color{red}cite}, the maxi
 %however; as a means of assessing convergence 
 {\color{red}Literature cite} recommends considering the EI as a convergence criterion for GP surrogate model optimization; as of yet, little work has been done to describe what convergence of these algorithms actually looks like in the context of the EI criterion.
 %, but it has not yet been established if there is some threshold EI value that is sufficient
-However, the basic idea behind the use of the EI criterion as a convergence criterion, is that convergence should occur when the GP surrogate model produces low expectations for discovering new optima; that is to say, small EI values should be associated with convergence of the algorithm.
+However, the basic idea behind the use of the EI criterion, as a convergence criterion, is that convergence should occur when the GP surrogate model produces low expectations for discovering new optima; that is to say, small EI values should be associated with convergence of the algorithm.
 %claim that there exists 
 Thus, a common stopping rule, involving the EI criterion, first defines some lower EI threshold, then claims convergence upon first sight of an EI value falling below this threshold {\color{red}cite}.    
 %in many different; of many other numerical optimization routines; that have been designed specifically to exhibit such behaviour upon convergence  
@@ -140,7 +193,7 @@ This use of EI as a convergence criteria falls well within the comfort zone of t
 %
 However, this use of the EI criterion on GP surrogate model optimization has not yet been adequately justified.
 %, derived from the predictive distribution of the underling GP model; behavior
-In fact, this use ignores the nature of the EI criterion as a random variable, and oversimplifies the stochastic dynamics of convergence in this setting.
+In fact, this use ignores the nature of the EI criterion as a random variable, and oversimplifies the stochastic nature of convergence in this setting.
 %
 Thus it is no surprise that this treatment of the EI criterion results in an inconsistent stopping rule as demonstrated in Figure (\ref{introFig}).
 
@@ -157,9 +210,8 @@ Thus it is no surprise that this treatment of the EI criterion results in an inc
 \includegraphics[width=0.32\textwidth]{./figures/introChartRastHardAxis.pdf}
 \caption{
 %
-Three EI series shown as Expected Log-Improvement {\color{red}(ELI)} plotted against iteration number.
-%EI
- \mbox{{\color{red} ELI} values plotted alongside an example convergence threshold value shown as a dashed line at -10.}
+Three ELAI seires plotted alongside an example convergence threshold value shown as 
+a dashed line at -10. {\color{red}fix ELAI y label}
 }
 \label{introFig}
 \end{figure}
@@ -167,23 +219,63 @@ Three EI series shown as Expected Log-Improvement {\color{red}(ELI)} plotted aga
 %
 
 %of the series value; of the values; shows
-Figure (\ref{introFig}) represents three series of EI values, all of which only manage to achieve convergence within the final quarter of values.
+Because Expected Improvement is non-negative but decreasingly small,
+we find it more productive to work on the log scale, using a lognormal
+approximation to the improvement distribution, as described in more
+detail in Section~{\color{red}XX}.
+%
+Figure~(\ref{introFig}) represents three series of the Expected
+Lognormal Approximation to the Improvement (ELAI) values from three
+different optimization problems that will be demonstrated later in
+this paper, where it will be shown that convergence is established near
+the end of each of these series.
 %as generated by 
-These three series demonstrate various EI convergence behaviors, based on GP surrogate model optimization of three different objective functions.
+These three series demonstrate various ELAI convergence behaviors, and
+illustrate the difficulty in assessing convergence.  
 %asymptotic properties of the; in more detail; improve
-In each panel the y-axis represents a monotone transformation of the basic EI criterion {\color{red}(i.e. ELI)} so as to benefit the asymptotic behavior of the improvement criterion's distribution, to be discussed further in Section {\color{red}XX}.
+%In each panel the y-axis represents a monotone transformation of the basic EI criterion {\color{red}(i.e. ELI)} so as to benefit the asymptotic behavior of the improvement criterion's distribution, to be discussed further in Section {\color{red}XX}.
 %
-In the left-most panel, optimization of the Rosenbrock test function results in a nicely well-behaved series of EI values, demonstrating a case in which the simple threshold stopping rule can accuratly identify convergence.
+In the left-most panel, optimization of the Rosenbrock test function 
+results in a well-behaved series of ELAI values, demonstrating a case in 
+which the simple threshold stopping rule can accuratly identify convergence.
 %as this series
-However the center panel (i.e. Lockwood) demonstrates a failure of the threshold stopping rule, as this EI series contains much more variance, and thus small EI values are observed quite regularly.
+However the center panel (the Lockwood problem) demonstrates a failure of 
+the threshold stopping rule, as this ELAI series contains much more 
+variance, and thus small ELAI values are observed quite regularly.
 %for the remainder of the series.
-In the Lockwood example a simple threshold stopping rule falsly claims convergence, for the first time, within the first 50 iterations of the algorithm, additionally as the algorithm proceeds, several improvements of the objective function are discovered while ELI values repeatedly fall below the convergence threshold. %, all while the optimization routine continues to find several improved values of the objective function.
+In the Lockwood example a simple threshold stopping rule could falsely
+claim convergence within the first 50 iterations of the algorithm.
+%
+The large variability in ELAI with occasional large values indicates that 
+the optimization routine is still exploring and is not yet convinced that 
+it has found a global minimum.
+%, additionally as the algorithm proceeds, several improvements of the objective function are discovered while ELI values repeatedly fall below the convergence threshold. %, all while the optimization routine continues to find several improved values of the objective function.
+This optimization run appears to have converged only after the
+larger ELAI values stop appearing and the variability has decreased.
+%
+Thus one might ask if a decrease in variability or small variability
+is a necessary condition for convergence.  
+%
+The right panel (the Rastigin test function) 
+shows a case where convergence occurs by meeting the threshold level,
+but where variability has increased, demonstrating that a decrease in
+variability is not a necessary condition.
 
+%
+%
+
+%
+As the Improvement function is itself a random variable, attempting to
+use a threshold test over-simplifies the dynamics of convergence. 
+%
+Instead, we propose taking the perspective of Statistical
+Process Control (SPC), where a stochastic series is monitored for 
+consistency of the distribution of the most recently observed values.
 
 
 %
 %
-% VVV --- MASTERS PROJECT --- VVV 
+%VVV --- Masters Project --- VVV
 %
 %
 
