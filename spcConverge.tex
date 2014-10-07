@@ -117,7 +117,7 @@ The Exponentially Weighted Moving Average (EWMA) chart provides an ideal startin
 %
 Black-box derivative-free optimization is an important problem with a
 wide variety of applications, especially in the realm of computer
-simulations.  
+simulations {\color{red}cite}.  
 %
 When dealing with computationally expensive computer
 models, a key question is that of convergence of the optimization.
@@ -138,7 +138,7 @@ of Statistical Process Control.
 
 %
 Our motivating example is a hydrology application, the Lockwood
-pump-and-treat problem {\color{red}cite}, discussed in more detail in Section
+pump-and-treat problem \ref{lockCite}, discussed in more detail in Section
 {\color{red}XX}, wherein contamination in the groundwater near the
 Yellowstone River is remediated via a set of treatment wells.  
 %
@@ -163,16 +163,16 @@ to terminate the optimization routine?
 The context of this paper is Gaussian Process surrogate model
 optimization, a statistical modeling approach to derivative-free
 numerical optimization routine that constructs a fast approximation to
-the expensive computer simulation using a statistical surrogate model.
+the expensive computer simulation using a statistical surrogate model \cite{tgp2}.
 %
 %The surrogate model is relatively fast to work with, as compared with a large computer simulation, and 
 Analysis of the surrogate model allows for efficient exploration the objective solution space.  
 %
 Typically a Gaussian Process (GP) surrogate model is chosen for its
 robustness, relative ease of computation, and its predictive framework
-\cite{santnerBook}{\color{red}cite}.
-%   landscape of the simulation parameters 
-Arising naturally from the GP predictive distribution{\color{red}cite}, the maximum Expected Improvement (EI) criterion has shown to be a valuable criterion for assessing future points of exploration on the objective function {\color{red}cite}, and furthermore the EI shows promise for use as a convergence criterion {\color{red}cite}.
+\cite{santnerBook}.
+%   landscape of the simulation parameters assessing future points of exploration on
+Arising naturally from the GP predictive distribution \cite{gBook, EIPPD}, the maximum Expected Improvement (EI) criterion has shown to be a valuable criterion for guiding the exploration of the objective function \cite{taddyOpt}{\color{red}Jones?}; furthermore the EI shows promise for use as a convergence criterion {\color{red}cite}.
 %The maximum Expected Improvement (EI) criterion has shown to be a valuable criterion, arising naturally from the GP predictive distribution {\color{red}cite}.
 %
 % The EI criterion can be used to assess future points of exploration on the objective function, as well as for monitoring the overall convergence of the optimization routine at large {\color{red}cite}.
@@ -187,19 +187,15 @@ Arising naturally from the GP predictive distribution{\color{red}cite}, the maxi
 %, but it has not yet been established if there is some threshold EI value that is sufficient
 However, the basic idea behind the use of the EI criterion, as a convergence criterion, is that convergence should occur when the GP surrogate model produces low expectations for discovering new optima; that is to say, small EI values should be associated with convergence of the algorithm.
 %claim that there exists 
-Thus, a common stopping rule, involving the EI criterion, first defines some lower EI threshold, then claims convergence upon first sight of an EI value falling below this threshold {\color{red}cite}.    
+Thus, a common stopping rule, involving the EI criterion, first defines some lower EI threshold, then claims convergence upon first sight of an EI value falling below this threshold \cite{windExample}, {\color{red}cite}.    
 %in many different; of many other numerical optimization routines; that have been designed specifically to exhibit such behaviour upon convergence  
 This use of EI as a convergence criteria falls well within the comfort zone of the numerical optimization literature as this is certainly a reasonable approach for monitoring the convergence criteria of other routines (ex. the vanishing step sizes of Newton-Raphson, Pattern Search (PS) methods, etc.).
 %
-However, this use of the EI criterion on GP surrogate model optimization has not yet been adequately justified.
+However, applying this same threshold strategy to the convergence of GP surrogate model optimization, in the context of the EI criterion, has not yet been adequately justified.
 %, derived from the predictive distribution of the underling GP model; behavior
-In fact, this use ignores the nature of the EI criterion as a random variable, and oversimplifies the stochastic nature of convergence in this setting.
+In fact, this use of EI ignores the nature of the EI criterion as a random variable, and oversimplifies the stochastic nature of convergence in this setting.
 %
-Thus it is no surprise that this treatment of the EI criterion results in an inconsistent stopping rule as demonstrated in Figure (\ref{introFig}).
-
-% stochastic nature of the EI suggests that simply monitoring EI with a simple threshold value convergence in this way may not be appropriate as demonstrated in Figure (\ref{introFig}).  
-% simply be due to conventional treatment of convergence criteria rather that
-% However, does it make sense to treat the EI criteria just as many other step size convergence criteria, such the step size of a Newtclaim that there is a threshold EI value that represents  
+Thus it is no surprise that this treatment of the EI criterion can result in an inconsistent stopping rule as demonstrated in \mbox{Figure (\ref{introFig}).}  
 
 \clearpage
 %
@@ -210,8 +206,8 @@ Thus it is no surprise that this treatment of the EI criterion results in an inc
 \includegraphics[width=0.32\textwidth]{./figures/introChartRastHardAxis.pdf}
 \caption{
 %
-Three ELAI seires plotted alongside an example convergence threshold value shown as 
-a dashed line at -10. {\color{red}fix ELAI y label}
+Three ELAI series plotted alongside an example convergence threshold value shown as 
+a dashed line at -10.
 }
 \label{introFig}
 \end{figure}
@@ -253,10 +249,10 @@ it has found a global minimum.
 This optimization run appears to have converged only after the
 larger ELAI values stop appearing and the variability has decreased.
 %
-Thus one might ask if a decrease in variability or small variability
+Thus one might ask if a decrease in variability, or small variability,
 is a necessary condition for convergence.  
 %
-The right panel (the Rastigin test function) 
+The right-most panel (Rastigin test function) 
 shows a case where convergence occurs by meeting the threshold level,
 but where variability has increased, demonstrating that a decrease in
 variability is not a necessary condition.
@@ -271,6 +267,32 @@ use a threshold test over-simplifies the dynamics of convergence.
 Instead, we propose taking the perspective of Statistical
 Process Control (SPC), where a stochastic series is monitored for 
 consistency of the distribution of the most recently observed values.
+
+%
+%
+\section{Gaussian Process Surrogate Model Optimization}
+%
+%
+
+%
+
+
+%
+%
+\section{Statistical Process Control}
+%
+%
+
+%
+
+
+%
+%
+\section{EWMA Convergence Chart}
+%
+%
+
+%
 
 
 %
@@ -1645,7 +1667,7 @@ consistency of the distribution of the most recently observed values.
 \newgeometry{ margin=1in, top=0.6in, footskip=0.4in }
 \singlespacing
 \bibliographystyle{plain}
-\bibliography{./msCite}
+\bibliography{./spcCite}
 %
 %
 

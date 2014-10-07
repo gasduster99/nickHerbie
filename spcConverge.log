@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.1415926-2.5-1.40.14 (TeX Live 2013/Debian) (format=pdflatex 2014.6.20)  4 OCT 2014 15:44
+This is pdfTeX, Version 3.1415926-2.5-1.40.14 (TeX Live 2013/Debian) (format=pdflatex 2014.6.20)  5 OCT 2014 17:11
 entering extended mode
  restricted \write18 enabled.
  %&-line parsing enabled.
@@ -689,35 +689,35 @@ Underfull \hbox (badness 10000) in paragraph at lines 73--82
 
  []
 
+
+LaTeX Warning: Reference `lockCite' on page 1 undefined on input line 141.
+
 [1
 Non-PDF special ignored!
 
 {/var/lib/texmf/fonts/map/pdftex/updmap/pdftex.map}]
-
-LaTeX Warning: Citation `santnerBook' on page 2 undefined on input line 173.
-
-[2] <./figures/introChartRoseEasyEasyAxis.pdf, id=26, 505.89pt x 505.89pt>
+[2] <./figures/introChartRoseEasyEasyAxis.pdf, id=50, 505.89pt x 505.89pt>
 File: ./figures/introChartRoseEasyEasyAxis.pdf Graphic file (type pdf)
 
 <use ./figures/introChartRoseEasyEasyAxis.pdf>
 Package pdftex.def Info: ./figures/introChartRoseEasyEasyAxis.pdf used on input
- line 208.
+ line 204.
 (pdftex.def)             Requested size: 164.20134pt x 164.20387pt.
 
-<./figures/introChartLock6Three20000Axis.pdf, id=27, 505.89pt x 505.89pt>
+<./figures/introChartLock6Three20000Axis.pdf, id=51, 505.89pt x 505.89pt>
 File: ./figures/introChartLock6Three20000Axis.pdf Graphic file (type pdf)
 
 <use ./figures/introChartLock6Three20000Axis.pdf>
 Package pdftex.def Info: ./figures/introChartLock6Three20000Axis.pdf used on in
-put line 209.
+put line 205.
 (pdftex.def)             Requested size: 164.20134pt x 164.20387pt.
 
-<./figures/introChartRastHardAxis.pdf, id=28, 505.89pt x 505.89pt>
+<./figures/introChartRastHardAxis.pdf, id=52, 505.89pt x 505.89pt>
 File: ./figures/introChartRastHardAxis.pdf Graphic file (type pdf)
 
 <use ./figures/introChartRastHardAxis.pdf>
 Package pdftex.def Info: ./figures/introChartRastHardAxis.pdf used on input lin
-e 210.
+e 206.
 (pdftex.def)             Requested size: 164.20134pt x 164.20387pt.
  [3
 
@@ -755,28 +755,31 @@ e 210.
 * \@reversemarginfalse
 * (1in=72.27pt=25.4mm, 1cm=28.453pt)
 
+ (./spcConverge.bbl)
+Package atveryend Info: Empty hook `BeforeClearDocument' on input line 1674.
+ [5
 
-No file spcConverge.bbl.
-Package atveryend Info: Empty hook `BeforeClearDocument' on input line 1652.
-Package atveryend Info: Empty hook `AfterLastShipout' on input line 1652.
-(./spcConverge.aux)
-Package atveryend Info: Executing hook `AtVeryEndDocument' on input line 1652.
-Package atveryend Info: Executing hook `AtEndAfterFileList' on input line 1652.
+
+]
+Package atveryend Info: Empty hook `AfterLastShipout' on input line 1674.
+ (./spcConverge.aux)
+Package atveryend Info: Executing hook `AtVeryEndDocument' on input line 1674.
+Package atveryend Info: Executing hook `AtEndAfterFileList' on input line 1674.
 
 Package rerunfilecheck Info: File `spcConverge.out' has not changed.
-(rerunfilecheck)             Checksum: A02D95553E30B97FF125B1AA17CF9044;47.
+(rerunfilecheck)             Checksum: AE5D4F0A63D452A1FD6765DEE905433E;246.
 
 
 LaTeX Warning: There were undefined references.
 
-Package atveryend Info: Empty hook `AtVeryVeryEnd' on input line 1652.
+Package atveryend Info: Empty hook `AtVeryVeryEnd' on input line 1674.
  ) 
 Here is how much of TeX's memory you used:
- 9588 strings out of 493304
- 139393 string characters out of 6139871
- 233668 words of memory out of 5000000
- 12902 multiletter control sequences out of 15000+600000
- 15475 words of font info for 43 fonts, out of 8000000 for 9000
+ 9612 strings out of 493304
+ 139650 string characters out of 6139871
+ 233819 words of memory out of 5000000
+ 12912 multiletter control sequences out of 15000+600000
+ 16159 words of font info for 44 fonts, out of 8000000 for 9000
  957 hyphenation exceptions out of 8191
  36i,6n,38p,451b,327s stack positions out of 5000i,500n,10000p,200000b,80000s
 {/usr/share/texmf/fonts/enc/dvips/cm-super/cm-super-t1.enc}</usr/share/texmf/
@@ -785,11 +788,11 @@ m-super/sfbx1200.pfb></usr/share/texmf/fonts/type1/public/cm-super/sfbx1728.pfb
 ></usr/share/texmf/fonts/type1/public/cm-super/sfrm1095.pfb></usr/share/texmf/f
 onts/type1/public/cm-super/sfrm1200.pfb></usr/share/texmf/fonts/type1/public/cm
 -super/sfrm1440.pfb></usr/share/texmf/fonts/type1/public/cm-super/sfrm2074.pfb>
-
-Output written on spcConverge.pdf (4 pages, 132388 bytes).
+</usr/share/texmf/fonts/type1/public/cm-super/sfti1200.pfb>
+Output written on spcConverge.pdf (5 pages, 165493 bytes).
 PDF statistics:
- 85 PDF objects out of 1000 (max. 8388607)
- 65 compressed objects within 1 object stream
- 7 named destinations out of 1000 (max. 500000)
- 24 words of extra memory for PDF output out of 10000 (max. 10000000)
+ 119 PDF objects out of 1000 (max. 8388607)
+ 97 compressed objects within 1 object stream
+ 18 named destinations out of 1000 (max. 500000)
+ 48 words of extra memory for PDF output out of 10000 (max. 10000000)
 
