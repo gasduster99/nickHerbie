@@ -94,16 +94,16 @@ The Exponentially Weighted Moving Average (EWMA) chart provides an ideal startin
 %% ______ a wide range of objective function applications.
 %%notable {\color{red}In the absence of derivative information, numerical optimization} is a 
 %%Derivative-free optimization's independence; optimization routine
-%%In the world of derivative-free optimization; In the absence of derivative informationderivative-free
+%%In the world of derivative-free optimization; In the absence of derivative information derivative-free
 %Releasing numerical optimization from its dependence on derivative information, has made black-box optimization a powerful and flexible tool for solving a wide range of engineering problems.
 %%
-%Of primary interest here, is the application of derivative-free optimization on computationally expensive black-box objective functions, such as computer simultions.
+%Of primary interest here, is the application of derivative-free optimization on computationally expensive black-box objective functions, such as computer simulations.
 %%{\color{red}, in the real world}
 %Often computer simulations can function as fast, cost-effective, development test beds for processes that are otherwise too expensive, or dangerous, to test physically. 
 %% complexcase study
-%For example, the Lockwood pump-and-treat simulator, discussed in more detail in section {\color{red}XX}, computationally simulates the flow of contaminated groundwater alongside the Yellowstone River as numerical solutions to coupled systems {\color{red}cite}.
+%For example, the Lockwood pump-and-treat simulator, discussed in more detail in section {\color{red}XX}, computationally simulates the flow of contaminated ground-water alongside the Yellowstone River as numerical solutions to coupled systems {\color{red}cite}.
 %%, as efficiently as possible control
-%The focus of the Lockwood simulation is to optimize the management of this contaminated groundwater flow, so as to avoid contamination of the river.
+%The focus of the Lockwood simulation is to optimize the management of this contaminated ground-water flow, so as to avoid contamination of the river.
 %%control schemes
 %However, the space of possible management schemes is large, and it is hard to identify when derivative-free optimization has converged to an optimal solution.
 %%Due to the computational expense of such simulators, it is often desirable to optimize while evaluating the simulation as seldomly as possible, without sacrificing the quality of the solution.
@@ -125,7 +125,7 @@ models, a key question is that of convergence of the optimization.
 Because each function evaluation is expensive, one wants to terminate
 the optimization as early as possible.  
 %
-However for complex simluators, the response surface may be ill-behaved and optimization
+However for complex simulators, the response surface may be ill-behaved and optimization
 routines can easily become trapped in a local mode, so one needs to
 run the optimization sufficiently long to achieve a robust solution.
 %
@@ -139,7 +139,7 @@ of Statistical Process Control.
 %
 Our motivating example is a hydrology application, the Lockwood
 pump-and-treat problem \cite{lockCite}, discussed in more detail in Section
-{\color{red}XX}, wherein contamination in the groundwater near the
+{\color{red}XX}, wherein contamination in the ground-water near the
 Yellowstone River is remediated via a set of treatment wells.  
 %
 The goal is to minimize the cost of running the wells while ensuring that
@@ -159,7 +159,7 @@ to terminate the optimization routine?
 %
 
 %related to; is often employed for optimization of computer simulation experiments.
-%, a relatively quick, statistical model of the objective function output; this modle serves as surrogate of the objective function itself and .
+%, a relatively quick, statistical model of the objective function output; this model serves as surrogate of the objective function itself and .
 The context of this paper is Gaussian Process surrogate model
 optimization, a statistical modeling approach to derivative-free
 numerical optimization routine that constructs a fast approximation to
@@ -188,7 +188,7 @@ Arising naturally from the GP predictive distribution \cite{gBook, EIPPD}, the m
 However, the basic idea behind the use of the EI criterion, as a convergence criterion, is that convergence should occur when the GP surrogate model produces low expectations for discovering new optima; that is to say, small EI values should be associated with convergence of the algorithm.
 %claim that there exists 
 Thus, a common stopping rule, involving the EI criterion, first defines some lower EI threshold, then claims convergence upon first sight of an EI value falling below this threshold \cite{windExample}, {\color{red}cite}.    
-%in many different; of many other numerical optimization routines; that have been designed specifically to exhibit such behaviour upon convergence  
+%in many different; of many other numerical optimization routines; that have been designed specifically to exhibit such behavior upon convergence  
 This use of EI as a convergence criteria falls well within the comfort zone of the numerical optimization literature as this is certainly a reasonable approach for monitoring the convergence criteria of other routines (ex. the vanishing step sizes of Newton-Raphson, Pattern Search (PS) methods, etc.).
 %
 However, applying this same threshold strategy to the convergence of GP surrogate model optimization, in the context of the EI criterion, has not yet been adequately justified.
@@ -233,7 +233,7 @@ illustrate the difficulty in assessing convergence.
 %
 In the left-most panel, optimization of the Rosenbrock test function 
 results in a well-behaved series of ELAI values, demonstrating a case in 
-which the simple threshold stopping rule can accuratly identify convergence.
+which the simple threshold stopping rule can accurately identify convergence.
 %as this series
 However the center panel (the Lockwood problem) demonstrates a failure of 
 the threshold stopping rule, as this ELAI series contains much more 
@@ -252,7 +252,7 @@ larger ELAI values stop appearing and the variability has decreased.
 Thus one might ask if a decrease in variability, or small variability,
 is a necessary condition for convergence.  
 %
-The right-most panel (the Rastigin test function) 
+The right-most panel (the Rastrigin test function) 
 shows a case where convergence occurs by meeting the threshold level,
 but where variability has increased, demonstrating that a decrease in
 variability is not a necessary condition.
@@ -335,14 +335,14 @@ Furthermore, this logic relies upon the typical asymptotic results of the centra
 %
 
 %
-In the spirt of obtaining a robust solution through the use of the CLT, as applied to the distribution of the EI, it is important to carefully consider properties of the improvement distribution.
+In the spirit of obtaining a robust solution through the use of the CLT, as applied to the distribution of the EI, it is important to carefully consider properties of the improvement distribution.
 %
 Firstly, the improvement values are non-negative but decreasingly small, thus the improvement distribution is often strongly right skewed.
 %
 This right skew becomes exaggerated as convergence approaches (i.e. when the improvement values become small).
 %
 Thus if large sample assumptions (from the improvement distribution) are challenged, then the asymptotic EI distribution may become less accurate at the time of convergence (i.e. when we desire accuracy most). 
-%Additionally, since the I(x) criterion is naturally bounded at 0, an unfettered normal distribution will always struggle to model the EI criterion since the normal distribution will never respect itsboundary conditions. 
+%Additionally, since the I(x) criterion is naturally bounded at 0, an unfettered normal distribution will always struggle to model the EI criterion since the normal distribution will never respect its boundary conditions. 
 Secondly, since the improvement distribution is non-negative, the EI should also be bounded at 0.
 %
 Thus an unfettered normal distribution will always struggle to capture the EI distribution.
@@ -353,7 +353,7 @@ Thus an unfettered normal distribution will always struggle to capture the EI di
 %
 These issues naturally suggest modeling the log improvement, rather than the improvement distribution on its own.
 %
-However due to the MCMC sample-based implimentation of the Gaussian Process, and the desire for a large number of samples from the improvement distribution, it is not uncommon to obtain at least one sample that, for computaional purposes, is indistinguishable from 0.
+However due to the MCMC sample-based implementation of the Gaussian Process, and the desire for a large number of samples from the improvement distribution, it is not uncommon to obtain at least one sample that, for computational purposes, is indistinguishable from 0.
 %
 Thus simply taking the log of the improvement samples can be computationally undefined, particularly as convergence approaches.
 
