@@ -114,8 +114,8 @@ The Exponentially Weighted Moving Average (EWMA) chart provides an ideal startin
 %
 %
 
-%
-Black-box derivative-free optimization is an important problem with a
+%is an important problem with
+Black-box derivative-free optimization has a
 wide variety of applications, especially in the realm of computer
 simulations {\color{red}cite}.  
 %
@@ -130,7 +130,7 @@ routines can easily become trapped in a local mode, so one needs to
 run the optimization sufficiently long to achieve a robust solution.
 %
 In this paper, we provide an automated method for assessing convergence of 
-Gaussian process surrogate model optimization by bringing in elements
+Gaussian Process surrogate model optimization by bringing in elements
 of Statistical Process Control.
 
 %
@@ -138,7 +138,7 @@ of Statistical Process Control.
 
 %
 Our motivating example is a hydrology application, the Lockwood
-pump-and-treat problem \ref{lockCite}, discussed in more detail in Section
+pump-and-treat problem \cite{lockCite}, discussed in more detail in Section
 {\color{red}XX}, wherein contamination in the groundwater near the
 Yellowstone River is remediated via a set of treatment wells.  
 %
@@ -252,7 +252,7 @@ larger ELAI values stop appearing and the variability has decreased.
 Thus one might ask if a decrease in variability, or small variability,
 is a necessary condition for convergence.  
 %
-The right-most panel (Rastigin test function) 
+The right-most panel (the Rastigin test function) 
 shows a case where convergence occurs by meeting the threshold level,
 but where variability has increased, demonstrating that a decrease in
 variability is not a necessary condition.
@@ -261,8 +261,10 @@ variability is not a necessary condition.
 %
 
 %
-As the Improvement function is itself a random variable, attempting to
-use a threshold test over-simplifies the dynamics of convergence. 
+As the Improvement function is itself a random variable, attempting to 
+set a lower threshold bound on the EI, without consideration of the underlying 
+EI distribution over time, over-simplifies the dynamics of convergence
+in this setting. 
 %
 Instead, we propose taking the perspective of Statistical
 Process Control (SPC), where a stochastic series is monitored for 
@@ -275,7 +277,30 @@ consistency of the distribution of the most recently observed values.
 %
 
 %
+%
+\subsection{Gaussian Process Models}
+%
+%
 
+%
+%
+\subsubsection{Expected Improvement}
+%
+%
+
+%
+%
+\subsection{Optimization Procedure}
+%
+%
+
+
+% %
+% \begin{itemize}
+% \item GP
+% \item EI
+% \item Optimization Procedure
+% \end{itemize}
 
 %
 %
@@ -284,11 +309,81 @@ consistency of the distribution of the most recently observed values.
 %
 
 %
+In Shewhart's seminal 1931 book \cite{shewhartBook} on the topic of control in manufacturing, Shewhart explains that a phenomenon is said to be in control when, ``through the use of past experience, we can predict, at least within limits, how the phenomenon may be expected to vary in the future.''
+%, accounting not only for the the expected variability  not only consider particular values of the EI criterion, but it ( expected center, spread, and )
+This notion provides an instructive framework for thinking about convergence because it offers a natural way to consider the distributional characteristics of the EI as a proper random variable. 
+% of that statistic.
+In its most simplified form, SPC considers an approximation of a statistic's sampling distribution as repeated sampling occurs in time.
+% from some data generating mechanism,
+For example, the $\bar x$-chart tracks the mean of repeated samples (all of size $n$) through time so as to expect the arrival of each subsequent mean in accordance with the typical sampling distribution for the mean, $\bar{x}_j \sim N\left(\mu, \frac{\sigma^2}{n}\right)$.   
+%
+%Shewhart expresses his idea of control as the expected behavior of random observations from the sampling distribution of interest.
+Shewhart expresses his idea of control, in this case, as the expected behavior of random observations from this sampling distribution.
+%
+By considering confidence intervals on this sampling distribution we can easily draw explicit boundaries (i.e. control limits) to identify which samples are in control, and which are not.
+%
+Observations violating our expectations (i.e. observations that fall outside of the confidence interval/beyond the control limits) indicate an out-of-control state.
+%
+Since neither $\mu$ nor $\sigma^2$ are typically known, it is of primary importance to use the data carefully to form accurate approximations of these values, thus establishing a standard for control.
+%
+Furthermore, this logic relies upon the typical asymptotic results of the central limit theorem (CLT), and special care should always be taken to satisfy its requirements.
+
+%
+%
+\subsection{Expected Lognormal Approximation to the Improvement (ELAI)}
+%
+%
+
+%
+In the spirt of obtaining a robust solution through the use of the CLT, as applied to the distribution of the EI, it is important to carefully consider properties of the improvement distribution.
+%
+Firstly, the improvement values are non-negative but decreasingly small, thus the improvement distribution is often strongly right skewed.
+%
+This right skew becomes exaggerated as convergence approaches (i.e. when the improvement values become small).
+%
+Thus if large sample assumptions (from the improvement distribution) are challenged, then the asymptotic EI distribution may become less accurate at the time of convergence (i.e. when we desire accuracy most). 
+%Additionally, since the I(x) criterion is naturally bounded at 0, an unfettered normal distribution will always struggle to model the EI criterion since the normal distribution will never respect itsboundary conditions. 
+Secondly, since the improvement distribution is non-negative, the EI should also be bounded at 0.
+%
+Thus an unfettered normal distribution will always struggle to capture the EI distribution.
+ 
+%
+%
+
+%
+These issues naturally suggest modeling the log improvement, rather than the improvement distribution on its own.
+%
+However due to the MCMC sample-based implimentation of the Gaussian Process, and the desire for a large number of samples from the improvement distribution, it is not uncommon to obtain at least one sample that, for computaional purposes, is indistinguishable from 0.
+%
+Thus simply taking the log of the improvement samples can be computationally undefined, particularly as convergence approaches.
+
+%
+%
+
+%
+Thus rather than simply taking the log of the improvement samples, to determine the more robust statement that $\mathbb{E}\left[~\log\text{I}~\right] \sim N\left(\mu, \frac{\sigma^2}{n}\right)$, it is computationally useful to consider the following {\color{red}theoretically equivalent} perspective.   
+%
+Recall that if a random variable \mbox{$X\sim Log$-$N(\omega, \nu)$,} then another random variable $Y=\log(X)$ is distributed $Y\sim N(\omega, \nu)$.
+%
+Furthermore, if $m$ and $v$ are, respectively, the mean and variance of a log-normal sample, then the mean, $\omega$, and variance, $\nu$, of the associated normal distribution are given by the following relation {\color{red}cite}.
+%
+\begin{eqnarray}
+\omega = \ln\left( \frac{m^2}{\sqrt{v+m^2}} \right) &~&  \nu = \ln\bigg( 1+ \frac{v}{m^2} \bigg).
+\label{lnRelate}
+\end{eqnarray}
+%
+Using this relation we do not need to transform any of the improvement samples; we can instead jump straight to the mean of the samples that would have resulted from log transforming the improvement samples.
+%
+That is to say, by taking the mean of the unaltered improvement values and using relation (\ref{lnRelate}) we immediately get empirical $\E{\log \text{I}}$ values without actually taking the log of the improvement samples.
+%rather than
+Considering that the log improvement values would no longer be bounded at 0, the log improvement distribution will have reduced right skewed, and thus the distribution of the log improvement provides robust asymptotics for the $\E{\log\text{I}}$ distribution, even as convergence approaches. {\color{red} ELAI}
+
+
 
 
 %
 %
-\section{EWMA Convergence Chart}
+\subsection{EWMA Convergence Chart}
 %
 %
 
@@ -1671,7 +1766,7 @@ consistency of the distribution of the most recently observed values.
 %
 %
 
-\end{document}
+\end{document}santnerBook
 
 
 
