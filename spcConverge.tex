@@ -36,6 +36,9 @@
 
 \newcommand{\argmin}{\operatornamewithlimits{argmin}}
 \newcommand{\argmax}{\operatornamewithlimits{argmax}}
+\newcommand*{\approxdist}{\mathrel{\vcenter{\offinterlineskip
+\vskip-.25ex\hbox{\hskip.55ex$\cdot$}\vskip-.25ex\hbox{$\sim$}
+\vskip-.5ex\hbox{\hskip.55ex$\cdot$}}}}
 %\def\checkmark{\tikz\fill[scale=0.4](0,.35) -- (.25,0) -- (1,.7) -- (.25,.15) -- cycle;} 
 %\DeclareMathOperator*{\argmax}{arg\,max}
 
@@ -214,8 +217,8 @@ a dashed line at -10.
 %
 %
 
-%of the series value; of the values; shows
-Because Expected Improvement is non-negative but decreasingly small,
+%of the series value; of the values; shows; non-negative
+Because Expected Improvement is strictly positive but decreasingly small,
 we find it more productive to work on the log scale, using a lognormal
 approximation to the improvement distribution, as described in more
 detail in Section~{\color{red}XX}.
@@ -277,10 +280,30 @@ consistency of the distribution of the most recently observed values.
 %
 
 %
+If we have any hope of finding optima of $f$, we impose the condition that $f$ provides a reasonably smooth mapping for relating points in the domain, $\bm{x}$, to response values, $z(\bm{x})$.
+%
+The $z(\bm{x})$ are assumed to be particular realizations of an infinitely dimensional generalization of the multivariate normal distribution (i.e. a GP) and thus jointly any set of such realizations, $z(\bm{x})$, jointly follow a multivariate normal distribtution.
+%
+As part of the GP model specification we must describe the relationship amoung the multiple dimensions of the $z(\bm{x})$ through specification of a covariance function, $K(\bm{x}, \bm{x}')$.
+%
+By specifying a homogeneous covariance function, we thus model the relationship between $||\bm{x}-\bm{x}'||$ with the correlation structure
+that we expect to see when jointly considering two such realizations of the GP.
+%
+The following exponential power family provides a common example of such a choice of $K(\bm{x}, \bm{x}')$,
+%
+\begin{equation}
+K(\bm{x}, \bm{x}') = \exp\left\{ -\frac{||\bm{x}-\bm{x}'||^p}{d} \right\}.
+\label{corrFunc}
+\end{equation} 
+
+
+%
 %
 \subsection{Gaussian Process Models}
 %
 %
+
+ 
 
 %
 %
@@ -337,13 +360,13 @@ Furthermore, this logic relies upon the typical asymptotic results of the centra
 %
 In the spirit of obtaining a robust solution through the use of the CLT, as applied to the distribution of the EI, it is important to carefully consider properties of the improvement distribution.
 %
-Firstly, the improvement values are non-negative but decreasingly small, thus the improvement distribution is often strongly right skewed.
+Firstly, the improvement values are strictly positive but decreasingly small, thus the improvement distribution is often strongly right skewed.
 %
 This right skew becomes exaggerated as convergence approaches (i.e. when the improvement values become small).
 %
 Thus if large sample assumptions (from the improvement distribution) are challenged, then the asymptotic EI distribution may become less accurate at the time of convergence (i.e. when we desire accuracy most). 
 %Additionally, since the I(x) criterion is naturally bounded at 0, an unfettered normal distribution will always struggle to model the EI criterion since the normal distribution will never respect its boundary conditions. 
-Secondly, since the improvement distribution is non-negative, the EI should also be bounded at 0.
+Secondly, since the improvement distribution is strictly positive, the EI should also be bounded at 0.
 %
 Thus an unfettered normal distribution will always struggle to capture the EI distribution.
  
@@ -353,7 +376,7 @@ Thus an unfettered normal distribution will always struggle to capture the EI di
 %
 These issues naturally suggest modeling the log improvement, rather than the improvement distribution on its own.
 %
-However due to the MCMC sample-based implementation of the Gaussian Process, and the desire for a large number of samples from the improvement distribution, it is not uncommon to obtain at least one sample that, for computational purposes, is indistinguishable from 0.
+However due to the MCMC sample-based implementation of the Gaussian Process, and the desire for a large number of samples from the improvement distribution, it is not uncommon to obtain at least one sample that in double precision is indistinguishable from 0.
 %
 Thus simply taking the log of the improvement samples can be computationally undefined, particularly as convergence approaches.
 
@@ -361,23 +384,30 @@ Thus simply taking the log of the improvement samples can be computationally und
 %
 
 %
-Thus rather than simply taking the log of the improvement samples, to determine the more robust statement that $\mathbb{E}\left[~\log\text{I}~\right] \sim N\left(\mu, \frac{\sigma^2}{n}\right)$, it is computationally useful to consider the following {\color{red}theoretically equivalent} perspective.   
+Thus rather than simply taking the log of the improvement samples, to determine the more robust statement that $\mathbb{E}\left[~\log\text{I}~\right] \approxdist N\left(\mu, \frac{\sigma^2}{n}\right)$, it is computationally useful to consider the following approximate model-based perspective.   
 %
 Recall that if a random variable \mbox{$X\sim Log$-$N(\omega, \nu)$,} then another random variable $Y=\log(X)$ is distributed $Y\sim N(\omega, \nu)$.
 %
-Furthermore, if $m$ and $v$ are, respectively, the mean and variance of a log-normal sample, then the mean, $\omega$, and variance, $\nu$, of the associated normal distribution are given by the following relation {\color{red}cite}.
+Furthermore, if $m$ and $v$ are, respectively, the mean and variance of a lognormal sample, then the mean, $\omega$, and variance, $\nu$, of the associated normal distribution are given by the following relation {\color{red}cite}.
 %
 \begin{eqnarray}
 \omega = \ln\left( \frac{m^2}{\sqrt{v+m^2}} \right) &~&  \nu = \ln\bigg( 1+ \frac{v}{m^2} \bigg).
 \label{lnRelate}
 \end{eqnarray}
 %
-Using this relation we do not need to transform any of the improvement samples; we can instead jump straight to the mean of the samples that would have resulted from log transforming the improvement samples.
+Using this relation we do not need to transform any of the improvement samples.
 %
-That is to say, by taking the mean of the unaltered improvement values and using relation (\ref{lnRelate}) we immediately get empirical $\E{\log \text{I}}$ values without actually taking the log of the improvement samples.
-%rather than
-Considering that the log improvement values would no longer be bounded at 0, the log improvement distribution will have reduced right skewed, and thus the distribution of the log improvement provides robust asymptotics for the $\E{\log\text{I}}$ distribution, even as convergence approaches. {\color{red} ELAI}
+We compute the empirical mean of the unaltered, approximatly lognormal, improvement samples, then use relation (\ref{lnRelate}) to directly compute the Expectation of the Lognormal Approximation to the Improvement (ELAI).
+%
+% That is to say, by taking the mean of the unaltered improvement values we use relation (\ref{lnRelate}) to directly compute the Expected value of Lognormal Approximation of the Improvement (ELAI).
+%we immediately get an approximation of the $\E{\log \text{I}}$ values without actually taking the log of the improvement samples.
+%rather than is not bounded at 0, the log of the improvement distribution 
+%Considering that the log improvement has reduced right skew, for the sake of improved asymptotics of the
+The reduced right skew of the log improvement improves the asymptotics of the $\E{\log\text{I}}$ distribution; the ELAI serves as a computationally robust approximation of the $\E{\log\text{I}}$, and thus both the $\E{\log\text{I}}$ and ELAI are distributed approximatly normal in repeated sampling.  
 
+%improvement provides robust asymptotics for the normality of the distribution of the $\E{\log\text{I}}$, even as convergence approachesthe ELAI provides a good approximation for this value.
+%{\color{red} ELAI}
+% The ELAI provides a good approximation for 
 
 
 
