@@ -280,30 +280,36 @@ consistency of the distribution of the most recently observed values.
 %
 
 %
-If we have any hope of finding optima of $f$, we impose the condition that $f$ provides a reasonably smooth mapping for relating points in the domain, $\bm{x}$, to response values, $z(\bm{x})$.
+If we have any hope of finding optima of a function, $f$, we impose the condition that $f$ provides a reasonably smooth mapping for relating points in the domain, $\bm{x}$, to response values, $z(\bm{x})$.
+%\text{\textbf{Z}}; $\big($i.e.~\big)$; \text{Z}
+The $z(\bm{x})$ are assumed to be particular realizations of an infinitely dimensional generalization of the multivariate normal distribution, $f \sim \text{GP}(m,~K)$, and thus jointly any set of such realizations, $z(\bm{x})$, jointly follow a multivariate normal distribution.
 %
-The $z(\bm{x})$ are assumed to be particular realizations of an infinitely dimensional generalization of the multivariate normal distribution (i.e. a GP) and thus jointly any set of such realizations, $z(\bm{x})$, jointly follow a multivariate normal distribtution.
+As part of the GP model specification, we specify the mean function as a linear combination of simple basis functions, $m=\bm{\beta}^\intercal \text{\textbf{f($\bm{x}
+$)}}$, and we describe the covariance structure, among the multiple dimensions of the $z(\bm{x})$, through specification of a covariance function, $K(\bm{x}, \bm{x}')$.
 %
-As part of the GP model specification we must describe the relationship amoung the multiple dimensions of the $z(\bm{x})$ through specification of a covariance function, $K(\bm{x}, \bm{x}')$.
+By specifying a homogeneous covariance function, we thus model the relationship between $||\bm{x}-\bm{x}'||$ with the correlation structure that we expect to see when jointly considering two such realizations of the GP. 
 %
-By specifying a homogeneous covariance function, we thus model the relationship between $||\bm{x}-\bm{x}'||$ with the correlation structure
-that we expect to see when jointly considering two such realizations of the GP.
-%
-The following exponential power family provides a common example of such a choice of $K(\bm{x}, \bm{x}')$,
+The following exponential power family provides an example of a reasonable choice of $K(\bm{x}, \bm{x}')$, under the assumption of a reasonably well behaved $f$,
 %
 \begin{equation}
-K(\bm{x}, \bm{x}') = \exp\left\{ -\frac{||\bm{x}-\bm{x}'||^p}{d} \right\}.
+K(\bm{x}, ~\bm{x}') = \sigma^2\exp\left\{ -\frac{||\bm{x}-\bm{x}'||^p}{d} \right\}.
 \label{corrFunc}
 \end{equation} 
-
-
 %
-%
-\subsection{Gaussian Process Models}
+Specifying conjugate priors for $\bm{\beta}$ and $\sigma^2$ yields a straightforward Gibbs sampling {\color{red}cite} inferential setting with the exception of the covariance structure parameters requiring Metropolis-Hastings MCMC sampling {\color{red}cite}.
+
 %
 %
 
- 
+%
+For more details on the theoretical foundations of Gaussian Processes in computer experiments see \cite{santnerBook}.
+For additional modeling details, including loosening the assumption of global stationarity, and details about implementing GP models in the context of numerical optimization see the R package \verb tgp ~as well as the associated vignettes \cite{tgp, tgp2}.
+
+%
+%
+%\subsection{Gaussian Process Models}
+%
+%
 
 %
 %
@@ -316,6 +322,28 @@ K(\bm{x}, \bm{x}') = \exp\left\{ -\frac{||\bm{x}-\bm{x}'||^p}{d} \right\}.
 \subsection{Optimization Procedure}
 %
 %
+
+\begin{wrapfigure}{r}{0.5\textwidth}
+	\vspace{-1.6cm}
+% 	\vspace{-2.5cm}
+	\singlespacing
+	\caption{Optimization Procedure}
+	\begin{itemize}
+	\item[1)] Collect an initial set, $\bm{X}$.
+	\item[2)] Compute $f(\bm{X})$.
+	\item[3)] Fit GP model based on evaluations of $f$.
+	\item[4)] Collect a candidate set, $\tilde{\bm{X}}$.
+	%\item[5)] Compute $\Eix$ among $\tilde{\bm{X}}$.$\E{\text{I}(\tilde{\bm{x}_i}})$
+	\item[5)] Compute EI among $\tilde{\bm{X}}$
+	%\item[6)] Add $\tilde{\bm{x}_i}$ yielding largest $\Eix$ to $\bm{X}$.
+	\item[6)] Add $\argmax_{\tilde{\bm{x}_i}} \E{\text{I}(\tilde{\bm{x}_i})}$ to $\bm{X}$.
+	\item[7)] Check convergence.
+	\item[8)] If converged exit. Otherwise go to 2).
+	\end{itemize}
+	\doublespacing
+	%\vspace{-0.85cm}
+	\label{procedure}
+	\end{wrapfigure}
 
 
 % %
@@ -397,15 +425,15 @@ Furthermore, if $m$ and $v$ are, respectively, the mean and variance of a lognor
 %
 Using this relation we do not need to transform any of the improvement samples.
 %
-We compute the empirical mean of the unaltered, approximatly lognormal, improvement samples, then use relation (\ref{lnRelate}) to directly compute the Expectation of the Lognormal Approximation to the Improvement (ELAI).
+We compute the empirical mean of the unaltered, approximately lognormal, improvement samples, then use relation (\ref{lnRelate}) to directly compute the Expectation of the Lognormal Approximation to the Improvement (ELAI).
 %
 % That is to say, by taking the mean of the unaltered improvement values we use relation (\ref{lnRelate}) to directly compute the Expected value of Lognormal Approximation of the Improvement (ELAI).
 %we immediately get an approximation of the $\E{\log \text{I}}$ values without actually taking the log of the improvement samples.
 %rather than is not bounded at 0, the log of the improvement distribution 
 %Considering that the log improvement has reduced right skew, for the sake of improved asymptotics of the
-The reduced right skew of the log improvement improves the asymptotics of the $\E{\log\text{I}}$ distribution; the ELAI serves as a computationally robust approximation of the $\E{\log\text{I}}$, and thus both the $\E{\log\text{I}}$ and ELAI are distributed approximatly normal in repeated sampling.  
+The reduced right skew of the log improvement improves the asymptotics of the $\E{\log\text{I}}$ distribution; the ELAI serves as a computationally robust approximation of the $\E{\log\text{I}}$, and thus both the $\E{\log\text{I}}$ and ELAI are distributed approximately normal in repeated sampling.  
 
-%improvement provides robust asymptotics for the normality of the distribution of the $\E{\log\text{I}}$, even as convergence approachesthe ELAI provides a good approximation for this value.
+%improvement provides robust asymptotics for the normality of the distribution of the $\E{\log\text{I}}$, even as convergence approaches the ELAI provides a good approximation for this value.
 %{\color{red} ELAI}
 % The ELAI provides a good approximation for 
 
