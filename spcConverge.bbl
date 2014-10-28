@@ -1,0 +1,56 @@
+\begin{thebibliography}{1}
+
+\bibitem{windExample}
+Sanket~Sanjay Diwale, Ioannis Lymperopoulos, and Colin Jones.
+\newblock Optimization of an airborne wind energy system using constrained
+  gaussian processes.
+\newblock In {\em IEEE Multi-Conference on Systems and Control}, number
+  EPFL-CONF-199717, 2014.
+
+\bibitem{EIPPD}
+David Ginsbourger, Rodolphe Le~Riche, Laurent Carraro, et~al.
+\newblock A multi-points criterion for deterministic parallel global
+  optimization based on gaussian processes.
+\newblock 2008.
+
+\bibitem{tgp}
+Robert~B. Gramacy.
+\newblock tgp: an r package for bayesian nonstationary, semiparametric
+  nonlinear regression and design by treed gaussian process models.
+\newblock {\em Journal of Statistical Software}, 19(9):6, 2007.
+
+\bibitem{tgp2}
+Robert~B. Gramacy and Matthew Taddy.
+\newblock Categorical inputs, sensitivity analysis, optimization and importance
+  tempering with tgp version 2, an r package for treed gaussian process models.
+\newblock {\em Journal of Statistical Software}, 33(i06), 2012.
+
+\bibitem{lockCite}
+Shawn~L. Matott, Kenny Leung, and Junyoung Sim.
+\newblock Application of matlab and python optimizers to two case studies
+  involving groundwater flow and contaminant transport modeling.
+\newblock {\em Computers \& Geosciences}, 37(11):1894--1899, 2011.
+
+\bibitem{santnerBook}
+Thomas~J. Santner, Brian~J. Williams, and William Notz.
+\newblock {\em The design and analysis of computer experiments}.
+\newblock Springer, 2003.
+
+\bibitem{gBook}
+Matthias Schonlau, William~J. Welch, and Donald~R. Jones.
+\newblock Global versus local search in constrained optimization of computer
+  models.
+\newblock {\em Lecture Notes-Monograph Series}, pages 11--25, 1998.
+
+\bibitem{shewhartBook}
+Walter~A. Shewhart.
+\newblock {\em Economic control of quality of manufactured product}, volume
+  509.
+\newblock ASQ Quality Press, 1931.
+
+\bibitem{taddyOpt}
+Matthew~A. Taddy, Herbert H.~K. Lee, Genetha~A. Gray, and Joshua~D. Griffin.
+\newblock Bayesian guided pattern search for robust local optimization.
+\newblock {\em Technometrics}, 51(4):389--401, 2009.
+
+\end{thebibliography}
