@@ -142,7 +142,7 @@ of Statistical Process Control.
 %
 Our motivating example is a hydrology application, the Lockwood
 pump-and-treat problem \cite{lockCite}, discussed in more detail in Section
-{\color{red}XX}, wherein contamination in the ground-water near the
+3.1, wherein contamination in the ground-water near the
 Yellowstone River is remediated via a set of treatment wells.  
 %
 The goal is to minimize the cost of running the wells while ensuring that
@@ -285,7 +285,7 @@ If we have any hope of finding optima of a function, $f$, we impose the conditio
 The $z(\bm{x})$ are assumed to be particular realizations of an infinitely dimensional generalization of the multivariate normal distribution, $f \sim \text{GP}(m,~K)$, and thus jointly any set of such realizations, $z(\bm{x})$, jointly follow a multivariate normal distribution.
 %
 As part of the GP model specification, we specify the mean function as a linear combination of simple basis functions, $m=\bm{\beta}^\intercal \text{\textbf{f($\bm{x}
-$)}}$, and we describe the covariance structure, among the multiple dimensions of the $z(\bm{x})$, through specification of a covariance function, $K(\bm{x}, \bm{x}')$.
+$)}}$, and we describe the covariance structure, among the dimensions of the $z(\bm{x})$, through specification of a covariance function, $K(\bm{x}, \bm{x}')$.
 %
 By specifying a homogeneous covariance function, we thus model the relationship between $||\bm{x}-\bm{x}'||$ with the correlation structure that we expect to see when jointly considering two such realizations of the GP. 
 %
@@ -296,7 +296,7 @@ K(\bm{x}, ~\bm{x}') = \sigma^2\exp\left\{ -\frac{||\bm{x}-\bm{x}'||^p}{d} \right
 \label{corrFunc}
 \end{equation} 
 %
-Specifying conjugate priors for $\bm{\beta}$ and $\sigma^2$ yields a straightforward Gibbs sampling {\color{red}cite} inferential setting with the exception of the covariance structure parameters requiring Metropolis-Hastings MCMC sampling {\color{red}cite}.
+Specifying conjugate priors for $\bm{\beta}$ and $\sigma^2$ yields a straightforward Gibbs sampling {\color{red}cite} posterior inferential setting with the exception of the covariance structure parameters requiring Metropolis-Hastings MCMC sampling {\color{red}cite}.
 
 %
 %
@@ -313,9 +313,28 @@ For additional modeling details, including loosening the assumption of global st
 
 %
 %
-\subsubsection{Expected Improvement}
+\subsection{Expected Improvement}
 %
 %
+
+%
+%The EI criterion has been used \cite{tgp2}, \cite{taddyOpt} to identify candidate points that have a strong {\it possibility of encountering new minima}.
+%when applied to a single candidate point has
+The EI criterion is fundamentally based on the improvement criterion {\color{red}cite} which evaluates how possible it may be to encounter new minima at a given location based on the predictive GP surrogate model.
+%
+The improvement function takes the following form,
+\begin{equation}
+\ix~=~ \max \Big\{ \big(f_{min} - f(\bm{x})\big), ~0 \Big\}.
+\label{ix}
+\end{equation}
+%
+By considering the expectation of $\ix$, candidate locations are not only rewarded for having a low predictive mean, but the $\Eix$ also rewards poorly explored locations due to the high uncertainty of $\ix$ in these places.
+%
+Notice that by definition the $\ix$ function is always non-negative, however the GP posterior predictive $\Eix$ is a strictly positive criterion.
+%
+Considering the MCMC inferential setting of our GP surrogate model, the EI criterion can be quickly computed by using posterior predictive $\ix$ samples at given candidate locations to empirically approximate the $\Eix$ calculation.
+
+%Considering Bayesian models like Model (\ref{gpModel}), we can most efficiently use information in our model by considering $\Eix$ with respect to the posterior predictive distribution.
 
 %
 %
@@ -323,6 +342,8 @@ For additional modeling details, including loosening the assumption of global st
 %
 %
 
+%
+%
 \begin{wrapfigure}{r}{0.5\textwidth}
 	\vspace{-1.6cm}
 % 	\vspace{-2.5cm}
@@ -343,15 +364,24 @@ For additional modeling details, including loosening the assumption of global st
 	\doublespacing
 	%\vspace{-0.85cm}
 	\label{procedure}
-	\end{wrapfigure}
+\end{wrapfigure}
+%
+%
 
-
-% %
-% \begin{itemize}
-% \item GP
-% \item EI
-% \item Optimization Procedure
-% \end{itemize}
+% us with a
+The idea for optimization, in this context, is to only evaluate the objective function at locations that have a good chance of providing a new minimum. 
+%I need a handle
+Optimization begins by initially collecting a set, $\bm{X}$, of locations to evaluate the true function, $f$, to gather a basic impression of $f$.
+% (\ref{gpModel})
+A GP model is then fitted with $f(\bm{X})$ as observations of the true function.
+%EI
+Using this model, a set of candidate points, $\tilde{\bm{X}}$, are randomly selected from the domain and the EI criterion is calculated among these points.
+%
+The candidate point that has the highest EI is then chosen as the best candidate for a new minimum and thus, it is added to $\bm{X}$.
+% (\ref{gpModel})
+The objective function is evaluated at this new location and the GP model is refit based on the updated $f(\bm{X})$.
+%
+The optimization procedure carries on in this way until convergence.
 
 %
 %
