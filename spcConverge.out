@@ -3,5 +3,7 @@
 \BOOKMARK [2][-]{subsection.2.1}{Expected Improvement}{section.2}% 3
 \BOOKMARK [2][-]{subsection.2.2}{Optimization Procedure}{section.2}% 4
 \BOOKMARK [1][-]{section.3}{Statistical Process Control}{}% 5
-\BOOKMARK [2][-]{subsection.3.1}{Expected Lognormal Approximation to the Improvement \(ELAI\)}{section.3}% 6
-\BOOKMARK [2][-]{subsection.3.2}{EWMA Convergence Chart}{section.3}% 7
+\BOOKMARK [1][-]{section.4}{EWMA Convergence Chart}{}% 6
+\BOOKMARK [2][-]{subsection.4.1}{Expected Lognormal Approximation to the Improvement \(ELAI\)}{section.4}% 7
+\BOOKMARK [3][-]{subsubsection.4.1.1}{Exponentially Weighted Moving Average}{subsection.4.1}% 8
+\BOOKMARK [3][-]{subsubsection.4.1.2}{The Control Window}{subsection.4.1}% 9
