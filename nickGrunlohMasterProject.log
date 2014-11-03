@@ -1,9 +1,9 @@
-This is pdfTeX, Version 3.1415926-2.5-1.40.14 (TeX Live 2013/Debian) (format=pdflatex 2014.6.20)  2 NOV 2014 11:45
+This is pdfTeX, Version 3.1415926-2.5-1.40.14 (TeX Live 2013/Debian) (format=pdflatex 2014.6.20)  2 NOV 2014 21:36
 entering extended mode
  restricted \write18 enabled.
  %&-line parsing enabled.
-**../../nickGrunlohMasterProject.tex
-(../../nickGrunlohMasterProject.tex
+**nickGrunlohMasterProject.tex
+(./nickGrunlohMasterProject.tex
 LaTeX2e <2011/06/27>
 Babel <3.9h> and hyphenation patterns for 78 languages loaded.
 (/usr/share/texlive/texmf-dist/tex/latex/base/article.cls
@@ -552,7 +552,7 @@ Package: dsfont 1995/08/01 v0.1 Double stroke roman fonts
 )
 Package hyperref Info: Option `colorlinks' set `true' on input line 25.
 
-No file nickGrunlohMasterProject.aux.
+(./nickGrunlohMasterProject.aux)
 \openout1 = `nickGrunlohMasterProject.aux'.
 
 LaTeX Font Info:    Checking defaults for OML/cmm/m/it on input line 59.
@@ -569,6 +569,7 @@ LaTeX Font Info:    Checking defaults for U/cmr/m/n on input line 59.
 LaTeX Font Info:    ... okay on input line 59.
 LaTeX Font Info:    Checking defaults for PD1/pdf/m/n on input line 59.
 LaTeX Font Info:    ... okay on input line 59.
+
 (/usr/share/texlive/texmf-dist/tex/context/base/supp-pdf.mkii
 [Loading MPS to PDF converter (version 2006.09.02).]
 \scratchcounter=\count124
@@ -645,6 +646,8 @@ Package: gettitlestring 2010/12/03 v1.4 Cleanup title references (HO)
 LaTeX Info: Redefining \ref on input line 59.
 LaTeX Info: Redefining \pageref on input line 59.
 LaTeX Info: Redefining \nameref on input line 59.
+
+(./nickGrunlohMasterProject.out) (./nickGrunlohMasterProject.out)
 \@outlinefile=\write4
 \openout4 = `nickGrunlohMasterProject.out'.
 
@@ -652,7 +655,7 @@ LaTeX Info: Redefining \nameref on input line 59.
 
 pdfTeX warning: pdflatex (file ./figures/titlePage.pdf): PDF inclusion: found P
 DF version <1.6>, but at most version <1.5> allowed
-<./figures/titlePage.pdf, id=4, 612.2875pt x 792.9625pt>
+<./figures/titlePage.pdf, id=88, 612.2875pt x 792.9625pt>
 File: ./figures/titlePage.pdf Graphic file (type pdf)
 
 <use ./figures/titlePage.pdf>
@@ -668,6 +671,17 @@ LaTeX Warning: Float too large for page by 148.36053pt on input line 69.
 
 [1
 Non-PDF special ignored! <./figures/titlePage.pdf>]
+(./nickGrunlohMasterProject.toc
+LaTeX Font Info:    Try loading font information for U+msa on input line 2.
+
+(/usr/share/texlive/texmf-dist/tex/latex/amsfonts/umsa.fd
+File: umsa.fd 2013/01/14 v3.01 AMS symbols A
+)
+LaTeX Font Info:    Try loading font information for U+msb on input line 2.
+
+(/usr/share/texlive/texmf-dist/tex/latex/amsfonts/umsb.fd
+File: umsb.fd 2013/01/14 v3.01 AMS symbols B
+))
 \tf@toc=\write5
 \openout5 = `nickGrunlohMasterProject.toc'.
 
@@ -713,121 +727,23 @@ Overfull \hbox (9.85472pt too wide) in paragraph at lines 83--91
 for track-ing op-ti-miza-tion progress;
  []
 
-
-LaTeX Warning: Citation `gramacy2014' on page 1 undefined on input line 151.
-
-
-LaTeX Warning: Citation `windExample' on page 1 undefined on input line 153.
-
-
-LaTeX Warning: Citation `shewhartBook' on page 1 undefined on input line 159.
-
 [1
 
 
-]
-
-LaTeX Warning: Citation `noGradBook' on page 2 undefined on input line 202.
-
-[2]
-
-LaTeX Warning: Citation `gpSurrogate' on page 3 undefined on input line 227.
-
-
-LaTeX Warning: Citation `kriging' on page 3 undefined on input line 247.
-
-LaTeX Font Info:    Try loading font information for U+msa on input line 249.
-(/usr/share/texlive/texmf-dist/tex/latex/amsfonts/umsa.fd
-File: umsa.fd 2013/01/14 v3.01 AMS symbols A
-)
-LaTeX Font Info:    Try loading font information for U+msb on input line 249.
-
-(/usr/share/texlive/texmf-dist/tex/latex/amsfonts/umsb.fd
-File: umsb.fd 2013/01/14 v3.01 AMS symbols B
-) [3]
-
-LaTeX Warning: Reference `corrFunc' on page 4 undefined on input line 282.
-
-
-LaTeX Warning: Citation `steinBook' on page 4 undefined on input line 284.
-
-
-LaTeX Warning: Reference `baseEq' on page 4 undefined on input line 286.
-
-
-LaTeX Warning: Reference `corrFunc' on page 4 undefined on input line 286.
-
-[4]
-
-LaTeX Warning: Reference `gpModel' on page 5 undefined on input line 301.
-
-
-LaTeX Warning: Citation `gpJasa' on page 5 undefined on input line 301.
-
-
-LaTeX Warning: Reference `gpModel' on page 5 undefined on input line 309.
-
-
-LaTeX Warning: Reference `gpModel' on page 5 undefined on input line 318.
-
-
-LaTeX Warning: Citation `taddyOpt' on page 5 undefined on input line 321.
-
-
-LaTeX Warning: Citation `gpJasa' on page 5 undefined on input line 331.
-
+] [2] [3] [4]
 LaTeX Font Info:    Try loading font information for T1+cmtt on input line 335.
 
-(/usr/share/texlive/texmf-dist/tex/latex/base/t1cmtt.fd
+ (/usr/share/texlive/texmf-dist/tex/latex/base/t1cmtt.fd
 File: t1cmtt.fd 1999/05/25 v2.5h Standard LaTeX font definitions
 )
-
-LaTeX Warning: Citation `tgp' on page 5 undefined on input line 335.
-
-
-LaTeX Warning: Reference `gpModel' on page 5 undefined on input line 346.
-
-
-LaTeX Warning: Citation `taddyOpt' on page 5 undefined on input line 346.
-
-[5]
-
-LaTeX Warning: Citation `tgp2' on page 6 undefined on input line 364.
-
-
-LaTeX Warning: Citation `taddyOpt' on page 6 undefined on input line 364.
-
-
-LaTeX Warning: Reference `gpModel' on page 6 undefined on input line 374.
-
-
-LaTeX Warning: Reference `gpModel' on page 6 undefined on input line 381.
-
-
-LaTeX Warning: Reference `ix' on page 6 undefined on input line 384.
-
-
-LaTeX Warning: Citation `tgp2' on page 6 undefined on input line 386.
-
-[6]
-
-LaTeX Warning: Reference `gpModel' on page 7 undefined on input line 426.
-
-[7] <./figures/exampleEI.pdf, id=81, 505.89pt x 505.89pt>
+[5] [6] [7] <./figures/exampleEI.pdf, id=217, 505.89pt x 505.89pt>
 File: ./figures/exampleEI.pdf Graphic file (type pdf)
 
 <use ./figures/exampleEI.pdf>
 Package pdftex.def Info: ./figures/exampleEI.pdf used on input line 473.
 (pdftex.def)             Requested size: 234.8775pt x 234.88132pt.
-
-
-LaTeX Warning: Citation `shewhartBook' on page 8 undefined on input line 501.
-
-[8 <./figures/exampleEI.pdf>] [9]
-
-LaTeX Warning: Reference `EIxEX' on page 10 undefined on input line 534.
-
-<./figures/exampleIHist.pdf, id=100, 505.89pt x 505.89pt>
+ [8 <./figures/exampleEI.pdf>] [9]
+<./figures/exampleIHist.pdf, id=237, 505.89pt x 505.89pt>
 File: ./figures/exampleIHist.pdf Graphic file (type pdf)
 
 <use ./figures/exampleIHist.pdf>
@@ -835,100 +751,43 @@ Package pdftex.def Info: ./figures/exampleIHist.pdf used on input line 581.
 (pdftex.def)             Requested size: 234.8775pt x 234.88132pt.
  [10
 
-]
-
-LaTeX Warning: Reference `gpModel' on page 11 undefined on input line 599.
-
-[11 <./figures/exampleIHist.pdf>]
-<./figures/exampleLogIHist.pdf, id=118, 505.89pt x 505.89pt>
+] [11 <./figures/exampleIHist.pdf>]
+<./figures/exampleLogIHist.pdf, id=255, 505.89pt x 505.89pt>
 File: ./figures/exampleLogIHist.pdf Graphic file (type pdf)
 
 <use ./figures/exampleLogIHist.pdf>
 Package pdftex.def Info: ./figures/exampleLogIHist.pdf used on input line 628.
 (pdftex.def)             Requested size: 234.8775pt x 234.88132pt.
-
-
-LaTeX Warning: Reference `ix' on page 12 undefined on input line 644.
-
-
-LaTeX Warning: Reference `lnRelate' on page 12 undefined on input line 662.
-
-
-LaTeX Warning: Reference `logIxEX' on page 12 undefined on input line 664.
-
-[12
+ [12
 
  <./figures/exampleLogIHist.pdf>]
-
-LaTeX Warning: Citation `adaptEWMA' on page 13 undefined on input line 685.
-
-
-LaTeX Warning: Citation `boxBook' on page 13 undefined on input line 704.
-
-
-LaTeX Warning: Citation `qccPack' on page 13 undefined on input line 704.
-
 [13]
-
-LaTeX Warning: Citation `boxBook' on page 14 undefined on input line 725.
-
-
-LaTeX Warning: Reference `ewmaStat' on page 14 undefined on input line 748.
-
-
-LaTeX Warning: Citation `ewmaPaper' on page 14 undefined on input line 752.
-
-
-LaTeX Warning: Reference `EWMACL' on page 14 undefined on input line 760.
-
-
 Underfull \hbox (badness 10000) in paragraph at lines 773--778
 
  []
 
-[14]
-
-LaTeX Warning: Citation `boxBook' on page 15 undefined on input line 813.
-
-[15] [16]
-
-LaTeX Warning: Reference `procedure' on page 17 undefined on input line 898.
-
-<./figures/exampleEWMA.pdf, id=153, 505.89pt x 505.89pt>
+[14] [15] [16] <./figures/exampleEWMA.pdf, id=304, 505.89pt x 505.89pt>
 File: ./figures/exampleEWMA.pdf Graphic file (type pdf)
 
 <use ./figures/exampleEWMA.pdf>
 Package pdftex.def Info: ./figures/exampleEWMA.pdf used on input line 916.
 (pdftex.def)             Requested size: 220.78543pt x 220.78596pt.
-
-
-LaTeX Warning: Reference `EIxEX' on page 17 undefined on input line 919.
-
-
-LaTeX Warning: Reference `EIxEX' on page 17 undefined on input line 919.
-
-
-LaTeX Warning: Reference `procedure' on page 17 undefined on input line 939.
-
-[17 <./figures/exampleEWMA.pdf>] [18]
-<./figures/roseContour.jpg, id=174, 505.89pt x 505.89pt>
+ [17 <./figures/exampleEWMA.pdf>] [18]
+<./figures/roseContour.jpg, id=325, 505.89pt x 505.89pt>
 File: ./figures/roseContour.jpg Graphic file (type jpg)
 
 <use ./figures/roseContour.jpg>
 Package pdftex.def Info: ./figures/roseContour.jpg used on input line 977.
 (pdftex.def)             Requested size: 230.18253pt x 230.18802pt.
 
-<./figures/rosePersp.jpg, id=175, 505.89pt x 505.89pt>
+<./figures/rosePersp.jpg, id=326, 505.89pt x 505.89pt>
 File: ./figures/rosePersp.jpg Graphic file (type jpg)
 
 <use ./figures/rosePersp.jpg>
 Package pdftex.def Info: ./figures/rosePersp.jpg used on input line 978.
 (pdftex.def)             Requested size: 230.18253pt x 230.18802pt.
 
-
-LaTeX Warning: Citation `rosePaper' on page 19 undefined on input line 986.
-
-<./figures/gpMeanRosegpPic.pdf, id=176, 505.89pt x 505.89pt>
+<./figures/gpMeanRosegpPic.pdf, id=328, 505.89pt x 505.89pt>
 File: ./figures/gpMeanRosegpPic.pdf Graphic file (type pdf)
 
 <use ./figures/gpMeanRosegpPic.pdf>
@@ -942,22 +801,9 @@ Overfull \hbox (21.13611pt too wide) in paragraph at lines 1003--1006
 
 [19
 
- <./figures/roseContour.jpg> <./figures/rosePersp.jpg>]
-
-LaTeX Warning: Reference `roseGP' on page 20 undefined on input line 1017.
-
-
-LaTeX Warning: Reference `roseEWMAStart' on page 20 undefined on input line 103
-9.
-
-
-Overfull \hbox (5.52692pt too wide) in paragraph at lines 1037--1040
-\T1/cmr/m/n/12 con-trol win-dow so as to es-tab-lish some ini-tial opin-ion of 
-the search-ing pro-cess. []
- []
-
-[20 <./figures/gpMeanRosegpPic.pdf>]
-<./figures/ewmaConvChartRoseEasyEasyStart.pdf, id=194, 505.89pt x 505.89pt>
+ <./figures/roseContour.jpg> <./figures/rosePersp.jpg>] [20 <./figures/gpMeanRo
+segpPic.pdf>]
+<./figures/ewmaConvChartRoseEasyEasyStart.pdf, id=349, 505.89pt x 505.89pt>
 File: ./figures/ewmaConvChartRoseEasyEasyStart.pdf Graphic file (type pdf)
 
 <use ./figures/ewmaConvChartRoseEasyEasyStart.pdf>
@@ -965,7 +811,7 @@ Package pdftex.def Info: ./figures/ewmaConvChartRoseEasyEasyStart.pdf used on i
 nput line 1047.
 (pdftex.def)             Requested size: 115.08768pt x 115.08629pt.
 
-<./figures/bestZRoseEasyEasyStart.pdf, id=195, 505.89pt x 505.89pt>
+<./figures/bestZRoseEasyEasyStart.pdf, id=350, 505.89pt x 505.89pt>
 File: ./figures/bestZRoseEasyEasyStart.pdf Graphic file (type pdf)
 
 <use ./figures/bestZRoseEasyEasyStart.pdf>
@@ -973,23 +819,7 @@ Package pdftex.def Info: ./figures/bestZRoseEasyEasyStart.pdf used on input lin
 e 1048.
 (pdftex.def)             Requested size: 115.08768pt x 115.08629pt.
 
-
-LaTeX Warning: Reference `roseEWMAEnd' on page 21 undefined on input line 1064.
-
-
-
-LaTeX Warning: Reference `roseEWMAEnd' on page 21 undefined on input line 1066.
-
-
-
-LaTeX Warning: Reference `roseEWMAStart' on page 21 undefined on input line 107
-0.
-
-
-LaTeX Warning: Reference `roseEWMAEnd' on page 21 undefined on input line 1070.
-
-
-<./figures/ewmaConvChartRoseEasyEasyEnd.pdf, id=196, 505.89pt x 505.89pt>
+<./figures/ewmaConvChartRoseEasyEasyEnd.pdf, id=355, 505.89pt x 505.89pt>
 File: ./figures/ewmaConvChartRoseEasyEasyEnd.pdf Graphic file (type pdf)
 
 <use ./figures/ewmaConvChartRoseEasyEasyEnd.pdf>
@@ -997,7 +827,7 @@ Package pdftex.def Info: ./figures/ewmaConvChartRoseEasyEasyEnd.pdf used on inp
 ut line 1077.
 (pdftex.def)             Requested size: 115.08768pt x 115.08629pt.
 
-<./figures/bestZRoseEasyEasyEnd.pdf, id=197, 505.89pt x 505.89pt>
+<./figures/bestZRoseEasyEasyEnd.pdf, id=356, 505.89pt x 505.89pt>
 File: ./figures/bestZRoseEasyEasyEnd.pdf Graphic file (type pdf)
 
 <use ./figures/bestZRoseEasyEasyEnd.pdf>
@@ -1005,52 +835,32 @@ Package pdftex.def Info: ./figures/bestZRoseEasyEasyEnd.pdf used on input line
 1078.
 (pdftex.def)             Requested size: 115.08768pt x 115.08629pt.
 
-Underfull \hbox (badness 7613) in paragraph at lines 1070--1082
+Underfull \hbox (badness 10000) in paragraph at lines 1070--1082
 [] \T1/cmr/m/n/12 track the small-est ob-jec-tive func-tion eval-u-a-tion ob-se
 rved.
  []
-
-
-LaTeX Warning: Reference `roseEWMAStart' on page 21 undefined on input line 108
-4.
-
-
-LaTeX Warning: Reference `roseEWMAEnd' on page 21 undefined on input line 1086.
-
 
 [21
 
  <./figures/ewmaConvChartRoseEasyEasyStart.pdf> <./figures/bestZRoseEasyEasySta
 rt.pdf> <./figures/ewmaConvChartRoseEasyEasyEnd.pdf> <./figures/bestZRoseEasyEa
-syEnd.pdf>] <./figures/rastContour.jpg, id=230, 505.89pt x 505.89pt>
+syEnd.pdf>] <./figures/rastContour.jpg, id=390, 505.89pt x 505.89pt>
 File: ./figures/rastContour.jpg Graphic file (type jpg)
 
 <use ./figures/rastContour.jpg>
 Package pdftex.def Info: ./figures/rastContour.jpg used on input line 1098.
 (pdftex.def)             Requested size: 230.18253pt x 230.18802pt.
 
-<./figures/rastPersp.jpg, id=231, 505.89pt x 505.89pt>
+<./figures/rastPersp.jpg, id=391, 505.89pt x 505.89pt>
 File: ./figures/rastPersp.jpg Graphic file (type jpg)
 
 <use ./figures/rastPersp.jpg>
 Package pdftex.def Info: ./figures/rastPersp.jpg used on input line 1099.
 (pdftex.def)             Requested size: 230.18253pt x 230.18802pt.
-
-
-LaTeX Warning: Citation `rastCite' on page 22 undefined on input line 1113.
-
-[22
+ [22
 
  <./figures/rastContour.jpg> <./figures/rastPersp.jpg>]
-
-LaTeX Warning: Reference `rastEWMAStart' on page 23 undefined on input line 116
-3.
-
-
-LaTeX Warning: Reference `rastEWMAStart' on page 23 undefined on input line 116
-5.
-
-<./figures/ewmaConvChartRastHardStart.pdf, id=238, 505.89pt x 505.89pt>
+<./figures/ewmaConvChartRastHardStart.pdf, id=401, 505.89pt x 505.89pt>
 File: ./figures/ewmaConvChartRastHardStart.pdf Graphic file (type pdf)
 
 <use ./figures/ewmaConvChartRastHardStart.pdf>
@@ -1058,7 +868,7 @@ Package pdftex.def Info: ./figures/ewmaConvChartRastHardStart.pdf used on input
  line 1169.
 (pdftex.def)             Requested size: 115.08768pt x 115.08629pt.
 
-<./figures/bestZRastHardStart.pdf, id=239, 505.89pt x 505.89pt>
+<./figures/bestZRastHardStart.pdf, id=402, 505.89pt x 505.89pt>
 File: ./figures/bestZRastHardStart.pdf Graphic file (type pdf)
 
 <use ./figures/bestZRastHardStart.pdf>
@@ -1066,7 +876,7 @@ Package pdftex.def Info: ./figures/bestZRastHardStart.pdf used on input line 11
 70.
 (pdftex.def)             Requested size: 115.08768pt x 115.08629pt.
 
-<./figures/ewmaConvChartRastHardEnd.pdf, id=240, 505.89pt x 505.89pt>
+<./figures/ewmaConvChartRastHardEnd.pdf, id=403, 505.89pt x 505.89pt>
 File: ./figures/ewmaConvChartRastHardEnd.pdf Graphic file (type pdf)
 
 <use ./figures/ewmaConvChartRastHardEnd.pdf>
@@ -1074,70 +884,279 @@ Package pdftex.def Info: ./figures/ewmaConvChartRastHardEnd.pdf used on input l
 ine 1174.
 (pdftex.def)             Requested size: 115.08768pt x 115.08629pt.
 
-<./figures/bestZRastHardEnd.pdf, id=241, 505.89pt x 505.89pt>
+<./figures/bestZRastHardEnd.pdf, id=404, 505.89pt x 505.89pt>
 File: ./figures/bestZRastHardEnd.pdf Graphic file (type pdf)
 
 <use ./figures/bestZRastHardEnd.pdf>
 Package pdftex.def Info: ./figures/bestZRastHardEnd.pdf used on input line 1175
 .
 (pdftex.def)             Requested size: 115.08768pt x 115.08629pt.
+ [23 <./figures/ewmaConvChartRastHardStart.pdf> <./figures/bestZRastHardStart.p
+df> <./figures/ewmaConvChartRastHardEnd.pdf> <./figures/bestZRastHardEnd.pdf>]
+<./figures/easomContour.jpg, id=441, 505.89pt x 505.89pt>
+File: ./figures/easomContour.jpg Graphic file (type jpg)
+
+<use ./figures/easomContour.jpg>
+Package pdftex.def Info: ./figures/easomContour.jpg used on input line 1202.
+(pdftex.def)             Requested size: 230.18253pt x 230.18802pt.
+
+<./figures/easomPersp.pdf, id=442, 505.89pt x 505.89pt>
+File: ./figures/easomPersp.pdf Graphic file (type pdf)
+
+<use ./figures/easomPersp.pdf>
+Package pdftex.def Info: ./figures/easomPersp.pdf used on input line 1203.
+(pdftex.def)             Requested size: 230.18253pt x 230.18802pt.
+ [24
+
+ <./figures/easomContour.jpg> <./figures/easomPersp.pdf>]
+<./figures/ewmaConvChartEasomMedStart.pdf, id=455, 505.89pt x 505.89pt>
+File: ./figures/ewmaConvChartEasomMedStart.pdf Graphic file (type pdf)
+
+<use ./figures/ewmaConvChartEasomMedStart.pdf>
+Package pdftex.def Info: ./figures/ewmaConvChartEasomMedStart.pdf used on input
+ line 1248.
+(pdftex.def)             Requested size: 115.08768pt x 115.08629pt.
+
+<./figures/bestZEasomMedStart.pdf, id=456, 505.89pt x 505.89pt>
+File: ./figures/bestZEasomMedStart.pdf Graphic file (type pdf)
+
+<use ./figures/bestZEasomMedStart.pdf>
+Package pdftex.def Info: ./figures/bestZEasomMedStart.pdf used on input line 12
+49.
+(pdftex.def)             Requested size: 115.08768pt x 115.08629pt.
+
+<./figures/ewmaConvChartEasomMedEnd.pdf, id=457, 505.89pt x 505.89pt>
+File: ./figures/ewmaConvChartEasomMedEnd.pdf Graphic file (type pdf)
+
+<use ./figures/ewmaConvChartEasomMedEnd.pdf>
+Package pdftex.def Info: ./figures/ewmaConvChartEasomMedEnd.pdf used on input l
+ine 1253.
+(pdftex.def)             Requested size: 115.08768pt x 115.08629pt.
+
+<./figures/bestZEasomMedEnd.pdf, id=458, 505.89pt x 505.89pt>
+File: ./figures/bestZEasomMedEnd.pdf Graphic file (type pdf)
+
+<use ./figures/bestZEasomMedEnd.pdf>
+Package pdftex.def Info: ./figures/bestZEasomMedEnd.pdf used on input line 1254
+.
+(pdftex.def)             Requested size: 115.08768pt x 115.08629pt.
+
+Underfull \hbox (badness 3219) in paragraph at lines 1244--1257
+[]\T1/cmr/m/n/12 The pre-vi-ously seen ini-tial EWMA con-ver-gence charts, Fig-
+ures ([][]7[][]) and ([][]9[][]),
+ []
+
+[25 <./figures/ewmaConvChartEasomMedStart.pdf> <./figures/bestZEasomMedStart.pd
+f> <./figures/ewmaConvChartEasomMedEnd.pdf> <./figures/bestZEasomMedEnd.pdf>]
+Underfull \hbox (badness 10000) in paragraph at lines 1292--1299
+
+ []
+
+<./figures/Lockwood_Site_Simple.pdf, id=493, 946.73701pt x 703.428pt>
+File: ./figures/Lockwood_Site_Simple.pdf Graphic file (type pdf)
+
+<use ./figures/Lockwood_Site_Simple.pdf>
+Package pdftex.def Info: ./figures/Lockwood_Site_Simple.pdf used on input line 
+1305.
+(pdftex.def)             Requested size: 234.8775pt x 174.50415pt.
+
+Underfull \hbox (badness 5022) in paragraph at lines 1314--1319
+[][]\T1/cmr/m/n/12 The Lock-wood pump-and-treat case
+ []
+
+LaTeX Font Info:    Try loading font information for U+dsrom on input line 1327
+.
+(/usr/share/texlive/texmf-dist/tex/latex/doublestroke/Udsrom.fd
+File: Udsrom.fd 1995/08/01 v0.1 Double stroke roman font definitions
+) [26
+
+ <./figures/Lockwood_Site_Simple.pdf>]
+<./figures/gpMeanLock240000.jpg, id=507, 505.89pt x 505.89pt>
+File: ./figures/gpMeanLock240000.jpg Graphic file (type jpg)
+
+<use ./figures/gpMeanLock240000.jpg>
+Package pdftex.def Info: ./figures/gpMeanLock240000.jpg used on input line 1350
+.
+(pdftex.def)             Requested size: 234.8775pt x 234.88132pt.
+ [27 <./figures/gpMeanLock240000.jpg>]
+<./figures/ewmaConvChartLock240000Start.pdf, id=515, 505.89pt x 505.89pt>
+File: ./figures/ewmaConvChartLock240000Start.pdf Graphic file (type pdf)
+
+<use ./figures/ewmaConvChartLock240000Start.pdf>
+Package pdftex.def Info: ./figures/ewmaConvChartLock240000Start.pdf used on inp
+ut line 1397.
+(pdftex.def)             Requested size: 115.08768pt x 115.08629pt.
+
+<./figures/bestZLock240000Start.pdf, id=516, 505.89pt x 505.89pt>
+File: ./figures/bestZLock240000Start.pdf Graphic file (type pdf)
+
+<use ./figures/bestZLock240000Start.pdf>
+Package pdftex.def Info: ./figures/bestZLock240000Start.pdf used on input line 
+1398.
+(pdftex.def)             Requested size: 115.08768pt x 115.08629pt.
+
+<./figures/ewmaConvChartLock240000End.pdf, id=517, 505.89pt x 505.89pt>
+File: ./figures/ewmaConvChartLock240000End.pdf Graphic file (type pdf)
+
+<use ./figures/ewmaConvChartLock240000End.pdf>
+Package pdftex.def Info: ./figures/ewmaConvChartLock240000End.pdf used on input
+ line 1402.
+(pdftex.def)             Requested size: 115.08768pt x 115.08629pt.
+
+<./figures/bestZLock240000End.pdf, id=518, 505.89pt x 505.89pt>
+File: ./figures/bestZLock240000End.pdf Graphic file (type pdf)
+
+<use ./figures/bestZLock240000End.pdf>
+Package pdftex.def Info: ./figures/bestZLock240000End.pdf used on input line 14
+03.
+(pdftex.def)             Requested size: 115.08768pt x 115.08629pt.
+
+Underfull \hbox (badness 10000) in paragraph at lines 1401--1404
+
+ []
 
 
-LaTeX Warning: Reference `rastEWMAEnd' on page 23 undefined on input line 1183.
+Underfull \hbox (badness 1590) in paragraph at lines 1411--1417
+[] \T1/cmr/m/n/12 does not show any vi-
+ []
 
 
-
-LaTeX Warning: Reference `roseEWMAEnd' on page 23 undefined on input line 1185.
-
-
-[23 <./figures/ewmaConvChartRastHardStart.pdf> <./figures/bestZRastHardStart.pd
-f> <./figures/ewmaConvChartRastHardEnd.pdf> <./figures/bestZRastHardEnd.pdf>]
-
-LaTeX Warning: File `./figures/easomContour.jpg' not found on input line 1202.
+Underfull \hbox (badness 2790) in paragraph at lines 1411--1417
+\T1/cmr/m/n/12 o-la-tions of the con-trol lim-its. Thus,
+ []
 
 
-! Package pdftex.def Error: File `./figures/easomContour.jpg' not found.
+Underfull \hbox (badness 1087) in paragraph at lines 1411--1417
+[] \T1/cmr/m/n/12 does not show any signs of
+ []
 
-See the pdftex.def package documentation for explanation.
-Type  H <return>  for immediate help.
- ...                                              
-                                                  
-l.1202 ...9\textwidth]{./figures/easomContour.jpg}
-                                                  
-? x
- 
+[28
+
+ <./figures/ewmaConvChartLock240000Start.pdf> <./figures/bestZLock240000Start.p
+df> <./figures/ewmaConvChartLock240000End.pdf> <./figures/bestZLock240000End.pd
+f>]
+<./figures/ewmaConvChartLock6Three20000Start.pdf, id=555, 505.89pt x 505.89pt>
+File: ./figures/ewmaConvChartLock6Three20000Start.pdf Graphic file (type pdf)
+
+<use ./figures/ewmaConvChartLock6Three20000Start.pdf>
+Package pdftex.def Info: ./figures/ewmaConvChartLock6Three20000Start.pdf used o
+n input line 1448.
+(pdftex.def)             Requested size: 115.08768pt x 115.08629pt.
+
+<./figures/bestZLock6Three20000Start.pdf, id=556, 505.89pt x 505.89pt>
+File: ./figures/bestZLock6Three20000Start.pdf Graphic file (type pdf)
+
+<use ./figures/bestZLock6Three20000Start.pdf>
+Package pdftex.def Info: ./figures/bestZLock6Three20000Start.pdf used on input 
+line 1449.
+(pdftex.def)             Requested size: 115.08768pt x 115.08629pt.
+
+<./figures/ewmaConvChartLock6Three20000End.pdf, id=557, 505.89pt x 505.89pt>
+File: ./figures/ewmaConvChartLock6Three20000End.pdf Graphic file (type pdf)
+
+<use ./figures/ewmaConvChartLock6Three20000End.pdf>
+Package pdftex.def Info: ./figures/ewmaConvChartLock6Three20000End.pdf used on 
+input line 1453.
+(pdftex.def)             Requested size: 115.08768pt x 115.08629pt.
+
+<./figures/bestZLock6Three20000End.pdf, id=558, 505.89pt x 505.89pt>
+File: ./figures/bestZLock6Three20000End.pdf Graphic file (type pdf)
+
+<use ./figures/bestZLock6Three20000End.pdf>
+Package pdftex.def Info: ./figures/bestZLock6Three20000End.pdf used on input li
+ne 1454.
+(pdftex.def)             Requested size: 115.08768pt x 115.08629pt.
+ [29
+
+ <./figures/ewmaConvChartLock6Three20000Start.pdf> <./figures/bestZLock6Three20
+000Start.pdf> <./figures/ewmaConvChartLock6Three20000End.pdf> <./figures/bestZL
+ock6Three20000End.pdf>] [30
+
+]
+[31
+
+]
+*geometry* verbose mode - [ newgeometry ] result:
+* driver: pdftex
+* paper: <default>
+* layout: <same size as paper>
+* layoutoffset:(h,v)=(0.0pt,0.0pt)
+* modes: 
+* h-part:(L,W,R)=(72.26999pt, 469.75502pt, 72.26999pt)
+* v-part:(T,H,B)=(43.36243pt, 679.33757pt, 72.26999pt)
+* \paperwidth=614.295pt
+* \paperheight=794.96999pt
+* \textwidth=469.75502pt
+* \textheight=679.33757pt
+* \oddsidemargin=0.0pt
+* \evensidemargin=0.0pt
+* \topmargin=-65.90756pt
+* \headheight=12.0pt
+* \headsep=25.0pt
+* \topskip=12.0pt
+* \footskip=28.90755pt
+* \marginparwidth=44.0pt
+* \marginparsep=10.0pt
+* \columnsep=10.0pt
+* \skip\footins=10.8pt plus 4.0pt minus 2.0pt
+* \hoffset=0.0pt
+* \voffset=0.0pt
+* \mag=1000
+* \@twocolumnfalse
+* \@twosidefalse
+* \@mparswitchfalse
+* \@reversemarginfalse
+* (1in=72.27pt=25.4mm, 1cm=28.453pt)
+
+ (./nickGrunlohMasterProject.bbl [32
+
+
+])
+Package atveryend Info: Empty hook `BeforeClearDocument' on input line 1630.
+ [33]
+Package atveryend Info: Empty hook `AfterLastShipout' on input line 1630.
+ (./nickGrunlohMasterProject.aux)
+Package atveryend Info: Executing hook `AtVeryEndDocument' on input line 1630.
+Package atveryend Info: Executing hook `AtEndAfterFileList' on input line 1630.
+
+Package rerunfilecheck Info: File `nickGrunlohMasterProject.out' has not change
+d.
+(rerunfilecheck)             Checksum: 718EE9AE53112C62742BCDD259FA147D;1429.
+Package atveryend Info: Empty hook `AtVeryVeryEnd' on input line 1630.
+ ) 
 Here is how much of TeX's memory you used:
- 8664 strings out of 493304
- 123266 string characters out of 6139871
- 214999 words of memory out of 5000000
- 11903 multiletter control sequences out of 15000+600000
- 21318 words of font info for 55 fonts, out of 8000000 for 9000
+ 8873 strings out of 493304
+ 128010 string characters out of 6139871
+ 217930 words of memory out of 5000000
+ 12031 multiletter control sequences out of 15000+600000
+ 27254 words of font info for 81 fonts, out of 8000000 for 9000
  957 hyphenation exceptions out of 8191
- 29i,13n,32p,483b,345s stack positions out of 5000i,500n,10000p,200000b,80000s
-{/usr/share/texmf/fonts/enc/dvips/cm-super/cm-super-t1.enc}</usr/share/texlive/
-texmf-dist/fonts/type1/public/amsfonts/cm/cmbx12.pfb></usr/share/texlive/texmf-
-dist/fonts/type1/public/amsfonts/cm/cmex10.pfb></usr/share/texlive/texmf-dist/f
-onts/type1/public/amsfonts/cm/cmmi12.pfb></usr/share/texlive/texmf-dist/fonts/t
-ype1/public/amsfonts/cm/cmmi6.pfb></usr/share/texlive/texmf-dist/fonts/type1/pu
-blic/amsfonts/cm/cmmi8.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/am
-sfonts/cm/cmmib10.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfont
-s/cmextra/cmmib8.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts
-/cm/cmr12.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmr
-6.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmr8.pfb></
-usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmsy10.pfb></usr/sh
-are/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmsy8.pfb></usr/share/tex
-live/texmf-dist/fonts/type1/public/amsfonts/symbols/msam10.pfb></usr/share/texl
-ive/texmf-dist/fonts/type1/public/amsfonts/symbols/msbm10.pfb></usr/share/texmf
-/fonts/type1/public/cm-super/sfbx1095.pfb></usr/share/texmf/fonts/type1/public/
-cm-super/sfbx1200.pfb></usr/share/texmf/fonts/type1/public/cm-super/sfbx1440.pf
-b></usr/share/texmf/fonts/type1/public/cm-super/sfbx1728.pfb></usr/share/texmf/
-fonts/type1/public/cm-super/sfrm1095.pfb></usr/share/texmf/fonts/type1/public/c
-m-super/sfrm1200.pfb></usr/share/texmf/fonts/type1/public/cm-super/sfti1200.pfb
-></usr/share/texmf/fonts/type1/public/cm-super/sftt1200.pfb>
-Output written on nickGrunlohMasterProject.pdf (25 pages, 865958 bytes).
+ 29i,13n,32p,481b,431s stack positions out of 5000i,500n,10000p,200000b,80000s
+{/usr/share/texmf/fonts/enc/dvips/cm-super/cm-super-t1.enc}</usr/share/texliv
+e/texmf-dist/fonts/type1/public/amsfonts/cm/cmbx12.pfb></usr/share/texlive/texm
+f-dist/fonts/type1/public/amsfonts/cm/cmex10.pfb></usr/share/texlive/texmf-dist
+/fonts/type1/public/amsfonts/cm/cmmi12.pfb></usr/share/texlive/texmf-dist/fonts
+/type1/public/amsfonts/cm/cmmi6.pfb></usr/share/texlive/texmf-dist/fonts/type1/
+public/amsfonts/cm/cmmi8.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/
+amsfonts/cm/cmmib10.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfo
+nts/cmextra/cmmib8.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfon
+ts/cm/cmr12.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/c
+mr6.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmr8.pfb>
+</usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmsy10.pfb></usr/
+share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmsy8.pfb></usr/share/t
+exlive/texmf-dist/fonts/type1/public/doublestroke/dsrom12.pfb></usr/share/texli
+ve/texmf-dist/fonts/type1/public/amsfonts/symbols/msam10.pfb></usr/share/texliv
+e/texmf-dist/fonts/type1/public/amsfonts/symbols/msbm10.pfb></usr/share/texmf/f
+onts/type1/public/cm-super/sfbx1095.pfb></usr/share/texmf/fonts/type1/public/cm
+-super/sfbx1200.pfb></usr/share/texmf/fonts/type1/public/cm-super/sfbx1440.pfb>
+</usr/share/texmf/fonts/type1/public/cm-super/sfbx1728.pfb></usr/share/texmf/fo
+nts/type1/public/cm-super/sfrm1095.pfb></usr/share/texmf/fonts/type1/public/cm-
+super/sfrm1200.pfb></usr/share/texmf/fonts/type1/public/cm-super/sfti1200.pfb><
+/usr/share/texmf/fonts/type1/public/cm-super/sftt1200.pfb>
+Output written on nickGrunlohMasterProject.pdf (35 pages, 10156142 bytes).
 PDF statistics:
- 361 PDF objects out of 1000 (max. 8388607)
- 276 compressed objects within 3 object streams
- 63 named destinations out of 1000 (max. 500000)
- 91 words of extra memory for PDF output out of 10000 (max. 10000000)
+ 712 PDF objects out of 1000 (max. 8388607)
+ 582 compressed objects within 6 object streams
+ 107 named destinations out of 1000 (max. 500000)
+ 339 words of extra memory for PDF output out of 10000 (max. 10000000)
 
