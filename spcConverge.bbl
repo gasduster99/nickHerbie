@@ -1,4 +1,10 @@
-\begin{thebibliography}{1}
+\begin{thebibliography}{10}
+
+\bibitem{boxBook}
+George E.~P. Box, Alberto Luce\~{n}o, and Mar\'{i}a Del~Carmen
+  Paniagua-Qui\~{n}ones.
+\newblock {\em Statistical Control by Monitoring and Adjustment}.
+\newblock Wiley, New York, NY, 1997.
 
 \bibitem{windExample}
 Sanket~Sanjay Diwale, Ioannis Lymperopoulos, and Colin Jones.
@@ -47,6 +53,13 @@ Walter~A. Shewhart.
 \newblock {\em Economic control of quality of manufactured product}, volume
   509.
 \newblock ASQ Quality Press, 1931.
+
+\bibitem{adaptEWMA}
+Yan Su, Lianjie Shu, and Kwok-Leung Tsui.
+\newblock Adaptive ewma procedures for monitoring processes subject to linear
+  drifts.
+\newblock {\em Computational statistics \& data analysis}, 55(10):2819--2829,
+  2011.
 
 \bibitem{taddyOpt}
 Matthew~A. Taddy, Herbert H.~K. Lee, Genetha~A. Gray, and Joshua~D. Griffin.

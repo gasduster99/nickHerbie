@@ -296,7 +296,7 @@ K(\bm{x}, ~\bm{x}') = \sigma^2\exp\left\{ -\frac{||\bm{x}-\bm{x}'||^p}{d} \right
 \label{corrFunc}
 \end{equation} 
 %
-Specifying conjugate priors for $\bm{\beta}$ and $\sigma^2$ yields a straightforward Gibbs sampling {\color{red}cite} posterior inferential setting with the exception of the covariance structure parameters requiring Metropolis-Hastings MCMC sampling {\color{red}cite}.
+Specifying conjugate priors for $\bm{\beta}$ and $\sigma^2$ yields a straightforward Gibbs sampling posterior inferential setting with the exception of the covariance structure parameters requiring Metropolis-Hastings MCMC sampling.
 
 %
 %
@@ -352,7 +352,7 @@ Considering the MCMC inferential setting of our GP surrogate model, the EI crite
 	\begin{itemize}
 	\item[1)] Collect an initial set, $\bm{X}$.
 	\item[2)] Compute $f(\bm{X})$.
-	\item[3)] Fit GP model based on evaluations of $f$.
+	\item[3)] Fit surrogate based on evaluations of $f$.
 	\item[4)] Collect a candidate set, $\tilde{\bm{X}}$.
 	%\item[5)] Compute $\Eix$ among $\tilde{\bm{X}}$.$\E{\text{I}(\tilde{\bm{x}_i}})$
 	\item[5)] Compute EI among $\tilde{\bm{X}}$
@@ -373,9 +373,9 @@ The idea for optimization, in this context, is to only evaluate the objective fu
 %I need a handle
 Optimization begins by initially collecting a set, $\bm{X}$, of locations to evaluate the true function, $f$, to gather a basic impression of $f$.
 % (\ref{gpModel})
-A GP model is then fitted with $f(\bm{X})$ as observations of the true function.
+A statistical surrogate model is then fitted with $f(\bm{X})$ as observations of the true function.
 %EI
-Using this model, a set of candidate points, $\tilde{\bm{X}}$, are randomly selected from the domain and the EI criterion is calculated among these points.
+Using surrogate model, a set of candidate points, $\tilde{\bm{X}}$, are randomly selected from the domain and the EI criterion is calculated among these points.
 %
 The candidate point that has the highest EI is then chosen as the best candidate for a new minimum and thus, it is added to $\bm{X}$.
 % (\ref{gpModel})
@@ -385,7 +385,13 @@ The optimization procedure carries on in this way until convergence.
 
 %
 %
-\section{Statistical Process Control}
+\section{EWMA Convergence Chart}
+%
+%
+
+%
+%
+\subsection{Statistical Process Control}
 %
 %
 
@@ -408,13 +414,6 @@ Observations violating our expectations (i.e. observations that fall outside of 
 Since neither $\mu$ nor $\sigma^2$ are typically known, it is of primary importance to use the data carefully to form accurate approximations of these values, thus establishing a standard for control.
 %
 Furthermore, this logic relies upon the typical asymptotic results of the central limit theorem (CLT), and special care should always be taken to satisfy its requirements.
-
-%
-%
-\section{EWMA Convergence Chart}
-%
-%
-
 
 %
 %
@@ -456,7 +455,7 @@ Recall that if a random variable \mbox{$X\sim Log$-$N(\omega, \nu)$,} then anoth
 Furthermore, if $m$ and $v$ are, respectively, the mean and variance of a lognormal sample, then the mean, $\omega$, and variance, $\nu$, of the associated normal distribution are given by the following relation {\color{red}cite}.
 %
 \begin{eqnarray}
-\omega = \ln\left( \frac{m^2}{\sqrt{v+m^2}} \right) &~&  \nu = \ln\bigg( 1+ \frac{v}{m^2} \bigg).
+\omega = \log\left( \frac{m^2}{\sqrt{v+m^2}} \right) &~&  \nu = \log\bigg( 1+ \frac{v}{m^2} \bigg).
 \label{lnRelate}
 \end{eqnarray}
 %
@@ -478,15 +477,78 @@ The reduced right skew of the log improvement improves the asymptotics of the $\
 
 %
 %
-\subsubsection{Exponentially Weighted Moving Average}
+{\color{red}\subsection{Exponentially Weighted Moving Average}}
 %
 %
 
 %
+The EWMA control chart is based upon Shewhart's original notion of control, however the EWMA control chart veiws the repeated sampling process in the contex of moving average smoothing of series data. %, rather than assuming a constant long run average, as in the $\bar x$-chart.    
+%Principally provide particularly robust solutions to be expected for convergence in this setting.
+Since the ELAI convergence criterion stochastically slides into convergence, a series perspective is appropriate here; in particular the EWMA perspective has shown to be well suited for tracking the progression of means that are subject to subtle drifting processes \cite{adaptEWMA, ?}, just as displayed by the ELAI criterion upon convergence.
 %
-\subsubsection{The Control Window}
+EWMA achieves this robust smoothing behaviour, relative to shifting means, by assigning exponentially decreasing weights to successive points in a rolling average among all of the points of the series, thus the EWMA emphasizes recent observations more and shifts the focus of the moving average to the most recent information while still smoothing with some memory of the past.
+
 %
 %
+
+If $Y_i$ is the current ELAI value, and $Z_i$ is the EWMA statistic associated with this current value, then the initial value $Z_0$ is set to $Y_0$ and for $i>0$ the EWMA statistic is expressed as,
+%
+\begin{equation}
+Z_i=\lambda Y_i+(1-\lambda)Z_{i-1}.
+\label{ewmaStat}
+\end{equation}
+%
+Above, $\lambda$ is a smoothing parameter that defines the weight $\left( \text{i.e. }0<\lambda\le1\right)$ assigned to the most recent observation, $Y_i$.
+%Eq. (\ref{ewmaStat})
+The recursive expression of the statistic ensures that all subsequent weights geometrically decrease as they move back through the series.
+
+%
+%
+
+%
+Typically values of $\lambda$ range from $0.1\le\lambda\le0.3$, with a default value of $\lambda=0.2$, as described by Box et al. \cite{boxBook}.
+%%  data specific $\hat\lambda$ value by minimizing the sum of squared deviations with respect to $\lambda$. % , thus tailored for each particular data set.
+{\color{red}
+Additionally Box et al. explains how to estimate a $\hat\lambda$ so as to minimize sum of squared deviation of forcasting errors ($S_\lambda$) of the resulting EWMA series. 
+}
+%the more quickly
+In general large values of $\lambda$ assign more weight to recently observed values, and thus past observations effect the moving average less. %  on the moving average quickly forgets about past observations.
+%
+Conversely, small values of $\lambda$ assign less weight to recent observations, and thus small values of $\lambda$ provide more smoothing across the effects of past observations. 
+%provide better sensitivity $\E{\log\ix}$
+Hence larger values of $\lambda$ tend to be better suited for dealing with large shifts, and small values of $\lambda$ are more sensitive to small shifts.
+%
+{\color{red}
+Often it is the case with EWMA that the best choice of $\lambda$ is based on ``expert opinions'' related to the underlying data generating process.
+}
+%
+% For identifying convergence, ``expert opinions'' come in the form of an in-depth understanding of how EI values behave relative to the specific search phenomena related to the expected behavior of $f$.
+
+\begin{itemize}
+\item Robustness to 
+\begin{itemize}
+\item[\checkmark] drifting \cite{adaptEWMA}
+\item reasonable distributional assumptions \cite{boxBook}. 
+\end{itemize}
+\item[\checkmark] Smoothing with exponentially decreasing memory of path
+\item notes on table
+\item notes from meating in notebook
+\end{itemize}
+
+%
+%
+\subsection{The Control Window}
+%
+%
+
+
+
+%
+%
+\subsection{Identifying Convergence}
+%
+%
+
 
 
 %

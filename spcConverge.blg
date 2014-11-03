@@ -3,47 +3,48 @@ Capacity: max_strings=35307, hash_size=35307, hash_prime=30011
 The top-level auxiliary file: spcConverge.aux
 The style file: plain.bst
 Database file #1: ./spcCite.bib
+Warning--I didn't find a database entry for "?"
 Warning--there's a number but no series in windExample
 Warning--empty journal in EIPPD
-You've used 9 entries,
+You've used 11 entries,
             2118 wiz_defined-function locations,
-            564 strings with 5730 characters,
-and the built_in function-call counts, 2820 in all, are:
-= -- 265
-> -- 145
+            580 strings with 6095 characters,
+and the built_in function-call counts, 3490 in all, are:
+= -- 329
+> -- 181
 < -- 3
-+ -- 59
-- -- 48
-* -- 197
-:= -- 488
-add.period$ -- 27
-call.type$ -- 9
-change.case$ -- 48
++ -- 73
+- -- 60
+* -- 248
+:= -- 604
+add.period$ -- 33
+call.type$ -- 11
+change.case$ -- 59
 chr.to.int$ -- 0
-cite$ -- 11
-duplicate$ -- 109
-empty$ -- 214
-format.name$ -- 48
-if$ -- 575
+cite$ -- 13
+duplicate$ -- 132
+empty$ -- 265
+format.name$ -- 60
+if$ -- 711
 int.to.chr$ -- 0
-int.to.str$ -- 9
-missing$ -- 11
-newline$ -- 48
-num.names$ -- 18
-pop$ -- 53
+int.to.str$ -- 11
+missing$ -- 14
+newline$ -- 58
+num.names$ -- 22
+pop$ -- 66
 preamble$ -- 1
-purify$ -- 41
+purify$ -- 51
 quote$ -- 0
-skip$ -- 74
+skip$ -- 86
 stack$ -- 0
-substring$ -- 130
-swap$ -- 18
+substring$ -- 171
+swap$ -- 20
 text.length$ -- 3
 text.prefix$ -- 0
 top$ -- 0
-type$ -- 32
+type$ -- 38
 warning$ -- 2
-while$ -- 26
-width$ -- 10
-write$ -- 98
-(There were 2 warnings)
+while$ -- 32
+width$ -- 13
+write$ -- 120
+(There were 3 warnings)

@@ -2,8 +2,9 @@
 \BOOKMARK [1][-]{section.2}{Gaussian Process Surrogate Model Optimization}{}% 2
 \BOOKMARK [2][-]{subsection.2.1}{Expected Improvement}{section.2}% 3
 \BOOKMARK [2][-]{subsection.2.2}{Optimization Procedure}{section.2}% 4
-\BOOKMARK [1][-]{section.3}{Statistical Process Control}{}% 5
-\BOOKMARK [1][-]{section.4}{EWMA Convergence Chart}{}% 6
-\BOOKMARK [2][-]{subsection.4.1}{Expected Lognormal Approximation to the Improvement \(ELAI\)}{section.4}% 7
-\BOOKMARK [3][-]{subsubsection.4.1.1}{Exponentially Weighted Moving Average}{subsection.4.1}% 8
-\BOOKMARK [3][-]{subsubsection.4.1.2}{The Control Window}{subsection.4.1}% 9
+\BOOKMARK [1][-]{section.3}{EWMA Convergence Chart}{}% 5
+\BOOKMARK [2][-]{subsection.3.1}{Statistical Process Control}{section.3}% 6
+\BOOKMARK [2][-]{subsection.3.2}{Expected Lognormal Approximation to the Improvement \(ELAI\)}{section.3}% 7
+\BOOKMARK [2][-]{subsection.3.3}{Exponentially Weighted Moving Average}{section.3}% 8
+\BOOKMARK [2][-]{subsection.3.4}{The Control Window}{section.3}% 9
+\BOOKMARK [2][-]{subsection.3.5}{Identifying Convergence}{section.3}% 10
