@@ -151,7 +151,7 @@ no contamination enters the river.
 The contamination constraint results in a complicated boundary that is unknown in advance and
 requires evaluation of the simulator, and thus finding the global
 constrained minimum is a difficult problem and it is easy for
-optimization routines to at least temporarily get stuck in a local
+optimization routines to, at least temporarily, get stuck in a local
 minimum.  
 %
 Without knowing the answer in advance, how do we know when
@@ -185,16 +185,16 @@ Arising naturally from the GP predictive distribution \cite{gBook, EIPPD}, the m
 %
 %
 
-%however; as a means of assessing convergence 
-{\color{red}Literature cite} recommends considering the EI as a convergence criterion for GP surrogate model optimization; as of yet, little work has been done to describe what convergence of these algorithms actually looks like in the context of the EI criterion.
+%however; as a means of assessing convergence GP surrogate
+{\color{red}Literature cite} recommends considering the EI as a convergence criterion for surrogate model optimization; as of yet, little work has been done to describe what convergence of these algorithms actually looks like in the context of the EI criterion.
 %, but it has not yet been established if there is some threshold EI value that is sufficient
-However, the basic idea behind the use of the EI criterion, as a convergence criterion, is that convergence should occur when the GP surrogate model produces low expectations for discovering new optima; that is to say, small EI values should be associated with convergence of the algorithm.
+However, the basic idea behind the use of the EI criterion, as a convergence criterion, is that convergence should occur when the surrogate model produces low expectations for discovering new optima; that is to say, small EI values should be associated with convergence of the algorithm.
 %claim that there exists 
 Thus, a common stopping rule, involving the EI criterion, first defines some lower EI threshold, then claims convergence upon first sight of an EI value falling below this threshold \cite{windExample}, {\color{red}cite}.    
 %in many different; of many other numerical optimization routines; that have been designed specifically to exhibit such behavior upon convergence  
 This use of EI as a convergence criteria falls well within the comfort zone of the numerical optimization literature as this is certainly a reasonable approach for monitoring the convergence criteria of other routines (ex. the vanishing step sizes of Newton-Raphson, Pattern Search (PS) methods, etc.).
 %
-However, applying this same threshold strategy to the convergence of GP surrogate model optimization, in the context of the EI criterion, has not yet been adequately justified.
+However, applying this same threshold strategy to the convergence of surrogate model optimization, in the context of the EI criterion, has not yet been adequately justified.
 %, derived from the predictive distribution of the underling GP model; behavior
 In fact, this use of EI ignores the nature of the EI criterion as a random variable, and oversimplifies the stochastic nature of convergence in this setting.
 %
@@ -221,7 +221,7 @@ a dashed line at -10.
 Because Expected Improvement is strictly positive but decreasingly small,
 we find it more productive to work on the log scale, using a lognormal
 approximation to the improvement distribution, as described in more
-detail in Section~{\color{red}XX}.
+detail in Section 3.2.
 %
 Figure~(\ref{introFig}) represents three series of the Expected
 Lognormal Approximation to the Improvement (ELAI) values from three
@@ -279,6 +279,10 @@ consistency of the distribution of the most recently observed values.
 %
 %
 
+{\color{red} *Everybody uses GP, bunch of cites}
+
+%
+For more details on the theoretical foundations of Gaussian Processes in computer experiments see \cite{santnerBook}.
 %
 If we have any hope of finding optima of a function, $f$, we impose the condition that $f$ provides a reasonably smooth mapping for relating points in the domain, $\bm{x}$, to response values, $z(\bm{x})$.
 %\text{\textbf{Z}}; $\big($i.e.~\big)$; \text{Z}
@@ -301,8 +305,8 @@ Specifying conjugate priors for $\bm{\beta}$ and $\sigma^2$ yields a straightfor
 %
 %
 
-%
-For more details on the theoretical foundations of Gaussian Processes in computer experiments see \cite{santnerBook}.
+{\color{red} *Expand Treed Partitioning}
+
 For additional modeling details, including loosening the assumption of global stationarity, and details about implementing GP models in the context of numerical optimization see the R package \verb tgp ~as well as the associated vignettes \cite{tgp, tgp2}.
 
 %
@@ -320,7 +324,7 @@ For additional modeling details, including loosening the assumption of global st
 %
 %The EI criterion has been used \cite{tgp2}, \cite{taddyOpt} to identify candidate points that have a strong {\it possibility of encountering new minima}.
 %when applied to a single candidate point has
-The EI criterion is fundamentally based on the improvement criterion {\color{red}cite} which evaluates how possible it may be to encounter new minima at a given location based on the predictive GP surrogate model.
+The EI criterion is fundamentally based on the improvement criterion {\color{red}cite} which evaluates how possible it may be to encounter new minima at a given location based on the predictive surrogate model.
 %
 The improvement function takes the following form,
 \begin{equation}
@@ -374,12 +378,12 @@ The idea for optimization, in this context, is to only evaluate the objective fu
 Optimization begins by initially collecting a set, $\bm{X}$, of locations to evaluate the true function, $f$, to gather a basic impression of $f$.
 % (\ref{gpModel})
 A statistical surrogate model is then fitted with $f(\bm{X})$ as observations of the true function.
-%EI
-Using surrogate model, a set of candidate points, $\tilde{\bm{X}}$, are randomly selected from the domain and the EI criterion is calculated among these points.
+%EI randomly
+Using the surrogate model, a set of candidate points, $\tilde{\bm{X}}$, are selected from the domain and the EI criterion is calculated among these points.
 %
 The candidate point that has the highest EI is then chosen as the best candidate for a new minimum and thus, it is added to $\bm{X}$.
 % (\ref{gpModel})
-The objective function is evaluated at this new location and the GP model is refit based on the updated $f(\bm{X})$.
+The objective function is evaluated at this new location and the surrogate model is refit based on the updated $f(\bm{X})$.
 %
 The optimization procedure carries on in this way until convergence.
 
@@ -424,23 +428,25 @@ Furthermore, this logic relies upon the typical asymptotic results of the centra
 %
 In the spirit of obtaining a robust solution through the use of the CLT, as applied to the distribution of the EI, it is important to carefully consider properties of the improvement distribution.
 %
-Firstly, the improvement values are strictly positive but decreasingly small, thus the improvement distribution is often strongly right skewed.
+The improvement values are strictly positive but decreasingly small, thus the improvement distribution is often strongly right skewed; leading to poor asymptotics for the EI distribution.
 %
-This right skew becomes exaggerated as convergence approaches (i.e. when the improvement values become small).
+Additionally, this right skew becomes exaggerated as convergence approaches, due to the decreaseing trend in the EI criterion.
+%% distribution will always struggle to capture the resulting EI distribution.
+Since the improvement distribution is strictly positive, an unfettered EI criterion wil always resist normality in repeated sampling. 
 %
-Thus if large sample assumptions (from the improvement distribution) are challenged, then the asymptotic EI distribution may become less accurate at the time of convergence (i.e. when we desire accuracy most). 
+%If large sample assumptions (from the improvement distribution) are challenged, then the asymptotic EI distribution may become less accurate at the time of convergence (i.e. when we desire accuracy most). 
 %Additionally, since the I(x) criterion is naturally bounded at 0, an unfettered normal distribution will always struggle to model the EI criterion since the normal distribution will never respect its boundary conditions. 
-Secondly, since the improvement distribution is strictly positive, the EI should also be bounded at 0.
-%
-Thus an unfettered normal distribution will always struggle to capture the EI distribution.
+% Secondly, since the improvement distribution is strictly positive, the EI is also be bounded at 0, and an unfettered normal distribution will always struggle to capture the resulting EI distribution.
  
 %
 %
 
+%log improvement
+These issues naturally suggest modeling transformations of the improvement, rather than directly considering the improvement distribution on its own.
 %
-These issues naturally suggest modeling the log improvement, rather than the improvement distribution on its own.
+One of the simplest of the many possible helpful transformations in this case could simply consider the log of the improvement distribution. 
 %
-However due to the MCMC sample-based implementation of the Gaussian Process, and the desire for a large number of samples from the improvement distribution, it is not uncommon to obtain at least one sample that in double precision is indistinguishable from 0.
+However due to the MCMC sample-based implementation of the Gaussian Process, and the desire for a large number of samples from the improvement distribution, it is not uncommon to obtain at least one sample, that in double precision, is computationally indistinguishable from 0.
 %
 Thus simply taking the log of the improvement samples can be computationally undefined, particularly as convergence approaches.
 
@@ -467,26 +473,27 @@ We compute the empirical mean of the unaltered, approximately lognormal, improve
 %we immediately get an approximation of the $\E{\log \text{I}}$ values without actually taking the log of the improvement samples.
 %rather than is not bounded at 0, the log of the improvement distribution 
 %Considering that the log improvement has reduced right skew, for the sake of improved asymptotics of the
-The reduced right skew of the log improvement improves the asymptotics of the $\E{\log\text{I}}$ distribution; the ELAI serves as a computationally robust approximation of the $\E{\log\text{I}}$, and thus both the $\E{\log\text{I}}$ and ELAI are distributed approximately normal in repeated sampling.  
+The reduced right skew of the log improvement improves the asymptotics of the $\E{\log\text{I}}$ distribution; the ELAI serves as a computationally robust approximation of the $\E{\log\text{I}}$, and thus both the $\E{\log\text{I}}$ and ELAI are distributed approximately normal in repeated sampling.
+%
+Allowing for accurate use of the fundamental theory on which our SPC prespecitive requires.
 
 %improvement provides robust asymptotics for the normality of the distribution of the $\E{\log\text{I}}$, even as convergence approaches the ELAI provides a good approximation for this value.
 %{\color{red} ELAI}
 % The ELAI provides a good approximation for 
 
+\clearpage
+%
+%
+\subsection{Exponentially Weighted Moving Average}
+%
+%
 
-
 %
-%
-{\color{red}\subsection{Exponentially Weighted Moving Average}}
-%
-%
-
-%
-The EWMA control chart is based upon Shewhart's original notion of control, however the EWMA control chart veiws the repeated sampling process in the contex of moving average smoothing of series data. %, rather than assuming a constant long run average, as in the $\bar x$-chart.    
+The EWMA control chart is based upon Shewhart's original notion of control, however the EWMA control chart veiws the repeated sampling process in the context of moving average smoothing of series data. %, rather than assuming a constant long run average, as in the $\bar x$-chart.    
 %Principally provide particularly robust solutions to be expected for convergence in this setting.
 Since the ELAI convergence criterion stochastically slides into convergence, a series perspective is appropriate here; in particular the EWMA perspective has shown to be well suited for tracking the progression of means that are subject to subtle drifting processes \cite{adaptEWMA, ?}, just as displayed by the ELAI criterion upon convergence.
 %
-EWMA achieves this robust smoothing behaviour, relative to shifting means, by assigning exponentially decreasing weights to successive points in a rolling average among all of the points of the series, thus the EWMA emphasizes recent observations more and shifts the focus of the moving average to the most recent information while still smoothing with some memory of the past.
+EWMA achieves this robust smoothing behavior, relative to shifting means, by assigning exponentially decreasing weights to successive points in a rolling average among all of the points of the series, thus the EWMA emphasizes recent observations and shifts the focus of the moving average to the most recent information while still smoothing with some memory of the past.
 
 %
 %
@@ -506,34 +513,44 @@ The recursive expression of the statistic ensures that all subsequent weights ge
 %
 
 %
-Typically values of $\lambda$ range from $0.1\le\lambda\le0.3$, with a default value of $\lambda=0.2$, as described by Box et al. \cite{boxBook}.
+Typical values of $\lambda$ can range from $0.1\le\lambda\le0.3$, with a default value of $\lambda$ around $0.2$, as described by Box et al. \cite{boxBook}.
 %%  data specific $\hat\lambda$ value by minimizing the sum of squared deviations with respect to $\lambda$. % , thus tailored for each particular data set.
-{\color{red}
-Additionally Box et al. explains how to estimate a $\hat\lambda$ so as to minimize sum of squared deviation of forcasting errors ($S_\lambda$) of the resulting EWMA series. 
-}
+Additionally Box et al. explains that EWMA charts are relatively robust to reasonable choices of $\lambda$, as evident by analysis of the sum of squared forcasting deviations ($S_\lambda$) associated with a particular choice of $\lambda$.
+%
+Box et al.'s analysis of $S_\lambda$ also suggests an optimal choice for $\lambda$ by choosing $\hat\lambda$ to minimize $S_\lambda$ \cite[p. 87]{boxBook}.
+%how to estimate a $\hat\lambda$ so as to minimize sum of squared deviation of forcasting errors ($S_\lambda$) of the resulting EWMA series. 
 %the more quickly
 In general large values of $\lambda$ assign more weight to recently observed values, and thus past observations effect the moving average less. %  on the moving average quickly forgets about past observations.
 %
 Conversely, small values of $\lambda$ assign less weight to recent observations, and thus small values of $\lambda$ provide more smoothing across the effects of past observations. 
 %provide better sensitivity $\E{\log\ix}$
-Hence larger values of $\lambda$ tend to be better suited for dealing with large shifts, and small values of $\lambda$ are more sensitive to small shifts.
-%
-{\color{red}
-Often it is the case with EWMA that the best choice of $\lambda$ is based on ``expert opinions'' related to the underlying data generating process.
-}
-%
-% For identifying convergence, ``expert opinions'' come in the form of an in-depth understanding of how EI values behave relative to the specific search phenomena related to the expected behavior of $f$.
+Hence larger values of $\lambda$ tend to be better suited for dealing with large shifts in the series, and small values of $\lambda$ are more sensitive to small shifts in the series.
 
-\begin{itemize}
-\item Robustness to 
-\begin{itemize}
-\item[\checkmark] drifting \cite{adaptEWMA}
-\item reasonable distributional assumptions \cite{boxBook}. 
-\end{itemize}
-\item[\checkmark] Smoothing with exponentially decreasing memory of path
-\item notes on table
-\item notes from meating in notebook
-\end{itemize}
+
+%
+%
+\begin{figure}
+\includegraphics[width=0.32\textwidth]{./figures/ewmaConvChartRoseEasyEasyOpt.pdf}
+\includegraphics[width=0.32\textwidth]{./figures/ewmaConvChartLock6Three20000Opt.pdf}
+\includegraphics[width=0.32\textwidth]{./figures/ewmaConvChartRastHardOpt.pdf}
+\includegraphics[width=0.32\textwidth]{./figures/ssRoseEasyEasyOpt.pdf}
+\includegraphics[width=0.32\textwidth]{./figures/ssLock6Three20000Opt.pdf}
+\includegraphics[width=0.32\textwidth]{./figures/ssRastHardOpt.pdf}
+\caption{$left:$ Rosebrock; $center:$ Lockwood; $right:$ Rastrigin}
+\end{figure}
+%
+%
+
+% \begin{itemize}
+% \item Robustness to 
+% \begin{itemize}
+% \item[\checkmark] drifting \cite{adaptEWMA}
+% \item reasonable distributional assumptions \cite{boxBook}. 
+% \end{itemize}
+% \item[\checkmark] Smoothing with exponentially decreasing memory of path
+% \item notes on table
+% \item notes from meeting in notebook
+% \end{itemize}
 
 %
 %
@@ -549,6 +566,17 @@ Often it is the case with EWMA that the best choice of $\lambda$ is based on ``e
 %
 %
 
+%
+%
+\section{Examples}
+%
+%
+
+%
+%
+\section{Conclusion}
+%
+%
 
 
 %
