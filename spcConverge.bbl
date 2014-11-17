@@ -31,6 +31,12 @@ Robert~B. Gramacy and Matthew Taddy.
   tempering with tgp version 2, an r package for treed gaussian process models.
 \newblock {\em Journal of Statistical Software}, 33(i06), 2012.
 
+\bibitem{ewmaPaper}
+James~M. Lucas and Michael~S. Saccucci.
+\newblock Exponentially weighted moving average control schemes: properties and
+  enhancements.
+\newblock {\em Technometrics}, 32(1):1--12, 1990.
+
 \bibitem{lockCite}
 Shawn~L. Matott, Kenny Leung, and Junyoung Sim.
 \newblock Application of matlab and python optimizers to two case studies

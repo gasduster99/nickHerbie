@@ -6,45 +6,45 @@ Database file #1: ./spcCite.bib
 Warning--I didn't find a database entry for "?"
 Warning--there's a number but no series in windExample
 Warning--empty journal in EIPPD
-You've used 11 entries,
+You've used 12 entries,
             2118 wiz_defined-function locations,
-            580 strings with 6095 characters,
-and the built_in function-call counts, 3490 in all, are:
-= -- 329
-> -- 181
+            587 strings with 6246 characters,
+and the built_in function-call counts, 3796 in all, are:
+= -- 361
+> -- 194
 < -- 3
-+ -- 73
-- -- 60
-* -- 248
-:= -- 604
-add.period$ -- 33
-call.type$ -- 11
-change.case$ -- 59
++ -- 78
+- -- 64
+* -- 271
+:= -- 656
+add.period$ -- 36
+call.type$ -- 12
+change.case$ -- 64
 chr.to.int$ -- 0
-cite$ -- 13
-duplicate$ -- 132
-empty$ -- 265
-format.name$ -- 60
-if$ -- 711
+cite$ -- 14
+duplicate$ -- 143
+empty$ -- 289
+format.name$ -- 64
+if$ -- 773
 int.to.chr$ -- 0
-int.to.str$ -- 11
-missing$ -- 14
-newline$ -- 58
-num.names$ -- 22
-pop$ -- 66
+int.to.str$ -- 12
+missing$ -- 15
+newline$ -- 63
+num.names$ -- 24
+pop$ -- 69
 preamble$ -- 1
-purify$ -- 51
+purify$ -- 55
 quote$ -- 0
-skip$ -- 86
+skip$ -- 94
 stack$ -- 0
-substring$ -- 171
-swap$ -- 20
+substring$ -- 192
+swap$ -- 21
 text.length$ -- 3
 text.prefix$ -- 0
 top$ -- 0
-type$ -- 38
+type$ -- 42
 warning$ -- 2
-while$ -- 32
-width$ -- 13
-write$ -- 120
+while$ -- 36
+width$ -- 14
+write$ -- 131
 (There were 3 warnings)

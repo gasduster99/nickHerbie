@@ -220,11 +220,11 @@ a dashed line at -10.
 %of the series value; of the values; shows; non-negative
 Because Expected Improvement is strictly positive but decreasingly small,
 we find it more productive to work on the log scale, using a lognormal
-approximation to the improvement distribution, as described in more
+approximation to the improvement distribution to generate a more appropriate convergence criterion, as described in more
 detail in Section 3.2.
 %
 Figure~(\ref{introFig}) represents three series of the Expected
-Lognormal Approximation to the Improvement (ELAI) values from three
+Lognormal Approximation to the Improvement (ELAI) criterion values from three
 different optimization problems that will be demonstrated later in
 this paper, where it will be shown that convergence is established near
 the end of each of these series.
@@ -426,13 +426,18 @@ Furthermore, this logic relies upon the typical asymptotic results of the centra
 %
 
 %
-In the spirit of obtaining a robust solution through the use of the CLT, as applied to the distribution of the EI, it is important to carefully consider properties of the improvement distribution.
+For the sake of obtaining a robust convergence criterion to track via SPC, it is important to carfully consider properties of the improvement distributions which generate the EI values.
 %
-The improvement values are strictly positive but decreasingly small, thus the improvement distribution is often strongly right skewed; leading to poor asymptotics for the EI distribution.
+Ultimately, the distribution of the EI is asymtotically normal, but the characteristics of the improvement distribution, as convergence approaches, complicate these asymtoptics. 
+%
+%In the spirit of obtaining a robust convergence criterion to track via SPC through the use of asymptotic results of the CLT, as applied to the distribution of the EI, it is important to carefully consider properties of the improvement distribution in this case to ensure adequate behaviour.
+%
+The improvement criterion is strictly positive but decreasingly small, thus the improvement distribution is often strongly right skewed; leading to poor asymptotics for the EI distribution.
 %
 Additionally, this right skew becomes exaggerated as convergence approaches, due to the decreaseing trend in the EI criterion.
 %% distribution will always struggle to capture the resulting EI distribution.
-Since the improvement distribution is strictly positive, an unfettered EI criterion wil always resist normality in repeated sampling. 
+Together these characteristics of the improvement distribution give the EI criterion inconsistent behaviour for tracking convergence via SPC. 
+% Since the improvement distribution is strictly positive, the unaltered EI criterion has near worst asy normality in repeated sampling. 
 %
 %If large sample assumptions (from the improvement distribution) are challenged, then the asymptotic EI distribution may become less accurate at the time of convergence (i.e. when we desire accuracy most). 
 %Additionally, since the I(x) criterion is naturally bounded at 0, an unfettered normal distribution will always struggle to model the EI criterion since the normal distribution will never respect its boundary conditions. 
@@ -442,7 +447,7 @@ Since the improvement distribution is strictly positive, an unfettered EI criter
 %
 
 %log improvement
-These issues naturally suggest modeling transformations of the improvement, rather than directly considering the improvement distribution on its own.
+These issues naturally suggest releasing the bound at 0 by modeling transformations of the improvement, rather than directly considering the improvement distribution on its own.
 %
 One of the simplest of the many possible helpful transformations in this case could simply consider the log of the improvement distribution. 
 %
@@ -454,7 +459,7 @@ Thus simply taking the log of the improvement samples can be computationally und
 %
 
 %
-Thus rather than simply taking the log of the improvement samples, to determine the more robust statement that $\mathbb{E}\left[~\log\text{I}~\right] \approxdist N\left(\mu, \frac{\sigma^2}{n}\right)$, it is computationally useful to consider the following approximate model-based perspective.   
+Rather than simply taking the log of the improvement samples, to determine the more robust statement that $\mathbb{E}\left[~\log\text{I}~\right] \approxdist N\left(\mu, \frac{\sigma^2}{n}\right)$, it is computationally useful to consider the following approximate model-based perspective.   
 %
 Recall that if a random variable \mbox{$X\sim Log$-$N(\omega, \nu)$,} then another random variable $Y=\log(X)$ is distributed $Y\sim N(\omega, \nu)$.
 %
@@ -467,21 +472,22 @@ Furthermore, if $m$ and $v$ are, respectively, the mean and variance of a lognor
 %
 Using this relation we do not need to transform any of the improvement samples.
 %
-We compute the empirical mean of the unaltered, approximately lognormal, improvement samples, then use relation (\ref{lnRelate}) to directly compute the Expectation of the Lognormal Approximation to the Improvement (ELAI).
+We compute the empirical mean and variance of the unaltered, approximately lognormal, improvement samples, then use relation (\ref{lnRelate}) to directly compute $\omega$ as the Expectation under the Lognormal Approximation to the Improvement (ELAI).
 %
 % That is to say, by taking the mean of the unaltered improvement values we use relation (\ref{lnRelate}) to directly compute the Expected value of Lognormal Approximation of the Improvement (ELAI).
 %we immediately get an approximation of the $\E{\log \text{I}}$ values without actually taking the log of the improvement samples.
 %rather than is not bounded at 0, the log of the improvement distribution 
-%Considering that the log improvement has reduced right skew, for the sake of improved asymptotics of the
-The reduced right skew of the log improvement improves the asymptotics of the $\E{\log\text{I}}$ distribution; the ELAI serves as a computationally robust approximation of the $\E{\log\text{I}}$, and thus both the $\E{\log\text{I}}$ and ELAI are distributed approximately normal in repeated sampling.
+%Considering that the log improvement has reduced right skew, for the sake of improved asymptotics of the; of the $\E{\log\text{I}}$ distribution
+The ELAI convergence criterion is a useful convergence criterion in this case because the reduced right skew of the log of the improvement distribution enjoys improved asymptotics, and the ELAI convergence criterion serves as a computationally robust approximation of the $\E{\log\text{I}}$ under reasonable lognormality of the improvements.
+%approximately
+Furthermore, both the $\E{\log\text{I}}$ and ELAI convergence criterion are distributed normally in repeated sampling.
 %
-Allowing for accurate use of the fundamental theory on which our SPC prespecitive requires.
+This construction allows for more consistent and accurate use of the fundamental theory on which our SPC prespecitive requires.
 
 %improvement provides robust asymptotics for the normality of the distribution of the $\E{\log\text{I}}$, even as convergence approaches the ELAI provides a good approximation for this value.
 %{\color{red} ELAI}
 % The ELAI provides a good approximation for 
 
-\clearpage
 %
 %
 \subsection{Exponentially Weighted Moving Average}
@@ -509,48 +515,84 @@ Above, $\lambda$ is a smoothing parameter that defines the weight $\left( \text{
 %Eq. (\ref{ewmaStat})
 The recursive expression of the statistic ensures that all subsequent weights geometrically decrease as they move back through the series.
 
+\clearpage
+%
+%
+\begin{wrapfigure}{r}{0.5\textwidth}
+\vspace{-1cm}
+\includegraphics[width=0.5\textwidth]{./figures/ssRastHardOpt.pdf}
+\caption{ Prior to the observation of $Y_i$, all availiable values are used to define a forcasted value for $Z_i$ using Eq. (\ref{ewmaStat}). $S_\lambda$ is subsisquently calculated upon observation of $Y_i$ and $Z_i$. Here $\hat\lambda$ is shown by the vertical the dashed line. }
+\label{bestL}
+\end{wrapfigure}
 %
 %
 
 %
-Typical values of $\lambda$ can range from $0.1\le\lambda\le0.3$, with a default value of $\lambda$ around $0.2$, as described by Box et al. \cite{boxBook}.
+Typical values of $\lambda$ can range from \mbox{$0.1\le\lambda\le0.3$}, with a default value of $\lambda$ around $0.2$, as described by Box et al. \cite{boxBook}.
 %%  data specific $\hat\lambda$ value by minimizing the sum of squared deviations with respect to $\lambda$. % , thus tailored for each particular data set.
-Additionally Box et al. explains that EWMA charts are relatively robust to reasonable choices of $\lambda$, as evident by analysis of the sum of squared forcasting deviations ($S_\lambda$) associated with a particular choice of $\lambda$.
+Additionally Box et al. explains that EWMA charts are relatively robust to reasonable choices of $\lambda$, as evident by relatively small errors in the sum of squared forcasting deviations ($S_\lambda$) associated with reasonable choices of $\lambda$.
+%(see Figure \ref{bestL})
+Box et al.'s analysis of $S_\lambda$ also suggests an optimal choice for $\lambda$ by choosing $\hat\lambda$ to minimize $S_\lambda$ \cite[p. 87]{boxBook} for each new observation.
+%when applied to; example.
+Figure (\ref{bestL}) shows the robustness of EWMA to suboptimal choices of $\lambda$ since for the large region $\lambda\in[0.2, 0.6]$, $S_\lambda$ stays within 10\% of its the minimum possible value at $\hat \lambda$ for the optimization of the Rastrigin test function. 
+
 %
-Box et al.'s analysis of $S_\lambda$ also suggests an optimal choice for $\lambda$ by choosing $\hat\lambda$ to minimize $S_\lambda$ \cite[p. 87]{boxBook}.
+%
+
 %how to estimate a $\hat\lambda$ so as to minimize sum of squared deviation of forcasting errors ($S_\lambda$) of the resulting EWMA series. 
 %the more quickly
 In general large values of $\lambda$ assign more weight to recently observed values, and thus past observations effect the moving average less. %  on the moving average quickly forgets about past observations.
 %
 Conversely, small values of $\lambda$ assign less weight to recent observations, and thus small values of $\lambda$ provide more smoothing across the effects of past observations. 
 %provide better sensitivity $\E{\log\ix}$
-Hence larger values of $\lambda$ tend to be better suited for dealing with large shifts in the series, and small values of $\lambda$ are more sensitive to small shifts in the series.
+Hence larger values of $\lambda$ tend to be better suited for dealing with consistently shifting series, and small values of $\lambda$ are more well suited for series with fairly consistent expected values.
 
-
-%
-%
-\begin{figure}
-\includegraphics[width=0.32\textwidth]{./figures/ewmaConvChartRoseEasyEasyOpt.pdf}
-\includegraphics[width=0.32\textwidth]{./figures/ewmaConvChartLock6Three20000Opt.pdf}
-\includegraphics[width=0.32\textwidth]{./figures/ewmaConvChartRastHardOpt.pdf}
-\includegraphics[width=0.32\textwidth]{./figures/ssRoseEasyEasyOpt.pdf}
-\includegraphics[width=0.32\textwidth]{./figures/ssLock6Three20000Opt.pdf}
-\includegraphics[width=0.32\textwidth]{./figures/ssRastHardOpt.pdf}
-\caption{$left:$ Rosebrock; $center:$ Lockwood; $right:$ Rastrigin}
-\end{figure}
 %
 %
 
-% \begin{itemize}
-% \item Robustness to 
-% \begin{itemize}
-% \item[\checkmark] drifting \cite{adaptEWMA}
-% \item reasonable distributional assumptions \cite{boxBook}. 
-% \end{itemize}
-% \item[\checkmark] Smoothing with exponentially decreasing memory of path
-% \item notes on table
-% \item notes from meeting in notebook
-% \end{itemize}
+%
+For identifying convergence it is of primary importantance to define the control limits on the EWMA statistic in this setting.
+%
+As in the simplified $\bar x$-chart, defineing the control limits in the EWMA setting amounts to considering an interval on the sampling distribution of interest.
+%, under the assumptions that the $Y_i$ arrive as $i.i.d.$ samples
+In the EWMA case we are interested in the sampling distribution of the $Z_i$.
+Assuming that the $Y_i$ are $i.i.d.$ then Lucas and Saccucci \cite{ewmaPaper} show that we can write $\sigma^2_{Z_i}$ in terms of $\sigma^2_{Y}$. %, Lucas and Saccucci \cite{ewmaPaper}  show,
+	%
+\begin{equation}
+\sigma^2_{Z_i} = \sigma^2_{Y}\left(\frac{\lambda}{2-\lambda}\right)\left[1-(1-\lambda)^{2i}\right]
+\end{equation}
+%\substack{i.i.d.\\\sim}
+Thus if the $Y_i \stackrel{i.i.d.}{\sim} N\left(\mu, \frac{\sigma^2}{n}\right)$ the sampling distribution for $Z_i$ is $Z_i \sim N\left(\mu, \sigma^2_{Z_i}\right)$.
+%
+Furthermore by choose a confidence level through choice of a constant $c$, the control limits based on this sampling distribution are seen in Eq. (\ref{EWMACL}).% follow on the next page.
+	
+%
+%
+%
+\begin{eqnarray}
+\text{CL}_i &=& \mu \pm c \sigma_{Z_i}\nonumber\\
+&=&  \mu \pm c ~ \frac{\sigma}{\sqrt{n}}~\sqrt{\left(\frac{\lambda}{2-\lambda}\right)\left[1-(1-\lambda)^{2i}\right]}
+\label{EWMACL}
+\end{eqnarray}
+%
+%
+
+%
+Notice that since $\sigma^2_{Z_i}$ has a dependence on $i$, the control limits do as well.
+%the focusing effect of EWMA. % this focusing effect.\frac{\sigma}{\sqrt{n}}~
+Looking back through the series brings us away from the focus of the moving average, at $i$, and thus the control limits widen until the limiting case as, $i\rightarrow\infty$, the contol limits are defined by $\mu \pm c ~ \sqrt{\frac{\lambda\sigma^2}{(2-\lambda)n}}$.
+%traversing backwards through the series resulting directly from the geometrically decreasing weights.
+
+%
+At first glance it is not clear that the $Y_i$ are in fact $i.i.d.$
+%
+Indeed the early iterations of the convergence processes seen in Figure (\ref{introFig}) certainly do not display $i.i.d.$ $Y_i$. 
+%
+However as the series approaches convergence, the $Y_i$ eventually do enter a state of control see Figure (\ref{ewmaFig}).
+%
+For these controlled $Y_i$ an $i.i.d.$ assumption is very reasonable.
+%
+The realization of such a controlled region of the series defines the notion of consitency which in-turn is part of what allows for the identification of convergence here. 
 
 %
 %
@@ -558,11 +600,89 @@ Hence larger values of $\lambda$ tend to be better suited for dealing with large
 %
 %
 
+% for accurate identification of convergence is the introduction of a so called
+The final structural feature of the EWMA convergence chart that is necissary for identifying the distributional consistency we use to identify convergence is the so called {\it control window}.
+%
+The control window is a window containing a fixed number, $w$, of the most recently observed $Y_i$.
+%
+The idea being, only information from the $w$ points currently residing inside the control window is used to calculate the control limits, but the EWMA statistic is still computed for all $Y_i$ values.
+%
+Initially, the algorithm is allowed to fill the control window, by collecting and initial set of $w$ observations of the $Y_i$.
+%
+As new observations arrive, the oldest value is removed from the control window, thus allowing for the inclusion of a new $Y_i$.
+
+%
+%
+
+%
+The purpose of the control window is two fold.
+% examination
+Firstly it serves to dichotomizes the series for evaluating subset of the $Y_I$ for distibutional consistency.
+% convergence
+Secondly it offers a structural way for basing the standard for consistency only on the most recent and relevant information in the series. 
+%
+This is important due to the subtle way in which ELAI values sliding to convergence.
+
+%
+%
+
+%The size of this window is left up to the discretion of user,.
+The size, $w$, of the control window is an important parameter for correctly identifying convergence.
+%
+Because $w$ may vary from problem to problem it is ultimately left as a tuning parameter of the system.
+%
+Choosing the correct value of $w$ presents an interesting decision problem since underestimating the size of the control window may lead to premature convergence, but if $w$ is too large, we compute unnecessary objective function evaluations.
+%
+As a general trend, harder optimization problems require larger values of $w$ since the EI criterion follows a less structured decreasing pattern as new modes are discovered at irregular patterns.
 
 
+
+% {\color{red}
+% %
+% Choosing the correct value of $w$ presents an interesting decision problem since underestimating the size of the control window may lead to premature convergence, but if $w$ is too large, we compute unnecessary objective function evaluations.
+% %It is t
+% Thus it may be important to consider these two opposing forces when choosing an appropriate value for $w$.
+% %
+% I recommend conservatively large values for $w$ because I regard premature convergence to be a greater problem than extraneous function evaluations.
+% %
+% As a default value $w=30$ has provided me a reasonable starting point for further analysis.
+% %
+% I have found that choosing $w$ based on the value of $\lambda$ seems to be an efficient way of tuning $w$.
+% %
+% As a general trend, the larger the value of $\lambda$, the more fluctuation present in the EWMA statistic.
+% %% the fluctuations in the EWMA statistic. %Conversely for small $\lambda$, smaller values of $w$ are acceptable. are necessary allow averages over more elements of he  to  average out ; fluctuations 
+% Thus for good results, large $\lambda$, naturally imply large values of $w$ for an accurate representation of the increased fluctuations of the EWMA statistic in the repeated sampling average.
+% %due to decreased fluctuations in the EWMA statistic
+% Conversely for small $\lambda$, smaller values of $w$ are acceptable.
+% }
+
+
+{\color{red}
 %
 %
 \subsection{Identifying Convergence}
+%
+%
+}
+
+%
+%
+\begin{figure}[h!]
+\includegraphics[width=0.32\textwidth]{./figures/ewmaConvChartRoseEasyEasyOpt.pdf}
+\includegraphics[width=0.32\textwidth]{./figures/ewmaConvChartLock6Three20000Opt.pdf}
+\includegraphics[width=0.32\textwidth]{./figures/ewmaConvChartRastHardOpt.pdf}
+\includegraphics[width=0.33\textwidth]{./figures/ssRoseEasyEasyOpt.pdf}
+\includegraphics[width=0.33\textwidth]{./figures/ssLock6Three20000Opt.pdf}
+\includegraphics[width=0.33\textwidth]{./figures/ssRastHardOpt.pdf}
+\caption{$left:$ Rosebrock | $center:$ Lockwood | $right:$ Rastrigin}
+\label{ewmaFig}
+\end{figure}
+%
+%
+
+%
+%
+% \subsection{Identifying Convergence}
 %
 %
 
