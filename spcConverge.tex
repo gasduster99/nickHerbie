@@ -519,9 +519,9 @@ The recursive expression of the statistic ensures that all subsequent weights ge
 %
 %
 \begin{wrapfigure}{r}{0.5\textwidth}
-\vspace{-1cm}
+% \vspace{-1cm}
 \includegraphics[width=0.5\textwidth]{./figures/ssRastHardOpt.pdf}
-\caption{ Prior to the observation of $Y_i$, all availiable values are used to define a forcasted value for $Z_i$ using Eq. (\ref{ewmaStat}). $S_\lambda$ is subsisquently calculated upon observation of $Y_i$ and $Z_i$. Here $\hat\lambda$ is shown by the vertical the dashed line. }
+\caption{ $S_\lambda$ as calculated over a fine grid of possible $\lambda$ values for ELAI values derived from optimization of the Rastrigin test function. The optimal forcasting $\hat\lambda$ is shown by the vertical the dashed line. }
 \label{bestL}
 \end{wrapfigure}
 %
@@ -533,6 +533,21 @@ Typical values of $\lambda$ can range from \mbox{$0.1\le\lambda\le0.3$}, with a 
 Additionally Box et al. explains that EWMA charts are relatively robust to reasonable choices of $\lambda$, as evident by relatively small errors in the sum of squared forcasting deviations ($S_\lambda$) associated with reasonable choices of $\lambda$.
 %(see Figure \ref{bestL})
 Box et al.'s analysis of $S_\lambda$ also suggests an optimal choice for $\lambda$ by choosing $\hat\lambda$ to minimize $S_\lambda$ \cite[p. 87]{boxBook} for each new observation.
+%
+Prior to the observation of each $Y_i$, all availiable values are used to define a forcasted value for $Z_i$ using Eq. (\ref{ewmaStat}).
+% subsisquently
+Upon observation of $Y_i$ and $Z_i$ the observed $S_\lambda$ is calculated for each value of lambda $\lambda$, as seen in Figure~(\ref{bestL}).
+
+%
+%
+
+{
+\color{red} 
+\noindent
+*in-control --> out-of-control ==> small $\lambda$ favors noticing differences from a global norm. \\
+*out-of-control --> in-control ==> large $\lambda$ favors more recent information. \\
+*talk from masters project
+}
 %when applied to; example.
 Figure (\ref{bestL}) shows the robustness of EWMA to suboptimal choices of $\lambda$ since for the large region $\lambda\in[0.2, 0.6]$, $S_\lambda$ stays within 10\% of its the minimum possible value at $\hat \lambda$ for the optimization of the Rastrigin test function. 
 
