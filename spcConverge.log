@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.1415926-2.5-1.40.14 (TeX Live 2013/Debian) (format=pdflatex 2014.6.20)  22 NOV 2014 13:42
+This is pdfTeX, Version 3.1415926-2.5-1.40.14 (TeX Live 2013/Debian) (format=pdflatex 2014.6.20)  23 NOV 2014 11:36
 entering extended mode
  restricted \write18 enabled.
  %&-line parsing enabled.
@@ -693,7 +693,7 @@ Underfull \hbox (badness 10000) in paragraph at lines 76--85
 Non-PDF special ignored!
 
 {/var/lib/texmf/fonts/map/pdftex/updmap/pdftex.map}]
-[2] <./figures/introChartRoseEasyEasyAxis.pdf, id=83, 505.89pt x 505.89pt>
+[2] <./figures/introChartRoseEasyEasyAxis.pdf, id=85, 505.89pt x 505.89pt>
 File: ./figures/introChartRoseEasyEasyAxis.pdf Graphic file (type pdf)
 
 <use ./figures/introChartRoseEasyEasyAxis.pdf>
@@ -701,7 +701,7 @@ Package pdftex.def Info: ./figures/introChartRoseEasyEasyAxis.pdf used on input
  line 207.
 (pdftex.def)             Requested size: 164.20134pt x 164.20387pt.
 
-<./figures/introChartLock6Three20000Axis.pdf, id=84, 505.89pt x 505.89pt>
+<./figures/introChartLock6Three20000Axis.pdf, id=86, 505.89pt x 505.89pt>
 File: ./figures/introChartLock6Three20000Axis.pdf Graphic file (type pdf)
 
 <use ./figures/introChartLock6Three20000Axis.pdf>
@@ -709,7 +709,7 @@ Package pdftex.def Info: ./figures/introChartLock6Three20000Axis.pdf used on in
 put line 208.
 (pdftex.def)             Requested size: 164.20134pt x 164.20387pt.
 
-<./figures/introChartRastHardAxis.pdf, id=85, 505.89pt x 505.89pt>
+<./figures/introChartRastHardAxis.pdf, id=87, 505.89pt x 505.89pt>
 File: ./figures/introChartRastHardAxis.pdf Graphic file (type pdf)
 
 <use ./figures/introChartRastHardAxis.pdf>
@@ -729,14 +729,14 @@ File: t1cmtt.fd 1999/05/25 v2.5h Standard LaTeX font definitions
 
 LaTeX Warning: Citation `?' on page 8 undefined on input line 500.
 
-[8] <./figures/ssRastHardOpt.pdf, id=160, 505.89pt x 505.89pt>
+[8] <./figures/ssRastHardOpt.pdf, id=162, 505.89pt x 505.89pt>
 File: ./figures/ssRastHardOpt.pdf Graphic file (type pdf)
 
 <use ./figures/ssRastHardOpt.pdf>
-Package pdftex.def Info: ./figures/ssRastHardOpt.pdf used on input line 523.
+Package pdftex.def Info: ./figures/ssRastHardOpt.pdf used on input line 524.
 (pdftex.def)             Requested size: 256.55872pt x 256.5647pt.
 
-Underfull \hbox (badness 7722) in paragraph at lines 531--540
+Underfull \hbox (badness 7722) in paragraph at lines 532--541
 [][]\T1/cmr/m/n/12 Typical val-ues of $\OML/cmm/m/it/12 ^^U$ \T1/cmr/m/n/12 can
  range from
  []
@@ -744,51 +744,51 @@ Underfull \hbox (badness 7722) in paragraph at lines 531--540
 [9
 
  <./figures/ssRastHardOpt.pdf>] [10]
-<./figures/ewmaConvChartRoseEasyEasyOpt.pdf, id=192, 505.89pt x 505.89pt>
+<./figures/ewmaConvChartRoseEasyEasyOpt.pdf, id=194, 505.89pt x 505.89pt>
 File: ./figures/ewmaConvChartRoseEasyEasyOpt.pdf Graphic file (type pdf)
 
 <use ./figures/ewmaConvChartRoseEasyEasyOpt.pdf>
 Package pdftex.def Info: ./figures/ewmaConvChartRoseEasyEasyOpt.pdf used on inp
-ut line 686.
+ut line 687.
 (pdftex.def)             Requested size: 164.20134pt x 164.20387pt.
 
-<./figures/ewmaConvChartLock6Three20000Opt.pdf, id=193, 505.89pt x 505.89pt>
+<./figures/ewmaConvChartLock6Three20000Opt.pdf, id=195, 505.89pt x 505.89pt>
 File: ./figures/ewmaConvChartLock6Three20000Opt.pdf Graphic file (type pdf)
 
 <use ./figures/ewmaConvChartLock6Three20000Opt.pdf>
 Package pdftex.def Info: ./figures/ewmaConvChartLock6Three20000Opt.pdf used on 
-input line 687.
+input line 688.
 (pdftex.def)             Requested size: 164.20134pt x 164.20387pt.
 
-<./figures/ewmaConvChartRastHardOpt.pdf, id=194, 505.89pt x 505.89pt>
+<./figures/ewmaConvChartRastHardOpt.pdf, id=196, 505.89pt x 505.89pt>
 File: ./figures/ewmaConvChartRastHardOpt.pdf Graphic file (type pdf)
 
 <use ./figures/ewmaConvChartRastHardOpt.pdf>
 Package pdftex.def Info: ./figures/ewmaConvChartRastHardOpt.pdf used on input l
-ine 688.
+ine 689.
 (pdftex.def)             Requested size: 164.20134pt x 164.20387pt.
 
-<./figures/ssRoseEasyEasyOpt.pdf, id=195, 505.89pt x 505.89pt>
+<./figures/ssRoseEasyEasyOpt.pdf, id=197, 505.89pt x 505.89pt>
 File: ./figures/ssRoseEasyEasyOpt.pdf Graphic file (type pdf)
 
 <use ./figures/ssRoseEasyEasyOpt.pdf>
-Package pdftex.def Info: ./figures/ssRoseEasyEasyOpt.pdf used on input line 689
+Package pdftex.def Info: ./figures/ssRoseEasyEasyOpt.pdf used on input line 690
 .
 (pdftex.def)             Requested size: 169.3297pt x 169.32945pt.
 
-<./figures/ssLock6Three20000Opt.pdf, id=196, 505.89pt x 505.89pt>
+<./figures/ssLock6Three20000Opt.pdf, id=198, 505.89pt x 505.89pt>
 File: ./figures/ssLock6Three20000Opt.pdf Graphic file (type pdf)
 
 <use ./figures/ssLock6Three20000Opt.pdf>
 Package pdftex.def Info: ./figures/ssLock6Three20000Opt.pdf used on input line 
-690.
+691.
 (pdftex.def)             Requested size: 169.3297pt x 169.32945pt.
 File: ./figures/ssRastHardOpt.pdf Graphic file (type pdf)
  <use ./figures/ssRastHardOpt.pdf>
-Package pdftex.def Info: ./figures/ssRastHardOpt.pdf used on input line 691.
+Package pdftex.def Info: ./figures/ssRastHardOpt.pdf used on input line 692.
 (pdftex.def)             Requested size: 169.3297pt x 169.32945pt.
 
-Underfull \hbox (badness 3386) in paragraph at lines 686--692
+Underfull \hbox (badness 3386) in paragraph at lines 687--693
 [][] [] []
  []
 
@@ -831,16 +831,16 @@ seEasyEasyOpt.pdf> <./figures/ssLock6Three20000Opt.pdf>]
 * (1in=72.27pt=25.4mm, 1cm=28.453pt)
 
  (./spcConverge.bbl)
-Package atveryend Info: Empty hook `BeforeClearDocument' on input line 2093.
+Package atveryend Info: Empty hook `BeforeClearDocument' on input line 2095.
 
 [13
 
 
 ]
-Package atveryend Info: Empty hook `AfterLastShipout' on input line 2093.
+Package atveryend Info: Empty hook `AfterLastShipout' on input line 2095.
  (./spcConverge.aux)
-Package atveryend Info: Executing hook `AtVeryEndDocument' on input line 2093.
-Package atveryend Info: Executing hook `AtEndAfterFileList' on input line 2093.
+Package atveryend Info: Executing hook `AtVeryEndDocument' on input line 2095.
+Package atveryend Info: Executing hook `AtEndAfterFileList' on input line 2095.
 
 Package rerunfilecheck Info: File `spcConverge.out' has not changed.
 (rerunfilecheck)             Checksum: E4CB22C073E38E622D01C091B4363E3F;825.
@@ -848,13 +848,13 @@ Package rerunfilecheck Info: File `spcConverge.out' has not changed.
 
 LaTeX Warning: There were undefined references.
 
-Package atveryend Info: Empty hook `AtVeryVeryEnd' on input line 2093.
+Package atveryend Info: Empty hook `AtVeryVeryEnd' on input line 2095.
  ) 
 Here is how much of TeX's memory you used:
- 9777 strings out of 493304
- 142664 string characters out of 6139871
- 237769 words of memory out of 5000000
- 13013 multiletter control sequences out of 15000+600000
+ 9779 strings out of 493304
+ 142691 string characters out of 6139871
+ 237802 words of memory out of 5000000
+ 13014 multiletter control sequences out of 15000+600000
  29011 words of font info for 82 fonts, out of 8000000 for 9000
  957 hyphenation exceptions out of 8191
  36i,11n,38p,451b,333s stack positions out of 5000i,500n,10000p,200000b,80000s
@@ -879,10 +879,10 @@ public/cm-super/sfrm1200.pfb></usr/share/texmf/fonts/type1/public/cm-super/sfrm
 1440.pfb></usr/share/texmf/fonts/type1/public/cm-super/sfrm2074.pfb></usr/share
 /texmf/fonts/type1/public/cm-super/sfti1200.pfb></usr/share/texmf/fonts/type1/p
 ublic/cm-super/sftt1200.pfb>
-Output written on spcConverge.pdf (13 pages, 387549 bytes).
+Output written on spcConverge.pdf (13 pages, 393630 bytes).
 PDF statistics:
- 332 PDF objects out of 1000 (max. 8388607)
- 273 compressed objects within 3 object streams
- 49 named destinations out of 1000 (max. 500000)
+ 334 PDF objects out of 1000 (max. 8388607)
+ 275 compressed objects within 3 object streams
+ 50 named destinations out of 1000 (max. 500000)
  142 words of extra memory for PDF output out of 10000 (max. 10000000)
 

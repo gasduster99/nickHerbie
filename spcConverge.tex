@@ -175,7 +175,7 @@ Typically a Gaussian Process (GP) surrogate model is chosen for its
 robustness, relative ease of computation, and its predictive framework
 \cite{santnerBook}.
 %   landscape of the simulation parameters assessing future points of exploration on
-Arising naturally from the GP predictive distribution \cite{gBook, EIPPD}, the maximum Expected Improvement (EI) criterion has shown to be a valuable criterion for guiding the exploration of the objective function \cite{taddyOpt}{\color{red}Jones?}; furthermore the EI shows promise for use as a convergence criterion {\color{red}cite}.
+Arising naturally from the GP predictive distribution \cite{gBook, EIPPD}, the maximum Expected Improvement (EI) criterion has shown to be a valuable criterion for guiding the exploration of the objective function \cite{taddyOpt, jonesEIOpt}; furthermore the EI shows promise for use as a convergence criterion {\color{red}cite}.
 %The maximum Expected Improvement (EI) criterion has shown to be a valuable criterion, arising naturally from the GP predictive distribution {\color{red}cite}.
 %
 % The EI criterion can be used to assess future points of exploration on the objective function, as well as for monitoring the overall convergence of the optimization routine at large {\color{red}cite}.
@@ -504,6 +504,7 @@ EWMA achieves this robust smoothing behavior, relative to shifting means, by ass
 %
 %
 
+%
 If $Y_i$ is the current ELAI value, and $Z_i$ is the EWMA statistic associated with this current value, then the initial value $Z_0$ is set to $Y_0$ and for $i>0$ the EWMA statistic is expressed as,
 %
 \begin{equation}

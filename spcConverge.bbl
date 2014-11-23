@@ -31,6 +31,11 @@ Robert~B. Gramacy and Matthew Taddy.
   tempering with tgp version 2, an r package for treed gaussian process models.
 \newblock {\em Journal of Statistical Software}, 33(i06), 2012.
 
+\bibitem{jonesEIOpt}
+Donald~R. Jones, Matthias Schonlau, and William~J. Welch.
+\newblock Efficient global optimization of expensive black-box functions.
+\newblock {\em Journal of Global optimization}, 13(4):455--492, 1998.
+
 \bibitem{ewmaPaper}
 James~M. Lucas and Michael~S. Saccucci.
 \newblock Exponentially weighted moving average control schemes: properties and
