@@ -338,8 +338,6 @@ Notice that by definition the $\ix$ function is always non-negative, however the
 %
 Considering the MCMC inferential setting of our GP surrogate model, the EI criterion can be quickly computed by using posterior predictive $\ix$ samples at given candidate locations to empirically approximate the $\Eix$ calculation.
 
-%Considering Bayesian models like Model (\ref{gpModel}), we can most efficiently use information in our model by considering $\Eix$ with respect to the posterior predictive distribution.
-
 %
 %
 \subsection{Optimization Procedure}
@@ -430,18 +428,11 @@ For the sake of obtaining a robust convergence criterion to track via SPC, it is
 %
 Ultimately, the distribution of the EI is asymtotically normal, but the characteristics of the improvement distribution, as convergence approaches, complicate these asymtoptics. 
 %
-%In the spirit of obtaining a robust convergence criterion to track via SPC through the use of asymptotic results of the CLT, as applied to the distribution of the EI, it is important to carefully consider properties of the improvement distribution in this case to ensure adequate behaviour.
-%
 The improvement criterion is strictly positive but decreasingly small, thus the improvement distribution is often strongly right skewed; leading to poor asymptotics for the EI distribution.
 %
 Additionally, this right skew becomes exaggerated as convergence approaches, due to the decreaseing trend in the EI criterion.
 %% distribution will always struggle to capture the resulting EI distribution.
 Together these characteristics of the improvement distribution give the EI criterion inconsistent behaviour for tracking convergence via SPC. 
-% Since the improvement distribution is strictly positive, the unaltered EI criterion has near worst asy normality in repeated sampling. 
-%
-%If large sample assumptions (from the improvement distribution) are challenged, then the asymptotic EI distribution may become less accurate at the time of convergence (i.e. when we desire accuracy most). 
-%Additionally, since the I(x) criterion is naturally bounded at 0, an unfettered normal distribution will always struggle to model the EI criterion since the normal distribution will never respect its boundary conditions. 
-% Secondly, since the improvement distribution is strictly positive, the EI is also be bounded at 0, and an unfettered normal distribution will always struggle to capture the resulting EI distribution.
  
 %
 %
@@ -473,10 +464,6 @@ Furthermore, if $m$ and $v$ are, respectively, the mean and variance of a lognor
 Using this relation we do not need to transform any of the improvement samples.
 %
 We compute the empirical mean and variance of the unaltered, approximately lognormal, improvement samples, then use relation (\ref{lnRelate}) to directly compute $\omega$ as the Expectation under the Lognormal Approximation to the Improvement (ELAI).
-%
-% That is to say, by taking the mean of the unaltered improvement values we use relation (\ref{lnRelate}) to directly compute the Expected value of Lognormal Approximation of the Improvement (ELAI).
-%we immediately get an approximation of the $\E{\log \text{I}}$ values without actually taking the log of the improvement samples.
-%rather than is not bounded at 0, the log of the improvement distribution 
 %Considering that the log improvement has reduced right skew, for the sake of improved asymptotics of the; of the $\E{\log\text{I}}$ distribution
 The ELAI convergence criterion is a useful convergence criterion in this case because the reduced right skew of the log of the improvement distribution enjoys improved asymptotics, and the ELAI convergence criterion serves as a computationally robust approximation of the $\E{\log\text{I}}$ under reasonable lognormality of the improvements.
 %approximately
@@ -497,7 +484,7 @@ This construction allows for more consistent and accurate use of the fundamental
 %
 The EWMA control chart is based upon Shewhart's original notion of control, however the EWMA control chart veiws the repeated sampling process in the context of moving average smoothing of series data. %, rather than assuming a constant long run average, as in the $\bar x$-chart.    
 %Principally provide particularly robust solutions to be expected for convergence in this setting.
-Since the ELAI convergence criterion stochastically slides into convergence, a series perspective is appropriate here; in particular the EWMA perspective has shown to be well suited for tracking the progression of means that are subject to subtle drifting processes \cite{adaptEWMA, ?}, just as displayed by the ELAI criterion upon convergence.
+Since the ELAI convergence criterion stochastically slides into convergence, a series perspective is appropriate here; in particular the EWMA perspective has shown to be well suited for tracking the progression of means that are subject to subtle drifting processes \cite{adaptEWMA, ?}. %, just as displayed by the ELAI criterion upon convergence.
 %
 EWMA achieves this robust smoothing behavior, relative to shifting means, by assigning exponentially decreasing weights to successive points in a rolling average among all of the points of the series, thus the EWMA emphasizes recent observations and shifts the focus of the moving average to the most recent information while still smoothing with some memory of the past.
 
@@ -516,52 +503,52 @@ Above, $\lambda$ is a smoothing parameter that defines the weight $\left( \text{
 %Eq. (\ref{ewmaStat})
 The recursive expression of the statistic ensures that all subsequent weights geometrically decrease as they move back through the series.
 
-\clearpage
-%
-%
-\begin{wrapfigure}{r}{0.5\textwidth}
-% \vspace{-1cm}
-\includegraphics[width=0.5\textwidth]{./figures/ssRastHardOpt.pdf}
-\caption{ $S_\lambda$ as calculated over a fine grid of possible $\lambda$ values for ELAI values derived from optimization of the Rastrigin test function. The optimal forcasting $\hat\lambda$ is shown by the vertical the dashed line. }
-\label{bestL}
-\end{wrapfigure}
 %
 %
 
 %
 Typical values of $\lambda$ can range from \mbox{$0.1\le\lambda\le0.3$}, with a default value of $\lambda$ around $0.2$, as described by Box et al. \cite{boxBook}.
-%%  data specific $\hat\lambda$ value by minimizing the sum of squared deviations with respect to $\lambda$. % , thus tailored for each particular data set.
-Additionally Box et al. explains that EWMA charts are relatively robust to reasonable choices of $\lambda$, as evident by relatively small errors in the sum of squared forcasting deviations ($S_\lambda$) associated with reasonable choices of $\lambda$.
-%(see Figure \ref{bestL})
-Box et al.'s analysis of $S_\lambda$ also suggests an optimal choice for $\lambda$ by choosing $\hat\lambda$ to minimize $S_\lambda$ \cite[p. 87]{boxBook} for each new observation.
 %
-Prior to the observation of each $Y_i$, all availiable values are used to define a forcasted value for $Z_i$ using Eq. (\ref{ewmaStat}).
-% subsisquently
-Upon observation of $Y_i$ and $Z_i$ the observed $S_\lambda$ is calculated for each value of lambda $\lambda$, as seen in Figure~(\ref{bestL}).
+Large values of $\lambda$ assign more weight to recent obsevations in the series, allowing for a more flexible fit for unstable series.
+%
+However, the choice of a large $\lambda$ may overfit the $Z_i$ to noise in the $Y_i$.
+%
+It is thus desireable to choose to the smallest $\lambda$ which still provides good forcasts of future
+%
+%
+\begin{wrapfigure}{r}{0.41\textwidth}
+% \vspace{-1cm}
+\includegraphics[width=0.4\textwidth]{./figures/ssRastHardOpt.pdf}
+\caption{ $S_\lambda$ as calculated over a fine grid of possible $\lambda$ values for ELAI values derived from optimization of the Rastrigin test function. The optimal forcasting $\hat\lambda$ is shown by the vertical the dashed line. }
+\label{bestL}
+\end{wrapfigure}
+%
+%
+ observations in the series.
+%
+Box et al. \cite[p. 87]{boxBook} explains how to choose an optimal value for $\lambda$ by choosing the $\hat\lambda$ which minimizes the sum of squared forcasting deviations ($S_\lambda$) for each new observation.
+%curvature
+Through this analysis of $S_\lambda$, as seen in Figure~(\ref{bestL}), is it evident that EWMA charts can be very robust to reasonable choices of $\lambda$, due to the small first and second derivatives of $S_\lambda$ for a large range of sub-optimal choices of $\lambda$ around $\hat\lambda$. % as seen in Figure~(\ref{bestL}).
+%
+In fact, Figure~(\ref{bestL}) shows that for \mbox{$\lambda\in[0.2, 0.6]$,} $S_\lambda$ stays within 10\% of its the minimum possible value.
 
 %
 %
 
-{
-\color{red} 
-\noindent
-*in-control --> out-of-control ==> small $\lambda$ favors noticing differences from a global norm. \\
-*out-of-control --> in-control ==> large $\lambda$ favors more recent information. \\
-*talk from masters project
-}
-%when applied to; example.
-Figure (\ref{bestL}) shows the robustness of EWMA to suboptimal choices of $\lambda$ since for the large region $\lambda\in[0.2, 0.6]$, $S_\lambda$ stays within 10\% of its the minimum possible value at $\hat \lambda$ for the optimization of the Rastrigin test function. 
-
 %
+It is interesting to note that for the example series used in Figure~(\ref{bestL}), the optimal $\hat \lambda$ is found to be about 0.4, which obviously falls outside of the standard values for $\lambda$ mentioned above.
+%would begin withstarts
+The typical use of EWMA in SPC begins with the premise of a relatively stable series and attempts to identify new out-of-control observations which would indicate some change in the data generating process.
 %
-
-%how to estimate a $\hat\lambda$ so as to minimize sum of squared deviation of forcasting errors ($S_\lambda$) of the resulting EWMA series. 
-%the more quickly
-In general large values of $\lambda$ assign more weight to recently observed values, and thus past observations effect the moving average less. %  on the moving average quickly forgets about past observations.
+The use of EWMA to identify convergence is markedly different from the typical SPC usage. 
 %
-Conversely, small values of $\lambda$ assign less weight to recent observations, and thus small values of $\lambda$ provide more smoothing across the effects of past observations. 
-%provide better sensitivity $\E{\log\ix}$
-Hence larger values of $\lambda$ tend to be better suited for dealing with consistently shifting series, and small values of $\lambda$ are more well suited for series with fairly consistent expected values.
+For identifying convergence the series begins in an out-of-control state and we wish to identify when the series has fallen into control (i.e. convergence).
+%
+As a result, ELAI values for tracking convergence are inherintly less stable than typical SPC applications of EWMA.
+%% in the context of identifying convergence.
+Often the optimal $\hat\lambda$, for identifying convergence, may fall above the recommended upper limit for $\lambda$. 
+%
+Thus, in this context it is useful for to borrow some of the machinery used in SPC, but the ultimate analysis of the data should not explicatly be considered SPC, as the perspective of the data does not fully align with that of SPC.
 
 %
 %
@@ -572,8 +559,9 @@ For identifying convergence it is of primary importantance to define the control
 As in the simplified $\bar x$-chart, defineing the control limits in the EWMA setting amounts to considering an interval on the sampling distribution of interest.
 %, under the assumptions that the $Y_i$ arrive as $i.i.d.$ samples
 In the EWMA case we are interested in the sampling distribution of the $Z_i$.
-Assuming that the $Y_i$ are $i.i.d.$ then Lucas and Saccucci \cite{ewmaPaper} show that we can write $\sigma^2_{Z_i}$ in terms of $\sigma^2_{Y}$. %, Lucas and Saccucci \cite{ewmaPaper}  show,
-	%
+%, Lucas and Saccucci \cite{ewmaPaper}  show,
+Assuming that the $Y_i$ are $i.i.d.$ then Lucas and Saccucci \cite{ewmaPaper} show that we can write $\sigma^2_{Z_i}$ in terms of $\sigma^2_{Y}$. 
+%
 \begin{equation}
 \sigma^2_{Z_i} = \sigma^2_{Y}\left(\frac{\lambda}{2-\lambda}\right)\left[1-(1-\lambda)^{2i}\right]
 \end{equation}
