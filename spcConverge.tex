@@ -304,31 +304,30 @@ consistency of the distribution of the most recently observed values.
 
 %
 %
-{\color{red} *Everybody uses GP, bunch of cites}\\
+\begin{itemize}
+\item {\color{red} *Everybody uses GP, bunch of cites}
 %
-Gaussian process surrogate modeling has become a standard tool for analysis of computer emulation experinents \cite{sacksDesign, santnerBook} as well as many other applications in which an a'priori assumption of smoothness is useful \cite{abrahamsenBook, steinBook}.
+\item Gaussian process surrogate modeling has become a standard tool for analysis of computer emulation experinents \cite{sacksDesign, santnerBook} as well as many 
 %
-For the sake of optimization, the assertion of a smooth objective function, $f$, serves as the basis for most efficient searching algorithms.%, as is explicatly the case with GP.
-In the case of GP surrogate modeling, the Gaussian Process theory can explicatly express this desire for smoothness through the a'prior choice of a covariance function with the desired smoothness properties.
+\item other applications in which an a'priori assumption of smoothness is useful \cite{abrahamsenBook, steinBook}.
 %
-Although smoothness is key to search, and 
-% provides a reasonably smooth mapping fromt he domai 
-%For the sake of optimization practically all opt we only have a hope of efficently searching $f$ if we assume that $f$ provides a reasonably smooth, otherwise optimization by any method is practically infeasible.
+\item For the sake of optimization, the assertion of a smooth objective function, $f$, serves as the basis for most efficient searching algorithms.%, as is explicatly the case with GP.
 %
-However it is not 
+\item In the case of GP surrogate modeling, the Gaussian Process theory can explicatly express this desire for smoothness through the a'prior choice of a covariance function with the desired smoothness properties.
+%
+\item Although smoothness is key to search, and 
+%  
+\item For the sake of optimization practically all opt we only have a hope of efficently searching $f$ if we assume that $f$ provides a reasonably smooth, otherwise optimization by any method is practically infeasible.
+%
+\item However it is not 
 % If we have any hope of finding optima of a function, $f$, we impose the condition that $f$ provides a reasonably smooth mapping for relating points in the domain, $\bm{x}$, to response values, $z(\bm{x})$.
 %
-\cite{gpJasa, tgp, tgp2}
-
-{\color{red} *Expand Treed Partitioning}
-
-For additional modeling details, including loosening the assumption of global stationarity, and details about implementing GP models in the context of numerical optimization see the R package \verb tgp ~as well as the associated vignettes \cite{tgp, tgp2}.
-
+\item \cite{gpJasa, tgp, tgp2}
 %
+\item {\color{red} *Expand Treed Partitioning}
 %
-%\subsection{Gaussian Process Models}
-%
-%
+\item For additional modeling details, including loosening the assumption of global stationarity, and details about implementing GP models in the context of numerical optimization see the R package \verb tgp ~as well as the associated vignettes \cite{tgp, tgp2}.
+\end{itemize}
 
 %
 %
