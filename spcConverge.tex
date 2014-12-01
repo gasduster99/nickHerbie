@@ -224,7 +224,7 @@ approximation to the improvement distribution to generate a more appropriate con
 detail in Section 3.2.
 %
 Figure~(\ref{introFig}) represents three series of the Expected
-Lognormal Approximation to the Improvement (ELAI) criterion values from three
+Lognormal Approximation to the Improvement (ELAI) convergence criterion values from three
 different optimization problems that will be demonstrated later in
 this paper, where it will be shown that convergence is established near
 the end of each of these series.
@@ -279,31 +279,46 @@ consistency of the distribution of the most recently observed values.
 %
 %
 
-{\color{red} *Everybody uses GP, bunch of cites}
+% {\color{red} *Everybody uses GP, bunch of cites}
+% 
+% %
+% For more details on the theoretical foundations of Gaussian Processes in computer experiments see \cite{santnerBook}.
+% %
+% If we have any hope of finding optima of a function, $f$, we impose the condition that $f$ provides a reasonably smooth mapping for relating points in the domain, $\bm{x}$, to response values, $z(\bm{x})$.
+% %\text{\textbf{Z}}; $\big($i.e.~\big)$; \text{Z}
+% The $z(\bm{x})$ are assumed to be particular realizations of an infinitely dimensional generalization of the multivariate normal distribution, $f \sim \text{GP}(m,~K)$, and thus jointly any set of such realizations, $z(\bm{x})$, jointly follow a multivariate normal distribution.
+% %
+% As part of the GP model specification, we specify the mean function as a linear combination of simple basis functions, $m=\bm{\beta}^\intercal \text{\textbf{f($\bm{x}
+% $)}}$, and we describe the covariance structure, among the dimensions of the $z(\bm{x})$, through specification of a covariance function, $K(\bm{x}, \bm{x}')$.
+% %
+% By specifying a homogeneous covariance function, we thus model the relationship between $||\bm{x}-\bm{x}'||$ with the correlation structure that we expect to see when jointly considering two such realizations of the GP. 
+% %
+% The following exponential power family provides an example of a reasonable choice of $K(\bm{x}, \bm{x}')$, under the assumption of a reasonably well behaved $f$,
+% %
+% \begin{equation}
+% K(\bm{x}, ~\bm{x}') = \sigma^2\exp\left\{ -\frac{||\bm{x}-\bm{x}'||^p}{d} \right\}.
+% \label{corrFunc}
+% \end{equation} 
+% %
+% Specifying conjugate priors for $\bm{\beta}$ and $\sigma^2$ yields a straightforward Gibbs sampling posterior inferential setting with the exception of the covariance structure parameters requiring Metropolis-Hastings MCMC sampling.
 
 %
-For more details on the theoretical foundations of Gaussian Processes in computer experiments see \cite{santnerBook}.
 %
-If we have any hope of finding optima of a function, $f$, we impose the condition that $f$ provides a reasonably smooth mapping for relating points in the domain, $\bm{x}$, to response values, $z(\bm{x})$.
-%\text{\textbf{Z}}; $\big($i.e.~\big)$; \text{Z}
-The $z(\bm{x})$ are assumed to be particular realizations of an infinitely dimensional generalization of the multivariate normal distribution, $f \sim \text{GP}(m,~K)$, and thus jointly any set of such realizations, $z(\bm{x})$, jointly follow a multivariate normal distribution.
+{\color{red} *Everybody uses GP, bunch of cites}\\
 %
-As part of the GP model specification, we specify the mean function as a linear combination of simple basis functions, $m=\bm{\beta}^\intercal \text{\textbf{f($\bm{x}
-$)}}$, and we describe the covariance structure, among the dimensions of the $z(\bm{x})$, through specification of a covariance function, $K(\bm{x}, \bm{x}')$.
+Gaussian process surrogate modeling has become a standard tool for analysis of computer emulation experinents \cite{sacksDesign, santnerBook} as well as many other applications in which an a'priori assumption of smoothness is useful \cite{abrahamsenBook, steinBook}.
 %
-By specifying a homogeneous covariance function, we thus model the relationship between $||\bm{x}-\bm{x}'||$ with the correlation structure that we expect to see when jointly considering two such realizations of the GP. 
+For the sake of optimization, the assertion of a smooth objective function, $f$, serves as the basis for most efficient searching algorithms.%, as is explicatly the case with GP.
+In the case of GP surrogate modeling, the Gaussian Process theory can explicatly express this desire for smoothness through the a'prior choice of a covariance function with the desired smoothness properties.
 %
-The following exponential power family provides an example of a reasonable choice of $K(\bm{x}, \bm{x}')$, under the assumption of a reasonably well behaved $f$,
+Although smoothness is key to search, and 
+% provides a reasonably smooth mapping fromt he domai 
+%For the sake of optimization practically all opt we only have a hope of efficently searching $f$ if we assume that $f$ provides a reasonably smooth, otherwise optimization by any method is practically infeasible.
 %
-\begin{equation}
-K(\bm{x}, ~\bm{x}') = \sigma^2\exp\left\{ -\frac{||\bm{x}-\bm{x}'||^p}{d} \right\}.
-\label{corrFunc}
-\end{equation} 
+However it is not 
+% If we have any hope of finding optima of a function, $f$, we impose the condition that $f$ provides a reasonably smooth mapping for relating points in the domain, $\bm{x}$, to response values, $z(\bm{x})$.
 %
-Specifying conjugate priors for $\bm{\beta}$ and $\sigma^2$ yields a straightforward Gibbs sampling posterior inferential setting with the exception of the covariance structure parameters requiring Metropolis-Hastings MCMC sampling.
-
-%
-%
+\cite{gpJasa, tgp, tgp2}
 
 {\color{red} *Expand Treed Partitioning}
 
@@ -605,13 +620,14 @@ The realization of such a controlled region of the series defines the notion of 
 %
 
 % for accurate identification of convergence is the introduction of a so called
-The final structural feature of the EWMA convergence chart that is necissary for identifying the distributional consistency we use to identify convergence is the so called {\it control window}.
+%the distributional consistency we use to identify convergence
+The final structural feature of the EWMA convergence chart that is necissary for identifying convergence is the so called {\it control window}.
+%is a window containing
+The control window contains a fixed number, $w$, of the most recently observed $Y_i$.
+%The idea being, o
+Only information from the $w$ points currently residing inside the control window is used to calculate the control limits, but the EWMA statistic is still computed for all $Y_i$ values.
 %
-The control window is a window containing a fixed number, $w$, of the most recently observed $Y_i$.
-%
-The idea being, only information from the $w$ points currently residing inside the control window is used to calculate the control limits, but the EWMA statistic is still computed for all $Y_i$ values.
-%
-Initially, the algorithm is allowed to fill the control window, by collecting and initial set of $w$ observations of the $Y_i$.
+Initially, the algorithm is allowed to fill the control window, by collecting an initial set of $w$ observations of the $Y_i$.
 %
 As new observations arrive, the oldest value is removed from the control window, thus allowing for the inclusion of a new $Y_i$.
 
@@ -621,11 +637,12 @@ As new observations arrive, the oldest value is removed from the control window,
 %
 The purpose of the control window is two fold.
 % examination
-Firstly it serves to dichotomizes the series for evaluating subset of the $Y_I$ for distibutional consistency.
+Firstly it serves to dichotomizes the series for evaluating subsets of the $Y_i$ for distibutional consistency.
 % convergence
-Secondly it offers a structural way for basing the standard for consistency only on the most recent and relevant information in the series. 
+Secondly it offers a structural way for basing the standard for consistency (i.e. the control limits) only on the most recent and relevant information in the series. 
 %
-This is important due to the subtle way in which ELAI values sliding to convergence.
+%It is important to draw 
+%This is important due to the subtle way in which ELAI values slide to convergence.
 
 %
 %
@@ -635,9 +652,15 @@ The size, $w$, of the control window is an important parameter for correctly ide
 %
 Because $w$ may vary from problem to problem it is ultimately left as a tuning parameter of the system.
 %
-Choosing the correct value of $w$ presents an interesting decision problem since underestimating the size of the control window may lead to premature convergence, but if $w$ is too large, we compute unnecessary objective function evaluations.
+Choosing the correct value of $w$ presents an interesting decision problem since underestimating the size of the control window may lead to premature convergence, however if $w$ is too large, we compute unnecessary objective function evaluations.
 %
 As a general trend, harder optimization problems require larger values of $w$ since the EI criterion follows a less structured decreasing pattern as new modes are discovered at irregular patterns.
+
+%
+%
+
+%
+
 
 
 
