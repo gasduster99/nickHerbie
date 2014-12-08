@@ -103,7 +103,7 @@ The Exponentially Weighted Moving Average (EWMA) chart provides an ideal startin
 %Of primary interest here, is the application of derivative-free optimization on computationally expensive black-box objective functions, such as computer simulations.
 %%{\color{red}, in the real world}
 %Often computer simulations can function as fast, cost-effective, development test beds for processes that are otherwise too expensive, or dangerous, to test physically. 
-%% complexcase study
+%% complex case study
 %For example, the Lockwood pump-and-treat simulator, discussed in more detail in section {\color{red}XX}, computationally simulates the flow of contaminated ground-water alongside the Yellowstone River as numerical solutions to coupled systems {\color{red}cite}.
 %%, as efficiently as possible control
 %The focus of the Lockwood simulation is to optimize the management of this contaminated ground-water flow, so as to avoid contamination of the river.
@@ -142,7 +142,7 @@ of Statistical Process Control.
 %
 Our motivating example is a hydrology application, the Lockwood
 pump-and-treat problem \cite{lockCite}, discussed in more detail in Section
-{\color{red}XX}, wherein contamination in the ground-water near the
+3.1, wherein contamination in the ground-water near the
 Yellowstone River is remediated via a set of treatment wells.  
 %
 The goal is to minimize the cost of running the wells while ensuring that
@@ -151,7 +151,7 @@ no contamination enters the river.
 The contamination constraint results in a complicated boundary that is unknown in advance and
 requires evaluation of the simulator, and thus finding the global
 constrained minimum is a difficult problem and it is easy for
-optimization routines to at least temporarily get stuck in a local
+optimization routines to, at least temporarily, get stuck in a local
 minimum.  
 %
 Without knowing the answer in advance, how do we know when
@@ -175,7 +175,7 @@ Typically a Gaussian Process (GP) surrogate model is chosen for its
 robustness, relative ease of computation, and its predictive framework
 \cite{santnerBook}.
 %   landscape of the simulation parameters assessing future points of exploration on
-Arising naturally from the GP predictive distribution \cite{gBook, EIPPD}, the maximum Expected Improvement (EI) criterion has shown to be a valuable criterion for guiding the exploration of the objective function \cite{taddyOpt}{\color{red}Jones?}; furthermore the EI shows promise for use as a convergence criterion {\color{red}cite}.
+Arising naturally from the GP predictive distribution \cite{gBook, EIPPD}, the maximum Expected Improvement (EI) criterion has shown to be a valuable criterion for guiding the exploration of the objective function \cite{taddyOpt, jonesEIOpt}; furthermore the EI shows promise for use as a convergence criterion {\color{red}cite}.
 %The maximum Expected Improvement (EI) criterion has shown to be a valuable criterion, arising naturally from the GP predictive distribution {\color{red}cite}.
 %
 % The EI criterion can be used to assess future points of exploration on the objective function, as well as for monitoring the overall convergence of the optimization routine at large {\color{red}cite}.
@@ -185,16 +185,16 @@ Arising naturally from the GP predictive distribution \cite{gBook, EIPPD}, the m
 %
 %
 
-%however; as a means of assessing convergence 
-{\color{red}Literature cite} recommends considering the EI as a convergence criterion for GP surrogate model optimization; as of yet, little work has been done to describe what convergence of these algorithms actually looks like in the context of the EI criterion.
+%however; as a means of assessing convergence GP surrogate
+{\color{red}Literature cite} recommends considering the EI as a convergence criterion for surrogate model optimization; as of yet, little work has been done to describe what convergence of these algorithms actually looks like in the context of the EI criterion.
 %, but it has not yet been established if there is some threshold EI value that is sufficient
-However, the basic idea behind the use of the EI criterion, as a convergence criterion, is that convergence should occur when the GP surrogate model produces low expectations for discovering new optima; that is to say, small EI values should be associated with convergence of the algorithm.
+However, the basic idea behind the use of the EI criterion, as a convergence criterion, is that convergence should occur when the surrogate model produces low expectations for discovering new optima; that is to say, small EI values should be associated with convergence of the algorithm.
 %claim that there exists 
-Thus, a common stopping rule, involving the EI criterion, first defines some lower EI threshold, then claims convergence upon first sight of an EI value falling below this threshold \cite{windExample}, {\color{red}cite}.    
+Thus, a common stopping rule, involving the EI criterion, first defines some lower EI threshold, then claims convergence upon first sight of an EI value falling below this threshold {\color{red} example \cite{windExample}, cite}.    
 %in many different; of many other numerical optimization routines; that have been designed specifically to exhibit such behavior upon convergence  
-This use of EI as a convergence criteria falls well within the comfort zone of the numerical optimization literature as this is certainly a reasonable approach for monitoring the convergence criteria of other routines (ex. the vanishing step sizes of Newton-Raphson, Pattern Search (PS) methods, etc.).
+This use of EI as a convergence criteria falls well within the comfort zone of the numerical optimization literature, as this is certainly a reasonable approach for monitoring the convergence criteria of other routines (ex. the vanishing step sizes of Newton-Raphson, Pattern Search (PS) methods, etc.).
 %
-However, applying this same threshold strategy to the convergence of GP surrogate model optimization, in the context of the EI criterion, has not yet been adequately justified.
+However, applying this same threshold strategy to the convergence of surrogate model optimization, in the context of the EI criterion, has not yet been adequately justified.
 %, derived from the predictive distribution of the underling GP model; behavior
 In fact, this use of EI ignores the nature of the EI criterion as a random variable, and oversimplifies the stochastic nature of convergence in this setting.
 %
@@ -220,11 +220,11 @@ a dashed line at -10.
 %of the series value; of the values; shows; non-negative
 Because Expected Improvement is strictly positive but decreasingly small,
 we find it more productive to work on the log scale, using a lognormal
-approximation to the improvement distribution, as described in more
-detail in Section~{\color{red}XX}.
+approximation to the improvement distribution to generate a more appropriate convergence criterion, as described in more
+detail in Section 3.2.
 %
 Figure~(\ref{introFig}) represents three series of the Expected
-Lognormal Approximation to the Improvement (ELAI) values from three
+Lognormal Approximation to the Improvement (ELAI) convergence criterion values from three
 different optimization problems that will be demonstrated later in
 this paper, where it will be shown that convergence is established near
 the end of each of these series.
@@ -280,42 +280,158 @@ consistency of the distribution of the most recently observed values.
 %
 
 %
-If we have any hope of finding optima of a function, $f$, we impose the condition that $f$ provides a reasonably smooth mapping for relating points in the domain, $\bm{x}$, to response values, $z(\bm{x})$.
-%\text{\textbf{Z}}; $\big($i.e.~\big)$; \text{Z}
-The $z(\bm{x})$ are assumed to be partcular realizations of an infinitely dimensional generalization of the multivariate normal distribution, $f \sim \text{GP}(m,~K)$, and thus jointly any set of such realizations, $z(\bm{x})$, jointly follow a multivariate normal distribtution.
+The primary motivation for the use of surrogate modeling in optimization is to manage a computationally challenging objective function with the use of a fast and relatively simple functional working model (i.e. the surrogate model) of the problem function. 
 %
-As part of the GP model specification, we specify the mean function as a linear combination of simple basis functions, $m=\bm{\beta}^\intercal \text{\textbf{f($\bm{x}
-$)}}$, and we describe the covariance structure, amoung the multiple dimensions of the $z(\bm{x})$, through specification of a covariance function, $K(\bm{x}, \bm{x}')$.
+The surrogate model serves as a tool for using function evaluations, to infer the expected behavior of the objective function and thus determine where further optima may exist with minimal evaluation the objective function itself.
 %
-By specifying a homogeneous covariance function, we thus model the relationship between $||\bm{x}-\bm{x}'||$ with the correlation structure that we expect to see when jointly considering two such realizations of the GP. 
+Surrogate modeling is therefore useful for optimizing large computer simulations experiments, where each function evaluation may consume considerable computational resources.
 %
-The following exponential power family provides an example of a reasonable choice of $K(\bm{x}, \bm{x}')$, under the assumption of a reasonably well behaved $f$,
+GP surrogate modeling considers the objective function $f \sim \text{GP}\big(m(\bm{x}), ~C(\bm{x}, \bm{x}')\big)$, and thus aims to minimize the number of actual function evaluations by using the GP predictive surface to interpolate between function evaluations.
+%learning
+%The surrogate can be used to minimize the number of evaluations by accurately interpolating between function evaluations and contributing information about where further evaluations of the objective function may be most useful for finding new optima.
+%Considering the goals of surrogate modeling in optimization, 
+% In particular, GP surrogate models have become a standard tool for analysis of computer emulation experiments .
 %
+% GP models 
+Inference on such GP models seems to strike an equitable balance between relative ease of computation and efficient learning of the true objective function behavior.
+%
+As a result GP surrogate models have become a standard tool for analysis of computer emulation experiments \cite{sacksDesign, santnerBook}.
+%making them ideal candidates for use as surrogate models here.
+
+%
+%
+
+%
+As with most popular optimization strategies for optimizing functions over a real domain, GP surrogate optimization can make use of the assumption of some cohesive smoothness of the objective function.
+%
+This smoothness relates points close in space, with similar expectations for the objective value, providing the primary mechanism by which optimization may proceed in most numerical algorithms. 
+%
+GPs can directly express this assumption of smoothness with the a'priori choice of an appropriate covariance function which smoothly relates points through their relative positions in the domain.
+%
+The choice of a covariance function to represent a smooth objective function is the typical modeling choice for optimization in computer emulation \cite{santnerBook}, although theoretically GPs may accomodate many common covariance structures \cite{abrahamsenBook, steinBook}. 
+%s smoothness based upon the particular 
+% to relate  models require that the of smooth objective functions on $\mathbb{R}^p$.
+%
+
+%
+%
+
+%
+In many cases the assumption of a globally smooth $f$ with a homogeneous uncertainty structure can provide an effective and parsimonious model.
+%smoothness in the GP covariance structure may make sense for a wide variety of objective functions, it is desirable to 
+However for the sake of providing a flexible surrogate model, it is desirable to have the ability to loosen these restrictions in cases when $f$ may have inherently sharp boundaries, or numerical simulators have variable stability in portions of the domain. 
+%
+Gramacy and Lee \cite{gpJasa} use the idea of allowing subpopulations of flexibility via a treed partitioning of the domain, fitting stationary GP surfaces to separately stationary portions of $f$.
+%
+The domain is recursively sub-partitioned and separate hierarchically linked GP models are fit within each sub-partition.
+%
+The partitioning scheme is fit via a reversible jump MCMC algorithm, jumping between models with differing partitioning schemes.
+%
+By partitioning the domain in this way it allows parsimonious surrogate models in simple objective function cases and quite flexible surrogate models when the the objective function display's complex behavior. 
+%
+For further explanation of partitioned Gaussian process models as well as notes on implementing such models in R, see the R package \verb tgp  \cite{tgp, tgp2}.
+
+% 	In many cases the assumption of a smooth $f$ with a homogeneous uncertainty structure can provide an effective and parsimonious model.
+% 	%
+% 	However for the sake of providing a flexible surrogate model, it is desirable to have the ability to loosen these restrictions in cases when $f$ looks more like the Grand Canyon, as opposed to the Great Plains.     
+% 	%objective landscape
+% 	Gramacy and Lee \cite{gpJasa} introduce the idea of allowing this flexibility via a treed partitioning of the domain.
+% 	%
+% 	This allows separately stationary GP surfaces to fit separately stationary portions of $f$.
+% 	%
+% 	For further explanation of partitioned Gaussian process models as well as notes on implementing such models in R, see the R package \verb tgp  \cite{tgp, tgp2}.
+
+% surrogate models should compute in a relatively short amount of time as compared with the objective function quick to compute, and should quickly learn the behavior of the 
+% 
+% , based on the available data from the objective function. and thus aid use each evaluation of the objective function as a  
+% It is of primary interest that the surrogate model can  efficiently incorporate each function evaluation 
+% 
+% %
+% The primary idea behind surrogate modeling is to manage computationally difficult objective functions by constructing a functional working model (i.e. a surrogate model) of the true objective function, to be optimized, to represent as much about the objective function as our current data allows.
+% %
+% Surrogate modeling is a useful tool for application to large computationally expensive 
+% %
+% The primary role of surrogate modeling is to quickly and as accurately as possible construct a    optimization the primary 
+
+%
+%
+% \begin{itemize}
+% % \item {\color{red} *Everybody uses GP, bunch of cites}
+% %
+% % \item Gaussian process surrogate modeling has become a standard tool for analysis of computer emulation experiments \cite{sacksDesign, santnerBook} as well as many 
+% %
+% % \item other applications in which an a'priori assumption of smoothness is useful .
+% %
+% % \item For the sake of optimization, the assertion of a smooth objective function, $f$, serves as the basis for most efficient searching algorithms.%, as is explicitly the case with GP.
+% %
+% % \item In the case of GP surrogate modeling, the Gaussian Process theory can explicitly express this desire for smoothness through the a'prior choice of a covariance function with the desired smoothness properties.
+% %
+% % \item Although smoothness is key to search, and 
+% %  
+% \item For the sake of optimization practically all opt we only have a hope of efficiently searching $f$ if we assume that $f$ provides a reasonably smooth, otherwise optimization by any method is practically infeasible.
+% %
+% \item However it is not 
+% 
+% %
+% \item \cite{gpJasa, tgp, tgp2}
+% %
+% \item {\color{red} *Expand Treed Partitioning}
+% %
+% \item For additional modeling details, including loosening the assumption of global stationarity, and details about implementing GP models in the context of numerical optimization see the R package \verb tgp ~as well as the associated vignettes \cite{tgp, tgp2}.
+% \end{itemize}
+
+
+% If we have any hope of finding optima of a function, $f$, we impose the condition that $f$ provides a reasonably smooth mapping for relating points in the domain, $\bm{x}$, to response values, $z(\bm{x})$.
+% optimization of functions over $\mathbb{R}^p$
+% %
+% GP surrogates, as with many optimization strategies for objective function on $\mathbb{R}^p$, rely upon some sense of cohesive smoothness of the objective function, which relates points close in space with similar expectations for the objective value.
+
+% {\color{red} *Everybody uses GP, bunch of cites}
+% 
+% %
+% For more details on the theoretical foundations of Gaussian Processes in computer experiments see \cite{santnerBook}.
+% %
+% If we have any hope of finding optima of a function, $f$, we impose the condition that $f$ provides a reasonably smooth mapping for relating points in the domain, $\bm{x}$, to response values, $z(\bm{x})$.
+% %\text{\textbf{Z}}; $\big($i.e.~\big)$; \text{Z}
+% The $z(\bm{x})$ are assumed to be particular realizations of an infinitely dimensional generalization of the multivariate normal distribution, $f \sim \text{GP}(m,~K)$, and thus jointly any set of such realizations, $z(\bm{x})$, jointly follow a multivariate normal distribution.
+% %
+% As part of the GP model specification, we specify the mean function as a linear combination of simple basis functions, $m=\bm{\beta}^\intercal \text{\textbf{f($\bm{x}
+% $)}}$, and we describe the covariance structure, among the dimensions of the $z(\bm{x})$, through specification of a covariance function, $K(\bm{x}, \bm{x}')$.
+% %
+% By specifying a homogeneous covariance function, we thus model the relationship between $||\bm{x}-\bm{x}'||$ with the correlation structure that we expect to see when jointly considering two such realizations of the GP. 
+% %
+% The following exponential power family provides an example of a reasonable choice of $K(\bm{x}, \bm{x}')$, under the assumption of a reasonably well behaved $f$,
+% %
+% \begin{equation}
+% K(\bm{x}, ~\bm{x}') = \sigma^2\exp\left\{ -\frac{||\bm{x}-\bm{x}'||^p}{d} \right\}.
+% \label{corrFunc}
+% \end{equation} 
+% %
+% Specifying conjugate priors for $\bm{\beta}$ and $\sigma^2$ yields a straightforward Gibbs sampling posterior inferential setting with the exception of the covariance structure parameters requiring Metropolis-Hastings MCMC sampling.
+
+
+%
+%
+\subsection{Expected Improvement}
+%
+%
+
+%
+%The EI criterion has been used \cite{tgp2}, \cite{taddyOpt} to identify candidate points that have a strong {\it possibility of encountering new minima}.
+%when applied to a single candidate point has
+The EI criterion is fundamentally based on the improvement criterion {\color{red}cite} which evaluates how possible it may be to encounter new minima at a given location based on the predictive surrogate model.
+%
+The improvement function takes the following form,
 \begin{equation}
-K(\bm{x}, \bm{x}') = \sigma^2\exp\left\{ -\frac{||\bm{x}-\bm{x}'||^p}{d} \right\}.
-\label{corrFunc}
-\end{equation} 
+\ix~=~ \max \Big\{ \big(f_{min} - f(\bm{x})\big), ~0 \Big\}.
+\label{ix}
+\end{equation}
 %
-Specifying conjugate priors for $\bm{\beta}$ and $\sigma^2$ yeilds a straightforward Gibbs sampling {\color{red}cite} inferential setting with the exception of the covariance structure parameters requiring Metropolis-Hastings MCMC sampling {\color{red}cite}.
-
+By considering the expectation of $\ix$, candidate locations are not only rewarded for having a low predictive mean, but the $\Eix$ also rewards poorly explored locations due to the high uncertainty of $\ix$ in these places.
 %
+Notice that by definition the $\ix$ function is always non-negative, however the GP posterior predictive $\Eix$ is a strictly positive criterion.
 %
-
-%
-For more details on the theoretical foundations of Gaussian Processes in computer experiments see \cite{santnerBook}.
-For additional modeling details, including loosening the assumtion of global stationarity, and details about implimenting GP models in the context of numerical optimization see the R package \verb tgp ~as well as the associated vinettes \cite{tgp, tgp2}.
-
-%
-%
-%\subsection{Gaussian Process Models}
-%
-%
-
-%
-%
-\subsubsection{Expected Improvement}
-%
-%
+Considering the MCMC inferential setting of our GP surrogate model, the EI criterion can be quickly computed by using posterior predictive $\ix$ samples at given candidate locations to empirically approximate the $\Eix$ calculation.
 
 %
 %
@@ -323,6 +439,8 @@ For additional modeling details, including loosening the assumtion of global sta
 %
 %
 
+%
+%
 \begin{wrapfigure}{r}{0.5\textwidth}
 	\vspace{-1.6cm}
 % 	\vspace{-2.5cm}
@@ -331,7 +449,7 @@ For additional modeling details, including loosening the assumtion of global sta
 	\begin{itemize}
 	\item[1)] Collect an initial set, $\bm{X}$.
 	\item[2)] Compute $f(\bm{X})$.
-	\item[3)] Fit GP model based on evaluations of $f$.
+	\item[3)] Fit surrogate based on evaluations of $f$.
 	\item[4)] Collect a candidate set, $\tilde{\bm{X}}$.
 	%\item[5)] Compute $\Eix$ among $\tilde{\bm{X}}$.$\E{\text{I}(\tilde{\bm{x}_i}})$
 	\item[5)] Compute EI among $\tilde{\bm{X}}$
@@ -343,19 +461,34 @@ For additional modeling details, including loosening the assumtion of global sta
 	\doublespacing
 	%\vspace{-0.85cm}
 	\label{procedure}
-	\end{wrapfigure}
+\end{wrapfigure}
+%
+%
 
-
-% %
-% \begin{itemize}
-% \item GP
-% \item EI
-% \item Optimization Procedure
-% \end{itemize}
+% us with a
+The idea for optimization, in this context, is to only evaluate the objective function at locations that have a good chance of providing a new minimum. 
+%I need a handle
+Optimization begins by initially collecting a set, $\bm{X}$, of locations to evaluate the true function, $f$, to gather a basic impression of $f$.
+% (\ref{gpModel})
+A statistical surrogate model is then fitted with $f(\bm{X})$ as observations of the true function.
+%EI randomly
+Using the surrogate model, a set of candidate points, $\tilde{\bm{X}}$, are selected from the domain and the EI criterion is calculated among these points.
+%
+The candidate point that has the highest EI is then chosen as the best candidate for a new minimum and thus, it is added to $\bm{X}$.
+% (\ref{gpModel})
+The objective function is evaluated at this new location and the surrogate model is refit based on the updated $f(\bm{X})$.
+%
+The optimization procedure carries on in this way until convergence.
 
 %
 %
-\section{Statistical Process Control}
+\section{EWMA Convergence Chart}
+%
+%
+
+%
+%
+\subsection{Statistical Process Control}
 %
 %
 
@@ -386,65 +519,293 @@ Furthermore, this logic relies upon the typical asymptotic results of the centra
 %
 
 %
-In the spirit of obtaining a robust solution through the use of the CLT, as applied to the distribution of the EI, it is important to carefully consider properties of the improvement distribution.
+For the sake of obtaining a robust convergence criterion to track via SPC, it is important to carfully consider properties of the improvement distributions which generate the EI values.
 %
-Firstly, the improvement values are strictly positive but decreasingly small, thus the improvement distribution is often strongly right skewed.
+% Ultimately, the distribution of the EI is asymptotically normal, but the characteristics of the improvement distribution, as convergence approaches, complicate these asymtoptics. 
 %
-This right skew becomes exaggerated as convergence approaches (i.e. when the improvement values become small).
+The improvement criterion is strictly positive but decreasingly small, thus the improvement distribution is often strongly right skewed, and the EI is often far from normal.
 %
-Thus if large sample assumptions (from the improvement distribution) are challenged, then the asymptotic EI distribution may become less accurate at the time of convergence (i.e. when we desire accuracy most). 
-%Additionally, since the I(x) criterion is naturally bounded at 0, an unfettered normal distribution will always struggle to model the EI criterion since the normal distribution will never respect its boundary conditions. 
-Secondly, since the improvement distribution is strictly positive, the EI should also be bounded at 0.
-%
-Thus an unfettered normal distribution will always struggle to capture the EI distribution.
+Additionally, this right skew becomes exaggerated as convergence approaches, due to the decreasing trend in the EI criterion.
+%% distribution will always struggle to capture the resulting EI distribution.
+Together these characteristics of the improvement distribution give the EI criterion inconsistent behavior for tracking convergence via a typical $\bar x$-chart. 
  
 %
 %
 
+%log improvement
+These issues naturally suggest releasing the bound at 0 by modeling transformations of the improvement, rather than directly considering the improvement distribution on its own.
 %
-These issues naturally suggest modeling the log improvement, rather than the improvement distribution on its own.
+One of the simplest of the many possible helpful transformations in this case could simply consider the log of the improvement distribution. 
 %
-However due to the MCMC sample-based implementation of the Gaussian Process, and the desire for a large number of samples from the improvement distribution, it is not uncommon to obtain at least one sample that in double precision is indistinguishable from 0.
+However due to the MCMC sample-based implementation of the Gaussian Process, and the desire for a large number of samples from the improvement distribution, it is not uncommon to obtain at least one sample, that in double precision, is computationally indistinguishable from 0.
 %
 Thus simply taking the log of the improvement samples can be computationally undefined, particularly as convergence approaches.
+%
+Despite this numerical inconvience, the distribution of the improvement samples is often very well approximated by the Lognormal distribution. 
 
 %
 %
 
 %
-Thus rather than simply taking the log of the improvement samples, to determine the more robust statement that $\mathbb{E}\left[~\log\text{I}~\right] \approxdist N\left(\mu, \frac{\sigma^2}{n}\right)$, it is computationally useful to consider the following approximate model-based perspective.   
+Rather than simply taking the log of the improvement samples, to determine the more robust statement that $\mathbb{E}\left[~\log\text{I}~\right] \approxdist N\left(\mu, \frac{\sigma^2}{n}\right)$, it is computationally useful to consider the following approximate model-based perspective.   
 %
 Recall that if a random variable \mbox{$X\sim Log$-$N(\omega, \nu)$,} then another random variable $Y=\log(X)$ is distributed $Y\sim N(\omega, \nu)$.
-%
-Furthermore, if $m$ and $v$ are, respectively, the mean and variance of a lognormal sample, then the mean, $\omega$, and variance, $\nu$, of the associated normal distribution are given by the following relation {\color{red}cite}.
+%{\color{red}cite}
+Furthermore, if $m$ and $v$ are, respectively, the mean and variance of a lognormal sample, then the mean, $\omega$, and variance, $\nu$, of the associated normal distribution are given by the following relation.
 %
 \begin{eqnarray}
-\omega = \ln\left( \frac{m^2}{\sqrt{v+m^2}} \right) &~&  \nu = \ln\bigg( 1+ \frac{v}{m^2} \bigg).
+\omega = \log\left( \frac{m^2}{\sqrt{v+m^2}} \right) &~&  \nu = \log\bigg( 1+ \frac{v}{m^2} \bigg).
 \label{lnRelate}
 \end{eqnarray}
 %
 Using this relation we do not need to transform any of the improvement samples.
 %
-We compute the empirical mean of the unaltered, approximatly lognormal, improvement samples, then use relation (\ref{lnRelate}) to directly compute the Expectation of the Lognormal Approximation to the Improvement (ELAI).
+We compute the empirical mean and variance of the unaltered, approximately lognormal, improvement samples, then use relation (\ref{lnRelate}) to directly compute $\omega$ as the Expectation under the Lognormal Approximation to the Improvement (ELAI).
+%Considering that the log improvement has reduced right skew, for the sake of improved asymptotics of the; of the $\E{\log\text{I}}$ distribution enjoys improved asymptotics
+The ELAI convergence criterion is a useful convergence criterion in this case because of the reduced right skew of the log of the improvement distribution, and the ELAI convergence criterion serves as a computationally robust approximation of the $\E{\log\text{I}}$ under reasonable log-normality of the improvements.
+%approximately
+Furthermore, both the $\E{\log\text{I}}$ and ELAI convergence criterion are distributed approximately normally in repeated sampling.
 %
-% That is to say, by taking the mean of the unaltered improvement values we use relation (\ref{lnRelate}) to directly compute the Expected value of Lognormal Approximation of the Improvement (ELAI).
-%we immediately get an approximation of the $\E{\log \text{I}}$ values without actually taking the log of the improvement samples.
-%rather than is not bounded at 0, the log of the improvement distribution 
-%Considering that the log improvement has reduced right skew, for the sake of improved asymptotics of the
-The reduced right skew of the log improvement improves the asymptotics of the $\E{\log\text{I}}$ distribution; the ELAI serves as a computationally robust approximation of the $\E{\log\text{I}}$, and thus both the $\E{\log\text{I}}$ and ELAI are distributed approximatly normal in repeated sampling.  
+This construction allows for more consistent and accurate use of the fundamental theory on which our SPC perspective requires.
 
-%improvement provides robust asymptotics for the normality of the distribution of the $\E{\log\text{I}}$, even as convergence approachesthe ELAI provides a good approximation for this value.
+%improvement provides robust asymptotics for the normality of the distribution of the $\E{\log\text{I}}$, even as convergence approaches the ELAI provides a good approximation for this value.
 %{\color{red} ELAI}
 % The ELAI provides a good approximation for 
 
+%
+%
+\subsection{Exponentially Weighted Moving Average}
+%
+%
+
+%
+The EWMA control chart is based upon Shewhart's original notion of control, however the EWMA control chart views the repeated sampling process in the context of moving average smoothing of series data. %, rather than assuming a constant long run average, as in the $\bar x$-chart.    
+%Principally provide particularly robust solutions to be expected for convergence in this setting.
+Since the ELAI convergence criterion stochastically slides into convergence, a series perspective is appropriate here; in particular the EWMA perspective has shown to be well suited for tracking the progression of means that are subject to subtle drifting processes \cite{adaptEWMA, ?}. %, just as displayed by the ELAI criterion upon convergence.
+%
+EWMA achieves this robust smoothing behavior, relative to shifting means, by assigning exponentially decreasing weights to successive points in a rolling average among all of the points of the series, thus the EWMA emphasizes recent observations and shifts the focus of the moving average to the most recent information while still smoothing with some memory of the past.
+
+%
+%
+
+%
+If $Y_i$ is the current ELAI value, and $Z_i$ is the EWMA statistic associated with this current value, then the initial value $Z_0$ is set to $Y_0$ and for $i>0$ the EWMA statistic is expressed as,
+%
+\begin{equation}
+Z_i=\lambda Y_i+(1-\lambda)Z_{i-1}.
+\label{ewmaStat}
+\end{equation}
+%
+Above, $\lambda$ is a smoothing parameter that defines the weight $\left( \text{i.e. }0<\lambda\le1\right)$ assigned to the most recent observation, $Y_i$.
+%Eq. (\ref{ewmaStat})
+The recursive expression of the statistic ensures that all subsequent weights geometrically decrease as they move back through the series.
+
+%
+%
+
+%
+Typical values of $\lambda$ can range from \mbox{$0.1\le\lambda\le0.3$}, with a default value of $\lambda$ around $0.2$, as described by Box et al. \cite{boxBook}.
+%
+Large values of $\lambda$ assign more weight to recent observations in the series, allowing for a more flexible fit for unstable series.
+%
+However, the choice of a large $\lambda$ may over-fit the $Z_i$ to noise in the $Y_i$.
+%
+It is thus desirable to choose to the smallest $\lambda$ which still provides good forecasts of future
+%
+%
+\begin{wrapfigure}{r}{0.41\textwidth}
+% \vspace{-1cm}
+\includegraphics[width=0.4\textwidth]{./figures/ssRastHardOpt.pdf}
+\caption{ $S_\lambda$ as calculated over a fine grid of possible $\lambda$ values for ELAI values derived from optimization of the Rastrigin test function. The optimal forecasting $\hat\lambda$ is shown by the vertical the dashed line. }
+\label{bestL}
+\end{wrapfigure}
+%
+%
+ observations in the series.
+%
+Box et al. \cite[p. 87]{boxBook} explains how to choose an optimal value for $\lambda$ by choosing the $\hat\lambda$ which minimizes the sum of squared forecasting deviations ($S_\lambda$) for each new observation.
+%curvature
+Through this analysis of $S_\lambda$, as seen in Figure~(\ref{bestL}), is it evident that EWMA charts can be very robust to reasonable choices of $\lambda$, due to the small first and second derivatives of $S_\lambda$ for a large range of sub-optimal choices of $\lambda$ around $\hat\lambda$. % as seen in Figure~(\ref{bestL}).
+%
+In fact, Figure~(\ref{bestL}) shows that for \mbox{$\lambda\in[0.2, 0.6]$,} $S_\lambda$ stays within 10\% of its the minimum possible value.
+
+%
+%
+
+%
+It is interesting to note that for the example series used in Figure~(\ref{bestL}), the optimal $\hat \lambda$ is found to be about 0.4, which obviously falls outside of the standard values for $\lambda$ mentioned above.
+%would begin with starts
+The typical use of EWMA in SPC begins with the premise of a relatively stable series and attempts to identify new out-of-control observations which would indicate some change in the data generating process.
+%
+The use of EWMA to identify convergence is markedly different from the typical SPC usage. 
+%
+For identifying convergence the series begins in an out-of-control state and we wish to identify when the series has fallen into control (i.e. convergence).
+%
+As a result, ELAI values for tracking convergence are inherently less stable than typical SPC applications of EWMA.
+%% in the context of identifying convergence.
+Often the optimal $\hat\lambda$, for identifying convergence, may fall above the recommended upper limit for $\lambda$. 
+%
+Thus, in this context it is useful for to borrow some of the machinery used in SPC, but the ultimate analysis of the data should not explicitly be considered SPC, as the perspective of the data does not fully align with that of SPC.
+
+%
+%
+
+%
+For identifying convergence it is of primary importance to define the control limits on the EWMA statistic in this setting.
+%
+As in the simplified $\bar x$-chart, defining the control limits in the EWMA setting amounts to considering an interval on the sampling distribution of interest.
+%, under the assumptions that the $Y_i$ arrive as $i.i.d.$ samples
+In the EWMA case we are interested in the sampling distribution of the $Z_i$.
+%, Lucas and Saccucci \cite{ewmaPaper}  show,
+Assuming that the $Y_i$ are $i.i.d.$ then Lucas and Saccucci \cite{ewmaPaper} show that we can write $\sigma^2_{Z_i}$ in terms of $\sigma^2_{Y}$. 
+%
+\begin{equation}
+\sigma^2_{Z_i} = \sigma^2_{Y}\left(\frac{\lambda}{2-\lambda}\right)\left[1-(1-\lambda)^{2i}\right]
+\end{equation}
+%\substack{i.i.d.\\\sim}
+Thus if the $Y_i \stackrel{i.i.d.}{\sim} N\left(\mu, \frac{\sigma^2}{n}\right)$ the sampling distribution for $Z_i$ is $Z_i \sim N\left(\mu, \sigma^2_{Z_i}\right)$.
+%
+Furthermore by choose a confidence level through choice of a constant $c$, the control limits based on this sampling distribution are seen in Eq. (\ref{EWMACL}).% follow on the next page.
+	
+%
+%
+%
+\begin{eqnarray}
+\text{CL}_i &=& \mu \pm c \sigma_{Z_i}\nonumber\\
+&=&  \mu \pm c ~ \frac{\sigma}{\sqrt{n}}~\sqrt{\left(\frac{\lambda}{2-\lambda}\right)\left[1-(1-\lambda)^{2i}\right]}
+\label{EWMACL}
+\end{eqnarray}
+%
+%
+
+%
+Notice that since $\sigma^2_{Z_i}$ has a dependence on $i$, the control limits do as well.
+%the focusing effect of EWMA. % this focusing effect.\frac{\sigma}{\sqrt{n}}~
+Looking back through the series brings us away from the focus of the moving average, at $i$, and thus the control limits widen until the limiting case as, $i\rightarrow\infty$, the control limits are defined by $\mu \pm c ~ \sqrt{\frac{\lambda\sigma^2}{(2-\lambda)n}}$.
+%traversing backwards through the series resulting directly from the geometrically decreasing weights.
+
+%
+At first glance it is not clear that the $Y_i$ are in fact $i.i.d.$
+%
+Indeed the early iterations of the convergence processes seen in Figure (\ref{introFig}) certainly do not display $i.i.d.$ $Y_i$. 
+%
+However as the series approaches convergence, the $Y_i$ eventually do enter a state of control see Figure (\ref{ewmaFig}).
+%
+For these controlled $Y_i$ an $i.i.d.$ assumption is very reasonable.
+%
+The realization of such a controlled region of the series defines the notion of consistency which is part of what allows for the identification of convergence here. 
+
+%
+%
+\subsection{The Control Window}
+%
+%
+
+% for accurate identification of convergence is the introduction of a so called
+%the distributional consistency we use to identify convergence
+The final structural feature of the EWMA convergence chart that is necessary for identifying convergence is the so called {\it control window}.
+%is a window containing
+The control window contains a fixed number, $w$, of the most recently observed $Y_i$.
+%The idea being, o
+Only information from the $w$ points currently residing inside the control window is used to calculate the control limits, but the EWMA statistic is still computed for all $Y_i$ values.
+%
+Initially, the algorithm is allowed to fill the control window, by collecting an initial set of $w$ observations of the $Y_i$.
+%
+As new observations arrive, the oldest value is removed from the control window, thus allowing for the inclusion of a new $Y_i$.
+
+%
+%
+
+%
+The purpose of the control window is two fold.
+% examination
+Firstly it serves to dichotomizes the series for evaluating subsets of the $Y_i$ for distributional consistency.
+% convergence
+Secondly it offers a structural way for basing the standard for consistency (i.e. the control limits) only on the most recent and relevant information in the series. 
+%
+%It is important to draw 
+%This is important due to the subtle way in which ELAI values slide to convergence.
+
+%
+%
+
+%The size of this window is left up to the discretion of user,.
+The size, $w$, of the control window is an important parameter for correctly identifying convergence.
+%
+Because $w$ may vary from problem to problem it is ultimately left as a tuning parameter of the system.
+%
+Choosing the correct value of $w$ presents an interesting decision problem since underestimating the size of the control window may lead to premature convergence, however if $w$ is too large, we compute unnecessary objective function evaluations.
+%
+As a general trend, harder optimization problems require larger values of $w$ since the EI criterion follows a less structured decreasing pattern as new modes are discovered at irregular patterns.
+
+%
+%
+
+%
+
+
+
+
+% {\color{red}
+% %
+% Choosing the correct value of $w$ presents an interesting decision problem since underestimating the size of the control window may lead to premature convergence, but if $w$ is too large, we compute unnecessary objective function evaluations.
+% %It is t
+% Thus it may be important to consider these two opposing forces when choosing an appropriate value for $w$.
+% %
+% I recommend conservatively large values for $w$ because I regard premature convergence to be a greater problem than extraneous function evaluations.
+% %
+% As a default value $w=30$ has provided me a reasonable starting point for further analysis.
+% %
+% I have found that choosing $w$ based on the value of $\lambda$ seems to be an efficient way of tuning $w$.
+% %
+% As a general trend, the larger the value of $\lambda$, the more fluctuation present in the EWMA statistic.
+% %% the fluctuations in the EWMA statistic. %Conversely for small $\lambda$, smaller values of $w$ are acceptable. are necessary allow averages over more elements of he  to  average out ; fluctuations 
+% Thus for good results, large $\lambda$, naturally imply large values of $w$ for an accurate representation of the increased fluctuations of the EWMA statistic in the repeated sampling average.
+% %due to decreased fluctuations in the EWMA statistic
+% Conversely for small $\lambda$, smaller values of $w$ are acceptable.
+% }
+
+
+{\color{red}
+%
+%
+\subsection{Identifying Convergence}
+%
+%
+}
+
+%
+%
+\begin{figure}[h!]
+\includegraphics[width=0.32\textwidth]{./figures/ewmaConvChartRoseEasyEasyOpt.pdf}
+\includegraphics[width=0.32\textwidth]{./figures/ewmaConvChartLock6Three20000Opt.pdf}
+\includegraphics[width=0.32\textwidth]{./figures/ewmaConvChartRastHardOpt.pdf}
+\includegraphics[width=0.33\textwidth]{./figures/ssRoseEasyEasyOpt.pdf}
+\includegraphics[width=0.33\textwidth]{./figures/ssLock6Three20000Opt.pdf}
+\includegraphics[width=0.33\textwidth]{./figures/ssRastHardOpt.pdf}
+\caption{$left:$ Rosenbrock | $center:$ Lockwood | $right:$ Rastrigin}
+\label{ewmaFig}
+\end{figure}
+%
+%
 
 
 %
 %
-\subsection{EWMA Convergence Chart}
+% \subsection{Identifying Convergence}
 %
 %
 
+%
+%
+\section{Examples}
+%
+%
+
+%
+%
+\section{Conclusion}
+%
 %
 
 
