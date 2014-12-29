@@ -330,7 +330,7 @@ The partitioning scheme is fit via a reversible jump MCMC algorithm, jumping bet
 %
 By partitioning the domain in this way it allows parsimonious surrogate models in simple objective function cases and quite flexible surrogate models when the the objective function display's complex behavior. 
 %
-For further explanation of partitioned Gaussian process models as well as notes on implementing such models in R, see the R package \verb tgp  \cite{tgp, tgp2}.
+For further explanation of partitioned Gaussian process models as well as notes on implementing such models in R, see the R package \verb tgp  \cite{tgp, tgp2}.  Because many of the objective functions of interest are not well modeled by a stationary GP, we use treed GPs as our surrogate models in this paper.
 
 % 	In many cases the assumption of a smooth $f$ with a homogeneous uncertainty structure can provide an effective and parsimonious model.
 % 	%
@@ -420,19 +420,20 @@ For further explanation of partitioned Gaussian process models as well as notes 
 %
 %The EI criterion has been used \cite{tgp2}, \cite{taddyOpt} to identify candidate points that have a strong {\it possibility of encountering new minima}.
 %when applied to a single candidate point has
-The EI criterion is fundamentally based on the improvement criterion {\color{red}cite} which evaluates how possible it may be to encounter new minima at a given location based on the predictive surrogate model.
+The EI criterion predicts how likely it will be to find a new minimum at a given location based on the predictive surrogate model.  EI is built upon the improvement function \cite{jonesEIOpt}:
 %
-The improvement function takes the following form,
+%The improvement function takes the following form,
 \begin{equation}
-\ix~=~ \max \Big\{ \big(f_{min} - f(\bm{x})\big), ~0 \Big\}.
+\ix~=~ \max \Big\{ \big(f_{min} - f(\bm{x})\big), ~0 \Big\},
 \label{ix}
 \end{equation}
 %
-By considering the expectation of $\ix$, candidate locations are not only rewarded for having a low predictive mean, but the $\Eix$ also rewards poorly explored locations due to the high uncertainty of $\ix$ in these places.
+where $f_{min}$ is the smallest function value observed so far.  EI is the expectation of the improvement function with respect to the posterior predictive distribution of the surrogate model, $\Eix$.
+EI rewards candidates both for having a low predictive mean, as well high uncertainty (where the function has not been sufficiently explored).
 %
-Notice that by definition the $\ix$ function is always non-negative, however the GP posterior predictive $\Eix$ is a strictly positive criterion.
+By definition the improvement function is always non-negative, and the GP posterior predictive $\Eix$ is strictly positive.
 %
-Considering the MCMC inferential setting of our GP surrogate model, the EI criterion can be quickly computed by using posterior predictive $\ix$ samples at given candidate locations to empirically approximate the $\Eix$ calculation.
+EI is available in closed form for a stationary GP, and for other models can be quickly estimated using Monte Carlo posterior predictive samples at given candidate locations.
 
 %
 %
@@ -467,7 +468,8 @@ Considering the MCMC inferential setting of our GP surrogate model, the EI crite
 %
 
 % us with a
-The idea for optimization, in this context, is to only evaluate the objective function at locations that have a good chance of providing a new minimum. 
+Optimization can be viewed as a sequential design process, where locations are selected for evaluation on the basis of how likely they are to decrease the objective funciton, i.e., based on the EI.
+%The idea for optimization, in this context, is to only evaluate the objective function at locations that have a good chance of providing a new minimum. 
 %I need a handle
 Optimization begins by initially collecting a set, $\bm{X}$, of locations to evaluate the true function, $f$, to gather a basic impression of $f$.
 % (\ref{gpModel})
@@ -479,7 +481,7 @@ The candidate point that has the highest EI is then chosen as the best candidate
 % (\ref{gpModel})
 The objective function is evaluated at this new location and the surrogate model is refit based on the updated $f(\bm{X})$.
 %
-The optimization procedure carries on in this way until convergence.
+The optimization procedure carries on in this way until convergence.  The key contribution of this paper is an automated method for checking convergence, which we develop in the next section. 
 
 %
 %
@@ -848,7 +850,7 @@ The Rosenbrock function \cite{rosePaper} was an early test problem in the optimi
 {\color{red} Nick: please insert a black and white contour plot of the function}\\
 Convergence is non-trivial to assess, because optimization routines can take a while to explore the relatively flat, but non-convex, valley floor for the global minimum.  Here we focus on the region $-2\le x_1\le2$, $-3\le x_2\le5$.  While the region around the mode presents some minor challenges, this problem is unimodal, and thus represents a relatively easier optimization problem.  This example illustrates a well-behaved convergence process.
 
-\begin{figure}{htb}
+\begin{figure}[htb]
 \label{fig:rosenbrock}
   \includegraphics[width=0.45\textwidth]{./figures/ewmaConvChartRoseEasyEasyEnd.pdf}
   \includegraphics[width=0.45\textwidth]{./figures/bestZRoseEasyEasyEnd.pdf}
@@ -856,7 +858,7 @@ Convergence is non-trivial to assess, because optimization routines can take a w
 \end{figure}
 
 We use default values for our convergence parameters, $\lambda=0.2$ and $w=30$.
-Figure~\ref{fig:rosenbrock} shows the result of surrogate model optimization at convergence, as assessed by our method.  The right panel shows the best function value ($y$-axis) found so far at each iteration ($x$-axis), and verifies that we have found the global minimum. The left panel shows our convergence chart, with the window indicated by the vertical line.  The dashed horizontal lines show the control limits. At iteration 74 is the first time that all EWMA points in the control window are within the control limits, and thus we declare convergence.  Note that the EWMA points generally trend downward until the global minimum had been found.  
+Figure~\ref{fig:rosenbrock} shows the result of surrogate model optimization at convergence, as assessed by our method.  The right panel shows the best function value ($y$-axis) found so far at each iteration ($x$-axis), and verifies that we have found the global minimum. The left panel shows our convergence chart, with the window indicated by the vertical line.  The dashed horizontal lines show the control limits. At iteration 74 is the first time that all EWMA points in the control window are within the control limits, and thus we declare convergence.  Note that the EWMA points generally trend downward until the global minimum has been found.  
 
 \subsection{Rastrigin}
 
