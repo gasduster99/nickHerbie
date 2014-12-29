@@ -706,15 +706,16 @@ The realization of such a controlled region of the series defines the notion of 
 
 % for accurate identification of convergence is the introduction of a so called
 %the distributional consistency we use to identify convergence
-The final structural feature of the EWMA convergence chart that is necessary for identifying convergence is the so called {\it control window}.
+% that is necessary
+The final structural feature of the EWMA convergence chart for identifying convergence is the so called {\it control window}.
 %is a window containing
 The control window contains a fixed number, $w$, of the most recently observed $Y_i$.
 %The idea being, o
 Only information from the $w$ points currently residing inside the control window is used to calculate the control limits, but the EWMA statistic is still computed for all $Y_i$ values.
 %
-Initially, the algorithm is allowed to fill the control window, by collecting an initial set of $w$ observations of the $Y_i$.
+Initially, the convergence algorithm is allowed to fill the control window, by collecting an initial set of $w$ observations of the $Y_i$.
 %
-As new observations arrive, the oldest value is removed from the control window, thus allowing for the inclusion of a new $Y_i$.
+As new observations arrive, the oldest $Y_i$ value is removed from the control window, thus allowing for the inclusion of a new $Y_i$.
 
 %
 %
@@ -737,7 +738,7 @@ The size, $w$, of the control window is an important parameter for correctly ide
 %
 Because $w$ may vary from problem to problem it is ultimately left as a tuning parameter of the system.
 %
-Choosing the correct value of $w$ presents an interesting decision problem since underestimating the size of the control window may lead to premature convergence, however if $w$ is too large, we compute unnecessary objective function evaluations.
+Choosing the correct value of $w$ presents an interesting decision problem since underestimating the size of the control window may lead to premature identification of convergence, however if $w$ is too large, we compute unnecessary objective function evaluations.
 %
 As a general trend, harder optimization problems require larger values of $w$ since the EI criterion follows a less structured decreasing pattern as new modes are discovered at irregular patterns.
 
