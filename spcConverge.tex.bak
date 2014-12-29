@@ -120,7 +120,7 @@ The Exponentially Weighted Moving Average (EWMA) chart provides an ideal startin
 %is an important problem with
 Black-box derivative-free optimization has a
 wide variety of applications, especially in the realm of computer
-simulations {\color{red}cite}.  
+simulations \cite{KoldLewiTorc2003,gramacy2014}.  
 %
 When dealing with computationally expensive computer
 models, a key question is that of convergence of the optimization.
@@ -150,7 +150,7 @@ no contamination enters the river.
 %
 The contamination constraint results in a complicated boundary that is unknown in advance and
 requires evaluation of the simulator, and thus finding the global
-constrained minimum is a difficult problem and it is easy for
+constrained minimum is a difficult problem where it is easy for
 optimization routines to, at least temporarily, get stuck in a local
 minimum.  
 %
@@ -165,7 +165,7 @@ to terminate the optimization routine?
 %, a relatively quick, statistical model of the objective function output; this model serves as surrogate of the objective function itself and .
 The context of this paper is Gaussian Process surrogate model
 optimization, a statistical modeling approach to derivative-free
-numerical optimization routine that constructs a fast approximation to
+numerical optimization that constructs a fast approximation to
 the expensive computer simulation using a statistical surrogate model \cite{tgp2}.
 %
 %The surrogate model is relatively fast to work with, as compared with a large computer simulation, and 
@@ -188,13 +188,13 @@ Arising naturally from the GP predictive distribution \cite{gBook, EIPPD}, the m
 %however; as a means of assessing convergence GP surrogate
 {\color{red}Literature cite} recommends considering the EI as a convergence criterion for surrogate model optimization; as of yet, little work has been done to describe what convergence of these algorithms actually looks like in the context of the EI criterion.
 %, but it has not yet been established if there is some threshold EI value that is sufficient
-However, the basic idea behind the use of the EI criterion, as a convergence criterion, is that convergence should occur when the surrogate model produces low expectations for discovering new optima; that is to say, small EI values should be associated with convergence of the algorithm.
+However, the basic idea behind the use of EI as a convergence criterion is that convergence should occur when the surrogate model produces low expectations for discovering new optimum; that is to say, globally small EI values should be associated with convergence of the algorithm.
 %claim that there exists 
-Thus, a common stopping rule, involving the EI criterion, first defines some lower EI threshold, then claims convergence upon first sight of an EI value falling below this threshold {\color{red} example \cite{windExample}, cite}.    
+Thus an obvious stopping rule first defines some lower EI threshold, then claims convergence upon the first instance of the maximum EI value falling below this threshold {\color{red} example \cite{windExample}, cite}.    
 %in many different; of many other numerical optimization routines; that have been designed specifically to exhibit such behavior upon convergence  
-This use of EI as a convergence criteria falls well within the comfort zone of the numerical optimization literature, as this is certainly a reasonable approach for monitoring the convergence criteria of other routines (ex. the vanishing step sizes of Newton-Raphson, Pattern Search (PS) methods, etc.).
+This use of EI as a convergence criterion in analogous to the standard approach in the numerical optimization literature of setting a threshold for some value that is monitored and declaring convergence when the threshold is obtained (e.g., the vanishing step sizes of a Newton-Raphson algorithm).
 %
-However, applying this same threshold strategy to the convergence of surrogate model optimization, in the context of the EI criterion, has not yet been adequately justified.
+However, applying this same threshold strategy to the convergence of surrogate model optimization has not yet been adequately justified.
 %, derived from the predictive distribution of the underling GP model; behavior
 In fact, this use of EI ignores the nature of the EI criterion as a random variable, and oversimplifies the stochastic nature of convergence in this setting.
 %
@@ -218,10 +218,10 @@ a dashed line at -10.
 %
 
 %of the series value; of the values; shows; non-negative
-Because Expected Improvement is strictly positive but decreasingly small,
+Because EI is strictly positive but decreasingly small,
 we find it more productive to work on the log scale, using a lognormal
 approximation to the improvement distribution to generate a more appropriate convergence criterion, as described in more
-detail in Section 3.2.
+detail in Section~3.2.
 %
 Figure~(\ref{introFig}) represents three series of the Expected
 Lognormal Approximation to the Improvement (ELAI) convergence criterion values from three
@@ -246,8 +246,8 @@ In the Lockwood example a simple threshold stopping rule could falsely
 claim convergence within the first 50 iterations of the algorithm.
 %
 The large variability in ELAI with occasional large values indicates that 
-the optimization routine is still exploring and is not yet convinced that 
-it has found a global minimum.
+the optimization routine sometimes briefly settles into a local minimum but is 
+still exploring and is not yet convinced that it has found a global minimum.
 %, additionally as the algorithm proceeds, several improvements of the objective function are discovered while ELI values repeatedly fall below the convergence threshold. %, all while the optimization routine continues to find several improved values of the objective function.
 This optimization run appears to have converged only after the
 larger ELAI values stop appearing and the variability has decreased.
@@ -272,10 +272,12 @@ in this setting.
 Instead, we propose taking the perspective of Statistical
 Process Control (SPC), where a stochastic series is monitored for 
 consistency of the distribution of the most recently observed values.
+In the next section, we review the statistical surrogate model approach and the use of EI for optimization.  In Section~\ref{sec:convergence}, we discuss our inspiration from SPC and how we construct our convergence chart.  Section~\ref{sec:examples} provides synthetic and real examples, and then we provide some conclusions in the final section.
 
 %
 %
 \section{Gaussian Process Surrogate Model Optimization}
+\label{sec:gp}
 %
 %
 
@@ -308,7 +310,7 @@ This smoothness relates points close in space, with similar expectations for the
 %
 GPs can directly express this assumption of smoothness with the a'priori choice of an appropriate covariance function which smoothly relates points through their relative positions in the domain.
 %
-The choice of a covariance function to represent a smooth objective function is the typical modeling choice for optimization in computer emulation \cite{santnerBook}, although theoretically GPs may accomodate many common covariance structures \cite{abrahamsenBook, steinBook}. 
+The choice of a covariance function to represent a smooth objective function is the typical modeling choice for optimization in computer emulation \cite{santnerBook}, although theoretically GPs may accommodate many common covariance structures \cite{abrahamsenBook, steinBook}. 
 %s smoothness based upon the particular 
 % to relate  models require that the of smooth objective functions on $\mathbb{R}^p$.
 %
@@ -364,7 +366,7 @@ For further explanation of partitioned Gaussian process models as well as notes 
 % %
 % % \item For the sake of optimization, the assertion of a smooth objective function, $f$, serves as the basis for most efficient searching algorithms.%, as is explicitly the case with GP.
 % %
-% % \item In the case of GP surrogate modeling, the Gaussian Process theory can explicitly express this desire for smoothness through the a'prior choice of a covariance function with the desired smoothness properties.
+% % \item In the case of GP surrogate modeling, the Gaussian Process theory can explicitly express this desire for smoothness through the a'priori choice of a covariance function with the desired smoothness properties.
 % %
 % % \item Although smoothness is key to search, and 
 % %  
@@ -483,6 +485,7 @@ The optimization procedure carries on in this way until convergence.
 %
 %
 \section{EWMA Convergence Chart}
+\label{sec:convergence}
 %
 %
 
@@ -519,7 +522,7 @@ Furthermore, this logic relies upon the typical asymptotic results of the centra
 %
 
 %
-For the sake of obtaining a robust convergence criterion to track via SPC, it is important to carfully consider properties of the improvement distributions which generate the EI values.
+For the sake of obtaining a robust convergence criterion to track via SPC, it is important to carefully consider properties of the improvement distributions which generate the EI values.
 %
 % Ultimately, the distribution of the EI is asymptotically normal, but the characteristics of the improvement distribution, as convergence approaches, complicate these asymtoptics. 
 %
@@ -541,7 +544,7 @@ However due to the MCMC sample-based implementation of the Gaussian Process, and
 %
 Thus simply taking the log of the improvement samples can be computationally undefined, particularly as convergence approaches.
 %
-Despite this numerical inconvience, the distribution of the improvement samples is often very well approximated by the Lognormal distribution. 
+Despite this numerical inconvenience, the distribution of the improvement samples is often very well approximated by the Lognormal distribution. 
 
 %
 %
@@ -579,11 +582,12 @@ This construction allows for more consistent and accurate use of the fundamental
 %
 
 %
-The EWMA control chart is based upon Shewhart's original notion of control, however the EWMA control chart views the repeated sampling process in the context of moving average smoothing of series data. %, rather than assuming a constant long run average, as in the $\bar x$-chart.    
+The EWMA control chart is based upon Shewhart's original notion of control, however the EWMA control chart views the typical repeated sampling process in the context of moving average smoothing of series data. %, rather than assuming a constant long run average, as in the $\bar x$-chart.    
 %Principally provide particularly robust solutions to be expected for convergence in this setting.
-Since the ELAI convergence criterion stochastically slides into convergence, a series perspective is appropriate here; in particular the EWMA perspective has shown to be well suited for tracking the progression of means that are subject to subtle drifting processes \cite{adaptEWMA, ?}. %, just as displayed by the ELAI criterion upon convergence.
+Since pre-convergence ELAI convergence criterion evaluations do not necissarily share distributional consistency among all observed values, a weighted series perspective was chosen to follow the moving average of the most recent ELAI observations while still smoothing with some memory of older evaluations.
+%stochastically slides into convergence, a series perspective is appropriate here; in particular the EWMA perspective has shown to be well suited for tracking the progression of means that are subject to subtle drifting processes \cite{adaptEWMA, ?}. %, just as displayed by the ELAI criterion upon convergence.
 %
-EWMA achieves this robust smoothing behavior, relative to shifting means, by assigning exponentially decreasing weights to successive points in a rolling average among all of the points of the series, thus the EWMA emphasizes recent observations and shifts the focus of the moving average to the most recent information while still smoothing with some memory of the past.
+EWMA achieves this robust smoothing behavior, relative to shifting means, by assigning exponentially decreasing weights to successive points in a rolling average among all of the points of the series, thus the EWMA emphasizes recent observations and shifts the focus of the moving average to the most recent information while still providing shrinkage towards the global mean of the series.
 
 %
 %
@@ -633,19 +637,20 @@ In fact, Figure~(\ref{bestL}) shows that for \mbox{$\lambda\in[0.2, 0.6]$,} $S_\
 %
 
 %
-It is interesting to note that for the example series used in Figure~(\ref{bestL}), the optimal $\hat \lambda$ is found to be about 0.4, which obviously falls outside of the standard values for $\lambda$ mentioned above.
+It is interesting to note that for the example series used in Figure~(\ref{bestL}), the optimal $\hat \lambda\approx0.4$ exceeds the recommended upper limit of 0.3 for $\lambda$. 
+%
+Discrepancies between the optimal values of $\lambda$ chosen here, and the typically chosen values of $\lambda$ can be naturally attributed to the differing context in which we apply EWMA as compared to the typical SPC application. 
+%which obviously falls outside of the standard values for $\lambda$ mentioned above.
 %would begin with starts
-The typical use of EWMA in SPC begins with the premise of a relatively stable series and attempts to identify new out-of-control observations which would indicate some change in the data generating process.
+The typical use of EWMA in SPC begins with the premise of a relatively stable (in-control) series and attempts to identify new out-of-control observations which would indicate some change in the data generating process.
 %
-The use of EWMA to identify convergence is markedly different from the typical SPC usage. 
-%
-For identifying convergence the series begins in an out-of-control state and we wish to identify when the series has fallen into control (i.e. convergence).
+However our use of EWMA, to identify convergence, begins with an out-of-control series and we wish to identify when the series falls into control (i.e. convergence).
 %
 As a result, ELAI values for tracking convergence are inherently less stable than typical SPC applications of EWMA.
 %% in the context of identifying convergence.
-Often the optimal $\hat\lambda$, for identifying convergence, may fall above the recommended upper limit for $\lambda$. 
+Due to the decreased stability of the series, in this context, the optimal forecasting $\hat\lambda$ may often fall above the recommended upper limit for $\lambda$, in-order to more accurately follow the more active moving averages inherent to the unstable pre-convergence series. 
 %
-Thus, in this context it is useful for to borrow some of the machinery used in SPC, but the ultimate analysis of the data should not explicitly be considered SPC, as the perspective of the data does not fully align with that of SPC.
+Thus, in this context it is useful for to borrow the EWMA machinery often used in SPC, but the ultimate analysis of the data should not explicitly be considered SPC, as the perspective of the data does not fully align with that of SPC.
 
 %
 %
@@ -703,15 +708,16 @@ The realization of such a controlled region of the series defines the notion of 
 
 % for accurate identification of convergence is the introduction of a so called
 %the distributional consistency we use to identify convergence
-The final structural feature of the EWMA convergence chart that is necessary for identifying convergence is the so called {\it control window}.
+% that is necessary
+The final structural feature of the EWMA convergence chart for identifying convergence is the so called {\it control window}.
 %is a window containing
 The control window contains a fixed number, $w$, of the most recently observed $Y_i$.
 %The idea being, o
 Only information from the $w$ points currently residing inside the control window is used to calculate the control limits, but the EWMA statistic is still computed for all $Y_i$ values.
 %
-Initially, the algorithm is allowed to fill the control window, by collecting an initial set of $w$ observations of the $Y_i$.
+Initially, the convergence algorithm is allowed to fill the control window, by collecting an initial set of $w$ observations of the $Y_i$.
 %
-As new observations arrive, the oldest value is removed from the control window, thus allowing for the inclusion of a new $Y_i$.
+As new observations arrive, the oldest $Y_i$ value is removed from the control window, thus allowing for the inclusion of a new $Y_i$.
 
 %
 %
@@ -732,9 +738,11 @@ Secondly it offers a structural way for basing the standard for consistency (i.e
 %The size of this window is left up to the discretion of user,.
 The size, $w$, of the control window is an important parameter for correctly identifying convergence.
 %
+The size of the control window, $w$, 
+%
 Because $w$ may vary from problem to problem it is ultimately left as a tuning parameter of the system.
 %
-Choosing the correct value of $w$ presents an interesting decision problem since underestimating the size of the control window may lead to premature convergence, however if $w$ is too large, we compute unnecessary objective function evaluations.
+Choosing the correct value of $w$ presents an interesting decision problem since underestimating the size of the control window may lead to premature identification of convergence, however if $w$ is too large, we compute unnecessary objective function evaluations.
 %
 As a general trend, harder optimization problems require larger values of $w$ since the EI criterion follows a less structured decreasing pattern as new modes are discovered at irregular patterns.
 
@@ -799,6 +807,7 @@ As a general trend, harder optimization problems require larger values of $w$ si
 %
 %
 \section{Examples}
+\label{examples}
 %
 %
 

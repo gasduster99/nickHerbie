@@ -246,7 +246,7 @@ In the Lockwood example a simple threshold stopping rule could falsely
 claim convergence within the first 50 iterations of the algorithm.
 %
 The large variability in ELAI with occasional large values indicates that 
-the optimization routine sometimes briefly settles into a local minumum but is 
+the optimization routine sometimes briefly settles into a local minimum but is 
 still exploring and is not yet convinced that it has found a global minimum.
 %, additionally as the algorithm proceeds, several improvements of the objective function are discovered while ELI values repeatedly fall below the convergence threshold. %, all while the optimization routine continues to find several improved values of the objective function.
 This optimization run appears to have converged only after the
@@ -584,7 +584,7 @@ This construction allows for more consistent and accurate use of the fundamental
 %
 The EWMA control chart is based upon Shewhart's original notion of control, however the EWMA control chart views the typical repeated sampling process in the context of moving average smoothing of series data. %, rather than assuming a constant long run average, as in the $\bar x$-chart.    
 %Principally provide particularly robust solutions to be expected for convergence in this setting.
-Since preconvergence ELAI convergence criterion evaluations do not neccisarily share consistency amoung all observed values, a weighted series perspective was chosen to follow the moving average of the most recent ELAI observations while still smoothing with some memory of older evaluations.
+Since pre-convergence ELAI convergence criterion evaluations do not necessarily share distributional consistency among all observed values, a weighted series perspective was chosen to follow the moving average of the most recent ELAI observations while still smoothing with some memory of older evaluations.
 %stochastically slides into convergence, a series perspective is appropriate here; in particular the EWMA perspective has shown to be well suited for tracking the progression of means that are subject to subtle drifting processes \cite{adaptEWMA, ?}. %, just as displayed by the ELAI criterion upon convergence.
 %
 EWMA achieves this robust smoothing behavior, relative to shifting means, by assigning exponentially decreasing weights to successive points in a rolling average among all of the points of the series, thus the EWMA emphasizes recent observations and shifts the focus of the moving average to the most recent information while still providing shrinkage towards the global mean of the series.
@@ -637,19 +637,20 @@ In fact, Figure~(\ref{bestL}) shows that for \mbox{$\lambda\in[0.2, 0.6]$,} $S_\
 %
 
 %
-It is interesting to note that for the example series used in Figure~(\ref{bestL}), the optimal $\hat \lambda$ is found to be about 0.4, which obviously falls outside of the standard values for $\lambda$ mentioned above.
+It is interesting to note that for the example series used in Figure~(\ref{bestL}), the optimal $\hat \lambda\approx0.4$ exceeds the recommended upper limit of 0.3 for $\lambda$. 
+%
+Discrepancies between the optimal values of $\lambda$ chosen here, and the typically chosen values of $\lambda$ can be naturally attributed to the differing context in which we apply EWMA as compared to the typical SPC application. 
+%which obviously falls outside of the standard values for $\lambda$ mentioned above.
 %would begin with starts
-The typical use of EWMA in SPC begins with the premise of a relatively stable series and attempts to identify new out-of-control observations which would indicate some change in the data generating process.
+The typical use of EWMA in SPC begins with the premise of a relatively stable (in-control) series and attempts to identify new out-of-control observations which would indicate some change in the data generating process.
 %
-The use of EWMA to identify convergence is markedly different from the typical SPC usage. 
-%
-For identifying convergence the series begins in an out-of-control state and we wish to identify when the series has fallen into control (i.e. convergence).
+However our use of EWMA, to identify convergence, begins with an out-of-control series and we wish to identify when the series falls into control (i.e. convergence).
 %
 As a result, ELAI values for tracking convergence are inherently less stable than typical SPC applications of EWMA.
 %% in the context of identifying convergence.
-Often the optimal $\hat\lambda$, for identifying convergence, may fall above the recommended upper limit for $\lambda$. 
+Due to the decreased stability of the series, in this context, the optimal forecasting $\hat\lambda$ may often fall above the recommended upper limit for $\lambda$, in-order to more accurately follow the more active moving averages inherent to the unstable pre-convergence series. 
 %
-Thus, in this context it is useful for to borrow some of the machinery used in SPC, but the ultimate analysis of the data should not explicitly be considered SPC, as the perspective of the data does not fully align with that of SPC.
+Thus, in this context it is useful for to borrow the EWMA machinery often used in SPC, but the ultimate analysis of the data should not explicitly be considered SPC, as the perspective of the data does not fully align with that of SPC.
 
 %
 %
