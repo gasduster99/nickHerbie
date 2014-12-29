@@ -209,8 +209,7 @@ Thus it is no surprise that this treatment of the EI criterion can result in an 
 \includegraphics[width=0.32\textwidth]{./figures/introChartRastHardAxis.pdf}
 \caption{
 %
-Three ELAI series plotted alongside an example convergence threshold value shown as 
-a dashed line at -10.
+Three ELAI series (more details in Section~\ref{sec:examples}) plotted alongside an example convergence threshold value shown as a dashed line at -10.
 }
 \label{introFig}
 \end{figure}
@@ -807,9 +806,35 @@ As a general trend, harder optimization problems require larger values of $w$ si
 %
 %
 \section{Examples}
-\label{examples}
+\label{sec:examples}
 %
+We first look at two synthetic examples from the optimization literature, where the true optimum is known, so we can be sure we have converged to the true global minimum.  We then provide a real world example from hydrology.
 %
+
+\subsection{Rosenbrock}
+The Rosenbrock function \cite{rosePaper} was an early test probelm in the optimizaiton literature. It combines a narrow, flat parabolic valley with steep walls, and thus it can be difficult for gradient-based methods. It is generalizable to higher dimensions, but we use the two-dimensional version here.
+	\begin{eqnarray}
+	f(x_1, x_2) &=& 100\left(x_2-x_1^2\right)^2 + (1-x_1)^2 \\
+	\text{Minimum}&:& f(1, 1)=0\nonumber
+	\end{eqnarray}	
+{\color{red} Nick: please insert a black and white contour plot of the function}\\
+Convergence is non-trivial to assess, because optimization routines can take a while to explore the relatively flat, but non-convex, valley floor for the global minimum.  Here we focus on the region $-2\le x_1\le2$, $-3\le x_2\le5$.  While the region around the mode presents some minor challenges, this problem is unimodal, and thus represents a relatively easier optimization problem.  This example illustrates a well-behaved convergence process.
+
+\begin{figure}{htb}
+\label{fig:rosenbrock}
+  \includegraphics[width=0.45\textwidth]{./figures/ewmaConvChartRoseEasyEasyEnd.pdf}
+  \includegraphics[width=0.45\textwidth]{./figures/bestZRoseEasyEasyEnd.pdf}
+  \caption{Rosenbrock function: Convergence chart on the left, optimization progress on the right.}
+\end{figure}
+
+We use default values for our convergence parameters, $\lambda=0.2$ and $w=30$.
+Figure~\ref{fig:rosenbrock} shows the result of surrogate model optimization at convergence, as assessed by our method.  The right panel shows the best function value ($y$-axis) found so far at each iteration ($x$-axis), and verifies that we have found the global minimum. The left panel shows our convergence chart, with the window indicated by the vertical line.  The dashed horizontal lines show the control limits. At iteration 74 is the first time that all EWMA points in the control window are within the control limits, and thus we declare convergence.  Note that the EWMA points generally trend downward until the global minimum had been found.  
+
+\subsection{Rastrigin}
+
+
+\subsection{Lockwood}
+
 
 %
 %
