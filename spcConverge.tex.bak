@@ -209,8 +209,7 @@ Thus it is no surprise that this treatment of the EI criterion can result in an 
 \includegraphics[width=0.32\textwidth]{./figures/introChartRastHardAxis.pdf}
 \caption{
 %
-Three ELAI series plotted alongside an example convergence threshold value shown as 
-a dashed line at -10.
+Three ELAI series (more details in Section~\ref{sec:examples}) plotted alongside an example convergence threshold value shown as a dashed line at -10.
 }
 \label{introFig}
 \end{figure}
@@ -584,7 +583,7 @@ This construction allows for more consistent and accurate use of the fundamental
 %
 The EWMA control chart is based upon Shewhart's original notion of control, however the EWMA control chart views the typical repeated sampling process in the context of moving average smoothing of series data. %, rather than assuming a constant long run average, as in the $\bar x$-chart.    
 %Principally provide particularly robust solutions to be expected for convergence in this setting.
-Since pre-convergence ELAI convergence criterion evaluations do not necissarily share distributional consistency among all observed values, a weighted series perspective was chosen to follow the moving average of the most recent ELAI observations while still smoothing with some memory of older evaluations.
+Since pre-convergence ELAI convergence criterion evaluations do not necessarily share distributional consistency among all observed values, a weighted series perspective was chosen to follow the moving average of the most recent ELAI observations while still smoothing with some memory of older evaluations.
 %stochastically slides into convergence, a series perspective is appropriate here; in particular the EWMA perspective has shown to be well suited for tracking the progression of means that are subject to subtle drifting processes \cite{adaptEWMA, ?}. %, just as displayed by the ELAI criterion upon convergence.
 %
 EWMA achieves this robust smoothing behavior, relative to shifting means, by assigning exponentially decreasing weights to successive points in a rolling average among all of the points of the series, thus the EWMA emphasizes recent observations and shifts the focus of the moving average to the most recent information while still providing shrinkage towards the global mean of the series.
@@ -735,6 +734,7 @@ Secondly it offers a structural way for basing the standard for consistency (i.e
 %
 %
 
+{\color{red}
 %The size of this window is left up to the discretion of user,.
 The size, $w$, of the control window is an important parameter for correctly identifying convergence.
 %
@@ -744,8 +744,8 @@ Because $w$ may vary from problem to problem it is ultimately left as a tuning p
 %
 Choosing the correct value of $w$ presents an interesting decision problem since underestimating the size of the control window may lead to premature identification of convergence, however if $w$ is too large, we compute unnecessary objective function evaluations.
 %
-As a general trend, harder optimization problems require larger values of $w$ since the EI criterion follows a less structured decreasing pattern as new modes are discovered at irregular patterns.
-
+As a general trend, {\color{blue}harder} optimization problems require larger values of $w$ since the EI criterion follows a less structured decreasing pattern as new modes are discovered at irregular patterns.
+}
 %
 %
 
@@ -774,13 +774,40 @@ As a general trend, harder optimization problems require larger values of $w$ si
 % }
 
 
-{\color{red}
 %
 %
 \subsection{Identifying Convergence}
 %
 %
-}
+
+%
+In identifying convergence, we not only desire that the ELAI convergence criterion reaches a state of control, but we desire that the ELAI series demonstrates a move from a state of pre-convergence to a consistent state of convergence.
+%
+To recognize this move into convergence we combine the notion of the control window with the EWMA framework to construct the so called, {\it EWMA Convergence Chart}.
+%
+Since we expect EI values to decrease upon convergence, the primary recognition of convergence is that new ELAI vaues demonstrate values that are consistently lower than initial pre-converged values.
+%
+
+%
+%
+
+Firstly, we require that all exponentially weighted $Z_i$ values inside the control window fall within the control limits.
+%
+This ensures that the most recent ELAI values demonstrate distributional consistency within the bounds of the control window.
+%
+Secondly, since we wish to indicate a move from the initial pre-converged state of the system, we require at least one point, from beyond the initial control window, to fall outside the defined EWMA control limits.
+%%demonstrate a signifgant  EI values have decreased significantly far enough from the initial state of pre-convergence to indicate from  jointly with the  
+This second rule suggests that the new ELAI observations have a established a state of control which is significantly different from the previous pre-converged ELAI observations.
+%
+Jointly enforcing these two rules implies the idea of convergence based on the notion that the state convergence should enjoy relative distibutional consistency of convergence criteria, as well as decreased expectation for finding new minima in future function evaluations.
+
+%
+%
+
+%
+Considering the optimization procedure outlined in Figure~(\ref{procedure}), the check for convergence indicated in step 7) amounts to computing the new EWMA $Z_i$ values from the inclusion of the most recent observation of the improvement distribution, and checking if the subsequent set of $Z_i$ satisfy both of the above mentioned rules of the EWMA convergence chart.
+%
+Satifying only one of the convergence rules indicates insufficient exploration of the objective function and further iterations of the optimization proceedure are required to gather more information.    
 
 %
 %
@@ -807,9 +834,35 @@ As a general trend, harder optimization problems require larger values of $w$ si
 %
 %
 \section{Examples}
-\label{examples}
+\label{sec:examples}
 %
+We first look at two synthetic examples from the optimization literature, where the true optimum is known, so we can be sure we have converged to the true global minimum.  We then provide a real world example from hydrology.
 %
+
+\subsection{Rosenbrock}
+The Rosenbrock function \cite{rosePaper} was an early test probelm in the optimizaiton literature. It combines a narrow, flat parabolic valley with steep walls, and thus it can be difficult for gradient-based methods. It is generalizable to higher dimensions, but we use the two-dimensional version here.
+	\begin{eqnarray}
+	f(x_1, x_2) &=& 100\left(x_2-x_1^2\right)^2 + (1-x_1)^2 \\
+	\text{Minimum}&:& f(1, 1)=0\nonumber
+	\end{eqnarray}	
+{\color{red} Nick: please insert a black and white contour plot of the function}\\
+Convergence is non-trivial to assess, because optimization routines can take a while to explore the relatively flat, but non-convex, valley floor for the global minimum.  Here we focus on the region $-2\le x_1\le2$, $-3\le x_2\le5$.  While the region around the mode presents some minor challenges, this problem is unimodal, and thus represents a relatively easier optimization problem.  This example illustrates a well-behaved convergence process.
+
+\begin{figure}{htb}
+\label{fig:rosenbrock}
+  \includegraphics[width=0.45\textwidth]{./figures/ewmaConvChartRoseEasyEasyEnd.pdf}
+  \includegraphics[width=0.45\textwidth]{./figures/bestZRoseEasyEasyEnd.pdf}
+  \caption{Rosenbrock function: Convergence chart on the left, optimization progress on the right.}
+\end{figure}
+
+We use default values for our convergence parameters, $\lambda=0.2$ and $w=30$.
+Figure~\ref{fig:rosenbrock} shows the result of surrogate model optimization at convergence, as assessed by our method.  The right panel shows the best function value ($y$-axis) found so far at each iteration ($x$-axis), and verifies that we have found the global minimum. The left panel shows our convergence chart, with the window indicated by the vertical line.  The dashed horizontal lines show the control limits. At iteration 74 is the first time that all EWMA points in the control window are within the control limits, and thus we declare convergence.  Note that the EWMA points generally trend downward until the global minimum had been found.  
+
+\subsection{Rastrigin}
+
+
+\subsection{Lockwood}
+
 
 %
 %
