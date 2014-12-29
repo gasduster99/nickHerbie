@@ -120,7 +120,7 @@ The Exponentially Weighted Moving Average (EWMA) chart provides an ideal startin
 %is an important problem with
 Black-box derivative-free optimization has a
 wide variety of applications, especially in the realm of computer
-simulations {\color{red}cite}.  
+simulations \cite{KoldLewiTorc2003,gramacy2014}.  
 %
 When dealing with computationally expensive computer
 models, a key question is that of convergence of the optimization.
@@ -150,7 +150,7 @@ no contamination enters the river.
 %
 The contamination constraint results in a complicated boundary that is unknown in advance and
 requires evaluation of the simulator, and thus finding the global
-constrained minimum is a difficult problem and it is easy for
+constrained minimum is a difficult problem where it is easy for
 optimization routines to, at least temporarily, get stuck in a local
 minimum.  
 %
@@ -165,7 +165,7 @@ to terminate the optimization routine?
 %, a relatively quick, statistical model of the objective function output; this model serves as surrogate of the objective function itself and .
 The context of this paper is Gaussian Process surrogate model
 optimization, a statistical modeling approach to derivative-free
-numerical optimization routine that constructs a fast approximation to
+numerical optimization that constructs a fast approximation to
 the expensive computer simulation using a statistical surrogate model \cite{tgp2}.
 %
 %The surrogate model is relatively fast to work with, as compared with a large computer simulation, and 
@@ -188,13 +188,13 @@ Arising naturally from the GP predictive distribution \cite{gBook, EIPPD}, the m
 %however; as a means of assessing convergence GP surrogate
 {\color{red}Literature cite} recommends considering the EI as a convergence criterion for surrogate model optimization; as of yet, little work has been done to describe what convergence of these algorithms actually looks like in the context of the EI criterion.
 %, but it has not yet been established if there is some threshold EI value that is sufficient
-However, the basic idea behind the use of the EI criterion, as a convergence criterion, is that convergence should occur when the surrogate model produces low expectations for discovering new optima; that is to say, small EI values should be associated with convergence of the algorithm.
+However, the basic idea behind the use of EI as a convergence criterion is that convergence should occur when the surrogate model produces low expectations for discovering new optimum; that is to say, globally small EI values should be associated with convergence of the algorithm.
 %claim that there exists 
-Thus, a common stopping rule, involving the EI criterion, first defines some lower EI threshold, then claims convergence upon first sight of an EI value falling below this threshold {\color{red} example \cite{windExample}, cite}.    
+Thus an obvious stopping rule first defines some lower EI threshold, then claims convergence upon the first instance of the maximum EI value falling below this threshold {\color{red} example \cite{windExample}, cite}.    
 %in many different; of many other numerical optimization routines; that have been designed specifically to exhibit such behavior upon convergence  
-This use of EI as a convergence criteria falls well within the comfort zone of the numerical optimization literature, as this is certainly a reasonable approach for monitoring the convergence criteria of other routines (ex. the vanishing step sizes of Newton-Raphson, Pattern Search (PS) methods, etc.).
+This use of EI as a convergence criterion in analogous to the standard approach in the numerical optimization literature of setting a threshold for some value that is monitored and declaring convergence when the threshold is obtained (e.g., the vanishing step sizes of a Newton-Raphson algorithm).
 %
-However, applying this same threshold strategy to the convergence of surrogate model optimization, in the context of the EI criterion, has not yet been adequately justified.
+However, applying this same threshold strategy to the convergence of surrogate model optimization has not yet been adequately justified.
 %, derived from the predictive distribution of the underling GP model; behavior
 In fact, this use of EI ignores the nature of the EI criterion as a random variable, and oversimplifies the stochastic nature of convergence in this setting.
 %
@@ -218,10 +218,10 @@ a dashed line at -10.
 %
 
 %of the series value; of the values; shows; non-negative
-Because Expected Improvement is strictly positive but decreasingly small,
+Because EI is strictly positive but decreasingly small,
 we find it more productive to work on the log scale, using a lognormal
 approximation to the improvement distribution to generate a more appropriate convergence criterion, as described in more
-detail in Section 3.2.
+detail in Section~3.2.
 %
 Figure~(\ref{introFig}) represents three series of the Expected
 Lognormal Approximation to the Improvement (ELAI) convergence criterion values from three
@@ -246,8 +246,8 @@ In the Lockwood example a simple threshold stopping rule could falsely
 claim convergence within the first 50 iterations of the algorithm.
 %
 The large variability in ELAI with occasional large values indicates that 
-the optimization routine is still exploring and is not yet convinced that 
-it has found a global minimum.
+the optimization routine sometimes briefly settles into a local minumum but is 
+still exploring and is not yet convinced that it has found a global minimum.
 %, additionally as the algorithm proceeds, several improvements of the objective function are discovered while ELI values repeatedly fall below the convergence threshold. %, all while the optimization routine continues to find several improved values of the objective function.
 This optimization run appears to have converged only after the
 larger ELAI values stop appearing and the variability has decreased.
@@ -272,10 +272,12 @@ in this setting.
 Instead, we propose taking the perspective of Statistical
 Process Control (SPC), where a stochastic series is monitored for 
 consistency of the distribution of the most recently observed values.
+In the next section, we review the statistical surrogate model approach and the use of EI for optimization.  In Section~\ref{sec:convergence}, we discuss our inspiration from SPC and how we construct our convergence chart.  Section~\ref{sec:examples} provides synthetic and real examples, and then we provide some conclusions in the final section.
 
 %
 %
 \section{Gaussian Process Surrogate Model Optimization}
+\label{sec:gp}
 %
 %
 
@@ -483,6 +485,7 @@ The optimization procedure carries on in this way until convergence.
 %
 %
 \section{EWMA Convergence Chart}
+\label{sec:convergence}
 %
 %
 
@@ -799,6 +802,7 @@ As a general trend, harder optimization problems require larger values of $w$ si
 %
 %
 \section{Examples}
+\label{examples}
 %
 %
 
