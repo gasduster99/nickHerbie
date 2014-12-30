@@ -29,6 +29,13 @@ Robert~B. Gramacy.
   nonlinear regression and design by treed gaussian process models.
 \newblock {\em Journal of Statistical Software}, 19(9):6, 2007.
 
+\bibitem{gramacy2014}
+Robert~B Gramacy, Genetha~A Gray, Sebastien~Le Digabel, Herbert~KH Lee, Pritam
+  Ranjan, Garth Wells, and Stefan~M Wild.
+\newblock Modeling an augmented lagrangian for improved blackbox constrained
+  optimization.
+\newblock {\em arXiv preprint arXiv:1403.4890}, 2014.
+
 \bibitem{gpJasa}
 Robert~B. Gramacy and Herbert H.~K. Lee.
 \newblock Bayesian treed gaussian process models with an application to
@@ -47,6 +54,12 @@ Donald~R. Jones, Matthias Schonlau, and William~J. Welch.
 \newblock Efficient global optimization of expensive black-box functions.
 \newblock {\em Journal of Global optimization}, 13(4):455--492, 1998.
 
+\bibitem{KoldLewiTorc2003}
+Tamara~G. Kolda, Robert~Michael Lewis, and Virginia Torczon.
+\newblock Optimization by direct search: New perspectives on some classical and
+  modern methods.
+\newblock {\em SIAM Review}, 45:385--482, 2003.
+
 \bibitem{ewmaPaper}
 James~M. Lucas and Michael~S. Saccucci.
 \newblock Exponentially weighted moving average control schemes: properties and
@@ -58,6 +71,12 @@ Shawn~L. Matott, Kenny Leung, and Junyoung Sim.
 \newblock Application of matlab and python optimizers to two case studies
   involving groundwater flow and contaminant transport modeling.
 \newblock {\em Computers \& Geosciences}, 37(11):1894--1899, 2011.
+
+\bibitem{rosePaper}
+Howard~H. Rosenbrock.
+\newblock An automatic method for finding the greatest or least value of a
+  function.
+\newblock {\em The Computer Journal}, 3(3):175--184, 1960.
 
 \bibitem{sacksDesign}
 Jerome Sacks, William~J Welch, Toby~J Mitchell, and Henry~P Wynn.
@@ -85,13 +104,6 @@ Walter~A. Shewhart.
 Michael~L Stein.
 \newblock {\em Interpolation of spatial data: some theory for kriging}.
 \newblock Springer, 1999.
-
-\bibitem{adaptEWMA}
-Yan Su, Lianjie Shu, and Kwok-Leung Tsui.
-\newblock Adaptive ewma procedures for monitoring processes subject to linear
-  drifts.
-\newblock {\em Computational statistics \& data analysis}, 55(10):2819--2829,
-  2011.
 
 \bibitem{taddyOpt}
 Matthew~A. Taddy, Herbert H.~K. Lee, Genetha~A. Gray, and Joshua~D. Griffin.
