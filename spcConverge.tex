@@ -785,7 +785,7 @@ As a general trend, {\color{blue}harder} optimization problems require larger va
 %
 In identifying convergence, we not only desire that the ELAI convergence criterion reaches a state of control, but we desire that the ELAI series demonstrates a move from a state of pre-convergence to a consistent state of convergence.
 %
-To recognize this move into convergence we combine the notion of the control window with the EWMA framework to construct the so called, {\it EWMA Convergence Chart}.
+To recognize the move into convergence we combine the notion of the control window with the EWMA framework to construct the so called, {\it EWMA Convergence Chart}.
 %
 Since we expect EI values to decrease upon convergence, the primary recognition of convergence is that new ELAI values demonstrate values that are consistently lower than initial pre-converged values.
 %
@@ -799,17 +799,17 @@ This ensures that the most recent ELAI values demonstrate distributional consist
 %
 Secondly, since we wish to indicate a move from the initial pre-converged state of the system, we require at least one point, from beyond the initial control window, to fall outside the defined EWMA control limits.
 %%demonstrate a signifgant  EI values have decreased significantly far enough from the initial state of pre-convergence to indicate from  jointly with the  
-This second rule suggests that the new ELAI observations have a established a state of control which is significantly different from the previous pre-converged ELAI observations.
+This second rule suggests that the new ELAI observations have established a state of control which is significantly different from the previous pre-converged ELAI observations.
 %
-Jointly enforcing these two rules implies the idea of convergence based on the notion that the state convergence should enjoy relative distributional consistency of convergence criteria, as well as decreased expectation for finding new minima in future function evaluations.
+Jointly enforcing these two rules implies convergence based on the notion that as convergence approaches the convergence criterion series should enjoy relative distributional consistency, as well as produce decreased expectation for finding new minima in future function evaluations.
 
 %
 %
 
 %
-Considering the optimization procedure outlined in Figure~(\ref{procedure}), the check for convergence indicated in step 7) amounts to computing the new EWMA $Z_i$ values from the inclusion of the most recent observation of the improvement distribution, and checking if the subsequent set of $Z_i$ satisfy both of the above mentioned rules of the EWMA convergence chart.
+Considering the optimization procedure outlined in Figure~(\ref{procedure}), the check for convergence indicated in step 7) amounts to computing the new EWMA $Z_i$ values, from the inclusion of the most recent observation of the improvement distribution, and checking if the subsequent set of $Z_i$ satisfy both of the above rules of the EWMA convergence chart.
 %
-Satisfying only one of the convergence rules indicates insufficient exploration and further iterations of optimization are required to gather more information about the objective function.    
+Satisfying one, or none, of the convergence rules indicates insufficient exploration and further iterations of optimization are required to gather more information about the objective function.    
 
 %
 %
@@ -823,13 +823,6 @@ Satisfying only one of the convergence rules indicates insufficient exploration 
 \caption{$left:$ Rosenbrock | $center:$ Lockwood | $right:$ Rastrigin}
 \label{ewmaFig}
 \end{figure}
-%
-%
-
-
-%
-%
-% \subsection{Identifying Convergence}
 %
 %
 
