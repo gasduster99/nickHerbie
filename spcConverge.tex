@@ -801,13 +801,14 @@ Secondly, since we wish to indicate a move from the initial pre-converged state 
 %%demonstrate a signifgant  EI values have decreased significantly far enough from the initial state of pre-convergence to indicate from  jointly with the  
 This second rule suggests that the new ELAI observations have established a state of control which is significantly different from the previous pre-converged ELAI observations.
 %
-Jointly enforcing these two rules implies convergence based on the notion that as convergence approaches the convergence criterion series should enjoy relative distributional consistency, as well as produce decreased expectation for finding new minima in future function evaluations.
+Jointly enforcing these two rules implies convergence based on the notion that convergence enjoys a state of consistently decreased expectation of finding new minima in future function evaluations.
+% that as convergence approaches the convergence criterion series should enjoy relative distributional consistency, as well as produce decreased expectation for finding new minima in future function evaluations.
 
 %
 %
 
 %
-Considering the optimization procedure outlined in Figure~(\ref{procedure}), the check for convergence indicated in step 7) amounts to computing the new EWMA $Z_i$ values, from the inclusion of the most recent observation of the improvement distribution, and checking if the subsequent set of $Z_i$ satisfy both of the above rules of the EWMA convergence chart.
+Considering the optimization procedure outlined in Figure~(\ref{procedure}), the check for convergence indicated in step 7) amounts to computing new EWMA $Z_i$ values, and control limits, from the inclusion of the most recent observation of the improvement distribution, and checking if the subsequent set of $Z_i$ satisfy both of the above rules of the EWMA convergence chart.
 %
 Satisfying one, or none, of the convergence rules indicates insufficient exploration and further iterations of optimization are required to gather more information about the objective function.    
 
@@ -853,11 +854,77 @@ Convergence is non-trivial to assess, because optimization routines can take a w
 We use default values for our convergence parameters, $\lambda=0.2$ and $w=30$.
 Figure~\ref{fig:rosenbrock} shows the result of surrogate model optimization at convergence, as assessed by our method.  The right panel shows the best function value ($y$-axis) found so far at each iteration ($x$-axis), and verifies that we have found the global minimum. The left panel shows our convergence chart, with the window indicated by the vertical line.  The dashed horizontal lines show the control limits. At iteration 74 is the first time that all EWMA points in the control window are within the control limits, and thus we declare convergence.  Note that the EWMA points generally trend downward until the global minimum has been found.  
 
+%
+%
 \subsection{Rastrigin}
+%
+%
 
+%
+The Rastrigin function is a commonly used test function for evaluating the performance of global optimization schemes such as gentetic algorithms \cite{rastCite}.
+%
+The global behavior of Rastrigin is dominated by the spherical function, $\sum_i x_i$, however Rastrigin has been oscillated by the cos(.) function, and shifted, so that it achieves a global minimum value of 0 at the lowest point, of its lowest trough at (0, 0).
 
+%
+%
+
+%
+{\color{red} insert function, and contour plot}
+%
+
+%
+%
+
+%
+Rastrigin is generalizable to $n$ dimensions, but to develop intution, this example considers Rastrigin in 2 dimensions over the square $-2.5\le x_i\le 2.5$.
+%
+Rastrigin is highly multimodal, and as such presents a challenge for identifying convergence due to the many similar modes.
+%
+The multimodality of this problem increases the variablility of the EI criterion, and thus represents a a moderately difficult optimization problem. 
+%
+It should be noted that by increasing the size of the search domain, either by increasing the bounds of the search square and/or increasing the dimension of the domain would make this example a considerably more difficult optimization problem, as well as, less intuitive for tuning parameters.
+
+%
+{\color{red}insert convergence chart and best Z figure}
+%
+
+\begin{itemize}
+\item lambda choice
+\item w choice
+\item results (when,where,bestZ fig)
+\item interesting tid-bits
+\end{itemize}
+
+%
+%
 \subsection{Lockwood}
+%
+%
 
+\begin{itemize}
+\item Describe case-study
+\item general shape characteristcs os loss function
+\end{itemize}
+
+%
+{\color{red} insert loss function, and some visualization}
+%
+
+\begin{itemize}
+\item describe search domain
+\item describe challenges
+\end{itemize}
+
+%
+{\color{red}insert convergence chart and best Z figure}
+%
+
+\begin{itemize}
+\item lambda choice
+\item w choice
+\item results (when,where,bestZ fig)
+\item interesting tid-bits
+\end{itemize}
 
 %
 %
