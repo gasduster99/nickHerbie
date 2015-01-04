@@ -736,25 +736,56 @@ Secondly it offers a structural way for basing the standard for consistency (i.e
 %
 %
 
-{\color{red}
-%The size of this window is left up to the discretion of user,.
-The size, $w$, of the control window is an important parameter for correctly identifying convergence.
+% {\color{red}
+% %The size of this window is left up to the discretion of user,.
+% The size, $w$, of the control window is an important parameter for correctly identifying convergence.
 %
-The size of the control window, $w$, 
+The size of the control window, $w$, may vary from problem to problem, based on the difficulty of optimization in each case; ultimatly the choice of $w$ is left as a tuning parameter of the system.
 %
-Because $w$ may vary from problem to problem it is ultimately left as a tuning parameter of the system.
+The choice of a conservativly large $w$ consistently provides a better identification of convergence, with large $w$ representing idealistic large sample sizes, and small $w$ correctly identifying convergence well only for well-behaved functions, with small search domains.
+%the size of the control window may lead to premature identification of convergence, however if $w$ is too large, we compute 
+%as $w$ may be veiwed in the context of 
+However, just as in sample size calculations, the the choice of an optimal $w$ must consider the cost of premature identification of convergence (i.e. poor inference), associated with underestimating $w$, against the cost of computing diminishingly necessary objective function evaluations (i.e. the cost of sampling), associated with overestimating $w$.
 %
-Choosing the correct value of $w$ presents an interesting decision problem since underestimating the size of the control window may lead to premature identification of convergence, however if $w$ is too large, we compute unnecessary objective function evaluations.
+To provide a default choice of $w$ is somewhat arbitrary without careful analysis of the particulars of the objective function behavior and the costs of each successive objective function evalutation, however as a recommendation for starting this analysis one may consider the rule $w\ge30$ representing the prior assertion that premature identification of convergence is a worse error than computing extraneous objective function evaluations. 
+
 %
-As a general trend, {\color{blue}harder} optimization problems require larger values of $w$ since the EI criterion follows a less structured decreasing pattern as new modes are discovered at irregular patterns.
-}
+%
+%however the goal of identifying convergence is to 
+%
+% Choosing the correct value of $w$ presents an interesting decision problem since underestimating the size of the control window may lead to premature identification of convergence, however if $w$ is too large, we compute unnecessary objective function evaluations.
 %
 %
 
 %
+For example, if the objective function must be searched over a large domain, particularly in many dimensions, optimization will naturally take many function evaluations to gather adequate information to reflect confident identification of convergence.
+%
+Thus the EI criterion, and by extension the ELAI criterion, may display high variance, associated with high uncertainty, as well as be slow to decrease in mean value from the initial state of preconvergence, into convergence.
+%
+Jointly, the high ELAI variance and the slow decreasing mean value of the ELAI criterion may make it hard to identify convergence; in these cases large values of $w$ are required to discern this relatively slight signal in the context of increased noise.
+%
+Similar effects may be observed for highly multimodal objective functions, as the regular discovery of new modes will increase the variance of the ELAI criterion, and disguise any decreasing mean value, amoung the noise inherent to the search of such functions.
 
+%
+%
+% %adequate algorithm willay EI criterion may commonly be slow to learn the  decrease from  display a large variance amoung amoung function evalutations, 
+% % Because $w$ may vary from problem to problem it is ultimately left as a tuning parameter of the system.
+% %
+% 
+% %
+% As a general trend, {\color{blue}harder} optimization problems require larger values of $w$ since the EI criterion follows a less structured decreasing pattern as new modes are discovered at irregular patterns.
+%
+%
 
+%
+By contrast strongly unimodal functions, will enjoy a relative fast decrease in the ELAI criterion in the presence of relatively small variability.
+%
+This relatively high signal-to-noise ratio makes for easier identification of convergence, and thus requires a smaller choice of $w$ to notice a move of the ELAI criterion into convergence.
+%
+However if $w$ is chosen to be too small, the algorithm may be over eager to claim convergence and the reccomendation of $w\ge30$ is particularly apt here to guard against false identification of convergence.   
 
+%
+%
 
 % {\color{red}
 % %
@@ -774,7 +805,8 @@ As a general trend, {\color{blue}harder} optimization problems require larger va
 % %due to decreased fluctuations in the EWMA statistic
 % Conversely for small $\lambda$, smaller values of $w$ are acceptable.
 % }
-
+%
+%
 
 %
 %
@@ -904,19 +936,20 @@ f(x_1, x_2) &=& \sum_{i=1}^2\left[x_i^2-10\cos(2\pi x_i)\right] + 2(10)\\
 %
 Rastrigin is generalizable to $n$ dimensions, but to develop intution, this example considers Rastrigin in 2 dimensions over the square $-2.5\le x_i\le 2.5$.
 %
-Rastrigin is highly multimodal, and as such presents a challenge for identifying convergence due to the many similar modes.
+Rastrigin is a highly multimodal function, and as such, it presents a challenge for identifying convergence due to the many similar modes.
 %
-The multimodality of this problem increases the variablility of the EI criterion, and thus represents a a moderately difficult optimization problem. 
+The multimodality of this problem increases the variablility of the EI criterion, and thus represents a moderately difficult optimization problem. 
 %
-It should be noted that by increasing the size of the search domain, either by increasing the bounds of the search square and/or increasing the dimension of the domain would make this example a considerably more difficult optimization problem, as well as, less intuitive for tuning parameters.
+It should be noted that by increasing the size of the search domain, either by increasing the bounds of the search square and/or increasing the dimension of the domain would make this example considerably more difficult, as well as, less intuitive for understanding a reasonable choice of the $w$ parameter. %tuning parameters.
 
 %
 %
 \begin{figure}[htb]
-  \includegraphics[width=0.45\textwidth]{./figures/ewmaConvChartRastHardBW.pdf}
-  \includegraphics[width=0.45\textwidth]{./figures/bestZRastHardEnd.pdf}
-  \caption{Rastrigin function: Convergence chart on the left, optimization progress on the right.}
-\label{fig:rosenbrock}
+	\centering
+	\includegraphics[width=0.45\textwidth]{./figures/ewmaConvChartRastHardBW.pdf}
+	\includegraphics[width=0.45\textwidth]{./figures/bestZRastHardEnd.pdf}
+	\caption{Rastrigin function: Convergence chart on the left, optimization progress on the right.}
+	\label{fig:rosenbrock}
 \end{figure}
 %
 %
@@ -931,7 +964,7 @@ It should be noted that by increasing the size of the search domain, either by i
 
 %
 %
-\subsection{Lockwood}
+\subsection{Lockwood Case-study}
 %
 %
 
@@ -942,6 +975,9 @@ It should be noted that by increasing the size of the search domain, either by i
 
 %
 {\color{red} insert loss function, and some visualization}
+\begin{equation}
+f(\bm{x}) = \sum_{i=1}^6 x_i +  2\big[ c_A(\bm{x}) + c_B(\bm{x}) \big] + 20000 \big[ \oner_{c_A(\bm{x})>0} + \oner_{c_B(\bm{x})>0} \big] 
+\end{equation}
 %
 
 \begin{itemize}
@@ -950,7 +986,15 @@ It should be noted that by increasing the size of the search domain, either by i
 \end{itemize}
 
 %
-{\color{red}insert convergence chart and best Z figure}
+%%ewmaConvChartLock6Three20000.pdf
+\begin{figure}
+	\centering
+	\includegraphics[width=0.45\textwidth]{./figures/ewmaConvChartLock6Three20000End.pdf}
+	\includegraphics[width=0.45\textwidth]{./figures/bestZLock6Three20000End.pdf}
+	\caption{Lockwood Case-study: Convergence chart on the left, optimization progress on the right.}
+	\label{lock6EWMAEnd}
+\end{figure}
+%
 %
 
 \begin{itemize}

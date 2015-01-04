@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.1415926-2.5-1.40.14 (TeX Live 2013/Debian) (format=pdflatex 2014.6.20)  1 JAN 2015 17:26
+This is pdfTeX, Version 3.1415926-2.5-1.40.14 (TeX Live 2013/Debian) (format=pdflatex 2014.6.20)  4 JAN 2015 14:55
 entering extended mode
  restricted \write18 enabled.
  %&-line parsing enabled.
@@ -738,65 +738,87 @@ Package pdftex.def Info: ./figures/ssRastHardOpt.pdf used on input line 623.
 
 LaTeX Warning: Reference `ewmaFig' on page 11 undefined on input line 698.
 
-[11] <./figures/roseContourBW.jpg, id=224, 505.89pt x 505.89pt>
+[11] [12] <./figures/roseContourBW.jpg, id=228, 505.89pt x 505.89pt>
 File: ./figures/roseContourBW.jpg Graphic file (type jpg)
 
 <use ./figures/roseContourBW.jpg>
-Package pdftex.def Info: ./figures/roseContourBW.jpg used on input line 842.
-(pdftex.def)             Requested size: 256.55872pt x 256.5647pt.
- [12]
-<./figures/ewmaConvChartRoseEasyEasyBW.pdf, id=229, 505.89pt x 505.89pt>
-File: ./figures/ewmaConvChartRoseEasyEasyBW.pdf Graphic file (type pdf)
-
-<use ./figures/ewmaConvChartRoseEasyEasyBW.pdf>
-Package pdftex.def Info: ./figures/ewmaConvChartRoseEasyEasyBW.pdf used on inpu
-t line 858.
-(pdftex.def)             Requested size: 230.90128pt x 230.90591pt.
-
-<./figures/bestZRoseEasyEasyEnd.pdf, id=230, 505.89pt x 505.89pt>
-File: ./figures/bestZRoseEasyEasyEnd.pdf Graphic file (type pdf)
-
-<use ./figures/bestZRoseEasyEasyEnd.pdf>
-Package pdftex.def Info: ./figures/bestZRoseEasyEasyEnd.pdf used on input line 
-859.
-(pdftex.def)             Requested size: 230.90128pt x 230.90591pt.
- [13 <./figures/roseContourBW.jpg>]
-<./figures/rastContourBW.jpg, id=242, 505.89pt x 505.89pt>
-File: ./figures/rastContourBW.jpg Graphic file (type jpg)
-
-<use ./figures/rastContourBW.jpg>
-Package pdftex.def Info: ./figures/rastContourBW.jpg used on input line 894.
+Package pdftex.def Info: ./figures/roseContourBW.jpg used on input line 874.
 (pdftex.def)             Requested size: 256.55872pt x 256.5647pt.
 
 
 LaTeX Warning: `!h' float specifier changed to `!ht'.
 
-[14 <./figures/ewmaConvChartRoseEasyEasyBW.pdf> <./figures/bestZRoseEasyEasyEnd
-.pdf>] <./figures/ewmaConvChartRastHardBW.pdf, id=263, 505.89pt x 505.89pt>
+[13] <./figures/ewmaConvChartRoseEasyEasyBW.pdf, id=235, 505.89pt x 505.89pt>
+File: ./figures/ewmaConvChartRoseEasyEasyBW.pdf Graphic file (type pdf)
+
+<use ./figures/ewmaConvChartRoseEasyEasyBW.pdf>
+Package pdftex.def Info: ./figures/ewmaConvChartRoseEasyEasyBW.pdf used on inpu
+t line 890.
+(pdftex.def)             Requested size: 230.90128pt x 230.90591pt.
+
+<./figures/bestZRoseEasyEasyEnd.pdf, id=236, 505.89pt x 505.89pt>
+File: ./figures/bestZRoseEasyEasyEnd.pdf Graphic file (type pdf)
+
+<use ./figures/bestZRoseEasyEasyEnd.pdf>
+Package pdftex.def Info: ./figures/bestZRoseEasyEasyEnd.pdf used on input line 
+891.
+(pdftex.def)             Requested size: 230.90128pt x 230.90591pt.
+ [14 <./figures/roseContourBW.jpg>]
+<./figures/rastContourBW.jpg, id=246, 505.89pt x 505.89pt>
+File: ./figures/rastContourBW.jpg Graphic file (type jpg)
+
+<use ./figures/rastContourBW.jpg>
+Package pdftex.def Info: ./figures/rastContourBW.jpg used on input line 926.
+(pdftex.def)             Requested size: 256.55872pt x 256.5647pt.
+ [15 <./figures/ewmaConvChartRoseEasyEasyBW.pdf> <./figures/bestZRoseEasyEasyEn
+d.pdf> <./figures/rastContourBW.jpg>]
+<./figures/ewmaConvChartRastHardBW.pdf, id=267, 505.89pt x 505.89pt>
 File: ./figures/ewmaConvChartRastHardBW.pdf Graphic file (type pdf)
 
 <use ./figures/ewmaConvChartRastHardBW.pdf>
 Package pdftex.def Info: ./figures/ewmaConvChartRastHardBW.pdf used on input li
-ne 916.
+ne 949.
 (pdftex.def)             Requested size: 230.90128pt x 230.90591pt.
 
-<./figures/bestZRastHardEnd.pdf, id=264, 505.89pt x 505.89pt>
+<./figures/bestZRastHardEnd.pdf, id=268, 505.89pt x 505.89pt>
 File: ./figures/bestZRastHardEnd.pdf Graphic file (type pdf)
 
 <use ./figures/bestZRastHardEnd.pdf>
-Package pdftex.def Info: ./figures/bestZRastHardEnd.pdf used on input line 917.
+Package pdftex.def Info: ./figures/bestZRastHardEnd.pdf used on input line 950.
 
 (pdftex.def)             Requested size: 230.90128pt x 230.90591pt.
-LaTeX Font Info:    Try loading font information for OMS+cmr on input line 926.
+LaTeX Font Info:    Try loading font information for OMS+cmr on input line 959.
 
 
 (/usr/share/texlive/texmf-dist/tex/latex/base/omscmr.fd
 File: omscmr.fd 1999/05/25 v2.5h Standard LaTeX font definitions
 )
 LaTeX Font Info:    Font shape `OMS/cmr/m/n' in size <12> not available
-(Font)              Font shape `OMS/cmsy/m/n' tried instead on input line 926.
- [15 <./figures/rastContourBW.jpg>] [16 <./figures/ewmaConvChartRastHardBW.pdf>
- <./figures/bestZRastHardEnd.pdf>]
+(Font)              Font shape `OMS/cmsy/m/n' tried instead on input line 959.
+ [16 <./figures/ewmaConvChartRastHardBW.pdf> <./figures/bestZRastHardEnd.pdf>]
+LaTeX Font Info:    Try loading font information for U+dsrom on input line 979.
+
+
+(/usr/share/texlive/texmf-dist/tex/latex/doublestroke/Udsrom.fd
+File: Udsrom.fd 1995/08/01 v0.1 Double stroke roman font definitions
+)
+<./figures/ewmaConvChartLock6Three20000End.pdf, id=287, 505.89pt x 505.89pt>
+File: ./figures/ewmaConvChartLock6Three20000End.pdf Graphic file (type pdf)
+
+<use ./figures/ewmaConvChartLock6Three20000End.pdf>
+Package pdftex.def Info: ./figures/ewmaConvChartLock6Three20000End.pdf used on 
+input line 992.
+(pdftex.def)             Requested size: 230.90128pt x 230.90591pt.
+
+<./figures/bestZLock6Three20000End.pdf, id=288, 505.89pt x 505.89pt>
+File: ./figures/bestZLock6Three20000End.pdf Graphic file (type pdf)
+
+<use ./figures/bestZLock6Three20000End.pdf>
+Package pdftex.def Info: ./figures/bestZLock6Three20000End.pdf used on input li
+ne 993.
+(pdftex.def)             Requested size: 230.90128pt x 230.90591pt.
+ [17 <./figures/ewmaConvChartLock6Three20000End.pdf> <./figures/bestZLock6Three
+20000End.pdf>] [18]
 *geometry* verbose mode - [ newgeometry ] result:
 * driver: pdftex
 * paper: <default>
@@ -829,19 +851,20 @@ LaTeX Font Info:    Font shape `OMS/cmr/m/n' in size <12> not available
 * \@reversemarginfalse
 * (1in=72.27pt=25.4mm, 1cm=28.453pt)
 
- (./spcConverge.bbl [17
+
+(./spcConverge.bbl [19
 
 
 ])
-Package atveryend Info: Empty hook `BeforeClearDocument' on input line 2346.
- [18]
-Package atveryend Info: Empty hook `AfterLastShipout' on input line 2346.
+Package atveryend Info: Empty hook `BeforeClearDocument' on input line 2390.
+ [20]
+Package atveryend Info: Empty hook `AfterLastShipout' on input line 2390.
  (./spcConverge.aux)
-Package atveryend Info: Executing hook `AtVeryEndDocument' on input line 2346.
-Package atveryend Info: Executing hook `AtEndAfterFileList' on input line 2346.
+Package atveryend Info: Executing hook `AtVeryEndDocument' on input line 2390.
+Package atveryend Info: Executing hook `AtEndAfterFileList' on input line 2390.
 
 Package rerunfilecheck Info: File `spcConverge.out' has not changed.
-(rerunfilecheck)             Checksum: 02EE6110D0CEAF16E4AC6DA81EB76B3E;1002.
+(rerunfilecheck)             Checksum: BD260033E148A5E3379B99084D5F2C8C;1013.
 
 
 LaTeX Warning: There were undefined references.
@@ -849,16 +872,16 @@ LaTeX Warning: There were undefined references.
 
 LaTeX Warning: There were multiply-defined labels.
 
-Package atveryend Info: Empty hook `AtVeryVeryEnd' on input line 2346.
+Package atveryend Info: Empty hook `AtVeryVeryEnd' on input line 2390.
  ) 
 Here is how much of TeX's memory you used:
- 9819 strings out of 493304
- 143312 string characters out of 6139871
- 238257 words of memory out of 5000000
- 13037 multiletter control sequences out of 15000+600000
- 25893 words of font info for 74 fonts, out of 8000000 for 9000
+ 9850 strings out of 493304
+ 144092 string characters out of 6139871
+ 238376 words of memory out of 5000000
+ 13055 multiletter control sequences out of 15000+600000
+ 26469 words of font info for 80 fonts, out of 8000000 for 9000
  957 hyphenation exceptions out of 8191
- 36i,11n,38p,453b,433s stack positions out of 5000i,500n,10000p,200000b,80000s
+ 36i,11n,38p,462b,433s stack positions out of 5000i,500n,10000p,200000b,80000s
 {/usr/share/texmf/fonts/enc/dvips/cm-super/cm-super-t1.enc}</usr/share/texliv
 e/texmf-dist/fonts/type1/public/amsfonts/cm/cmex10.pfb></usr/share/texlive/texm
 f-dist/fonts/type1/public/amsfonts/cm/cmmi12.pfb></usr/share/texlive/texmf-dist
@@ -870,19 +893,20 @@ amsfonts/cm/cmr12.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfont
 s/cm/cmr6.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmr
 8.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmsy10.pfb>
 </usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmsy8.pfb></usr/s
-hare/texlive/texmf-dist/fonts/type1/public/amsfonts/symbols/msbm10.pfb></usr/sh
-are/texmf/fonts/type1/public/cm-super/sfbx1095.pfb></usr/share/texmf/fonts/type
-1/public/cm-super/sfbx1200.pfb></usr/share/texmf/fonts/type1/public/cm-super/sf
-bx1440.pfb></usr/share/texmf/fonts/type1/public/cm-super/sfbx1728.pfb></usr/sha
-re/texmf/fonts/type1/public/cm-super/sfrm1095.pfb></usr/share/texmf/fonts/type1
-/public/cm-super/sfrm1200.pfb></usr/share/texmf/fonts/type1/public/cm-super/sfr
-m1440.pfb></usr/share/texmf/fonts/type1/public/cm-super/sfrm2074.pfb></usr/shar
-e/texmf/fonts/type1/public/cm-super/sfti1200.pfb></usr/share/texmf/fonts/type1/
-public/cm-super/sftt1200.pfb>
-Output written on spcConverge.pdf (18 pages, 441312 bytes).
+hare/texlive/texmf-dist/fonts/type1/public/doublestroke/dsrom12.pfb></usr/share
+/texlive/texmf-dist/fonts/type1/public/amsfonts/symbols/msbm10.pfb></usr/share/
+texmf/fonts/type1/public/cm-super/sfbx1095.pfb></usr/share/texmf/fonts/type1/pu
+blic/cm-super/sfbx1200.pfb></usr/share/texmf/fonts/type1/public/cm-super/sfbx14
+40.pfb></usr/share/texmf/fonts/type1/public/cm-super/sfbx1728.pfb></usr/share/t
+exmf/fonts/type1/public/cm-super/sfrm1095.pfb></usr/share/texmf/fonts/type1/pub
+lic/cm-super/sfrm1200.pfb></usr/share/texmf/fonts/type1/public/cm-super/sfrm144
+0.pfb></usr/share/texmf/fonts/type1/public/cm-super/sfrm2074.pfb></usr/share/te
+xmf/fonts/type1/public/cm-super/sfti1200.pfb></usr/share/texmf/fonts/type1/publ
+ic/cm-super/sftt1200.pfb>
+Output written on spcConverge.pdf (20 pages, 468199 bytes).
 PDF statistics:
- 385 PDF objects out of 1000 (max. 8388607)
- 320 compressed objects within 4 object streams
- 69 named destinations out of 1000 (max. 500000)
- 171 words of extra memory for PDF output out of 10000 (max. 10000000)
+ 417 PDF objects out of 1000 (max. 8388607)
+ 345 compressed objects within 4 object streams
+ 73 named destinations out of 1000 (max. 500000)
+ 181 words of extra memory for PDF output out of 10000 (max. 10000000)
 
