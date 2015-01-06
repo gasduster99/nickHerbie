@@ -1029,22 +1029,22 @@ Furthermore notice that optimization progress in Figure~(\ref{fig:rastrigin}, ri
 %closed form
 The previous examples have focused on analytical functions with known minima.
 %
-This is done for the sake of developing an intuition for tuning the EWMA convergence chart parameters and to ensure that our methods correspond to the identification of an optimal value.
+This is done for the sake of developing an intuition for tuning the EWMA convergence chart parameters and to ensure that our methods correspond to the identification of real optima.
 %However, in most practical optimization problems it is not possible to visualize to objective function so straight forwardly, or derive theoretical minima in this way.
 %
-To demonstrate the use of the EWMA convergence chart in a practical optimization problem, we consider the Lockwood pump-and-treat problem originally presented by Matott et al. \cite{lockCite}.
+To demonstrate the use of the EWMA convergence chart in a practical optimization problem, we consider the Lockwood pump and treat problem originally presented by Matott et al. \cite{lockCite}.
 
 %
 %
 
 %
-The Lockwood pump-and-treat case study considers a contaminated {\color{red}blah-blah} site north-east of Billings, Mountana along the Yellowstone River.%of contaiminted groundwater tha pumping site for chlorinated solvents located north-east of Billings, Montana, along the Yellowstone River.
+The Lockwood pump and treat case study considers an industrial site, along the Yellowstone River, in Montana, that has contaminated the surrounding groundwater with chlorinated solvents.%of contaiminted groundwater tha pumping site for chlorinated solvents located north-east of Billings, Montana, along the Yellowstone River.
 %
-If left untreated, the contaminated groundwater, from this site, will contaminate the Yellowstone river with chlorinated solvents. 
+If left untreated, the contaminated groundwater, from this site, will contaminate the Yellowstone river. 
 %Yellowstone riverthe site is close enough to the contaminate the Yellowstone river with  Clorinated solvents contaiminating the ground water in this region  , two plumes for pumping
-Inorder to control this contaminated groundwater, 6 pumps are used to redirect groundwater away from the river.
+Inorder to control this contaminated groundwater, a total of six pumps situated over two plumes of the contaminated ground water are used to redirect groundwater away from the river to a treament facility.
 %
-Due to the cost of running these pumps over a long period of time, it is desirable to determine how to best allocate the pumping effort amoung these pumps so as to determine the lowest cost pumping strategy to protect the river.
+Due to the cost of running these pumps, over a long period of time, it is desirable to determine how to best allocate the pumping effort amoung these pumps so as to determine the lowest cost pumping strategy to protect the river.
 %
 Pumping each of these six wells at different rates results in various complicated groundwater behahviors, that require the evaluation of a numerical simulation of the system to predict.
 %
@@ -1058,34 +1058,35 @@ Pumping each of these six wells at different rates results in various complicate
 %
 
 %
-The objective function, $f(\bm{x})$, can be expressed as the sum of the pumping rates (a quanity proportional to the cost of running the pumps), with large penalties associated with contamination of the river. % by each plume, $c_A(\bm{x})$, $c_B(\bm{x})$. %$c_A(\bm{x})$ and $c_B(\bm{x})$ indicating that the  
+The objective function, $f(\bm{x})$, to be minimized in this case, can be expressed as the sum of the pumping rates for each pump (a quanity proportional to the cost in USD), with additional large penalties associated with any contamination of the river. % by each plume, $c_A(\bm{x})$, $c_B(\bm{x})$. %$c_A(\bm{x})$ and $c_B(\bm{x})$ indicating that the  
         %, is the cost of operating the pumps, in USD; additionally, $f$ heavily penalizes solutions that contaminate the river.
 \begin{equation}
-f(\bm{x}) = \sum_{i=1}^6 x_i +  2 C(\bm{x}) + 20000 \oner_{ C(\bm{x})>0 }  
+f(\bm{x}) = \sum_{i=1}^6 x_i +  2\big[ c_A(\bm{x}) + c_B(\bm{x}) \big] + 20000 \big[ \oner_{c_A(\bm{x})>0} + \oner_{c_B(\bm{x})>0} \big] 
+\label{lockLoss}
 \end{equation}
 %with simple search boundaries, \mbox{$0\le x_i\le20,000$} set for each pumping rate.
-Here $C(\bm{x})$ indicates the amount of contamination of the river, and $\bm{x}$ represents the pumping rates for each of the six wells.
+Here $c_a(\bm{x})$ and $c_b(\bm{x})$ are outputs of a simulation, indicating the amount of contamination, if any, of the river as a function of the pumping rates, $\bm{x}$, for each of the six wells.
 %, \mbox{$\left[x_1, ..., ~x_6\right] = \left[Q_{A1}, ~Q_{A2}, ~Q_{B1}, ~Q_{B2}, ~Q_{B3}, ~Q_{B4}\right]$}.
-Each $x_i$ is bounded on the large interval, \mbox{$0\le x_i\le20,000$}.
+Each $x_i$ is bounded on the large interval, \mbox{$0\le x_i\le20,000$}, representing a large range of possible management schemes.
 %
-The full problem defines a six-dimensional optimization problem, to determine the optimal rate at which to pump each well.
+The full problem defines a six-dimensional optimization problem, to determine the optimal rate at which to pump each well, so as to minimize the loss function defined in Eq~(\ref{lockLoss}).
 %
-Since running the numerical simulation of the system is 
-        %to understand the behavior of the EI criterion I first consider simplified into%with respect to $f$;
-        The two-dimensional problem provides a nice setting for understanding the a simplified version of EI behavior, and furthermore the simplified setting develops an expectation for the EI behavior in the full \mbox{six-dimensional problem.}
+Since the loss function is defined over a large and continuous domain, and running the numerical simulation of the system is computationally expensive, this example presents an ideal situation for use with surrogate model based optimization. 
+%to understand the behavior of the EI criterion I first consider simplified into%with respect to $f$;
+%The two-dimensional problem provides a nice setting for understanding the a simplified version of EI behavior, and furthermore the simplified setting develops an expectation for the EI behavior in the full \mbox{six-dimensional problem.}
 
 
 
-\begin{itemize}
-\item Describe case study
-\item general shape characteristcs os loss function
-\end{itemize}
-
-%
-{\color{red} insert loss function, and some visualization}
-\begin{equation}
-f(\bm{x}) = \sum_{i=1}^6 x_i +  2\big[ c_A(\bm{x}) + c_B(\bm{x}) \big] + 20000 \big[ \oner_{c_A(\bm{x})>0} + \oner_{c_B(\bm{x})>0} \big] 
-\end{equation}
+% \begin{itemize}
+% \item Describe case study
+% \item general shape characteristcs os loss function
+% \end{itemize}
+% 
+% %
+% {\color{red} insert loss function, and some visualization}
+% \begin{equation}
+% f(\bm{x}) = \sum_{i=1}^6 x_i +  2\big[ c_A(\bm{x}) + c_B(\bm{x}) \big] + 20000 \big[ \oner_{c_A(\bm{x})>0} + \oner_{c_B(\bm{x})>0} \big] 
+% \end{equation}
 %
 
 \begin{itemize}
