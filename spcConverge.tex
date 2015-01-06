@@ -59,6 +59,18 @@
 	\text{I}(\bm{x})
 }
 
+\def \roseLamb {
+	0.5	
+}
+
+\def \rastLamb {
+	0.4
+}
+
+\def \lockLamb {
+	0.4
+}
+
 \begin{document}
 % 
 %
@@ -141,8 +153,7 @@ of Statistical Process Control.
 
 %
 Our motivating example is a hydrology application, the Lockwood
-pump-and-treat problem \cite{lockCite}, discussed in more detail in Section
-3.1, wherein contamination in the ground-water near the
+pump-and-treat problem \cite{lockCite}, discussed in more detail in Section \ref{sec:lockwood}, wherein contamination in the ground-water near the
 Yellowstone River is remediated via a set of treatment wells.  
 %
 The goal is to minimize the cost of running the wells while ensuring that
@@ -621,7 +632,7 @@ It is thus desirable to choose to the smallest $\lambda$ which still provides go
 \begin{wrapfigure}{r}{0.41\textwidth}
 % \vspace{-1cm}
 \includegraphics[width=0.4\textwidth]{./figures/ssRastHardOpt.pdf}
-\caption{ $S_\lambda$ as calculated over a fine grid of possible $\lambda$ values for ELAI values derived from optimization of the Rastrigin test function. The optimal forecasting $\hat\lambda$ is shown by the vertical the dashed line. }
+\caption{ $S_\lambda$ as calculated over a fine grid of possible $\lambda$ values for ELAI values derived from optimization of the Rastrigin test function. The optimal forecasting $\hat\lambda$ is shown by the vertical dashed line. }
 \label{bestL}
 \end{wrapfigure}
 %
@@ -638,7 +649,7 @@ In fact, Figure~(\ref{bestL}) shows that for \mbox{$\lambda\in[0.2, 0.6]$,} $S_\
 %
 
 %
-It is interesting to note that for the example series used in Figure~(\ref{bestL}), the optimal $\hat \lambda\approx0.4$ exceeds the recommended upper limit of 0.3 for $\lambda$. 
+It is interesting to note that for the example series used in Figure~(\ref{bestL}), the optimal $\hat \lambda\approx$\rastLamb exceeds the recommended upper limit of 0.3 for $\lambda$. 
 %
 Discrepancies between the optimal values of $\lambda$ chosen here, and the typically chosen values of $\lambda$ can be naturally attributed to the differing context in which we apply EWMA as compared to the typical SPC application. 
 %which obviously falls outside of the standard values for $\lambda$ mentioned above.
@@ -860,23 +871,36 @@ Satisfying one, or none, of the convergence rules indicates insufficient explora
 %%
 
 %
+\clearpage
+%
 %
 \section{Examples}
 \label{sec:examples}
 %
-We first look at two synthetic examples from the optimization literature, where the true optimum is known, so we can be sure we have converged to the true global minimum.  We then provide a real world example from hydrology.
+We first look at two synthetic examples from the optimization literature, where the true optimum is known, so we can be sure we have converged to the true global minimum.  
+%
+We then provide a real world example from hydrology.
+
+%
+%
+\subsection{Rosenbrock}
+%
 %
 
-\subsection{Rosenbrock}
-The Rosenbrock function \cite{rosePaper} was an early test problem in the optimization literature. It combines a narrow, flat parabolic valley with steep walls, and thus it can be difficult for gradient-based methods. It is generalizable to higher dimensions, but we use the two-dimensional version here.
-\begin{figure}[h!]
-	\centering
+%
+The Rosenbrock function \cite{rosePaper} was an early test problem in the optimization literature. 
+%
+It combines a narrow, flat parabolic valley with steep walls, and thus it can be difficult for gradient-based methods. It is generalizable to higher dimensions, but we use the two-dimensional version here.
+%
+\begin{center}
+	%\label{roseFig}
 	\includegraphics[width=0.5\textwidth]{./figures/roseContourBW.jpg}
-\end{figure}
 	\begin{eqnarray}
 	f(x_1, x_2) &=& 100\left(x_2-x_1^2\right)^2 + (1-x_1)^2 \\
 	\text{Minimum}&:& f(1, 1)=0\nonumber
+	\label{roseEq}
 	\end{eqnarray}	
+\end{center}
 %
 Convergence is non-trivial to assess, because optimization routines can take a while to explore the relatively flat, but non-convex, valley floor for the global minimum.  
 %
@@ -892,8 +916,8 @@ This example illustrates a well-behaved convergence process.
   \caption{Rosenbrock function: Convergence chart on the left, optimization progress on the right.}
 \label{fig:rosenbrock}
 \end{figure}
-%
-We use default values for our convergence parameters, $\lambda=0.2$ and $w=30$.
+%use default values for our convergence parameters, $\lambda=0.2$ and $w=30$.
+We estimate $\lambda$ via the minimum $S_\lambda$ estimator, $\hat\lambda\approx\roseLamb$, and use the minimum default value $w=30$.
 %
 Figure~\ref{fig:rosenbrock} shows the result of surrogate model optimization at convergence, as assessed by our method.  
 %
@@ -913,63 +937,147 @@ Note that the EWMA points generally trend downward until the global minimum has 
 %
 %
 
-
 %
 The Rastrigin function is a commonly used test function for evaluating the performance of global optimization schemes such as gentetic algorithms \cite{rastCite}.
 %
-The global behavior of Rastrigin is dominated by the spherical function, $\sum_i x_i$, however Rastrigin has been oscillated by the cos(.) function, and shifted, so that it achieves a global minimum value of 0 at the lowest point, of its lowest trough at (0, 0).
+The global behavior of Rastrigin is dominated by the spherical function, $\sum_i x_i^2$, however Rastrigin has been oscillated by the cos(.) function, and shifted, so that it achieves a global minimum value of 0 at the lowest point, of its lowest trough at (0, 0).
 
 %
 %
-\begin{figure}[h!]
-        \centering
+\begin{center}
         \includegraphics[width=0.5\textwidth]{./figures/rastContourBW.jpg}
-\end{figure}
-\begin{eqnarray}
-f(x_1, x_2) &=& \sum_{i=1}^2\left[x_i^2-10\cos(2\pi x_i)\right] + 2(10)\\
-\label{rastEq}
-\text{Minimum}&:& f(0, 0)=0\nonumber
-\end{eqnarray}
+	\begin{eqnarray}
+	f(x_1, x_2) &=& \sum_{i=1}^2\left[x_i^2-10\cos(2\pi x_i)\right] + 2(10)\\
+	\label{rastEq}
+	\text{Minimum}&:& f(0, 0)=0\nonumber
+	\end{eqnarray}
+\end{center}
 %
 %
 
 %
-Rastrigin is generalizable to $n$ dimensions, but to develop intution, this example considers Rastrigin in 2 dimensions over the square $-2.5\le x_i\le 2.5$.
+Rastrigin is generalizable to an arbitrarly many dimensions, but to develop intution, this example considers Rastrigin over the 2 dimensional square $-2.5\le x_i\le 2.5$.
 %
-Rastrigin is a highly multimodal function, and as such, it presents a challenge for identifying convergence due to the many similar modes.
+Rastrigin is a highly multimodal function, and as such, the many similar modes present a challenge for identifying convergence.
 %
-The multimodality of this problem increases the variablility of the EI criterion, and thus represents a moderately difficult optimization problem. 
+The multimodality of this problem increases the variablility of the EI criterion, and thus represents a moderately difficult optimization problem in this context. 
 %
-It should be noted that by increasing the size of the search domain, either by increasing the bounds of the search square and/or increasing the dimension of the domain would make this example considerably more difficult, as well as, less intuitive for understanding a reasonable choice of the $w$ parameter. %tuning parameters.
+It should be noted that by increasing the size of the search domain, either by increasing the bounds of the search square and/or increasing the dimension of the domain would make this example considerably more difficult and a less intuitive example for developing the choice of $w$. %tuning parameters.
 
 %
 %
-\begin{figure}[htb]
+\begin{figure}[!htb]
 	\centering
 	\includegraphics[width=0.45\textwidth]{./figures/ewmaConvChartRastHardBW.pdf}
 	\includegraphics[width=0.45\textwidth]{./figures/bestZRastHardEnd.pdf}
 	\caption{Rastrigin function: Convergence chart on the left, optimization progress on the right.}
-	\label{fig:rosenbrock}
+	\label{fig:rastrigin}
 \end{figure}
 %
 %
 
 %
-\begin{itemize}
-\item lambda choice
-\item w choice
-\item results (when,where,bestZ fig)
-\item interesting tid-bits
-\end{itemize}
+$\hat\lambda$ in this example is calculated to be about \rastLamb.
+%
+The decreased value of $\hat\lambda$ reflectes the increased use of $\lambda$ as a smoothing parameter, relative to rosebrock.
+%
+The added noise of the ELAI criterion, in this case, comes from the regular discovery of dramatic new modes as optimization proceeds
+%
+Due to the increased complexity of Rastrigin relative to Rosenbrock, a larger $w$ is needed to recognize convergence in the presence of increased noise in the ELAI criterion. 
+%
+In this application $w=40$, as chosen by experimentation.
+%
+Although larger choices of $w$ produce equally consistent identification of convergence, they do so with more function evaluations.
 
 %
 %
-\subsection{Lockwood Case-study}
+
+%
+The left panel of Figure~(\ref{fig:rastrigin}) shows the convergence chart (left) and the optimization progress of the algorithm (right) after 95 iterations of optimization.
+%
+Although the variablity of the ELAI crterion increases as optimization proceeds, large ELAI values stop arriving after iteration 55, coincidently with the surrogate model's discovery of the Rastrigin's main mode, as see in the right panel of Figure~(\ref{fig:rastrigin}).
+%
+Furthermore notice that optimization progress in Figure~(\ref{fig:rastrigin}, right) demonstrates that convergence in this case does indeed represent the identification of the theoretical minimum of the the function, as indicated by the dashed horizontal line at the theoretical minimum. 
+
+% has shown to be effective and smaller choices ofwas chosen here 
+%as the  as the increased $\lambda$ attempts to forcast the large fluctuations of the ELAI criterion produced by the regular discovery of dramatic new modes.
+%%
+%Due to the increased complexity of the rastrigin function a larger $w$ is needed to recognize convergence in the presence of increased noise in the ELAI criterion do to
+
+%
+%Figure~(\ref{fig:rastrigin}) 
+%
+%
+%Notice that the  
+%Due to the increased complexity of the rastrigin function a larger $w$ is needed to recognize convergence in the presence of increased noise in the ELAI criterion do to 
+
+%%
+%\begin{itemize}
+%%\item lambda choice
+%%\item w choice
+%\item results (when,where,bestZ fig)
+%\item interesting tid-bits
+%\end{itemize}
+
+%
+%
+\subsection{Lockwood Case Study}
+\label{sec:lockwood}
 %
 %
 
+%closed form
+The previous examples have focused on analytical functions with known minima.
+%
+This is done for the sake of developing an intuition for tuning the EWMA convergence chart parameters and to ensure that our methods correspond to the identification of an optimal value.
+%However, in most practical optimization problems it is not possible to visualize to objective function so straight forwardly, or derive theoretical minima in this way.
+%
+To demonstrate the use of the EWMA convergence chart in a practical optimization problem, we consider the Lockwood pump-and-treat problem originally presented by Matott et al. \cite{lockCite}.
+
+%
+%
+
+%
+The Lockwood pump-and-treat case study considers a contaminated {\color{red}blah-blah} site north-east of Billings, Mountana along the Yellowstone River.%of contaiminted groundwater tha pumping site for chlorinated solvents located north-east of Billings, Montana, along the Yellowstone River.
+%
+If left untreated, the contaminated groundwater, from this site, will contaminate the Yellowstone river with chlorinated solvents. 
+%Yellowstone riverthe site is close enough to the contaminate the Yellowstone river with  Clorinated solvents contaiminating the ground water in this region  , two plumes for pumping
+Inorder to control this contaminated groundwater, 6 pumps are used to redirect groundwater away from the river.
+%
+Due to the cost of running these pumps over a long period of time, it is desirable to determine how to best allocate the pumping effort amoung these pumps so as to determine the lowest cost pumping strategy to protect the river.
+%
+Pumping each of these six wells at different rates results in various complicated groundwater behahviors, that require the evaluation of a numerical simulation of the system to predict.
+%
+% from the groundwater does not reach the Yellowstone River.
+%Plumes A and B contain two and four wells respectively.
+%seen in Figure (\ref{lockSite}), contains two plumes for pumping, Plume A and Plume B, containing two and four wells respectively.
+%
+%The objective is to determine the lowest cost pumping rates for each of these six wells such that contamination from the plumes does not reach the Yellowstone River.
+
+%
+%
+
+%
+The objective function, $f(\bm{x})$, can be expressed as the sum of the pumping rates (a quanity proportional to the cost of running the pumps), with large penalties associated with contamination of the river. % by each plume, $c_A(\bm{x})$, $c_B(\bm{x})$. %$c_A(\bm{x})$ and $c_B(\bm{x})$ indicating that the  
+        %, is the cost of operating the pumps, in USD; additionally, $f$ heavily penalizes solutions that contaminate the river.
+\begin{equation}
+f(\bm{x}) = \sum_{i=1}^6 x_i +  2 C(\bm{x}) + 20000 \oner_{ C(\bm{x})>0 }  
+\end{equation}
+%with simple search boundaries, \mbox{$0\le x_i\le20,000$} set for each pumping rate.
+Here $C(\bm{x})$ indicates the amount of contamination of the river, and $\bm{x}$ represents the pumping rates for each of the six wells.
+%, \mbox{$\left[x_1, ..., ~x_6\right] = \left[Q_{A1}, ~Q_{A2}, ~Q_{B1}, ~Q_{B2}, ~Q_{B3}, ~Q_{B4}\right]$}.
+Each $x_i$ is bounded on the large interval, \mbox{$0\le x_i\le20,000$}.
+%
+The full problem defines a six-dimensional optimization problem, to determine the optimal rate at which to pump each well.
+%
+Since running the numerical simulation of the system is 
+        %to understand the behavior of the EI criterion I first consider simplified into%with respect to $f$;
+        The two-dimensional problem provides a nice setting for understanding the a simplified version of EI behavior, and furthermore the simplified setting develops an expectation for the EI behavior in the full \mbox{six-dimensional problem.}
+
+
+
 \begin{itemize}
-\item Describe case-study
+\item Describe case study
 \item general shape characteristcs os loss function
 \end{itemize}
 
