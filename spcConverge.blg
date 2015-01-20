@@ -1,46 +1,46 @@
-This is BibTeX, Version 0.99d (TeX Live 2013/Debian)
+This is BibTeX, Version 0.99d (TeX Live 2011/Fink)
 Capacity: max_strings=35307, hash_size=35307, hash_prime=30011
 The top-level auxiliary file: spcConverge.aux
 The style file: plain.bst
 Database file #1: ./spcCite.bib
-You've used 20 entries,
+You've used 21 entries,
             2118 wiz_defined-function locations,
-            637 strings with 7629 characters,
-and the built_in function-call counts, 6424 in all, are:
-= -- 613
-> -- 330
+            643 strings with 7753 characters,
+and the built_in function-call counts, 6759 in all, are:
+= -- 652
+> -- 343
 < -- 3
-+ -- 134
-- -- 110
-* -- 449
-:= -- 1104
-add.period$ -- 61
-call.type$ -- 20
-change.case$ -- 109
++ -- 139
+- -- 114
+* -- 475
+:= -- 1159
+add.period$ -- 64
+call.type$ -- 21
+change.case$ -- 114
 chr.to.int$ -- 0
-cite$ -- 20
-duplicate$ -- 244
-empty$ -- 491
-format.name$ -- 110
-if$ -- 1320
+cite$ -- 21
+duplicate$ -- 255
+empty$ -- 516
+format.name$ -- 114
+if$ -- 1384
 int.to.chr$ -- 0
-int.to.str$ -- 20
-missing$ -- 25
-newline$ -- 103
-num.names$ -- 40
-pop$ -- 120
+int.to.str$ -- 21
+missing$ -- 26
+newline$ -- 108
+num.names$ -- 42
+pop$ -- 123
 preamble$ -- 1
-purify$ -- 94
+purify$ -- 98
 quote$ -- 0
-skip$ -- 160
+skip$ -- 168
 stack$ -- 0
-substring$ -- 333
-swap$ -- 39
+substring$ -- 365
+swap$ -- 40
 text.length$ -- 3
 text.prefix$ -- 0
 top$ -- 0
-type$ -- 70
+type$ -- 74
 warning$ -- 0
-while$ -- 59
-width$ -- 22
-write$ -- 217
+while$ -- 65
+width$ -- 23
+write$ -- 228

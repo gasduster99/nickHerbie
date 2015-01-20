@@ -32,7 +32,7 @@ Robert~B. Gramacy.
 \bibitem{gramacy2014}
 Robert~B Gramacy, Genetha~A Gray, Sebastien~Le Digabel, Herbert~KH Lee, Pritam
   Ranjan, Garth Wells, and Stefan~M Wild.
-\newblock Modeling an augmented lagrangian for improved blackbox constrained
+\newblock Modeling an augmented lagrangian for blackbox constrained
   optimization.
 \newblock {\em arXiv preprint arXiv:1403.4890}, 2014.
 
@@ -42,6 +42,11 @@ Robert~B. Gramacy and Herbert H.~K. Lee.
   computer modeling.
 \newblock {\em Journal of the American Statistical Association}, 103(483),
   2008.
+
+\bibitem{gramacy2012}
+Robert~B Gramacy and Herbert~KH Lee.
+\newblock Cases for the nugget in modeling computer experiments.
+\newblock {\em Statistics and Computing}, 22(3):713--722, 2012.
 
 \bibitem{tgp2}
 Robert~B. Gramacy and Matthew Taddy.
@@ -113,6 +118,6 @@ Matthew~A. Taddy, Herbert H.~K. Lee, Genetha~A. Gray, and Joshua~D. Griffin.
 \bibitem{rastCite}
 Darrell Whitley, Soraya Rana, John Dzubera, and Keith~E. Mathias.
 \newblock Evaluating evolutionary algorithms.
-\newblock {\em Artificial Intelligence}, 85(1–2):245 -- 276, 1996.
+\newblock {\em Artificial Intelligence}, 85(1-2):245--276, 1996.
 
 \end{thebibliography}
