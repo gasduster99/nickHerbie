@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.1415926-2.5-1.40.14 (TeX Live 2013/Debian) (format=pdflatex 2014.6.20)  2 NOV 2014 21:36
+This is pdfTeX, Version 3.1415926-2.5-1.40.14 (TeX Live 2013/Debian) (format=pdflatex 2014.6.20)  24 JAN 2015 22:08
 entering extended mode
  restricted \write18 enabled.
  %&-line parsing enabled.
@@ -893,52 +893,53 @@ Package pdftex.def Info: ./figures/bestZRastHardEnd.pdf used on input line 1175
 (pdftex.def)             Requested size: 115.08768pt x 115.08629pt.
  [23 <./figures/ewmaConvChartRastHardStart.pdf> <./figures/bestZRastHardStart.p
 df> <./figures/ewmaConvChartRastHardEnd.pdf> <./figures/bestZRastHardEnd.pdf>]
-<./figures/easomContour.jpg, id=441, 505.89pt x 505.89pt>
-File: ./figures/easomContour.jpg Graphic file (type jpg)
+<../../figures/easomContour.jpg, id=441, 505.89pt x 505.89pt>
+File: ../../figures/easomContour.jpg Graphic file (type jpg)
 
-<use ./figures/easomContour.jpg>
-Package pdftex.def Info: ./figures/easomContour.jpg used on input line 1202.
+<use ../../figures/easomContour.jpg>
+Package pdftex.def Info: ../../figures/easomContour.jpg used on input line 1202
+.
 (pdftex.def)             Requested size: 230.18253pt x 230.18802pt.
 
-<./figures/easomPersp.pdf, id=442, 505.89pt x 505.89pt>
-File: ./figures/easomPersp.pdf Graphic file (type pdf)
+<../../figures/easomPersp.pdf, id=442, 505.89pt x 505.89pt>
+File: ../../figures/easomPersp.pdf Graphic file (type pdf)
 
-<use ./figures/easomPersp.pdf>
-Package pdftex.def Info: ./figures/easomPersp.pdf used on input line 1203.
+<use ../../figures/easomPersp.pdf>
+Package pdftex.def Info: ../../figures/easomPersp.pdf used on input line 1203.
 (pdftex.def)             Requested size: 230.18253pt x 230.18802pt.
  [24
 
- <./figures/easomContour.jpg> <./figures/easomPersp.pdf>]
-<./figures/ewmaConvChartEasomMedStart.pdf, id=455, 505.89pt x 505.89pt>
-File: ./figures/ewmaConvChartEasomMedStart.pdf Graphic file (type pdf)
+ <../../figures/easomContour.jpg> <../../figures/easomPersp.pdf>]
+<../../figures/ewmaConvChartEasomMedStart.pdf, id=455, 505.89pt x 505.89pt>
+File: ../../figures/ewmaConvChartEasomMedStart.pdf Graphic file (type pdf)
 
-<use ./figures/ewmaConvChartEasomMedStart.pdf>
-Package pdftex.def Info: ./figures/ewmaConvChartEasomMedStart.pdf used on input
- line 1248.
+<use ../../figures/ewmaConvChartEasomMedStart.pdf>
+Package pdftex.def Info: ../../figures/ewmaConvChartEasomMedStart.pdf used on i
+nput line 1248.
 (pdftex.def)             Requested size: 115.08768pt x 115.08629pt.
 
-<./figures/bestZEasomMedStart.pdf, id=456, 505.89pt x 505.89pt>
-File: ./figures/bestZEasomMedStart.pdf Graphic file (type pdf)
+<../../figures/bestZEasomMedStart.pdf, id=456, 505.89pt x 505.89pt>
+File: ../../figures/bestZEasomMedStart.pdf Graphic file (type pdf)
 
-<use ./figures/bestZEasomMedStart.pdf>
-Package pdftex.def Info: ./figures/bestZEasomMedStart.pdf used on input line 12
-49.
+<use ../../figures/bestZEasomMedStart.pdf>
+Package pdftex.def Info: ../../figures/bestZEasomMedStart.pdf used on input lin
+e 1249.
 (pdftex.def)             Requested size: 115.08768pt x 115.08629pt.
 
-<./figures/ewmaConvChartEasomMedEnd.pdf, id=457, 505.89pt x 505.89pt>
-File: ./figures/ewmaConvChartEasomMedEnd.pdf Graphic file (type pdf)
+<../../figures/ewmaConvChartEasomMedEnd.pdf, id=457, 505.89pt x 505.89pt>
+File: ../../figures/ewmaConvChartEasomMedEnd.pdf Graphic file (type pdf)
 
-<use ./figures/ewmaConvChartEasomMedEnd.pdf>
-Package pdftex.def Info: ./figures/ewmaConvChartEasomMedEnd.pdf used on input l
-ine 1253.
+<use ../../figures/ewmaConvChartEasomMedEnd.pdf>
+Package pdftex.def Info: ../../figures/ewmaConvChartEasomMedEnd.pdf used on inp
+ut line 1253.
 (pdftex.def)             Requested size: 115.08768pt x 115.08629pt.
 
-<./figures/bestZEasomMedEnd.pdf, id=458, 505.89pt x 505.89pt>
-File: ./figures/bestZEasomMedEnd.pdf Graphic file (type pdf)
+<../../figures/bestZEasomMedEnd.pdf, id=458, 505.89pt x 505.89pt>
+File: ../../figures/bestZEasomMedEnd.pdf Graphic file (type pdf)
 
-<use ./figures/bestZEasomMedEnd.pdf>
-Package pdftex.def Info: ./figures/bestZEasomMedEnd.pdf used on input line 1254
-.
+<use ../../figures/bestZEasomMedEnd.pdf>
+Package pdftex.def Info: ../../figures/bestZEasomMedEnd.pdf used on input line 
+1254.
 (pdftex.def)             Requested size: 115.08768pt x 115.08629pt.
 
 Underfull \hbox (badness 3219) in paragraph at lines 1244--1257
@@ -946,8 +947,9 @@ Underfull \hbox (badness 3219) in paragraph at lines 1244--1257
 ures ([][]7[][]) and ([][]9[][]),
  []
 
-[25 <./figures/ewmaConvChartEasomMedStart.pdf> <./figures/bestZEasomMedStart.pd
-f> <./figures/ewmaConvChartEasomMedEnd.pdf> <./figures/bestZEasomMedEnd.pdf>]
+[25 <../../figures/ewmaConvChartEasomMedStart.pdf> <../../figures/bestZEasomMed
+Start.pdf> <../../figures/ewmaConvChartEasomMedEnd.pdf> <../../figures/bestZEas
+omMedEnd.pdf>]
 Underfull \hbox (badness 10000) in paragraph at lines 1292--1299
 
  []
@@ -1125,8 +1127,8 @@ d.
 Package atveryend Info: Empty hook `AtVeryVeryEnd' on input line 1630.
  ) 
 Here is how much of TeX's memory you used:
- 8873 strings out of 493304
- 128010 string characters out of 6139871
+ 8874 strings out of 493304
+ 128120 string characters out of 6139871
  217930 words of memory out of 5000000
  12031 multiletter control sequences out of 15000+600000
  27254 words of font info for 81 fonts, out of 8000000 for 9000
@@ -1153,7 +1155,7 @@ onts/type1/public/cm-super/sfbx1095.pfb></usr/share/texmf/fonts/type1/public/cm
 nts/type1/public/cm-super/sfrm1095.pfb></usr/share/texmf/fonts/type1/public/cm-
 super/sfrm1200.pfb></usr/share/texmf/fonts/type1/public/cm-super/sfti1200.pfb><
 /usr/share/texmf/fonts/type1/public/cm-super/sftt1200.pfb>
-Output written on nickGrunlohMasterProject.pdf (35 pages, 10156142 bytes).
+Output written on nickGrunlohMasterProject.pdf (35 pages, 10155937 bytes).
 PDF statistics:
  712 PDF objects out of 1000 (max. 8388607)
  582 compressed objects within 6 object streams

@@ -752,7 +752,7 @@ The Exponentially Weighted Moving Average (EWMA) chart provides an ideal startin
 	In this case we are interested in the sampling distribution of the $Z_i$, if the $Y_i$ are $i.i.d.$ then Lucas and Saccucci \cite{ewmaPaper}  show that we can write $\sigma^2_{Z_i}$ in terms of $\sigma^2_{Y}$. %, Lucas and Saccucci \cite{ewmaPaper}  show,
 	%
 	\begin{equation}
-	\sigma^2_{Z_i} = \sigma^2_{Y}\left(\frac{\lambda}{2-\lambda}\right)\left[1-(1-\lambda^{2i})\right]
+	\sigma^2_{Z_i} = \sigma^2_{Y}\left(\frac{\lambda}{2-\lambda}\right)\left[1-(1-\lambda)^{2i}\right]
 	\end{equation}
 	%\substack{i.i.d.\\\sim}
 	Thus if the $Y_i \stackrel{i.i.d.}{\sim} N\left(\mu, \frac{\sigma^2}{n}\right)$ the sampling distribution for $Z_i$ is $Z_i \sim N\left(\mu, \sigma^2_{Z_i}\right)$.
@@ -764,7 +764,7 @@ The Exponentially Weighted Moving Average (EWMA) chart provides an ideal startin
 	%\vspace{-1cm}
 	\begin{eqnarray}
 	\text{CL}_i &=& \mu \pm c \sigma_{Z_i}\nonumber\\
-	&=&  \mu \pm c ~ \frac{\sigma}{\sqrt{n}}~\sqrt{\left(\frac{\lambda}{2-\lambda}\right)\left[1-(1-\lambda^{2i})\right]}
+	&=&  \mu \pm c ~ \frac{\sigma}{\sqrt{n}}~\sqrt{\left(\frac{\lambda}{2-\lambda}\right)\left[1-(1-\lambda)^{2i}\right]}
 	\label{EWMACL}
 	\end{eqnarray}
 	%\end{figure}
@@ -1199,8 +1199,8 @@ Additionally, I consider the Lockwood pump-and-treat case study as a practical e
 	%
 	\begin{figure}[!h]
 	\centering
-	\includegraphics[width=0.49\textwidth]{./figures/easomContour.jpg}
-	\includegraphics[width=0.49\textwidth]{./figures/easomPersp.pdf}
+	\includegraphics[width=0.49\textwidth]{../../figures/easomContour.jpg}
+	\includegraphics[width=0.49\textwidth]{../../figures/easomPersp.pdf}
 	\vspace{-0.2cm}
 	\begin{eqnarray}
 	f(x,y) &=& -\cos \left(x_1\right)\cos \left(x_2\right) \exp\left\{-\left[\left(x_1-\pi\right)^{2} + \left(x_2-\pi\right)^{2}\right]\right\}\\
@@ -1245,13 +1245,13 @@ Additionally, I consider the Lockwood pump-and-treat case study as a practical e
 	%
 	%
 	\begin{wrapfigure}{l}{0.5\textwidth}
-	\includegraphics[width=0.245\textwidth]{./figures/ewmaConvChartEasomMedStart.pdf}
-	\includegraphics[width=0.245\textwidth]{./figures/bestZEasomMedStart.pdf}
+	\includegraphics[width=0.245\textwidth]{../../figures/ewmaConvChartEasomMedStart.pdf}
+	\includegraphics[width=0.245\textwidth]{../../figures/bestZEasomMedStart.pdf}
 	\caption{Initial EWMA convergence chart and smallest objective function value. }
 	\label{easomEWMAStart}
 	$~$\\
-	\includegraphics[width=0.245\textwidth]{./figures/ewmaConvChartEasomMedEnd.pdf}
-	\includegraphics[width=0.245\textwidth]{./figures/bestZEasomMedEnd.pdf}
+	\includegraphics[width=0.245\textwidth]{../../figures/ewmaConvChartEasomMedEnd.pdf}
+	\includegraphics[width=0.245\textwidth]{../../figures/bestZEasomMedEnd.pdf}
 	\caption{Final EWMA convergence chart and smallest objective function value. }
 	\label{easomEWMAEnd}
 	\end{wrapfigure}

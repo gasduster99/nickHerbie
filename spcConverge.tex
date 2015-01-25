@@ -1139,7 +1139,7 @@ The EWMA convergence chart identifies convergence as the EWMA statistic associat
 %
 The solution shown here is the lowest function evaluation observed in 500 iterations of this algorithm, corresponding to $f(\bm{x})\approx26696$ at $\bm{x}\approx[0, 6195, 12988, 3160, 1190, 3163]$.
 %
-{\color{red} consistence citation?}
+{\color{red} literature consistent value citation?}
 
 %In Figure (18, right), after about 210 iterations, the algorithm finds its lowest cost solution to be seen in 500 iterations, corresponding to f (x) ≈ 26696 at x ≈ [0, 6195, 12988, 3160, 1190, 3163]. 
 %Considering Figure (18, left), the EWMA convergence chart identifies this convergence after only about 270 iterations.
@@ -1168,6 +1168,41 @@ The solution shown here is the lowest function evaluation observed in 500 iterat
 %
 %
 
+%
+Adapting the notion of control from the SPC literature, the EWMA convergence chart outlined here aims to provide a objective standard for identifying convergence.%provides an objective definitionof convergence. 
+%
+The examples provided demonstrate how the EWMA convergence chart may accurately, and efficiently, identify convergence in the context of statistical surrogate model optimization.
+
+%
+%
+
+%characterization
+As for any optimization algorithm, a converged solution may only be considered as good as the algorithms consideration of $f$. 
+%
+Thus poorly tuned surrogate modeling strategies may never optimize $f$ to their fullest extent, but the EWMA convergence chart presented here may still claim convergence in these cases.% algorithms. 
+%
+The EWMA convergence chart may only consider convergence in the context of the algorithm in which it is imbeded, and thus should be interpreted as a means of identifying when an algorithm has converged rather than when the lowest minimum has been found.% only identify convergence relative to the quality
+%
+%In cases of poorly tuned algorithms, the EWMA convergence chart presented here may only identify convergence with respect to the quality of the particular surrogate modeling strategy used. 
+%
+For poorly tuned surrogate modeling strategies the EWMA convergence chart may only identify that the algorithm has reached a point of diminishing returns; for correctly tuned surrogate modeling strategies this point may often correspond with the realization of an optimal solution. 
+%
+In either poor or correct surrogate tuning, the EWMA convergence chart identifies the moment at which it is beneficial to stop iterating the routine and reflect upon the results.
+
+%
+%
+
+%%
+%Of course the methods shown here are not presented in the absence of their own parameters that require tuning, But I veiw these added parameters in Archemedies' spirt of replacing hard problems with a series of easier ones. 
+%%
+\begin{itemize}
+\item choose $w$
+	\begin{itemize}
+	\item complexity of $f$ (??entropy??)
+	\item Dimension of $f$
+	\item Emplerical results here: $w\approx 15p$; $p$ is the dimension
+	\end{itemize}
+\end{itemize}
 
 %
 %
