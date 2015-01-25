@@ -93,7 +93,7 @@ Here we use ideas originally introduced in the field of Statistical Process Cont
 % to remove this subjectivity from the identification of convergence.
 The Exponentially Weighted Moving Average (EWMA) chart provides an ideal starting point for adaptation to track convergence via the EWMA convergence chart introduced here.
 \\\\
-{\bf \color{red}Keywords:} Computer Model, Derivative-free Optimization, Emulator, Expected Improvement.
+{\bf \color{red}Keywords:} Convergence, Derivative-free Optimization, Emulator, Expected Improvement.
 \end{abstract}
  
 \doublespacing
@@ -616,12 +616,20 @@ Z_i=\lambda Y_i+(1-\lambda)Z_{i-1}.
 \label{ewmaStat}
 \end{equation}
 %
-Above, $\lambda$ is a smoothing parameter that defines the weight $\left( \text{i.e. }0<\lambda\le1\right)$ assigned to the most recent observation, $Y_i$.
+Above, $\lambda$ is a smoothing parameter that defines the weight $\left( \text{i.e. }0<\lambda\le1\right)$ assigned to the most 
+%
+%
+\begin{wrapfigure}{r}{0.41\textwidth}
+\vspace{-0.8cm}
+\includegraphics[width=0.4\textwidth]{./figures/ssRastHardOpt.pdf}
+\caption{ $S_\lambda$ as calculated over a fine grid of possible $\lambda$ values for ELAI values derived from optimization of the Rastrigin test function. The optimal forecasting $\hat\lambda$ is shown by the vertical dashed line. }
+\label{bestL}
+\end{wrapfigure}
+%
+%
+recent observation, $Y_i$.
 %Eq. (\ref{ewmaStat})
 The recursive expression of the statistic ensures that all subsequent weights geometrically decrease as they move back through the series.
-
-%
-%
 
 %
 Typical values of $\lambda$ can range from \mbox{$0.1\le\lambda\le0.3$}, with a default value of $\lambda$ around $0.2$, as described by Box et al. \cite{boxBook}.
@@ -631,17 +639,7 @@ Large values of $\lambda$ assign more weight to recent observations in the serie
 However, the choice of a large $\lambda$ may over-fit the $Z_i$ to noise in the $Y_i$.
 %
 It is thus desirable to choose to the smallest $\lambda$ which still provides good forecasts of future
-%
-%
-\begin{wrapfigure}{r}{0.41\textwidth}
-% \vspace{-1cm}
-\includegraphics[width=0.4\textwidth]{./figures/ssRastHardOpt.pdf}
-\caption{ $S_\lambda$ as calculated over a fine grid of possible $\lambda$ values for ELAI values derived from optimization of the Rastrigin test function. The optimal forecasting $\hat\lambda$ is shown by the vertical dashed line. }
-\label{bestL}
-\end{wrapfigure}
-%
-%
- observations in the series.
+observations in the series.
 %
 Box et al. \cite[p. 87]{boxBook} explains how to choose an optimal value for $\lambda$ by choosing the $\hat\lambda$ which minimizes the sum of squared forecasting deviations ($S_\lambda$) for each new observation.
 %curvature
@@ -983,13 +981,13 @@ It should be noted that by increasing the size of the search domain, either by i
 %
 $\hat\lambda$ in this example is calculated to be about \rastLamb.
 %
-The decreased value of $\hat\lambda$ reflectes the increased use of $\lambda$ as a smoothing parameter, relative to rosebrock.
+The decreased value of $\hat\lambda$, relative to Rosebrock, increases the smoothing capabilities of EWMA proceedure, as a response to the increased noise in th ELAI series.%so as to separate out the increase noise in the ELAI series from  signal.% the increased noise in the ELAI series to a greater degree, as values more by reflectes the increased use of $\lambda$ as a smoothing parameter, relative to rosebrock.
 %
-The added noise of the ELAI criterion, in this case, comes from the regular discovery of dramatic new modes as optimization proceeds
+The added noise of the ELAI criterion, in this case, comes from the regular discovery of dramatic new modes as optimization proceeds.
 %
 Due to the increased complexity of Rastrigin relative to Rosenbrock, a larger $w$ is needed to recognize convergence in the presence of increased noise in the ELAI criterion. 
 %
-In this application $w=40$, as chosen by experimentation.
+In this application $w=40$, was chosen by experimentation.
 %
 Although larger choices of $w$ produce equally consistent identification of convergence, they do so with more function evaluations.
 
@@ -997,11 +995,11 @@ Although larger choices of $w$ produce equally consistent identification of conv
 %
 
 %
-The left panel of Figure~(\ref{fig:rastrigin}) shows the convergence chart (left) and the optimization progress of the algorithm (right) after 95 iterations of optimization.
+Figure~(\ref{fig:rastrigin}) shows the convergence chart (left) and the optimization progress of the algorithm (right) after 95 iterations of optimization.
 %
 Although the variablity of the ELAI crterion increases as optimization proceeds, large ELAI values stop arriving after iteration 55, coincidently with the surrogate model's discovery of the Rastrigin's main mode, as see in the right panel of Figure~(\ref{fig:rastrigin}).
 %
-Furthermore notice that optimization progress in Figure~(\ref{fig:rastrigin}, right) demonstrates that convergence in this case does indeed represent the identification of the theoretical minimum of the the function, as indicated by the dashed horizontal line at the theoretical minimum. 
+Furthermore notice that optimization progress in Figure~(\ref{fig:rastrigin}, right) demonstrates that convergence in this case does indeed represent approximate identification of the theoretical minimum of the the function, as indicated by the dashed horizontal line at the theoretical minimum. 
 
 % has shown to be effective and smaller choices ofwas chosen here 
 %as the  as the increased $\lambda$ attempts to forcast the large fluctuations of the ELAI criterion produced by the regular discovery of dramatic new modes.
@@ -1041,16 +1039,17 @@ To demonstrate the use of the EWMA convergence chart in a practical optimization
 %
 %
 
+%%of contaiminted groundwater tha pumping site for chlorinated solvents located north-east of Billings, Montana, along the Yellowstone River.
+
+The Lockwood pump and treat case study considers an industrial site, along the Yellowstone River, in Montana, with groundwater contaminated by chorinated solvents. %cothat has contaminated the surrounding groundwater with chlorinated solvents.%
 %
-The Lockwood pump and treat case study considers an industrial site, along the Yellowstone River, in Montana, that has contaminated the surrounding groundwater with chlorinated solvents.%of contaiminted groundwater tha pumping site for chlorinated solvents located north-east of Billings, Montana, along the Yellowstone River.
-%
-If left untreated, the contaminated groundwater, from this site, will contaminate the Yellowstone river. 
+If left untreated, this contaminated groundwater may contaminate the Yellowstone river, as dictated by the hydrology of the system. %ical models.
 %Yellowstone riverthe site is close enough to the contaminate the Yellowstone river with  Clorinated solvents contaiminating the ground water in this region  , two plumes for pumping
-Inorder to control this contaminated groundwater, a total of six pumps situated over two plumes of the contaminated ground water are used to redirect groundwater away from the river to a treament facility.
+Inorder to control this contaminated groundwater, a total of six pumps situated over two plumes, of the contaminated groundwater, are used to redirect groundwater away from the river to a treament facility.
 %
 Due to the cost of running these pumps, over a long period of time, it is desirable to determine how to best allocate the pumping effort amoung these pumps so as to determine the lowest cost pumping strategy to protect the river.
 %
-Pumping each of these six wells at different rates results in various complicated groundwater behahviors, that require the evaluation of a numerical simulation of the system to predict.
+Pumping each of these six wells at different rates can drastically change the groundwater behavior, and  thus a numerical simulation of the system is required to predict the behavior of the system at a given set of pumping rates. %behavior of the of the ground%results in changes the complicated groundwater behahviors, that require the evaluation of a numerical simulation of the system to predict.
 %
 % from the groundwater does not reach the Yellowstone River.
 %Plumes A and B contain two and four wells respectively.
@@ -1062,14 +1061,18 @@ Pumping each of these six wells at different rates results in various complicate
 %
 
 %
-The objective function, $f(\bm{x})$, to be minimized in this case, can be expressed as the sum of the pumping rates for each pump (a quanity proportional to the cost in USD), with additional large penalties associated with any contamination of the river. % by each plume, $c_A(\bm{x})$, $c_B(\bm{x})$. %$c_A(\bm{x})$ and $c_B(\bm{x})$ indicating that the  
+The objective function, $f(\bm{x})$, to be minimized in this case, can be expressed as the sum of the pumping rates for each pump (a quanity proportional to the expense of running the pumps in USD), with additional large penalties associated with any contamination of the river. % by each plume, $c_A(\bm{x})$, $c_B(\bm{x})$. %$c_A(\bm{x})$ and $c_B(\bm{x})$ indicating that the  
         %, is the cost of operating the pumps, in USD; additionally, $f$ heavily penalizes solutions that contaminate the river.
 \begin{equation}
-f(\bm{x}) = \sum_{i=1}^6 x_i +  2\big[ c_A(\bm{x}) + c_B(\bm{x}) \big] + 20000 \big[ \oner_{c_A(\bm{x})>0} + \oner_{c_B(\bm{x})>0} \big] 
+f(\bm{x}) = \sum_{i=1}^6 x_i +  2\big[ c_a(\bm{x}) + c_b(\bm{x}) \big] + 20000 \big[ \oner_{c_a(\bm{x})>0} + \oner_{c_b(\bm{x})>0} \big] 
 \label{lockLoss}
 \end{equation}
 %with simple search boundaries, \mbox{$0\le x_i\le20,000$} set for each pumping rate.
 Here $c_a(\bm{x})$ and $c_b(\bm{x})$ are outputs of a simulation, indicating the amount of contamination, if any, of the river as a function of the pumping rates, $\bm{x}$, for each of the six wells.
+%
+Any amount of contamination of the river results in a large stepwise penalty which introduces a discontinuity into the objective function, at the contaimination boundary.
+%Penalties associated with any contamination of the river are chosen to be large, so as to never gi enough to 
+%
 %, \mbox{$\left[x_1, ..., ~x_6\right] = \left[Q_{A1}, ~Q_{A2}, ~Q_{B1}, ~Q_{B2}, ~Q_{B3}, ~Q_{B4}\right]$}.
 Each $x_i$ is bounded on the large interval, \mbox{$0\le x_i\le20,000$}, representing a large range of possible management schemes.
 %
@@ -1093,10 +1096,10 @@ Since the loss function is defined over a large and continuous domain, and runni
 % \end{equation}
 %
 
-\begin{itemize}
-\item describe search domain
-\item describe challenges
-\end{itemize}
+%\begin{itemize}
+%%\item describe search domain
+%\item ~~~ describe challenges ~~~
+%\end{itemize}
 
 %
 %%ewmaConvChartLock6Three20000.pdf
@@ -1110,13 +1113,55 @@ Since the loss function is defined over a large and continuous domain, and runni
 %
 %
 
-\begin{itemize}
-\item lambda choice
-\item w choice
-\item results (when,where,bestZ fig)
-\item interesting tid-bits
-\end{itemize}
+%
+Again $\lambda$ was chosen via the minimum $S_\lambda$ estimator to be $\hat\lambda\approx\lockLamb$ in this case.%, cooroborating  
+%
+This level of smoothing is required here to reduce the noise in ELAI criteion due to the large search domain, as well as the complicated contamination boundary amoung the six wells.
+%
+Furthermore these featres of the objective function complicate fit of the surrogate model and thus more function evaluations are required to produce an accurate model of $f$. %  accurately  the of the  dificultie
+% to get a enough information to provide  to gather enough information to  was chosen to be 90 iterations of the algorithm to provide the 
+%to produce, to yeild
+As a result, the control window size, $w$, must increase to provide the initial surrogate model enough information to yeild reasonable accuracy. 
+%determined, demonstrated, established, indicated, validated, corrobotated
+Here $w$ was chosen to be 90 iterations, as determined by the adequate initial surrogate model behaviour as well as consistent identification of convergence.
 
+%
+%
+
+%
+The convergence chart for monitoring the optimization of the lockwood case study, is shown in the left panel of Figure~(\ref{lock6EWMAEnd}), as computed with $\hat\lambda\approx\lockLamb$ and $w=90$.%  $ (left) and optimization progress
+%
+Convergence in this case does not occure with a dramatic shift in the mean level of the ELAI criterion, but rather convergence occures as optimization the series stabalizes after large ELAI value move beyonfd the control limit.%, and  
+%
+Interestingly the last major spike in the ELAI series is observed alongside the disovery of the final major jump in the current best minimum value as seen at about iteration $180$ in the right panel of Figure~(\ref{lock6EWMAEnd}).
+%
+The EWMA convergence chart identifies convergence as the EWMA statistic associated with this final ELAI spike eventally exits the control window at iteration $270$.
+%
+The solution shown here is the lowest function evaluation observed in 500 iterations of this algorithm, corresponding to $f(\bm{x})\approx26696$ at $\bm{x}\approx[0, 6195, 12988, 3160, 1190, 3163]$.
+%
+{\color{red} consistence citation?}
+
+%In Figure (18, right), after about 210 iterations, the algorithm finds its lowest cost solution to be seen in 500 iterations, corresponding to f (x) ≈ 26696 at x ≈ [0, 6195, 12988, 3160, 1190, 3163]. 
+%Considering Figure (18, left), the EWMA convergence chart identifies this convergence after only about 270 iterations.
+%%
+%%
+%%
+%Figure~(\ref{fig:rastrigin}) shows the convergence chart (left) and the optimization progress of the algorithm (right) after 95 iterations of optimization.
+%%
+%Although the variablity of the ELAI crterion increases as optimization proceeds, large ELAI values stop arriving after iteration 55, coincidently with the surrogate model's discovery of the Rastrigin's main mode, as see in the right panel of Figure~(\ref{fig:rastrigin}).
+%%
+%Furthermore notice that optimization progress in Figure~(\ref{fig:rastrigin}, right) demonstrates that convergence in this case does indeed represent approximate identification of the theoretical minimum of the the function, as indicated by the dashed horizontal line at the theoretical minimum. 
+
+%
+%\begin{itemize}
+%%\item lambda choice
+%%\item w choice
+%\item results (when,where,bestZ fig)
+%\item interesting tid-bits
+%\end{itemize}
+%
+
+\clearpage
 %
 %
 \section{Conclusion}
