@@ -753,14 +753,23 @@ Secondly it offers a structural way for basing the standard for consistency (i.e
 % %The size of this window is left up to the discretion of user,.
 % The size, $w$, of the control window is an important parameter for correctly identifying convergence.
 %
-The size of the control window, $w$, may vary from problem to problem based on the difficulty of optimization in each case; ultimatly the choice of $w$ is a tuning parameter.
+The size of the control window, $w$, may vary from problem to problem based on the difficulty of optimization in each case. %; ultimatly the choice of $w$ is left as tuning parameter of the system.
 %
-The choice of a conservativly large $w$ consistently provides a better identification of convergence, with large $w$ representing idealistic large sample sizes, and small $w$ correctly identifying convergence well only for well-behaved functions, with small search domains.
+A reasonable way of choosing $w$ is to consider the number of observations neccissary to establish a standard of control. % with respect to the objective function at hand.
+%
+The choice of $w$ will naturally increase as the difficulty of the optimization problem increases.
+%
+%For example, if the objective function is in many dimensions, the choice of $w$ will neccisarily increase to allow the surrogate model to gather a proportional amount of information about $f$.  
+%
+%The choice of a conservativly large $w$ consistently provides a better identification of convergence, with large $w$ representing idealistic large sample sizes, and small $w$ correctly identifying convergence well only for well-behaved functions, with small search domains.
 %the size of the control window may lead to premature identification of convergence, however if $w$ is too large, we compute 
 %as $w$ may be veiwed in the context of 
-However, just as in sample size calculations, the the choice of an optimal $w$ must consider the cost of premature identification of convergence (i.e., poor inference) associated with underestimating $w$, against the cost of continuing to sample after convergence has occurred (i.e., the cost of additional sampling) associated with overestimating $w$.
+%However, j(i.e. the cost of overadditional sampling)
+Just as in other sample size calculations, the the choice of an optimal $w$ must consider the cost of premature identification of convergence (i.e. poor inference) associated with underestimating $w$, against the cost of continuing to sample after convergence has occurred (i.e. the cost of over sampling) associated with overestimating $w$.
 %
-Providing a default choice of $w$ is somewhat arbitrary without careful analysis of the particulars of the objective function behavior and the costs of each successive objective function evalutation, however as a recommendation for starting this analysis one may consider a rule of thumb $w\ge30$ representing the prior assertion that premature identification of convergence is a worse error than computing extraneous objective function evaluations. 
+Providing a default choice of $w$ is somewhat arbitrary without careful analysis of the particulars of the objective function behavior and the costs of each successive objective function evalutation, however as a recommendation for starting this analysis, one may consider $w\ge15p$ as a rule of thumb.
+%
+This recommendation considers the dimensionality, $p$, of the objective function as well as represents the prior assertion that premature identification of convergence is a worse error than computing extraneous objective function evaluations. 
 
 %
 %
@@ -793,9 +802,9 @@ Similar effects may be observed for highly multimodal objective functions, as th
 %
 By contrast, strongly unimodal functions will enjoy a relatively fast decrease in the ELAI criterion in the presence of relatively small variability.
 %
-This higher signal-to-noise ratio makes for easier identification of convergence, and thus requires a smaller choice of $w$ to notice a move of the ELAI criterion into convergence.
+This higher signal-to-noise ratio makes for easier identification of convergence, and thus allows for a smaller choice of $w$. % to notice a move of the ELAI criterion into convergence.
 %
-However if $w$ is chosen to be too small, the algorithm may be over eager to claim convergence and the reccomendation of $w\ge30$ is particularly apt here to guard against false identification of convergence.   
+However if $w$ is chosen to be too small, the algorithm may be over eager to claim convergence and the reccomendation of $w\ge15p$ is particularly apt here to guard against false identification of convergence.   
 
 %
 %
@@ -1179,13 +1188,13 @@ The examples provided demonstrate how the EWMA convergence chart may accurately,
 %characterization
 As for any optimization algorithm, a converged solution may only be considered as good as the algorithms consideration of $f$. 
 %
-Thus poorly tuned surrogate modeling strategies may never optimize $f$ to their fullest extent, but the EWMA convergence chart presented here may still claim convergence in these cases.% algorithms. 
+Thus poorly tuned surrogate modeling strategies may never optimize $f$ to their fullest extent, but the EWMA convergence chart presented here may still claim convergence in these cases. % algorithms. 
 %
-The EWMA convergence chart may only consider convergence in the context of the algorithm in which it is imbeded, and thus should be interpreted as a means of identifying when an algorithm has converged rather than when the lowest minimum has been found.% only identify convergence relative to the quality
+The EWMA convergence chart may only consider convergence in the context of the algorithm in which it is imbeded, and thus should be interpreted as a means of identifying when an algorithm has converged rather than when the lowest minimum has been found. % only identify convergence relative to the quality
 %
 %In cases of poorly tuned algorithms, the EWMA convergence chart presented here may only identify convergence with respect to the quality of the particular surrogate modeling strategy used. 
-%
-For poorly tuned surrogate modeling strategies the EWMA convergence chart may only identify that the algorithm has reached a point of diminishing returns; for correctly tuned surrogate modeling strategies this point may often correspond with the realization of an optimal solution. 
+%may often 
+For poorly tuned surrogate modeling strategies the EWMA convergence chart may only identify that the algorithm has reached a point of diminishing returns; for correctly tuned surrogate modeling strategies this point should correspond with the realization of an optimal solution. 
 %
 In either poor or correct surrogate tuning, the EWMA convergence chart identifies the moment at which it is beneficial to stop iterating the routine and reflect upon the results.
 
@@ -1195,13 +1204,45 @@ In either poor or correct surrogate tuning, the EWMA convergence chart identifie
 %%
 %Of course the methods shown here are not presented in the absence of their own parameters that require tuning, But I veiw these added parameters in Archemedies' spirt of replacing hard problems with a series of easier ones. 
 %%
+
+%
+%
+
+%
+Admmitadly the use of the EWMA convergence chart comes with the addition of it's own parameters which themselves require estimation.
+% 
+The addition of these parameters can be easily justified under a divide and conquer mentality; thus replacing the original large subjective task of appropriatly identifying convergence with relatively simple parameter estimation problems. 
+%
+The choice of $\lambda$ has been shown to be relatively robust to suboptimal choices, and furthermore estimation of the minimum sum of the squared forcasting errors $\hat\lambda$ is a simple in practice.
+%
+The estimation of $w$ is more subtle, but follows from reasonable intuition of the problem.
+%
+The choice of $w$ would ideally consider an objective measure of the complexity of $f$ as well as the dimensionality of the domain, $p$.
+%
+%Fully characterizing the relationship between $w$ and the dimensionality and complexity of $f$ for choosing would require a large simulation experiment many possible objective function   
+%
+For simplicity the recommendation $w\ge15p$ has shown to work quite well, although it contains no explicate consideration of the observed complexity of $f$. 
+%The rational being that the current methods for appropriate identification of convergene is a rather subjective task and 
+%The choice of the EWMA convergence chart parameters, $w$ and $\lambda$,  
+%Tuning the parameters 
+%These methods are not presented in the absence of 
+
 \begin{itemize}
+\item tuning parameters added in the spirit of reducing hard problems into a series of esier ones
+	\begin{itemize}
+	\item convergence is hard and massively subjective
+	\item interpreting convergence charts is easier
+	\item tuning $\lambda$ is objective and robust
+	\item tuning $w$ can be subjective (requires large simulation study to choose.)
+	\end{itemize}  
 \item choose $w$
 	\begin{itemize}
 	\item complexity of $f$ (??entropy??)
 	\item Dimension of $f$
 	\item Emplerical results here: $w\approx 15p$; $p$ is the dimension
 	\end{itemize}
+{\color{red}
+\item 2-parameter box-cox EI transformation instead of ELAI}
 \end{itemize}
 
 %
