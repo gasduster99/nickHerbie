@@ -186,7 +186,7 @@ Typically a Gaussian Process (GP) surrogate model is chosen for its
 robustness, relative ease of computation, and its predictive framework
 \cite{santnerBook}.
 %   landscape of the simulation parameters assessing future points of exploration on
-Arising naturally from the GP predictive distribution \cite{gBook, EIPPD}, the maximum Expected Improvement (EI) criterion has shown to be a valuable criterion for guiding the exploration of the objective function \cite{taddyOpt, jonesEIOpt}; furthermore the EI shows promise for use as a convergence criterion {\color{red}cite}.
+Arising naturally from the GP predictive distribution \cite{gBook, EIPPD}, the maximum Expected Improvement (EI) criterion has shown to be a valuable criterion for guiding the exploration of the objective function and shows promise for use as a convergence criterion \cite{taddyOpt, jonesEIOpt}. %furthermore the EI shows promise for use as a convergence criterion {\color{red}cite}.
 %The maximum Expected Improvement (EI) criterion has shown to be a valuable criterion, arising naturally from the GP predictive distribution {\color{red}cite}.
 %
 % The EI criterion can be used to assess future points of exploration on the objective function, as well as for monitoring the overall convergence of the optimization routine at large {\color{red}cite}.
@@ -197,13 +197,14 @@ Arising naturally from the GP predictive distribution \cite{gBook, EIPPD}, the m
 %
 
 %however; as a means of assessing convergence GP surrogate
-{\color{red}Literature cite} recommends considering the EI as a convergence criterion for surrogate model optimization; as of yet, little work has been done to describe what convergence of these algorithms actually looks like in the context of the EI criterion.
+%{\color{red}Literature cite} recommends considering the EI as a convergence criterion for surrogate model optimization; as of yet, little work has been done to describe what convergence of these algorithms actually looks like in the context of the EI criterion.
+Taddy et al. \cite{taddyOpt} considers the use of the improvement distribution for identifying global convergence; stating its value for use in applied optimization.
 %, but it has not yet been established if there is some threshold EI value that is sufficient
-However, the basic idea behind the use of EI as a convergence criterion is that convergence should occur when the surrogate model produces low expectations for discovering new optimum; that is to say, globally small EI values should be associated with convergence of the algorithm.
+The basic idea behind the use of improvement in identifying convergence is that convergence should occur when the surrogate model produces low expectations for discovering new optimum; that is to say, globally small EI values should be associated with convergence of the algorithm.
 %claim that there exists 
-Thus an obvious stopping rule first defines some lower EI threshold, then claims convergence upon the first instance of the maximum EI value falling below this threshold {\color{red} example \cite{windExample}, cite}.    
+Thus a simplistic stopping rule might first define some lower EI threshold, then claim convergence upon the first instance of an EI value falling below this threshold, as seen in \cite{windExample}.    
 %in many different; of many other numerical optimization routines; that have been designed specifically to exhibit such behavior upon convergence  
-This use of EI as a convergence criterion in analogous to the standard approach in the numerical optimization literature of setting a threshold for some value that is monitored and declaring convergence when the threshold is obtained (e.g., the vanishing step sizes of a Newton-Raphson algorithm).
+This use of EI as a convergence criterion is analogous to other standard convergence identification methods in numerical optimization (e.g., the vanishing step sizes of a Newton-Raphson algorithm).
 %
 However, applying this same threshold strategy to the convergence of surrogate model optimization has not yet been adequately justified.
 %, derived from the predictive distribution of the underling GP model; behavior
@@ -598,9 +599,11 @@ This construction allows for more consistent and accurate use of the fundamental
 %
 
 %
-The Exponentially Weighted Moving Average (EWMA) control chart {\color{red}cite} elaborates on Shewhart's original notion of control by viewing the repeated sampling process in the context of a moving average smoothing of series data. %, rather than assuming a constant long run average, as in the $\bar x$-chart.    
+The Exponentially Weighted Moving Average (EWMA) control chart \cite{ewmaPaper, qccPack} elaborates on Shewhart's original notion of control by viewing the repeated sampling process in the context of a moving average smoothing of series data. %, rather than assuming a constant long run average, as in the $\bar x$-chart.    
 %Principally provide particularly robust solutions to be expected for convergence in this setting.
-Pre-convergence ELAI evaluations tend to be variable and overall decreasing, and so do not necessarily share distributional consistency among all observed values.  Thus a weighted series perspective was chosen to follow the moving average of the most recent ELAI observations while still smoothing with some memory of older evaluations.
+Pre-convergence ELAI evaluations tend to be variable and overall decreasing, and so do not necessarily share distributional consistency among all observed values.  
+%
+Thus a weighted series perspective was chosen to follow the moving average of the most recent ELAI observations while still smoothing with some memory of older evaluations.
 %stochastically slides into convergence, a series perspective is appropriate here; in particular the EWMA perspective has shown to be well suited for tracking the progression of means that are subject to subtle drifting processes \cite{adaptEWMA, ?}. %, just as displayed by the ELAI criterion upon convergence.
 %
 EWMA achieves this robust smoothing behavior, relative to shifting means, by assigning exponentially decreasing weights to successive points in a rolling average among all of the points of the series, thus the EWMA emphasizes recent observations and shifts the focus of the moving average to the most recent information while still providing shrinkage towards the global mean of the series.
@@ -2621,7 +2624,7 @@ For simplicity the recommendation $w\ge15p$ has shown to work quite well, althou
 %
 %
 
-\end{document}santnerBook
+\end{document}
 
 
 

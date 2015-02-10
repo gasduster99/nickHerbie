@@ -99,6 +99,12 @@ Matthias Schonlau, William~J. Welch, and Donald~R. Jones.
   models.
 \newblock {\em Lecture Notes-Monograph Series}, pages 11--25, 1998.
 
+\bibitem{qccPack}
+Luca Scrucca.
+\newblock qcc: an r package for quality control charting and statistical
+  process control.
+\newblock {\em R News}, 4/1:11--17, 2004.
+
 \bibitem{shewhartBook}
 Walter~A. Shewhart.
 \newblock {\em Economic control of quality of manufactured product}, volume
