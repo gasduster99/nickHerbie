@@ -885,7 +885,7 @@ Satisfying one, or none, of the convergence rules indicates insufficient explora
 %%
 
 %
-\clearpage
+%\clearpage
 %
 %
 \section{Examples}
@@ -1045,8 +1045,11 @@ The previous examples have focused on analytical functions with known minima.
 %
 This is done for the sake of developing an intuition for tuning the EWMA convergence chart parameters and to ensure that our methods correspond to the identification of real optima.
 %However, in most practical optimization problems it is not possible to visualize to objective function so straight forwardly, or derive theoretical minima in this way.
+%REVISE!!!!
+%To demonstrate the use of the EWMA convergence chart in a practical optimization problem, 
+Here we apply the EWMA convergence chart in the practical optimization setting of pump and treat optimization problems as formulated by Mayer et al. (2002) \cite{mayer2002optimal}.
 %
-To demonstrate the use of the EWMA convergence chart in a practical optimization problem, we consider the Lockwood pump and treat problem originally presented by Matott et al. \cite{lockCite}.
+Specifically we consider the Lockwood pump and treat problem, originally presented by Matott et al. \cite{lockCite}. %, and additionally presented \cite{gramacy2014}.
 
 %
 %
@@ -1149,9 +1152,9 @@ Interestingly the last major spike in the ELAI series is observed alongside the 
 %
 The EWMA convergence chart identifies convergence as the EWMA statistic associated with this final ELAI spike eventally exits the control window at iteration $270$.
 %
-The solution shown here is the lowest function evaluation observed in 500 iterations of this algorithm, corresponding to $f(\bm{x})\approx26696$ at $\bm{x}\approx[0, 6195, 12988, 3160, 1190, 3163]$.
+The solution shown here corresponds to $f(\bm{x})\approx26696$ at $\bm{x}\approx[0, 6195, 12988, 3160, 1190, 3163]$.
 %
-{\color{red} literature consistent value citation?}
+This solution is well corroborated as a point of dimishing returns for this problem, by the analysis of Gramacy et al. \cite{gramacy2014} on the same problem, as seen their average EI surrogate modeling behavior. %gorithms as guided by the EI criterion.
 
 %In Figure (18, right), after about 210 iterations, the algorithm finds its lowest cost solution to be seen in 500 iterations, corresponding to f (x) ≈ 26696 at x ≈ [0, 6195, 12988, 3160, 1190, 3163]. 
 %Considering Figure (18, left), the EWMA convergence chart identifies this convergence after only about 270 iterations.
