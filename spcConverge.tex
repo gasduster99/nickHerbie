@@ -297,7 +297,7 @@ The primary motivation for the use of surrogate modeling in optimization is to m
 %
 The surrogate model serves as an efficient tool for using function evaluations to infer the expected behavior of the objective function and thus determine where further optima may exist with minimal evaluation of the complex objective function itself.
 %
-Surrogate modeling is therefore useful for optimizing large computer simulations experiments, where each function evaluation may consume considerable computational resources, while the surrogate model can be evaluted quickly.
+Surrogate modeling is therefore useful for optimizing large computer simulations experiments, where each function evaluation may consume considerable computational resources, while the surrogate model can be evaluated quickly.
 %
 The standard surrogate model in the literature for analysis of computer experiments is a Gaussian Process (GP) \cite{sacksDesign, santnerBook}. A GP is a stochastic process such that when evaluated at any finite collection of points, that collection follows a multivariate Gaussian distribution. A GP is defined by its mean function and its covariance function, and various standard formulations exist \cite{abrahamsenBook,steinBook}. Most formulations take advantage of a large degree of smoothness, reflecting a modeling assumption of smoothness in the output of the simulator, in that if the simulator is evaluated at two nearby inputs, then one expects the resulting outputs to be relatively close. A GP can interpolate, which can be useful for a deterministic simulator, or it can smooth, which has a number of practical advantages even for deterministic simulators \cite{gramacy2012}.
 
@@ -567,7 +567,7 @@ Despite this numerical inconvenience, the distribution of the improvement sample
 %
 
 %
-We avoid the numerical issues by using a model-based approximation. With the desire to model $\mathbb{E}\left[~\log\text{I}~\right] \approxdist N\left(\mu, \frac{\sigma^2}{n}\right)$, we switch to a Lognormal perspecive.   
+We avoid the numerical issues by using a model-based approximation. With the desire to model $\mathbb{E}\left[~\log\text{I}~\right] \approxdist N\left(\mu, \frac{\sigma^2}{n}\right)$, we switch to a Lognormal perspective.   
 %
 Recall that if a random variable \mbox{$X\sim Log$-$N(\psi, \nu)$,} then another random variable $Y=\log(X)$ is distributed $Y\sim N(\psi, \nu)$.
 %{\color{red}cite}
@@ -756,7 +756,7 @@ Secondly it offers a structural way for basing the standard for consistency (i.e
 % %The size of this window is left up to the discretion of user,.
 % The size, $w$, of the control window is an important parameter for correctly identifying convergence.
 %
-The size of the control window, $w$, may vary from problem to problem based on the difficulty of optimization in each case. %; ultimatly the choice of $w$ is left as tuning parameter of the system.
+The size of the control window, $w$, may vary from problem to problem based on the difficulty of optimization in each case. %; ultimately the choice of $w$ is left as tuning parameter of the system.
 %
 A reasonable way of choosing $w$ is to consider the number of observations neccissary to establish a standard of control. % with respect to the objective function at hand.
 %
@@ -764,13 +764,13 @@ The choice of $w$ will naturally increase as the difficulty of the optimization 
 %
 %For example, if the objective function is in many dimensions, the choice of $w$ will neccisarily increase to allow the surrogate model to gather a proportional amount of information about $f$.  
 %
-%The choice of a conservativly large $w$ consistently provides a better identification of convergence, with large $w$ representing idealistic large sample sizes, and small $w$ correctly identifying convergence well only for well-behaved functions, with small search domains.
+%The choice of a conservatively large $w$ consistently provides a better identification of convergence, with large $w$ representing idealistic large sample sizes, and small $w$ correctly identifying convergence well only for well-behaved functions, with small search domains.
 %the size of the control window may lead to premature identification of convergence, however if $w$ is too large, we compute 
-%as $w$ may be veiwed in the context of 
+%as $w$ may be viewed in the context of 
 %However, j(i.e. the cost of overadditional sampling)
-Just as in other sample size calculations, the the choice of an optimal $w$ must consider the cost of premature identification of convergence (i.e. poor inference) associated with underestimating $w$, against the cost of continuing to sample after convergence has occurred (i.e. the cost of over sampling) associated with overestimating $w$.
+Just as in other sample size calculations, the choice of an optimal $w$ must consider the cost of poor inference (i.e. premature identification of convergence) associated with underestimating $w$, against the cost of over sampling (i.e. continuing to sample after convergence has occurred) associated with overestimating $w$.
 %
-Providing a default choice of $w$ is somewhat arbitrary without careful analysis of the particulars of the objective function behavior and the costs of each successive objective function evalutation, however as a recommendation for starting this analysis, one may consider $w\ge15p$ as a rule of thumb.
+Providing a default choice of $w$ is somewhat arbitrary without careful analysis of the particulars of the objective function behavior and the costs of each successive objective function evaluation, however as a recommendation for starting this analysis, one may consider $w\ge15p$ as a lower bound. %rule of thumb.
 %
 This recommendation considers the dimensionality, $p$, of the objective function as well as represents the prior assertion that premature identification of convergence is a worse error than computing extraneous objective function evaluations. 
 
@@ -793,7 +793,7 @@ Similar effects may be observed for highly multimodal objective functions, as th
 
 %
 %
-% %adequate algorithm willay EI criterion may commonly be slow to learn the  decrease from  display a large variance amoung amoung function evalutations, 
+% %adequate algorithm willay EI criterion may commonly be slow to learn the  decrease from  display a large variance among among function evaluations, 
 % % Because $w$ may vary from problem to problem it is ultimately left as a tuning parameter of the system.
 % %
 % 
@@ -952,7 +952,7 @@ Note that the EWMA points generally trend downward until the global minimum has 
 %
 
 %
-The Rastrigin function is a commonly used test function for evaluating the performance of global optimization schemes such as gentetic algorithms \cite{rastCite}.
+The Rastrigin function is a commonly used test function for evaluating the performance of global optimization schemes such as genetic algorithms \cite{rastCite}.
 %
 The global behavior of Rastrigin is dominated by the spherical function, $\sum_i x_i^2$, however Rastrigin has been oscillated by the cos(.) function, and shifted, so that it achieves a global minimum value of 0 at the lowest point, of its lowest trough at (0, 0).
 
@@ -970,11 +970,11 @@ The global behavior of Rastrigin is dominated by the spherical function, $\sum_i
 %
 
 %
-Rastrigin is generalizable to an arbitrarly many dimensions, but to develop intution, this example considers Rastrigin over the 2 dimensional square $-2.5\le x_i\le 2.5$.
+Rastrigin is generalizable to arbitrarily many dimensions, but to develop intuition, this example considers Rastrigin over the 2 dimensional square $-2.5\le x_i\le 2.5$.
 %
 Rastrigin is a highly multimodal function, and as such, the many similar modes present a challenge for identifying convergence.
 %
-The multimodality of this problem increases the variablility of the EI criterion, and thus represents a moderately difficult optimization problem in this context. 
+The multimodality of this problem increases the variability of the EI criterion, and thus represents a moderately difficult optimization problem in this context. 
 %
 It should be noted that by increasing the size of the search domain, either by increasing the bounds of the search square and/or increasing the dimension of the domain would make this example considerably more difficult and a less intuitive example for developing the choice of $w$. %tuning parameters.
 
@@ -993,7 +993,7 @@ It should be noted that by increasing the size of the search domain, either by i
 %
 $\hat\lambda$ in this example is calculated to be about \rastLamb.
 %
-The decreased value of $\hat\lambda$, relative to Rosebrock, increases the smoothing capabilities of EWMA proceedure, as a response to the increased noise in th ELAI series.%so as to separate out the increase noise in the ELAI series from  signal.% the increased noise in the ELAI series to a greater degree, as values more by reflectes the increased use of $\lambda$ as a smoothing parameter, relative to rosebrock.
+The decreased value of $\hat\lambda$, relative to Rosebrock, increases the smoothing capabilities of EWMA procedure, as a response to the increased noise in th ELAI series.%so as to separate out the increase noise in the ELAI series from  signal.% the increased noise in the ELAI series to a greater degree, as values more by reflectes the increased use of $\lambda$ as a smoothing parameter, relative to rosebrock.
 %
 The added noise of the ELAI criterion, in this case, comes from the regular discovery of dramatic new modes as optimization proceeds.
 %
@@ -1009,12 +1009,12 @@ Although larger choices of $w$ produce equally consistent identification of conv
 %
 Figure~(\ref{fig:rastrigin}) shows the convergence chart (left) and the optimization progress of the algorithm (right) after 95 iterations of optimization.
 %
-Although the variablity of the ELAI crterion increases as optimization proceeds, large ELAI values stop arriving after iteration 55, coincidently with the surrogate model's discovery of the Rastrigin's main mode, as see in the right panel of Figure~(\ref{fig:rastrigin}).
+Although the variability of the ELAI criterion increases as optimization proceeds, large ELAI values stop arriving after iteration 55, coincidently with the surrogate model's discovery of the Rastrigin's main mode, as see in the right panel of Figure~(\ref{fig:rastrigin}).
 %
 Furthermore notice that optimization progress in Figure~(\ref{fig:rastrigin}, right) demonstrates that convergence in this case does indeed represent approximate identification of the theoretical minimum of the the function, as indicated by the dashed horizontal line at the theoretical minimum. 
 
 % has shown to be effective and smaller choices ofwas chosen here 
-%as the  as the increased $\lambda$ attempts to forcast the large fluctuations of the ELAI criterion produced by the regular discovery of dramatic new modes.
+%as the  as the increased $\lambda$ attempts to forecast the large fluctuations of the ELAI criterion produced by the regular discovery of dramatic new modes.
 %%
 %Due to the increased complexity of the rastrigin function a larger $w$ is needed to recognize convergence in the presence of increased noise in the ELAI criterion do to
 
@@ -1056,15 +1056,15 @@ Specifically we consider the Lockwood pump and treat problem, originally present
 
 %%of contaiminted groundwater tha pumping site for chlorinated solvents located north-east of Billings, Montana, along the Yellowstone River.
 
-The Lockwood pump and treat case study considers an industrial site, along the Yellowstone River, in Montana, with groundwater contaminated by chorinated solvents. %cothat has contaminated the surrounding groundwater with chlorinated solvents.%
+The Lockwood pump and treat case study considers an industrial site, along the Yellowstone River, in Montana, with groundwater contaminated by chlorinated solvents. %cothat has contaminated the surrounding groundwater with chlorinated solvents.%
 %
 If left untreated, this contaminated groundwater may contaminate the Yellowstone river, as dictated by the hydrology of the system. %ical models.
-%Yellowstone riverthe site is close enough to the contaminate the Yellowstone river with  Clorinated solvents contaiminating the ground water in this region  , two plumes for pumping
-Inorder to control this contaminated groundwater, a total of six pumps situated over two plumes, of the contaminated groundwater, are used to redirect groundwater away from the river to a treament facility.
+%Yellowstone river the site is close enough to the contaminate the Yellowstone river with  Chlorinated solvents contaminating the ground water in this region  , two plumes for pumping
+Inorder to control this contaminated groundwater, a total of six pumps situated over two plumes, of the contaminated groundwater, are used to redirect groundwater away from the river to a treatment facility.
 %
-Due to the cost of running these pumps, over a long period of time, it is desirable to determine how to best allocate the pumping effort amoung these pumps so as to determine the lowest cost pumping strategy to protect the river.
+Due to the cost of running these pumps, over a long period of time, it is desirable to determine how to best allocate the pumping effort among these pumps so as to determine the lowest cost pumping strategy to protect the river.
 %
-Pumping each of these six wells at different rates can drastically change the groundwater behavior, and  thus a numerical simulation of the system is required to predict the behavior of the system at a given set of pumping rates. %behavior of the of the ground%results in changes the complicated groundwater behahviors, that require the evaluation of a numerical simulation of the system to predict.
+Pumping each of these six wells at different rates can drastically change the groundwater behavior, and  thus a numerical simulation of the system is required to predict the behavior of the system at a given set of pumping rates. %behavior of the of the ground%results in changes the complicated groundwater behaviors, that require the evaluation of a numerical simulation of the system to predict.
 %
 % from the groundwater does not reach the Yellowstone River.
 %Plumes A and B contain two and four wells respectively.
@@ -1076,7 +1076,7 @@ Pumping each of these six wells at different rates can drastically change the gr
 %
 
 %
-The objective function, $f(\bm{x})$, to be minimized in this case, can be expressed as the sum of the pumping rates for each pump (a quanity proportional to the expense of running the pumps in USD), with additional large penalties associated with any contamination of the river. % by each plume, $c_A(\bm{x})$, $c_B(\bm{x})$. %$c_A(\bm{x})$ and $c_B(\bm{x})$ indicating that the  
+The objective function, $f(\bm{x})$, to be minimized in this case, can be expressed as the sum of the pumping rates for each pump (a quantity proportional to the expense of running the pumps in USD), with additional large penalties associated with any contamination of the river. % by each plume, $c_A(\bm{x})$, $c_B(\bm{x})$. %$c_A(\bm{x})$ and $c_B(\bm{x})$ indicating that the  
         %, is the cost of operating the pumps, in USD; additionally, $f$ heavily penalizes solutions that contaminate the river.
 \begin{equation}
 f(\bm{x}) = \sum_{i=1}^6 x_i +  2\big[ c_a(\bm{x}) + c_b(\bm{x}) \big] + 20000 \big[ \oner_{c_a(\bm{x})>0} + \oner_{c_b(\bm{x})>0} \big] 
@@ -1085,7 +1085,7 @@ f(\bm{x}) = \sum_{i=1}^6 x_i +  2\big[ c_a(\bm{x}) + c_b(\bm{x}) \big] + 20000 \
 %with simple search boundaries, \mbox{$0\le x_i\le20,000$} set for each pumping rate.
 Here $c_a(\bm{x})$ and $c_b(\bm{x})$ are outputs of a simulation, indicating the amount of contamination, if any, of the river as a function of the pumping rates, $\bm{x}$, for each of the six wells.
 %
-Any amount of contamination of the river results in a large stepwise penalty which introduces a discontinuity into the objective function, at the contaimination boundary.
+Any amount of contamination of the river results in a large stepwise penalty which introduces a discontinuity into the objective function, at the contamination boundary.
 %Penalties associated with any contamination of the river are chosen to be large, so as to never gi enough to 
 %
 %, \mbox{$\left[x_1, ..., ~x_6\right] = \left[Q_{A1}, ~Q_{A2}, ~Q_{B1}, ~Q_{B2}, ~Q_{B3}, ~Q_{B4}\right]$}.
@@ -1101,7 +1101,7 @@ Since the loss function is defined over a large and continuous domain, and runni
 
 % \begin{itemize}
 % \item Describe case study
-% \item general shape characteristcs os loss function
+% \item general shape characteristics os loss function
 % \end{itemize}
 % 
 % %
@@ -1129,28 +1129,28 @@ Since the loss function is defined over a large and continuous domain, and runni
 %
 
 %
-Again $\lambda$ was chosen via the minimum $S_\lambda$ estimator to be $\hat\lambda\approx\lockLamb$ in this case.%, cooroborating  
+Again $\lambda$ was chosen via the minimum $S_\lambda$ estimator to be $\hat\lambda\approx\lockLamb$ in this case.%, corroborating  
 %
-This level of smoothing is required here to reduce the noise in ELAI criteion due to the large search domain, as well as the complicated contamination boundary amoung the six wells.
+This level of smoothing is required here to reduce the noise in ELAI criterion due to the large search domain, as well as the complicated contamination boundary among the six wells.
 %
-Furthermore these featres of the objective function complicate fit of the surrogate model and thus more function evaluations are required to produce an accurate model of $f$. %  accurately  the of the  dificultie
+Furthermore these features of the objective function complicate fit of the surrogate model and thus more function evaluations are required to produce an accurate model of $f$. %  accurately  the of the  dificultie
 % to get a enough information to provide  to gather enough information to  was chosen to be 90 iterations of the algorithm to provide the 
-%to produce, to yeild
-As a result, the control window size, $w$, must increase to provide the initial surrogate model enough information to yeild reasonable accuracy. 
-%determined, demonstrated, established, indicated, validated, corrobotated
-Here $w$ was chosen to be 90 iterations, as determined by the adequate initial surrogate model behaviour as well as consistent identification of convergence.
+%to produce, to yield
+As a result, the control window size, $w$, must increase to provide the initial surrogate model enough information to yield reasonable accuracy. 
+%determined, demonstrated, established, indicated, validated, corroborated
+Here $w$ was chosen to be 90 iterations, as determined by the adequate initial surrogate model behavior as well as consistent identification of convergence.
 
 %
 %
 
 %
-The convergence chart for monitoring the optimization of the lockwood case study, is shown in the left panel of Figure~(\ref{lock6EWMAEnd}), as computed with $\hat\lambda\approx\lockLamb$ and $w=90$.%  $ (left) and optimization progress
+The convergence chart for monitoring the optimization of the Lockwood case study, is shown in the left panel of Figure~(\ref{lock6EWMAEnd}), as computed with $\hat\lambda\approx\lockLamb$ and $w=90$.%  $ (left) and optimization progress
 %
-Convergence in this case does not occure with a dramatic shift in the mean level of the ELAI criterion, but rather convergence occures as optimization the series stabalizes after large ELAI value move beyonfd the control limit.%, and  
+Convergence in this case does not occur with a dramatic shift in the mean level of the ELAI criterion, but rather convergence occurs as optimization the series stabilizes after large ELAI value move beyond the control limit.%, and  
 %
-Interestingly the last major spike in the ELAI series is observed alongside the disovery of the final major jump in the current best minimum value as seen at about iteration $180$ in the right panel of Figure~(\ref{lock6EWMAEnd}).
+Interestingly the last major spike in the ELAI series is observed alongside the discovery of the final major jump in the current best minimum value as seen at about iteration $180$ in the right panel of Figure~(\ref{lock6EWMAEnd}).
 %
-The EWMA convergence chart identifies convergence as the EWMA statistic associated with this final ELAI spike eventally exits the control window at iteration $270$.
+The EWMA convergence chart identifies convergence as the EWMA statistic associated with this final ELAI spike eventually exits the control window at iteration $270$.
 %
 The solution shown here corresponds to $f(\bm{x})\approx26696$ at $\bm{x}\approx[0, 6195, 12988, 3160, 1190, 3163]$.
 %
@@ -1163,7 +1163,7 @@ This solution is well corroborated as a point of dimishing returns for this prob
 %%
 %Figure~(\ref{fig:rastrigin}) shows the convergence chart (left) and the optimization progress of the algorithm (right) after 95 iterations of optimization.
 %%
-%Although the variablity of the ELAI crterion increases as optimization proceeds, large ELAI values stop arriving after iteration 55, coincidently with the surrogate model's discovery of the Rastrigin's main mode, as see in the right panel of Figure~(\ref{fig:rastrigin}).
+%Although the variability of the ELAI criterion increases as optimization proceeds, large ELAI values stop arriving after iteration 55, coincidently with the surrogate model's discovery of the Rastrigin's main mode, as see in the right panel of Figure~(\ref{fig:rastrigin}).
 %%
 %Furthermore notice that optimization progress in Figure~(\ref{fig:rastrigin}, right) demonstrates that convergence in this case does indeed represent approximate identification of the theoretical minimum of the the function, as indicated by the dashed horizontal line at the theoretical minimum. 
 
@@ -1184,19 +1184,19 @@ This solution is well corroborated as a point of dimishing returns for this prob
 %
 
 %
-Adapting the notion of control from the SPC literature, the EWMA convergence chart outlined here aims to provide a objective standard for identifying convergence.%provides an objective definitionof convergence. 
+Adapting the notion of control from the SPC literature, the EWMA convergence chart outlined here aims to provide a objective standard for identifying convergence in the presence of the inherent schocasticity of the improvement criterion in this setting. %provides an objective definition of convergence. 
 %
-The examples provided demonstrate how the EWMA convergence chart may accurately, and efficiently, identify convergence in the context of statistical surrogate model optimization.
+The examples provided here demonstrate how the EWMA convergence chart may accurately, and efficiently, identify convergence in the context of statistical surrogate model optimization.
 
 %
 %
 
-%characterization
-As for any optimization algorithm, a converged solution may only be considered as good as the algorithms consideration of $f$. 
+%characterization; consideration
+As for any optimization algorithm, a converged solution may only be considered as good as the algorithms exploration of $f$. 
 %
 Thus poorly tuned surrogate modeling strategies may never optimize $f$ to their fullest extent, but the EWMA convergence chart presented here may still claim convergence in these cases. % algorithms. 
 %
-The EWMA convergence chart may only consider convergence in the context of the algorithm in which it is imbeded, and thus should be interpreted as a means of identifying when an algorithm has converged rather than when the lowest minimum has been found. % only identify convergence relative to the quality
+The EWMA convergence chart may only consider convergence in the context of the algorithm in which it is imbedded, and thus should be interpreted as a means of identifying when an algorithm has converged rather than when the lowest minimum has been found. % only identify convergence relative to the quality
 %
 %In cases of poorly tuned algorithms, the EWMA convergence chart presented here may only identify convergence with respect to the quality of the particular surrogate modeling strategy used. 
 %may often 
@@ -1208,48 +1208,89 @@ In either poor or correct surrogate tuning, the EWMA convergence chart identifie
 %
 
 %%
-%Of course the methods shown here are not presented in the absence of their own parameters that require tuning, But I veiw these added parameters in Archemedies' spirt of replacing hard problems with a series of easier ones. 
+%Of course the methods shown here are not presented in the absence of their own parameters that require tuning, But I view these added parameters in Archemedies' spirt of replacing hard problems with a series of easier ones. 
 %%
 
 %
+%{\color{red} SOME METHODOLOGY IMPROVEMENT SENTENCE }
+The EWMA convergence chart presented here is intended as a starting point for establishing an appropriate analysis of convergence for sequential surrogate modeling optimization algorithms.
+%for these algorithms will remain fundamental to any appropriate characterization of convergence here.
+Details of the particular implementation of these methods may certainly improve through further analysis of model usage and parameter estimation. 
+%
+% transformed improvement distributions with
+The strategy presented here for transforming the improvement distribution via the Lognormal approximation to the improvement distribution has shown to be an empirically effective, and computationally simple, solution to better meet the assumptions of the EWMA control charting methodology.
+%
+However, some applications may find it worthwhile to explore other transformations which could result in higher overall transformed signal to noise ratios, across a more broad set of improvement distributions. %s which may result in a in a more effective use of the information in the improvement distribution.
+%
+For example, rather that adopting the ELAI transformed estimate from the improvement distribution, it may be computationally feasible to apply the two-parameter Box-Cox transformation \cite{boxCox1964} to the improvement samples,
+\begin{equation}
+y_i^{(\bm{\lambda})}~=~
+\begin{cases}
+	\frac{( y_i + \lambda_2 )^{\lambda_1} - 1}{\lambda_1} & \lambda_1\neq0\\
+	\log(y_i+\lambda_2) & \lambda_2=0
+\end{cases}
+\end{equation}
+thus alleviating any difficulties due to numerical truncation of the improvement samples at 0, while finding a flexible transformation to reduce skew.
+%
+It should be noted that this approach adds additional computational expense, while the ELAI transformation, presented here, requires minimal computation.   
+%furthermore
+Additionally the EWMA convergence chart would benefit from a more precise method for choosing the control window size parameter, $w$, although such a method will likely require a large simulation study to develop.
+%
+Although improvements to the details of these methods surely exist, the fundamental consideration of the stochastic nature of convergence in this setting should remain; SPC simply offers a nice framework for its inclusion. %, through SPC or otherwise, should remain for an appropriate characterization of convergence here.
+
+%
 %
 
 %
-Admmitadly the use of the EWMA convergence chart comes with the addition of it's own parameters which themselves require estimation.
-% 
-The addition of these parameters can be easily justified under a divide and conquer mentality; thus replacing the original large subjective task of appropriatly identifying convergence with relatively simple parameter estimation problems. 
-%
-The choice of $\lambda$ has been shown to be relatively robust to suboptimal choices, and furthermore estimation of the minimum sum of the squared forcasting errors $\hat\lambda$ is a simple in practice.
-%
-The estimation of $w$ is more subtle, but follows from reasonable intuition of the problem.
-%
-The choice of $w$ would ideally consider an objective measure of the complexity of $f$ as well as the dimensionality of the domain, $p$.
-%
-%Fully characterizing the relationship between $w$ and the dimensionality and complexity of $f$ for choosing would require a large simulation experiment many possible objective function   
-%
-For simplicity the recommendation $w\ge15p$ has shown to work quite well, although it contains no explicate consideration of the observed complexity of $f$. 
-%The rational being that the current methods for appropriate identification of convergene is a rather subjective task and 
-%The choice of the EWMA convergence chart parameters, $w$ and $\lambda$,  
-%Tuning the parameters 
-%These methods are not presented in the absence of 
 
-\begin{itemize}
-\item tuning parameters added in the spirit of reducing hard problems into a series of esier ones
-	\begin{itemize}
-	\item convergence is hard and massively subjective
-	\item interpreting convergence charts is easier
-	\item tuning $\lambda$ is objective and robust
-	\item tuning $w$ can be subjective (requires large simulation study to choose.)
-	\end{itemize}  
-\item choose $w$
-	\begin{itemize}
-	\item complexity of $f$ (??entropy??)
-	\item Dimension of $f$
-	\item Emplerical results here: $w\approx 15p$; $p$ is the dimension
-	\end{itemize}
-{\color{red}
-\item 2-parameter box-cox EI transformation instead of ELAI}
-\end{itemize}
+%
+%This analysis makes
+%
+%The EWMA conv
+%%
+%The strategy shown here for transforming  tuning λ and w demonstrates an empirically effective ap-
+%proach for tuning the EWMA convergence chart parameters. 
+%%
+%This approach is mainly useful due to its simplicity, although other more pointed methods may surely calculate more effective values.
+%λ
+
+
+%%
+%Admmitadly the use of the EWMA convergence chart comes with the addition of it's own parameters which themselves require estimation.
+%% 
+%The addition of these parameters can be easily justified under a divide and conquer mentality; thus replacing the original large subjective task of appropriately identifying convergence with relatively simple parameter estimation problems. 
+%%
+%The choice of $\lambda$ has been shown to be relatively robust to suboptimal choices, and furthermore estimation of the minimum sum of the squared forecasting errors $\hat\lambda$ is a simple in practice.
+%%
+%The estimation of $w$ is more subtle, but follows from reasonable intuition of the problem.
+%%
+%The choice of $w$ would ideally consider an objective measure of the complexity of $f$ as well as the dimensionality of the domain, $p$.
+%%
+%%Fully characterizing the relationship between $w$ and the dimensionality and complexity of $f$ for choosing would require a large simulation experiment many possible objective function   
+%%
+%For simplicity the recommendation $w\ge15p$ has shown to work quite well, although it contains no explicate consideration of the observed complexity of $f$. 
+%%The rational being that the current methods for appropriate identification of convergence is a rather subjective task and 
+%%The choice of the EWMA convergence chart parameters, $w$ and $\lambda$,  
+%%Tuning the parameters 
+%%These methods are not presented in the absence of 
+
+%\begin{itemize}
+%\item tuning parameters added in the spirit of reducing hard problems into a series of easier ones
+%	\begin{itemize}
+%	\item convergence is hard and massively subjective
+%	\item interpreting convergence charts is easier
+%	\item tuning $\lambda$ is objective and robust
+%	\item tuning $w$ can be subjective (requires large simulation study to choose.)
+%	\end{itemize}  
+%\item choose $w$
+%	\begin{itemize}
+%	\item complexity of $f$ (??entropy??)
+%	\item Dimension of $f$
+%	\item Emplerical results here: $w\approx 15p$; $p$ is the dimension
+%	\end{itemize}
+%{\color{red}
+%\item 2-parameter box-cox EI transformation instead of ELAI}
+%\end{itemize}
 
 %
 %

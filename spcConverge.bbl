@@ -11,6 +11,12 @@ George E.~P. Box, Alberto Luce\~{n}o, and Mar\'{i}a Del~Carmen
 \newblock {\em Statistical Control by Monitoring and Adjustment}.
 \newblock Wiley, New York, NY, 1997.
 
+\bibitem{boxCox1964}
+George~EP Box and David~R Cox.
+\newblock An analysis of transformations.
+\newblock {\em Journal of the Royal Statistical Society. Series B
+  (Methodological)}, pages 211--252, 1964.
+
 \bibitem{windExample}
 Sanket~Sanjay Diwale, Ioannis Lymperopoulos, and Colin Jones.
 \newblock Optimization of an airborne wind energy system using constrained

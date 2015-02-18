@@ -3,44 +3,44 @@ Capacity: max_strings=35307, hash_size=35307, hash_prime=30011
 The top-level auxiliary file: spcConverge.aux
 The style file: plain.bst
 Database file #1: ./spcCite.bib
-You've used 23 entries,
+You've used 24 entries,
             2118 wiz_defined-function locations,
-            659 strings with 8081 characters,
-and the built_in function-call counts, 7415 in all, are:
-= -- 721
-> -- 368
-< -- 3
-+ -- 149
-- -- 122
-* -- 525
-:= -- 1269
-add.period$ -- 70
-call.type$ -- 23
-change.case$ -- 124
+            666 strings with 8241 characters,
+and the built_in function-call counts, 7841 in all, are:
+= -- 768
+> -- 381
+< -- 4
++ -- 155
+- -- 126
+* -- 548
+:= -- 1330
+add.period$ -- 73
+call.type$ -- 24
+change.case$ -- 129
 chr.to.int$ -- 0
-cite$ -- 23
-duplicate$ -- 277
-empty$ -- 569
-format.name$ -- 122
-if$ -- 1517
+cite$ -- 24
+duplicate$ -- 297
+empty$ -- 601
+format.name$ -- 126
+if$ -- 1614
 int.to.chr$ -- 0
-int.to.str$ -- 23
-missing$ -- 28
-newline$ -- 118
-num.names$ -- 46
-pop$ -- 129
+int.to.str$ -- 24
+missing$ -- 29
+newline$ -- 123
+num.names$ -- 48
+pop$ -- 134
 preamble$ -- 1
-purify$ -- 106
+purify$ -- 110
 quote$ -- 0
-skip$ -- 182
+skip$ -- 202
 stack$ -- 0
-substring$ -- 425
-swap$ -- 42
-text.length$ -- 3
+substring$ -- 463
+swap$ -- 52
+text.length$ -- 4
 text.prefix$ -- 0
 top$ -- 0
-type$ -- 82
+type$ -- 86
 warning$ -- 0
-while$ -- 73
-width$ -- 25
-write$ -- 250
+while$ -- 78
+width$ -- 26
+write$ -- 261
