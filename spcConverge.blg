@@ -3,44 +3,46 @@ Capacity: max_strings=35307, hash_size=35307, hash_prime=30011
 The top-level auxiliary file: spcConverge.aux
 The style file: jasa.bst
 Database file #1: ./spcCite.bib
-You've used 24 entries,
+Warning--empty publisher in gBook
+You've used 23 entries,
             2666 wiz_defined-function locations,
-            771 strings with 8808 characters,
-and the built_in function-call counts, 10844 in all, are:
-= -- 1037
-> -- 405
-< -- 26
-+ -- 160
-- -- 126
-* -- 947
-:= -- 1874
-add.period$ -- 92
-call.type$ -- 24
-change.case$ -- 162
-chr.to.int$ -- 24
+            771 strings with 8657 characters,
+and the built_in function-call counts, 10352 in all, are:
+= -- 999
+> -- 381
+< -- 25
++ -- 149
+- -- 118
+* -- 937
+:= -- 1796
+add.period$ -- 90
+call.type$ -- 23
+change.case$ -- 157
+chr.to.int$ -- 23
 cite$ -- 24
-duplicate$ -- 479
-empty$ -- 828
-format.name$ -- 194
-if$ -- 2156
+duplicate$ -- 444
+empty$ -- 791
+format.name$ -- 184
+if$ -- 2037
 int.to.chr$ -- 1
 int.to.str$ -- 1
-missing$ -- 29
-newline$ -- 125
-num.names$ -- 96
-pop$ -- 155
+missing$ -- 26
+newline$ -- 122
+num.names$ -- 92
+pop$ -- 136
 preamble$ -- 1
-purify$ -- 158
+purify$ -- 151
 quote$ -- 0
-skip$ -- 371
+skip$ -- 324
 stack$ -- 0
-substring$ -- 612
-swap$ -- 120
-text.length$ -- 4
+substring$ -- 618
+swap$ -- 101
+text.length$ -- 3
 text.prefix$ -- 0
 top$ -- 0
-type$ -- 201
-warning$ -- 0
-while$ -- 78
+type$ -- 195
+warning$ -- 1
+while$ -- 77
 width$ -- 0
-write$ -- 334
+write$ -- 325
+(There was 1 warning)
