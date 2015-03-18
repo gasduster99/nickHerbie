@@ -340,7 +340,7 @@ The domain is recursively sub-partitioned and separate hierarchically-linked GP 
 %
 The partitioning scheme is fit via a reversible jump MCMC algorithm, jumping between models with differing partitioning schemes, and averaging over the full parameter space to provide smooth predictions except where the data call for a discontinuous prediction.
 %
-Partitioning the domain in this way allows parsimonious surrogate models in simple objective function cases and quite flexible surrogate models when the the objective function displays complex behavior. 
+Partitioning the domain in this way allows parsimonious surrogate models in simple objective function cases and quite flexible surrogate models when the objective function displays complex behavior. 
 %
 For further explanation of partitioned Gaussian process models as well as notes on implementing such models in R, see the R package \verb tgp  \citep{tgp, tgp2}.  Because many of the objective functions of interest are not well modeled by a stationary GP, we use treed GPs as our surrogate models in this paper, but our approach is easily adaptable to a wide variety of surrogate models.
 
@@ -936,9 +936,7 @@ Figure~\ref{fig:rosenbrock} shows the result of surrogate model optimization at 
 %
 The right panel shows the best function value ($y$-axis) found so far at each iteration ($x$-axis), and verifies that we have found the global minimum. 
 %
-The left panel shows our convergence chart, with the window indicated by the vertical line.  
-%
-The dashed horizontal lines show the control limits. 
+The left panel shows the convergence chart, with the contrtol window to the right of the vertical line, and the control limits indicated by the dashed lines. 
 %
 At iteration 74 is the first time that all EWMA points in the control window are within the control limits, and thus we declare convergence.  This declaration of convergence comes after the global minimum has been found, but not too many iterations later, just enough to establish convergence.
 %
@@ -1010,7 +1008,7 @@ Figure~(\ref{fig:rastrigin}) shows the convergence chart (left) and the optimiza
 %
 Although the variability of the ELAI criterion increases as optimization proceeds, large ELAI values stop arriving after iteration 55, coincidently with the surrogate model's discovery of the Rastrigin's main mode, as seen in the right panel of Figure~(\ref{fig:rastrigin}).
 %
-Furthermore notice that optimization progress in Figure~(\ref{fig:rastrigin}, right) demonstrates that convergence in this case does indeed represent approximate identification of the theoretical minimum of the the function, as indicated by the dashed horizontal line at the theoretical minimum. 
+Furthermore notice that optimization progress in Figure~(\ref{fig:rastrigin}, right) demonstrates that convergence in this case does indeed represent approximate identification of the theoretical minimum of the function, as indicated by the dashed horizontal line at the theoretical minimum. 
 
 % has shown to be effective and smaller choices ofwas chosen here 
 %as the  as the increased $\lambda$ attempts to forecast the large fluctuations of the ELAI criterion produced by the regular discovery of dramatic new modes.
