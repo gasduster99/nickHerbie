@@ -116,7 +116,7 @@
   \bigskip
   \bigskip
   \begin{center}
-    {\LARGE\bf Assessing Convergence in Gaussian Process Surrogate Model Optimization}
+    {\LARGE\bf Determining Convergence in Gaussian Process Surrogate Model Optimization}
   \end{center}
   \medskip
 } \fi
@@ -146,12 +146,13 @@
 % \newgeometry{ margin=1in, top=0.70in, footskip=0.4in }
 \bigskip
 \begin{abstract}
+\noindent
 %due to the subjective nature of convergence 
 Identifying convergence in numerical optimization is an ever-present, difficult, and often subjective task. 
 %, sequential design,
-The statistical framework provided by Gaussian Process surrogate model optimization provides useful secondary measures for tracking optimization progress; however the identification of convergence via these criteria has often provided only limited success and often requires a more subjective analysis. % it these measures still subjective. % that can be used to identify convergence. 
+The statistical framework of Gaussian process surrogate model optimization provides useful secondary measures for tracking optimization progress; however the identification of convergence via these criteria has often provided only limited success and often requires a more subjective analysis. % it these measures still subjective. % that can be used to identify convergence. 
 %to track the expected improvement criterion to make
-Here we use ideas originally introduced in the field of Statistical Process Control to define a robust and objective convergence heuristic. 
+Here we develop a novel approach using ideas originally introduced in the field of Statistical Process Control to define a robust convergence criterion. 
 % to remove this subjectivity from the identification of convergence.
 The Exponentially Weighted Moving Average (EWMA) chart provides an ideal starting point for adaptation to track convergence via the EWMA convergence chart introduced here.
 \end{abstract}
@@ -180,9 +181,9 @@ The Exponentially Weighted Moving Average (EWMA) chart provides an ideal startin
 %%{\color{red}, in the real world}
 %Often computer simulations can function as fast, cost-effective, development test beds for processes that are otherwise too expensive, or dangerous, to test physically. 
 %% complex case study
-%For example, the Lockwood pump-and-treat simulator, discussed in more detail in section {\color{red}XX}, computationally simulates the flow of contaminated ground-water alongside the Yellowstone River as numerical solutions to coupled systems {\color{red}cite}.
+%For example, the Lockwood pump-and-treat simulator, discussed in more detail in section {\color{red}XX}, computationally simulates the flow of contaminated groundwater alongside the Yellowstone River as numerical solutions to coupled systems {\color{red}cite}.
 %%, as efficiently as possible control
-%The focus of the Lockwood simulation is to optimize the management of this contaminated ground-water flow, so as to avoid contamination of the river.
+%The focus of the Lockwood simulation is to optimize the management of this contaminated groundwater flow, so as to avoid contamination of the river.
 %%control schemes
 %However, the space of possible management schemes is large, and it is hard to identify when derivative-free optimization has converged to an optimal solution.
 %%Due to the computational expense of such simulators, it is often desirable to optimize while evaluating the simulation as seldomly as possible, without sacrificing the quality of the solution.
@@ -208,8 +209,9 @@ However for complex simulators, the response surface may be ill-behaved and opti
 routines can easily become trapped in a local mode, so one needs to
 run the optimization sufficiently long to achieve a robust solution.
 %
-In this paper, we provide an automated method for assessing convergence of 
-Gaussian Process surrogate model optimization by bringing in elements
+So far there have been no reliable solutions for assessing convergence of surrogate model optimization.
+In this paper, we provide an automated method for determining convergence of 
+Gaussian process surrogate model optimization by bringing in elements
 of Statistical Process Control.
 
 %
@@ -217,7 +219,7 @@ of Statistical Process Control.
 
 %
 Our motivating example is a hydrology application, the Lockwood
-pump-and-treat problem \citep{lockCite}, discussed in more detail in Section~\ref{sec:lockwood}, wherein contamination in the ground-water near the
+pump-and-treat problem \citep{lockCite}, discussed in more detail in Section~\ref{sec:lockwood}, wherein contamination in the groundwater near the
 Yellowstone River is remediated via a set of treatment wells.  
 %
 The goal is to minimize the cost of running the wells while ensuring that
@@ -226,8 +228,8 @@ no contamination enters the river.
 The contamination constraint results in a complicated boundary that is unknown in advance and
 requires evaluation of the simulator, and thus finding the global
 constrained minimum is a difficult problem where it is easy for
-optimization routines to, at least temporarily, get stuck in a local
-minimum.  
+optimization routines to temporarily get stuck in a local
+minimum. (Gaussian process surrogate model optimization should eventually escape local minima if run long enough.)  
 %
 Without knowing the answer in advance, how do we know when
 to terminate the optimization routine?
@@ -238,7 +240,7 @@ to terminate the optimization routine?
 
 %related to; is often employed for optimization of computer simulation experiments.
 %, a relatively quick, statistical model of the objective function output; this model serves as surrogate of the objective function itself and .
-The context of this paper is Gaussian Process surrogate model
+The context of this paper is Gaussian process surrogate model
 optimization, a statistical modeling approach to derivative-free
 numerical optimization that constructs a fast approximation to
 the expensive computer simulation output surface using a statistical surrogate model \citep{santnerBook}.
@@ -246,7 +248,7 @@ the expensive computer simulation output surface using a statistical surrogate m
 %The surrogate model is relatively fast to work with, as compared with a large computer simulation, and 
 Analysis of the surrogate model allows for efficient exploration the objective solution space.  
 %
-Typically a Gaussian Process (GP) surrogate model is chosen for its
+Typically a Gaussian process (GP) surrogate model is chosen for its
 robustness, relative ease of computation, and its predictive framework.
 %   landscape of the simulation parameters assessing future points of exploration on
 Arising naturally from the GP predictive distribution \citep{gBook}, the maximum Expected Improvement (EI) criterion has shown to be a valuable criterion for guiding the exploration of the objective function and shows promise for use as a convergence criterion \citep{jonesEIOpt, taddyOpt}. %furthermore the EI shows promise for use as a convergence criterion {\color{red}cite}.
@@ -259,7 +261,7 @@ Arising naturally from the GP predictive distribution \citep{gBook}, the maximum
 %
 %
 
-\clearpage
+%\clearpage
 %however; as a means of assessing convergence GP surrogate
 %{\color{red}Literature cite} recommends considering the EI as a convergence criterion for surrogate model optimization; as of yet, little work has been done to describe what convergence of these algorithms actually looks like in the context of the EI criterion.
 \cite{taddyOpt} considers the use of the improvement distribution for identifying global convergence; stating its value for use in applied optimization.
@@ -285,7 +287,7 @@ Thus it is no surprise that this treatment of the EI criterion can result in an 
 \includegraphics[width=0.32\textwidth]{./figures/introChartRastHardAxis.pdf}
 \caption{
 %
-Three ELAI series (more details in Section~\ref{sec:examples}) plotted alongside an example convergence threshold value shown as a dashed line at -10.
+Three Expected Lognormal Approximation to the Improvement series (more details in Section~\ref{sec:examples}) plotted alongside an example convergence threshold value shown as a dashed line at -10.
 }
 \label{introFig}
 \end{figure}
@@ -316,7 +318,7 @@ approximation to the improvement distribution to generate a more appropriate con
 detail in Section~3.2.
 %
 Figure~(\ref{introFig}) represents three series of the Expected
-Lognormal Approximation to the Improvement (ELAI) convergence criterion values from three
+Lognormal Approximation to the Improvement (ELAI) values from three
 different optimization problems.
 %
 We will demonstrate later in this paper that convergence is established near the end of each of these series.
@@ -378,7 +380,7 @@ The surrogate model serves as an efficient tool for using function evaluations t
 %
 Surrogate modeling is therefore useful for optimizing large computer simulation experiments, where each function evaluation may consume considerable computational resources, while the surrogate model can be evaluated quickly.
 %
-The standard surrogate model in the literature for analysis of computer experiments is a Gaussian Process (GP) \citep{sacksDesign, santnerBook}. A GP is a stochastic process such that when evaluated at any finite collection of points, that collection follows a multivariate Gaussian distribution. A GP is defined by its mean function and its covariance function, and various standard formulations exist \citep{abrahamsenBook,steinBook}. Most formulations take advantage of a large degree of smoothness, reflecting a modeling assumption of smoothness in the output of the simulator, in that if the simulator is evaluated at two nearby inputs, then one expects the resulting outputs to be relatively close. A GP can interpolate, which can be useful for a deterministic simulator, or it can smooth, which has a number of practical advantages even for deterministic simulators \citep{gramacy2012}.
+The standard surrogate model in the literature for analysis of computer experiments is a Gaussian process (GP) \citep{sacksDesign, santnerBook}. A GP is a stochastic process such that when evaluated at any finite collection of points, that collection follows a multivariate Gaussian distribution. A GP is defined by its mean function and its covariance function, and various standard formulations exist \citep{abrahamsenBook,steinBook}. Most formulations take advantage of a large degree of smoothness, reflecting a modeling assumption of smoothness in the output of the simulator, in that if the simulator is evaluated at two nearby inputs, then one expects the resulting outputs to be relatively close. A GP can interpolate, which can be useful for a deterministic simulator, or it can smooth, which has a number of practical advantages even for deterministic simulators \citep{gramacy2012}.
 
 %GP surrogate modeling considers the objective function $f \sim \text{GP}\big(m(\bm{x}), ~C(\bm{x}, \bm{x}')\big)$, and thus aims to minimize the number of actual function evaluations by using the GP predictive surface to interpolate between function evaluations.
 %learning
@@ -457,7 +459,7 @@ For further explanation of partitioned Gaussian process models as well as notes 
 % %
 % % \item For the sake of optimization, the assertion of a smooth objective function, $f$, serves as the basis for most efficient searching algorithms.%, as is explicitly the case with GP.
 % %
-% % \item In the case of GP surrogate modeling, the Gaussian Process theory can explicitly express this desire for smoothness through the a'priori choice of a covariance function with the desired smoothness properties.
+% % \item In the case of GP surrogate modeling, the Gaussian process theory can explicitly express this desire for smoothness through the a'priori choice of a covariance function with the desired smoothness properties.
 % %
 % % \item Although smoothness is key to search, and 
 % %  
@@ -482,7 +484,7 @@ For further explanation of partitioned Gaussian process models as well as notes 
 % {\color{red} *Everybody uses GP, bunch of cites}
 % 
 % %
-% For more details on the theoretical foundations of Gaussian Processes in computer experiments see \cite{santnerBook}.
+% For more details on the theoretical foundations of Gaussian processes in computer experiments see \cite{santnerBook}.
 % %
 % If we have any hope of finding optima of a function, $f$, we impose the condition that $f$ provides a reasonably smooth mapping for relating points in the domain, $\bm{x}$, to response values, $z(\bm{x})$.
 % %\text{\textbf{Z}}; $\big($i.e.~\big)$; \text{Z}
@@ -641,7 +643,7 @@ These issues naturally suggest releasing the bound at 0 by modeling transformati
 %
 One of the simplest of the many possible helpful transformations in this case would consider the log of the improvement distribution. 
 %
-However due to the MCMC sample-based implementation of the Gaussian Process, and the desire for a large number of samples from the improvement distribution, it is not uncommon to obtain at least one sample that is computationally indistinguishable from 0 in double precision.
+However due to the MCMC sample-based implementation of the Gaussian process, and the desire for a large number of samples from the improvement distribution, it is not uncommon to obtain at least one sample that is computationally indistinguishable from 0 in double precision.
 %
 Thus simply taking the log of the improvement samples can result in numerical failure, particularly as convergence approaches, even though the quantities are theoretically strictly positive.
 %
@@ -666,9 +668,9 @@ Using this relation we do not need to transform any of the improvement samples.
 %
 We compute the empirical mean and variance of the unaltered, approximately lognormal, improvement samples, then use relation (\ref{lnRelate}) to directly compute $\psi$ as the Expectation under the Lognormal Approximation to the Improvement (ELAI).
 %Considering that the log improvement has reduced right skew, for the sake of improved asymptotics of the; of the $\E{\log\text{I}}$ distribution enjoys improved asymptotics
-The ELAI convergence criterion is a useful convergence criterion in this case because of the reduced right skew of the log of the improvement distribution, and the ELAI convergence criterion serves as a computationally robust approximation of the $\E{\log\text{I}}$ under reasonable log-normality of the improvements.
+The ELAI value is useful for assessing convergence because of the reduced right skew of the log of the improvement distribution, and the ELAI serves as a computationally robust approximation of the $\E{\log\text{I}}$ under reasonable log-normality of the improvements.
 %approximately
-Furthermore, both the $\E{\log\text{I}}$ and ELAI convergence criterion are distributed approximately normally in repeated sampling.
+Furthermore, both the $\E{\log\text{I}}$ and ELAI are distributed approximately normally in repeated sampling.
 %
 This construction allows for more consistent and accurate use of the fundamental theory on which our SPC perspective depends.
 
@@ -873,7 +875,7 @@ For example, if the objective function must be searched over a large domain, par
 %
 Thus the EI criterion, and by extension the ELAI criterion, may display high variance, associated with high uncertainty, as well as be slow to decrease in mean value from the initial state of pre-convergence into convergence.
 %
-Jointly the high ELAI variance and the slow decreasing mean value of the ELAI criterion may make it hard to identify convergence; in these cases large values of $w$ are required to discern this relatively slight signal in the context of increased noise.
+Jointly the high ELAI variance and the slow decreasing mean ELAI value may make it hard to identify convergence; in these cases large values of $w$ are required to discern this relatively slight signal in the context of increased noise.
 %
 Similar effects may be observed for highly multimodal objective functions, as the regular discovery of new modes will increase the variance of the ELAI criterion, and disguise any decreasing mean value among the noise inherent to the search of such functions.
 
@@ -889,7 +891,7 @@ Similar effects may be observed for highly multimodal objective functions, as th
 %
 
 %
-By contrast, strongly unimodal functions will enjoy a relatively fast decrease in the ELAI criterion in the presence of relatively small variability.
+By contrast, strongly unimodal functions will enjoy a relatively fast decrease in ELAI in the presence of relatively small variability.
 %
 This higher signal-to-noise ratio makes for easier identification of convergence, and thus allows for a smaller choice of $w$. % to notice a move of the ELAI criterion into convergence.
 %
@@ -926,7 +928,7 @@ However if $w$ is chosen to be too small, the algorithm may be over eager to cla
 %
 
 %
-In identifying convergence, we not only desire that the ELAI convergence criterion reaches a state of control, but we desire that the ELAI series demonstrates a move from a state of pre-convergence to a consistent state of convergence.
+In identifying convergence, we not only desire that the ELAI series reaches a state of control, but we desire that the ELAI series demonstrates a move from a state of pre-convergence to a consistent state of convergence.
 %
 To recognize the move into convergence we combine the notion of the control window with the EWMA framework to construct the so called, {\it EWMA Convergence Chart}.
 %
@@ -1076,7 +1078,7 @@ Rastrigin is a highly multimodal function, and as such, the many similar modes p
 %
 The multimodality of this problem increases the variability of the EI criterion, and thus represents a moderately difficult optimization problem in this context. 
 %
-It should be noted that by increasing the size of the search domain, either by increasing the bounds of the search square and/or increasing the dimension of the domain would make this example considerably more difficult and a less intuitive example for developing the choice of $w$. %tuning parameters.
+It should be noted that by increasing the size of the search domain, either by increasing the bounds of the search square and/or increasing the dimension of the domain would make this example considerably more difficult. % and a less intuitive example for developing the choice of $w$. %tuning parameters.
 
 %
 %
@@ -1093,13 +1095,13 @@ It should be noted that by increasing the size of the search domain, either by i
 %
 $\hat\lambda$ in this example is calculated to be about \rastLamb.
 %
-The decreased value of $\hat\lambda$, relative to Rosenbrock, increases the smoothing capabilities of EWMA procedure, as a response to the increased noise in the ELAI series. %so as to separate out the increase noise in the ELAI series from  signal.% the increased noise in the ELAI series to a greater degree, as values more by reflectes the increased use of $\lambda$ as a smoothing parameter, relative to rosebrock.
+The decreased value of $\hat\lambda$, relative to Rosenbrock, increases the smoothing capabilities of the EWMA procedure, as a response to the increased noise in the ELAI series. %so as to separate out the increase noise in the ELAI series from  signal.% the increased noise in the ELAI series to a greater degree, as values more by reflectes the increased use of $\lambda$ as a smoothing parameter, relative to rosebrock.
 %
-The added noise of the ELAI criterion, in this case, comes from the regular discovery of dramatic new modes as optimization proceeds.
+The added noise of the ELAI series here comes from the regular discovery of dramatic new modes as optimization proceeds.
 %
 Due to the increased complexity of Rastrigin relative to Rosenbrock, a larger $w$ is needed to recognize convergence in the presence of increased noise in the ELAI criterion. 
 %
-In this application $w=40$, was chosen by experimentation.
+In this application $w=40$ was found to work well.
 %
 Although larger choices of $w$ produce equally consistent identification of convergence, they do so with more function evaluations.
 
@@ -1286,7 +1288,7 @@ This solution is well corroborated as a point of diminishing returns for this pr
 %
 Adapting the notion of control from the SPC literature, the EWMA convergence chart outlined here aims to provide an objective standard for identifying convergence in the presence of the inherent stochasticity of the improvement criterion in this setting. %provides an objective definition of convergence. 
 %
-The examples provided here demonstrate how the EWMA convergence chart may accurately and efficiently identify convergence in the context of statistical surrogate model optimization.
+The examples provided here demonstrate how the EWMA convergence chart may accurately and efficiently identify convergence in the context of GP surrogate model optimization. We note that our approach could be applied with any optimization algorithm that allows computation of an expected improvement at each iteration.
 
 %
 %
