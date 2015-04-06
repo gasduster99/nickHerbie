@@ -150,7 +150,7 @@
 %due to the subjective nature of convergence 
 Identifying convergence in numerical optimization is an ever-present, difficult, and often subjective task. 
 %, sequential design, secondary
-The statistical framework of Gaussian process surrogate model optimization provides useful measures for tracking optimization progress; however the identification of convergence via these criteria has often provided only limited success and often requires a more subjective analysis. % it these measures still subjective. % that can be used to identify convergence. 
+The statistical framework of Gaussian process surrogate model optimization provides useful measures for tracking optimization progress; however, the identification of convergence via these criteria has often provided only limited success and often requires a more subjective analysis. % it these measures still subjective. % that can be used to identify convergence. 
 %to track the expected improvement criterion to make
 Here we develop a novel approach using ideas originally introduced in the field of statistical process control to define a robust convergence criterion based upon the improvement function. 
 % to remove this subjectivity from the identification of convergence.
@@ -226,8 +226,9 @@ The goal is to minimize the cost of running the wells while ensuring that
 no contamination enters the river.  
 %
 The contamination constraint results in a complicated boundary that is unknown in advance and
-requires evaluation of the simulator, and thus finding the global
-constrained minimum is a difficult problem where it is easy for
+requires evaluation of the simulator. %, and thus 
+%
+Finding the global constrained minimum is a difficult problem where it is easy for
 optimization routines to temporarily get stuck in a local
 minimum. (Gaussian process surrogate model optimization should eventually escape local minima if run long enough.)  
 %
@@ -281,13 +282,13 @@ Thus it is no surprise that this treatment of the EI criterion can result in an 
 %\clearpage
 %
 %
-\begin{figure}
+\begin{figure}[htb]
 \includegraphics[width=0.32\textwidth]{./figures/introChartRoseEasyEasyAxis.pdf}
 \includegraphics[width=0.32\textwidth]{./figures/introChartLock6Three20000Axis.pdf}
 \includegraphics[width=0.32\textwidth]{./figures/introChartRastHardAxis.pdf}
 \caption{
 %
-Three Expected Lognormal Approximation to the Improvement series (more details in Section~\ref{sec:examples}) plotted alongside an example convergence threshold value shown as a dashed line at -10.
+Three Expected Log-normal Approximation to the Improvement series (more details in Section~\ref{sec:examples}) plotted alongside an example convergence threshold value shown as a dashed line at -10.
 }
 \label{introFig}
 \end{figure}
@@ -296,12 +297,12 @@ Three Expected Lognormal Approximation to the Improvement series (more details i
 
 %%of the series value; of the values; shows; non-negative
 %Because EI is strictly positive but decreasingly small,
-%we find it more productive to work on the log scale, using a lognormal
+%we find it more productive to work on the log scale, using a log-normal
 %approximation to the improvement distribution to generate a more appropriate convergence criterion, as described in more
 %detail in Section~3.2.
 %%
 %Figure~(\ref{introFig}) represents three series of the Expected
-%Lognormal Approximation to the Improvement (ELAI) convergence criterion values from three
+%Log-normal Approximation to the Improvement (ELAI) convergence criterion values from three
 %different optimization problems that will be demonstrated later in
 %this paper, where it will be shown that convergence is established near
 %the end of each of these series.
@@ -313,12 +314,12 @@ Three Expected Lognormal Approximation to the Improvement series (more details i
 
 %of the series value; of the values; shows; non-negative
 Because EI is strictly positive but decreasingly small,
-we find it more productive to work on the log scale, using a lognormal
+we find it more productive to work on the log scale, using a log-normal
 approximation to the improvement distribution to generate a more appropriate convergence criterion, as described in more
 detail in Section~3.2.
 %
 Figure~(\ref{introFig}) represents three series of the Expected
-Lognormal Approximation to the Improvement (ELAI) values from three
+Log-normal Approximation to the Improvement (ELAI) values from three
 different optimization problems.
 %
 We will demonstrate later in this paper that convergence is established near the end of each of these series.
@@ -355,7 +356,7 @@ variability is not a necessary condition.
 %
 
 %
-As the Improvement function is itself random, attempting to 
+Since the Improvement function is itself random, attempting to 
 set a lower threshold bound on the EI, without consideration of the underlying 
 EI distribution through time, over-simplifies the dynamics of convergence
 in this setting. 
@@ -380,7 +381,15 @@ The surrogate model serves as an efficient tool for using function evaluations t
 %
 Surrogate modeling is therefore useful for optimizing large computer simulation experiments, where each function evaluation may consume considerable computational resources, while the surrogate model can be evaluated quickly.
 %
-The standard surrogate model in the literature for analysis of computer experiments is a Gaussian process (GP) \citep{sacksDesign, santnerBook}. A GP is a stochastic process such that when evaluated at any finite collection of points, that collection follows a multivariate Gaussian distribution. A GP is defined by its mean function and its covariance function, and various standard formulations exist \citep{abrahamsenBook,steinBook}. Most formulations take advantage of a large degree of smoothness, reflecting a modeling assumption of smoothness in the output of the simulator, in that if the simulator is evaluated at two nearby inputs, then one expects the resulting outputs to be relatively close. A GP can interpolate, which can be useful for a deterministic simulator, or it can smooth, which has a number of practical advantages even for deterministic simulators \citep{gramacy2012}.
+The standard surrogate model in the literature for analysis of computer experiments is a Gaussian process (GP) \citep{sacksDesign, santnerBook}. 
+%that collenction
+A GP is a stochastic process such that when evaluated at any finite collection of points, the collection follows a multivariate Gaussian distribution. 
+%
+A GP is defined by its mean function and its covariance function, with various standard formulations \citep{abrahamsenBook,steinBook}. 
+%
+Most formulations take advantage of a large degree of smoothness, reflecting a modeling assumption of smoothness in the output of the simulator, in that if the simulator is evaluated at two nearby inputs, then one expects the resulting outputs to be relatively close. 
+%
+A GP can interpolate, which can be useful for a deterministic simulator, or it can smooth, which has a number of practical advantages even for deterministic simulators \citep{gramacy2012}.
 
 %GP surrogate modeling considers the objective function $f \sim \text{GP}\big(m(\bm{x}), ~C(\bm{x}, \bm{x}')\big)$, and thus aims to minimize the number of actual function evaluations by using the GP predictive surface to interpolate between function evaluations.
 %learning
@@ -424,7 +433,9 @@ The partitioning scheme is fit via a reversible jump MCMC algorithm, jumping bet
 %
 Partitioning the domain in this way allows parsimonious surrogate models in simple objective function cases and quite flexible surrogate models when the objective function displays complex behavior. 
 %
-For further explanation of partitioned Gaussian process models as well as notes on implementing such models in R, see the R package \verb tgp  \citep{tgp, tgp2}.  Because many of the objective functions of interest are not well modeled by a stationary GP, we use treed GPs as our surrogate models in this paper, but our approach is easily adaptable to a wide variety of surrogate models.
+For further explanation of partitioned Gaussian process models, as well as, notes on implementing such models in R, see the R package \verb tgp  \citep{tgp, tgp2}.  
+%
+Because many of the objective functions of interest are not well modeled by a stationary GP, we use treed GPs as our surrogate models in this paper, but our approach is easily adaptable to a wide variety of surrogate models.
 
 %       In many cases the assumption of a smooth $f$ with a homogeneous uncertainty structure can provide an effective and parsimonious model.
 %       %
@@ -526,12 +537,17 @@ EI is built upon the improvement function \citep{jonesEIOpt}:
 \label{ix}
 \end{equation}
 %
-where $f_{min}$ is the smallest function value observed so far.  EI is the expectation of the improvement function with respect to the posterior predictive distribution of the surrogate model, $\Eix$.
-EI rewards candidates both for having a low predictive mean, as well high uncertainty (where the function has not been sufficiently explored).
+where $f_{min}$ is the smallest function value observed so far.  
 %
-By definition the improvement function is always non-negative, and the GP posterior predictive $\Eix$ is strictly positive.
+EI is the expectation of the improvement function with respect to the posterior predictive distribution of the surrogate model, $\Eix$.
 %
-The EI criterion is available in closed form for a stationary GP, and for other models can be quickly estimated using Monte Carlo posterior predictive samples at given candidate locations.
+EI rewards candidates both for having a low predictive mean, as well as, high uncertainty (where the function has not been sufficiently explored).
+%
+By definition the improvement function is always non-negative and the GP posterior predictive $\Eix$ is strictly positive.
+%
+The EI criterion is available in closed form for a stationary GP.
+%
+For other models the EI criterion can be quickly estimated using Monte Carlo posterior predictive samples at given candidate locations.
 
 \clearpage
 %
@@ -624,7 +640,7 @@ It is important to note that we are not performing traditional SPC in this conte
 
 %
 %
-\subsection{Expected Lognormal Approximation to the Improvement (ELAI)}
+\subsection{Expected Log-normal Approximation to the Improvement (ELAI)}
 %
 %
 
@@ -651,17 +667,19 @@ However due to the MCMC sample-based implementation of the Gaussian process, and
 %
 Thus simply taking the log of the improvement samples can result in numerical failure, particularly as convergence approaches, even though the quantities are theoretically strictly positive.
 %
-Despite this numerical inconvenience, the distribution of the improvement samples is often very well approximated by the Lognormal distribution. 
+Despite this numerical inconvenience, the distribution of the improvement samples is often very well approximated by the log-normal distribution. 
 
 %
 %
 
 %
-We avoid the numerical issues by using a model-based approximation. With the desire to model $\mathbb{E}\left[~\log\text{I}~\right] \approxdist N\left(\mu, \frac{\sigma^2}{n}\right)$, we switch to a Lognormal perspective.   
+We avoid the numerical issues by using a model-based approximation. 
+%
+With the desire to model $\mathbb{E}\left[~\log\text{I}~\right] \approxdist N\left(\mu, \frac{\sigma^2}{n}\right)$, we switch to a log-normal perspective.   
 %
 Recall that if a random variable \mbox{$X\sim Log$-$N(\psi, \nu)$,} then another random variable $Y=\log(X)$ is distributed $Y\sim N(\psi, \nu)$.
 %{\color{red}cite}
-Furthermore, if $m$ and $v$ are, respectively, the mean and variance of a lognormal sample, then the mean, $\psi$, and variance, $\nu$, of the associated normal distribution are given by the following relation.
+Furthermore, if $m$ and $v$ are, respectively, the mean and variance of a log-normal sample, then the mean, $\psi$, and variance, $\nu$, of the associated normal distribution are given by the following relation.
 %
 \begin{eqnarray}
 \psi = \log\left( \frac{m^2}{\sqrt{v+m^2}} \right) &~&  \nu = \log\bigg( 1+ \frac{v}{m^2} \bigg).
@@ -670,9 +688,11 @@ Furthermore, if $m$ and $v$ are, respectively, the mean and variance of a lognor
 %
 Using this relation we do not need to transform any of the improvement samples.
 %
-We compute the empirical mean and variance of the unaltered, approximately lognormal, improvement samples, then use relation (\ref{lnRelate}) to directly compute $\psi$ as the Expectation under the Lognormal Approximation to the Improvement (ELAI).
+We compute the empirical mean and variance of the unaltered, approximately log-normal, improvement samples, then use relation (\ref{lnRelate}) to directly compute $\psi$ as the Expectation under the Log-normal Approximation to the Improvement (ELAI).
 %Considering that the log improvement has reduced right skew, for the sake of improved asymptotics of the; of the $\E{\log\text{I}}$ distribution enjoys improved asymptotics
-The ELAI value is useful for assessing convergence because of the reduced right skew of the log of the posterior predictive improvement distribution, additionally the ELAI serves as a computationally robust approximation of the $\E{\log\text{I}}$ under reasonable log-normality of the improvements.
+The ELAI value is useful for assessing convergence because of the reduced right skew of the log of the posterior predictive improvement distribution.
+%
+Additionally, the ELAI serves as a computationally robust approximation of the $\E{\log\text{I}}$ under reasonable log-normality of the improvements.
 %approximately
 Furthermore, both the $\E{\log\text{I}}$ and ELAI are distributed approximately normally in repeated sampling.
 %
@@ -1328,7 +1348,7 @@ The EWMA convergence chart presented here is intended as a starting point for es
 Details of the particular implementation of these methods may improve through further analysis of model usage and parameter estimation. 
 %
 % transformed improvement distributions with
-The strategy presented here for transforming the improvement distribution via the Lognormal approximation to the improvement distribution has shown to be an empirically effective and computationally simple solution to better meet the assumptions of the EWMA control charting methodology.
+The strategy presented here for transforming the improvement distribution via the Log-normal approximation to the improvement distribution has shown to be an empirically effective and computationally simple solution to better meet the assumptions of the EWMA control charting methodology.
 %
 However, some applications may find it worthwhile to explore other transformations which could result in higher overall transformed signal to noise ratios, across a more broad set of improvement distributions. %s which may result in a in a more effective use of the information in the improvement distribution.
 %
