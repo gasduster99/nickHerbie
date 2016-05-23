@@ -1,0 +1,48 @@
+This is BibTeX, Version 0.99d (TeX Live 2013/Debian)
+Capacity: max_strings=35307, hash_size=35307, hash_prime=30011
+The top-level auxiliary file: isba16.poster.aux
+The style file: jasa.bst
+Database file #1: spcCite.bib
+Warning--there's a number but no series in windExample
+You've used 6 entries,
+            2666 wiz_defined-function locations,
+            650 strings with 5694 characters,
+and the built_in function-call counts, 2776 in all, are:
+= -- 264
+> -- 104
+< -- 5
++ -- 40
+- -- 32
+* -- 266
+:= -- 479
+add.period$ -- 23
+call.type$ -- 6
+change.case$ -- 42
+chr.to.int$ -- 6
+cite$ -- 7
+duplicate$ -- 116
+empty$ -- 213
+format.name$ -- 52
+if$ -- 541
+int.to.chr$ -- 1
+int.to.str$ -- 1
+missing$ -- 7
+newline$ -- 35
+num.names$ -- 24
+pop$ -- 39
+preamble$ -- 1
+purify$ -- 40
+quote$ -- 0
+skip$ -- 79
+stack$ -- 0
+substring$ -- 165
+swap$ -- 28
+text.length$ -- 1
+text.prefix$ -- 0
+top$ -- 0
+type$ -- 51
+warning$ -- 1
+while$ -- 20
+width$ -- 0
+write$ -- 87
+(There was 1 warning)

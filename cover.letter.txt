@@ -1,6 +1,10 @@
 Dear Professor Qiu,
 
-I am submitting the manuscript "Determining Convergence in Gaussian Process Surrogate Model Optimization," which is from my research as a graduate student. While a significant literature on statistical surrogate model optimization has developed, we are not aware of any reliable solutions in the literature for determining convergence of surrogate model optimization. This paper provides an automated and robust criterion for identifying convergence, using a novel framework inspired by Statistical Process Control. Please let me know if I can provide any additional information. I look forward to hearing back from you.
+I am submitting the manuscript "Determining Convergence in Gaussian Process Surrogate Model Optimization," which is from my research as a graduate student. 
+While a significant literature on statistical surrogate model optimization has developed, we are not aware of any reliable solutions in the literature for determining convergence of surrogate model optimization. 
+This paper provides an automated and robust criterion for identifying convergence, using a novel framework inspired by Statistical Process Control. 
+Please let me know if I can provide any additional information. 
+I look forward to hearing back from you.
 
 Sincerely,
 Nicholas Grunloh
