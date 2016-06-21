@@ -4,45 +4,45 @@ The top-level auxiliary file: spcConvergeRev.aux
 The style file: jasa.bst
 Database file #1: ./spcCite.bib
 Warning--there's a number but no series in windExample
-You've used 23 entries,
+You've used 25 entries,
             2666 wiz_defined-function locations,
-            771 strings with 8686 characters,
-and the built_in function-call counts, 10364 in all, are:
-= -- 1000
-> -- 381
+            785 strings with 9033 characters,
+and the built_in function-call counts, 11352 in all, are:
+= -- 1098
+> -- 419
 < -- 26
-+ -- 149
-- -- 118
-* -- 941
-:= -- 1797
-add.period$ -- 90
-call.type$ -- 23
-change.case$ -- 156
-chr.to.int$ -- 23
-cite$ -- 24
-duplicate$ -- 443
-empty$ -- 794
-format.name$ -- 184
-if$ -- 2042
++ -- 163
+- -- 130
+* -- 1037
+:= -- 1967
+add.period$ -- 98
+call.type$ -- 25
+change.case$ -- 170
+chr.to.int$ -- 25
+cite$ -- 26
+duplicate$ -- 481
+empty$ -- 868
+format.name$ -- 200
+if$ -- 2234
 int.to.chr$ -- 1
 int.to.str$ -- 1
-missing$ -- 26
-newline$ -- 121
-num.names$ -- 92
-pop$ -- 135
+missing$ -- 28
+newline$ -- 131
+num.names$ -- 100
+pop$ -- 147
 preamble$ -- 1
-purify$ -- 151
+purify$ -- 165
 quote$ -- 0
-skip$ -- 325
+skip$ -- 351
 stack$ -- 0
-substring$ -- 616
-swap$ -- 102
+substring$ -- 694
+swap$ -- 110
 text.length$ -- 4
 text.prefix$ -- 0
 top$ -- 0
-type$ -- 195
+type$ -- 213
 warning$ -- 1
-while$ -- 77
+while$ -- 85
 width$ -- 0
-write$ -- 325
+write$ -- 353
 (There was 1 warning)
