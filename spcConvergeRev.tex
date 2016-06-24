@@ -768,11 +768,10 @@ The recursive expression of the statistic ensures that all subsequent weights ge
 Furthermore \cite{boxBook} also describes a method for computing optimal choices of $\lambda$ by minimizing the sum of squared forecasting deviations ($S_\lambda$).
 %
 For each new observation, 
-{\color{red}
 \begin{equation}
 \hat\lambda=\argmin_{\lambda\in(0,1]}\bigg(\sum_i \Big(Y_i-Z_i(\lambda)\Big)^2\bigg).
 \end{equation}
-}
+
 %
 Through this analysis of $S_\lambda$, as seen in Figure~(\ref{bestL}), it is evident that EWMA charts can be very robust to reasonable choices of $\lambda$, due to the small first and second derivatives of $S_\lambda$ for a large range of sub-optimal choices of $\lambda$ around $\hat\lambda$. % as seen in Figure~(\ref{bestL}).
 %
