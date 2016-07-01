@@ -16,7 +16,7 @@ getLambda = function(ELAI, W){
         	}
 		#minimize sum of squared forcasting errors
         	out = optimize(ssError, c(0, 1), ELAI, W)$minimum
-	} else{ out = 0.2 } #return default value for lambda until control window is filled
+	} else{ out = 0.2 } #return default for lambda until control window filled
         return( out )
 }
 
@@ -28,7 +28,7 @@ isConverge = function(ELAI, L, W){
 	n = length(ELAI)
 	#first collect control window
 	if( n>W ){
-   		#compute ewma and limits
+		#compute ewma and limits
         	ewmaOut = ewma(ELAI[1:W], lambda=L, newdata=ELAI[W:n], plot=F)
 		#find points outside of control limits
 		isOut = ewmaOut$y>ewmaOut$limits[,2] | ewmaOut$y<ewmaOut$limits[,1]

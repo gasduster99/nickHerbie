@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.1415926-2.5-1.40.14 (TeX Live 2013/Debian) (format=pdflatex 2014.6.20)  22 JUN 2016 15:02
+This is pdfTeX, Version 3.1415926-2.5-1.40.14 (TeX Live 2013/Debian) (format=pdflatex 2014.6.20)  1 JUL 2016 11:14
 entering extended mode
  restricted \write18 enabled.
  %&-line parsing enabled.
@@ -713,100 +713,102 @@ File: ./figures/ssRastHardOpt.pdf Graphic file (type pdf)
 Package pdftex.def Info: ./figures/ssRastHardOpt.pdf used on input line 797.
 (pdftex.def)             Requested size: 184.90517pt x 184.9069pt.
  [11 <./figures/ssRastHardOpt.pdf>] [12]
-[13] [14] [15] <./figures/roseContourBW.jpg, id=277, 505.89pt x 505.89pt>
+[13] [14] <./figures/roseContourBW.jpg, id=273, 505.89pt x 505.89pt>
 File: ./figures/roseContourBW.jpg Graphic file (type jpg)
 
 <use ./figures/roseContourBW.jpg>
-Package pdftex.def Info: ./figures/roseContourBW.jpg used on input line 1103.
+Package pdftex.def Info: ./figures/roseContourBW.jpg used on input line 1108.
 (pdftex.def)             Requested size: 231.135pt x 231.13748pt.
 
-Overfull \hbox (41.60262pt too wide) in paragraph at lines 1103--1106
+Overfull \hbox (41.60262pt too wide) in paragraph at lines 1108--1111
 [][]
  []
 
-<./figures/ewmaConvChartRoseEasyEasyBW.pdf, id=280, 505.89pt x 505.89pt>
+<./figures/ewmaConvChartRoseEasyEasyBW.pdf, id=276, 505.89pt x 505.89pt>
 File: ./figures/ewmaConvChartRoseEasyEasyBW.pdf Graphic file (type pdf)
 
 <use ./figures/ewmaConvChartRoseEasyEasyBW.pdf>
 Package pdftex.def Info: ./figures/ewmaConvChartRoseEasyEasyBW.pdf used on inpu
-t line 1133.
+t line 1138.
 (pdftex.def)             Requested size: 208.02008pt x 208.01833pt.
 
-<./figures/bestZRoseEasyEasyEnd.pdf, id=281, 505.89pt x 505.89pt>
+<./figures/bestZRoseEasyEasyEnd.pdf, id=277, 505.89pt x 505.89pt>
 File: ./figures/bestZRoseEasyEasyEnd.pdf Graphic file (type pdf)
 
 <use ./figures/bestZRoseEasyEasyEnd.pdf>
 Package pdftex.def Info: ./figures/bestZRoseEasyEasyEnd.pdf used on input line 
-1134.
+1139.
 (pdftex.def)             Requested size: 208.02008pt x 208.01833pt.
- [16
-
- <./figures/roseContourBW.jpg> <./figures/ewmaConvChartRoseEasyEasyBW.pdf> <./f
-igures/bestZRoseEasyEasyEnd.pdf>]
-<./figures/rastContourBW.jpg, id=305, 505.89pt x 505.89pt>
+ [15 <./figures/roseContourBW.jpg>]
+<./figures/rastContourBW.jpg, id=288, 505.89pt x 505.89pt>
 File: ./figures/rastContourBW.jpg Graphic file (type jpg)
 
 <use ./figures/rastContourBW.jpg>
-Package pdftex.def Info: ./figures/rastContourBW.jpg used on input line 1174.
+Package pdftex.def Info: ./figures/rastContourBW.jpg used on input line 1179.
 (pdftex.def)             Requested size: 231.135pt x 231.13748pt.
- [17]
-<./figures/ewmaConvChartRastHardEnd.pdf, id=311, 505.89pt x 505.89pt>
+ [16 <./figures/ewmaConvChartRoseEasyEasyBW.pdf> <./figures/bestZRoseEasyEasyEn
+d.pdf>]
+<./figures/ewmaConvChartRastHardEnd.pdf, id=307, 505.89pt x 505.89pt>
 File: ./figures/ewmaConvChartRastHardEnd.pdf Graphic file (type pdf)
 
 <use ./figures/ewmaConvChartRastHardEnd.pdf>
 Package pdftex.def Info: ./figures/ewmaConvChartRastHardEnd.pdf used on input l
-ine 1197.
+ine 1202.
 (pdftex.def)             Requested size: 208.02008pt x 208.01833pt.
 
-<./figures/bestZRastHardEnd.pdf, id=312, 505.89pt x 505.89pt>
+<./figures/bestZRastHardEnd.pdf, id=308, 505.89pt x 505.89pt>
 File: ./figures/bestZRastHardEnd.pdf Graphic file (type pdf)
 
 <use ./figures/bestZRastHardEnd.pdf>
-Package pdftex.def Info: ./figures/bestZRastHardEnd.pdf used on input line 1198
+Package pdftex.def Info: ./figures/bestZRastHardEnd.pdf used on input line 1203
 .
 (pdftex.def)             Requested size: 208.02008pt x 208.01833pt.
- [18 <./figures/rastContourBW.jpg>]
-[19 <./figures/ewmaConvChartRastHardEnd.pdf> <./figures/bestZRastHardEnd.pdf>]
-LaTeX Font Info:    Try loading font information for U+dsrom on input line 1294
+ [17 <./figures/rastContourBW.jpg>]
+[18 <./figures/ewmaConvChartRastHardEnd.pdf> <./figures/bestZRastHardEnd.pdf>]
+LaTeX Font Info:    Try loading font information for U+dsrom on input line 1299
 .
 
 (/usr/share/texlive/texmf-dist/tex/latex/doublestroke/Udsrom.fd
 File: Udsrom.fd 1995/08/01 v0.1 Double stroke roman font definitions
 )
-<./figures/ewmaConvChartLock6Three20000End.pdf, id=346, 505.89pt x 505.89pt>
+<./figures/ewmaConvChartLock6Three20000End.pdf, id=341, 505.89pt x 505.89pt>
 File: ./figures/ewmaConvChartLock6Three20000End.pdf Graphic file (type pdf)
 
 <use ./figures/ewmaConvChartLock6Three20000End.pdf>
 Package pdftex.def Info: ./figures/ewmaConvChartLock6Three20000End.pdf used on 
-input line 1335.
+input line 1340.
 (pdftex.def)             Requested size: 208.02008pt x 208.01833pt.
 
-<./figures/bestZLock6Three20000End.pdf, id=347, 505.89pt x 505.89pt>
+<./figures/bestZLock6Three20000End.pdf, id=342, 505.89pt x 505.89pt>
 File: ./figures/bestZLock6Three20000End.pdf Graphic file (type pdf)
 
 <use ./figures/bestZLock6Three20000End.pdf>
 Package pdftex.def Info: ./figures/bestZLock6Three20000End.pdf used on input li
-ne 1336.
+ne 1341.
 (pdftex.def)             Requested size: 208.02008pt x 208.01833pt.
- [20] [21 <./figures/ewmaConvChartLock6Three20000End.pdf> <./figures/bestZLock6
-Three20000End.pdf>] [22] [23]
-[24] [25] [26] (./spcConvergeRev.bbl [27
+ [19] [20 <./figures/ewmaConvChartLock6Three20000End.pdf> <./figures/bestZLock6
+Three20000End.pdf>] [21] [22]
+[23
+
+] [24
+
+] (./spcConvergeRev.bbl [25
 
 ])
-Package atveryend Info: Empty hook `BeforeClearDocument' on input line 1528.
- [28]
-Package atveryend Info: Empty hook `AfterLastShipout' on input line 1528.
+Package atveryend Info: Empty hook `BeforeClearDocument' on input line 1549.
+ [26]
+Package atveryend Info: Empty hook `AfterLastShipout' on input line 1549.
  (./spcConvergeRev.aux)
-Package atveryend Info: Executing hook `AtVeryEndDocument' on input line 1528.
-Package atveryend Info: Executing hook `AtEndAfterFileList' on input line 1528.
+Package atveryend Info: Executing hook `AtVeryEndDocument' on input line 1549.
+Package atveryend Info: Executing hook `AtEndAfterFileList' on input line 1549.
 
 Package rerunfilecheck Info: File `spcConvergeRev.out' has not changed.
 (rerunfilecheck)             Checksum: 88DBAE4FBB964EDCE67F627D1171677D;1058.
-Package atveryend Info: Empty hook `AtVeryVeryEnd' on input line 1528.
+Package atveryend Info: Empty hook `AtVeryVeryEnd' on input line 1549.
  ) 
 Here is how much of TeX's memory you used:
- 10216 strings out of 493304
- 148899 string characters out of 6139871
+ 10217 strings out of 493304
+ 148919 string characters out of 6139871
  240648 words of memory out of 5000000
  13406 multiletter control sequences out of 15000+600000
  26471 words of font info for 80 fonts, out of 8000000 for 9000
@@ -833,9 +835,9 @@ lic/cm-super/sfrm1095.pfb></usr/share/texmf/fonts/type1/public/cm-super/sfrm120
 0.pfb></usr/share/texmf/fonts/type1/public/cm-super/sfrm1440.pfb></usr/share/te
 xmf/fonts/type1/public/cm-super/sfti1200.pfb></usr/share/texmf/fonts/type1/publ
 ic/cm-super/sftt1200.pfb>
-Output written on spcConvergeRev.pdf (28 pages, 568337 bytes).
+Output written on spcConvergeRev.pdf (26 pages, 568701 bytes).
 PDF statistics:
- 503 PDF objects out of 1000 (max. 8388607)
+ 497 PDF objects out of 1000 (max. 8388607)
  87 named destinations out of 1000 (max. 500000)
  189 words of extra memory for PDF output out of 10000 (max. 10000000)
 

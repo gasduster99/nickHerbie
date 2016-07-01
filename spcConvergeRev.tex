@@ -74,7 +74,7 @@
 }
 
 \def \roseVar {
-	0.35
+	0.35 %0.06%
 }
 
 \def \roseLamb {
@@ -82,7 +82,7 @@
 }
 
 \def \rastVar {
-        1.71
+        1.71 %0.88 %
 }
 
 \def \rastLamb {
@@ -90,7 +90,7 @@
 }
 
 \def \lockVar {
-        2.86
+        2.86 %1.97 %
 }
 
 \def \lockLamb {
@@ -769,7 +769,7 @@ Furthermore \cite{boxBook} also describes a method for computing optimal choices
 %
 For each new observation, 
 \begin{equation}
-\hat\lambda=\argmin_{\lambda\in(0,1]}\bigg(\sum_i \Big(Y_i-Z_i(\lambda)\Big)^2\bigg).
+\hat\lambda=\argmin_{\lambda\in(0,1]}\bigg(\sum_i \Big(Y_i-Z_{i-1}(\lambda)\Big)^2\bigg).
 \end{equation}
 
 %
@@ -943,9 +943,15 @@ Providing a default choice of $w$ is somewhat arbitrary without careful analysis
 For the purpose of exploring the behavior of $w$ in examples presented here, we use the following proceedure for educating the choice of $w$.
 We hand tune $w$ for two informative known example functions (i.e. Rosebrock and Rastrigin).
 From exploration of $w$ in known examples, it is clear that $w$ increases directly with ELAI variance.
-Furthermore, if one considers the form of sample size calculations based on classical power analysis, sample size increases directly proportional with the sample variance.
+Furthermore, if one considers the form of sample size calculations based on {\color{red}classical power analysis, sample size increases directly proportional with the sample variance.}
 Thus we linearly extrapolate the choice of $w$ for the Lockwood case study based on a defalt starting value of 30 (based on sampling conventions) with a slope term structured to make use of the proportionality of $w$ with the observed ELAI variance, $\hat w=\frac{\Delta w}{\Delta \text{V(ELAI)}}\hat v+30$.
-Further exploration of the exact form of an estimator of $w$ is left to be discovered, although the connection of $w$ with sample size calculations is a promising line of research in itself. 
+Further exploration of the exact form of an estimator of $w$ is left to be discovered, although the connection of $w$ with sample size calculations is a promising line of research in itself.
+
+
+
+% Assuming approximate proportionality between $w$ and the ELAI variance, $v$, we extrapolate the choice of $w$ for the Lockwood case study based on the log-linear relationship $\log(w)=\beta_1 v+\beta_0$.
+% It then follows that the estimates for the $\bm{\beta}$ are $\hat\beta_1=\frac{\Delta \log(\hat w)}{\Delta \hat v}$, and $\hat \beta_0 = \log(\hat w)-\hat\beta_1 \hat v$. 
+% Further exploration of the exact form of an estimator of $w$ is left to be discovered, although this quick log-linear prediction is a promising line of research in itself, as it preserves the expected portionality between $w$ and the ELAI variance as implied by power analysis. 
 
 % the consideration of $w$ as a kind of sample size suggested 
 % We then extrapolate further choices of $w$ based on observed ELAI varianceLockwood pump and Treat based on the observed ELAI variances. 
@@ -1087,7 +1093,6 @@ We first look at two synthetic examples from the optimization literature, where 
 %
 We tune the EWMA Convergence Charts for each of these synthetic examples, then extrapolate the choice of $w$ to provide a real world example from hydrology.
 
-\clearpage
 %
 %
 \subsection{Rosenbrock}
@@ -1341,13 +1346,21 @@ Since the loss function is defined over a large and continuous domain, and runni
 %
 
 %
-By using the fitted values of $w$ and the observed ELAI variance in each of the two previous examples we extrapolate an apporpriate value of $w$ for this case study based on an observed ELAI variance of \lockVar, resulting in an estimated $w$ of $93\approx\left(\frac{60-30}{\rastVar-\roseVar}\right)\lockVar+30$, as discussed in section 3.4.
+By using the fitted values of $w$ and the observed ELAI variance in each of the two previous examples we extrapolate an apporpriate value of $w$ for this case study based on an observed ELAI variance of \lockVar, resulting in an estimated $w$ of $93\approx\left(\frac{50-30}{\rastVar-\roseVar}\right)\lockVar+30$, as discussed in section 3.4.
 %
 Again $\lambda$ was chosen via the minimum $S_\lambda$ estimator to be $\hat\lambda\approx\lockLamb$ in this case. 
 %
 This level of smoothing is required here to reduce the noise in the ELAI criterion due to the large search domain, as well as the complicated contamination boundary among the six wells.
 %
 Furthermore these features of the objective function complicate fit of the surrogate model and thus more function evaluations are required to produce an accurate model of $f$.
+
+
+% %
+% By using the fitted values of $w$ and the observed ELAI variance in each of the two previous examples we extrapolate an apporpriate value of $w$ for this case study based on the observed ELAI variance of $\hat v_{lock}\approx\lockVar$ in sample runs of the lockwood simulation. 
+% The estimated log linear relationship between $w$ and the ELAI variance produces $\hat \beta_1\approx0.62$ and $\hat \beta_0\approx3.36$ resuting in an estimated $\hat w_{lock}\approx e^{\hat\beta_0}\exp\{\hat\beta_1~v_{lock}\}=99$. 
+%$99\approx\exp\bigg\{\left(\frac{\log(50)-\log(30)}{0.88-0.06}\right)(\lockVar-0.06)+\log(30)\bigg\}$ 
+%an observed ELAI variance of \lockVar, resulting in an estimated $w$ of $99\approx\left(\frac{60-30}{\rastVar-\roseVar}\right)\lockVar+30$, as discussed in section 3.4.
+
 %\clearpage
  %  accurately  the of the  dificultie
 % to get a enough information to provide  to gather enough information to  was chosen to be 90 iterations of the algorithm to provide the 
@@ -1366,7 +1379,7 @@ Convergence in this case does not occur with a dramatic shift in the mean level 
 %
 Interestingly the last major spike in the ELAI series is observed alongside the discovery of the final major jump in the current best minimum value as seen at about iteration $180$ in the right panel of Figure~(\ref{lock6EWMAEnd}).
 %
-The EWMA convergence chart identifies convergence as the EWMA statistic associated with this final ELAI spike eventually exits the control window at iteration $270$.
+The EWMA convergence chart identifies convergence as the EWMA statistic associated with this final ELAI spike eventually exits the control window at iteration $276$.
 %
 The solution shown here corresponds to $f(\bm{x})\approx26696$ at $\bm{x}\approx[0, 6195, 12988, 3160, 1190, 3163]$.
 %
@@ -1506,14 +1519,22 @@ Although improvements to the details of these methods may exist, the fundamental
 %\item 2-parameter box-cox EI transformation instead of ELAI}
 %\end{itemize}
 
-
+\clearpage
 %
 %
 \section{Appendix}
 %
 %
 
+\section*{ewmaFunc.r}
+\spacingset{0.8}
+\VerbatimInput{ewmaConvChart.r}
+\clearpage
+\spacingset{1.45}
+\section*{main.r}
+\spacingset{0.7}
 \VerbatimInput{example.r}
+\spacingset{1.45}
 
 %
 %
