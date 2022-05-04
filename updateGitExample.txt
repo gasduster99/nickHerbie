@@ -1,0 +1,9 @@
+#creata key labeled with github email
+ssh-keygen -t rsa -b 4096 -C example@ucsc.edu
+
+#print keys to the terminal for copying into github 
+cat .ssh/id_rsa.pub
+
+#go to github to add the key. Copy and paste the entry just created.
+https://github.com/settings/keys
+
