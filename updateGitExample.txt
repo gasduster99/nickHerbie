@@ -1,4 +1,4 @@
-#creata key labeled with github email
+#create key labeled with github email
 ssh-keygen -t rsa -b 4096 -C example@ucsc.edu
 
 #print keys to the terminal for copying into github 
