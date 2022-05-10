@@ -1,26 +1,21 @@
 \begin{thebibliography}{}
 
-\bibitem[Abrahamsen, 1997]{abrahamsenBook}
-Abrahamsen, P. (1997).
-\newblock A review of gaussian random fields and correlation functions.
-\newblock Technical Report 917, Norsk Regnesentral/Norwegian Computing Center.
-
 \bibitem[Aerne et~al., 1991]{aerne1991trend}
 Aerne, L.~A., Champ, C.~W., and Rigdon, S.~E. (1991).
 \newblock Evaluation of control charts under linear trend.
 \newblock {\em Communications in Statistics-Theory and Methods},
   20(10):3341--3349.
 
-\bibitem[Box and Cox, 1964]{boxCox1964}
-Box, G.~E. and Cox, D.~R. (1964).
-\newblock An analysis of transformations.
-\newblock {\em Journal of the Royal Statistical Society. Series B
-  (Methodological)}, 26:211--252.
-
 \bibitem[Box et~al., 1997]{boxBook}
 Box, G. E.~P., Luce\~{n}o, A., and Paniagua-Qui\~{n}ones, M. D.~C. (1997).
 \newblock {\em Statistical Control by Monitoring and Adjustment}.
 \newblock Wiley, New York.
+
+\bibitem[Brochu et~al., 2010]{brochu:2010}
+Brochu, E., Cora, V.~M., and de~Freitas, N. (2010).
+\newblock A tutorial on bayesian optimization of expensive cost functions, with
+  application to active user modeling and hierarchical reinforcement learning.
+\newblock Technical Report 1012.2599, arXiv.
 
 \bibitem[Diwale et~al., 2015]{windExample}
 Diwale, S.~S., Lymperopoulos, I., and Jones, C. (2015).
@@ -33,6 +28,12 @@ Gramacy, R.~B. (2007).
 \newblock tgp: an r package for bayesian nonstationary, semiparametric
   nonlinear regression and design by treed gaussian process models.
 \newblock {\em Journal of Statistical Software}, 19(9):1--46.
+
+\bibitem[Gramacy, 2020]{gramacy:2020}
+Gramacy, R.~B. (2020).
+\newblock {\em Surrogates: Gaussian Process Modeling, Design, and Optimization
+  for the Applied Sciences}.
+\newblock Chapman \& Hall/CRC.
 
 \bibitem[Gramacy et~al., 2015]{gramacy2014}
 Gramacy, R.~B., Gray, G.~A., {Le Digabel}, S., Lee, H. K.~H., Ranjan, P.,
@@ -48,11 +49,6 @@ Gramacy, R.~B. and Lee, H. K.~H. (2008).
   computer modeling.
 \newblock {\em Journal of the American Statistical Association}, 103(483).
 
-\bibitem[Gramacy and Lee, 2012]{gramacy2012}
-Gramacy, R.~B. and Lee, H. K.~H. (2012).
-\newblock Cases for the nugget in modeling computer experiments.
-\newblock {\em Statistics and Computing}, 22(3):713--722.
-
 \bibitem[Gramacy and Taddy, 2010]{tgp2}
 Gramacy, R.~B. and Taddy, M. (2010).
 \newblock Categorical inputs, sensitivity analysis, optimization and importance
@@ -63,12 +59,6 @@ Gramacy, R.~B. and Taddy, M. (2010).
 Jones, D.~R., Schonlau, M., and Welch, W.~J. (1998).
 \newblock Efficient global optimization of expensive black-box functions.
 \newblock {\em Journal of Global Optimization}, 13(4):455--492.
-
-\bibitem[Kolda et~al., 2003]{KoldLewiTorc2003}
-Kolda, T.~G., Lewis, R.~M., and Torczon, V. (2003).
-\newblock Optimization by direct search: New perspectives on some classical and
-  modern methods.
-\newblock {\em SIAM Review}, 45:385--482.
 
 \bibitem[Lucas and Saccucci, 1990]{ewmaPaper}
 Lucas, J.~M. and Saccucci, M.~S. (1990).
@@ -82,22 +72,21 @@ Matott, S.~L., Leung, K., and Sim, J. (2011).
   involving groundwater flow and contaminant transport modeling.
 \newblock {\em Computers \& Geosciences}, 37(11):1894--1899.
 
-\bibitem[Mayer et~al., 2002]{mayer2002optimal}
-Mayer, A.~S., Kelley, C., and Miller, C.~T. (2002).
-\newblock Optimal design for problems involving flow and transport phenomena in
-  saturated subsurface systems.
-\newblock {\em Advances in Water Resources}, 25(8):1233--1256.
+\bibitem[Mockus, 1989]{mockus:1989}
+Mockus, J. (1989).
+\newblock {\em Bayesian Approach to Global Optimization}.
+\newblock Kluwer, Dordrecht.
+
+\bibitem[Pourmohamad and Lee, 2021]{TonyBook}
+Pourmohamad, T. and Lee, H. K.~H. (2021).
+\newblock {\em Bayesian Optimization with Application to Computer Experiments}.
+\newblock Springer, Cham, Switzerland.
 
 \bibitem[Rosenbrock, 1960]{rosePaper}
 Rosenbrock, H.~H. (1960).
 \newblock An automatic method for finding the greatest or least value of a
   function.
 \newblock {\em The Computer Journal}, 3(3):175--184.
-
-\bibitem[Sacks et~al., 1989]{sacksDesign}
-Sacks, J., Welch, W.~J., Mitchell, T.~J., and Wynn, H.~P. (1989).
-\newblock Design and analysis of computer experiments.
-\newblock {\em Statistical science}, 4:409--423.
 
 \bibitem[Santner et~al., 2003]{santnerBook}
 Santner, T.~J., Williams, B.~J., and Notz, W. (2003).
@@ -121,11 +110,6 @@ Scrucca, L. (2004).
 Shewhart, W.~A. (1931).
 \newblock {\em Economic control of quality of manufactured product}.
 \newblock D. Van Nostrand Company, New York.
-
-\bibitem[Stein, 1999]{steinBook}
-Stein, M.~L. (1999).
-\newblock {\em Interpolation of spatial data: some theory for kriging}.
-\newblock Springer, New York.
 
 \bibitem[Taddy et~al., 2009]{taddyOpt}
 Taddy, M.~A., Lee, H. K.~H., Gray, G.~A., and Griffin, J.~D. (2009).

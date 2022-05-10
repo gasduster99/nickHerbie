@@ -1,48 +1,48 @@
-This is BibTeX, Version 0.99d (TeX Live 2021)
+This is BibTeX, Version 0.99d (TeX Live 2020)
 Capacity: max_strings=200000, hash_size=200000, hash_prime=170003
 The top-level auxiliary file: spcConvergeRev.aux
 The style file: apalike.bst
 Database file #1: ./spcCite.bib
 Warning--there's a number but no series in windExample
-You've used 25 entries,
+You've used 22 entries,
             1935 wiz_defined-function locations,
-            654 strings with 8145 characters,
-and the built_in function-call counts, 9851 in all, are:
-= -- 975
-> -- 394
-< -- 15
-+ -- 138
-- -- 130
-* -- 860
-:= -- 1726
-add.period$ -- 77
-call.type$ -- 25
-change.case$ -- 186
-chr.to.int$ -- 25
-cite$ -- 26
-duplicate$ -- 361
-empty$ -- 693
-format.name$ -- 165
-if$ -- 1900
+            628 strings with 7604 characters,
+and the built_in function-call counts, 8379 in all, are:
+= -- 818
+> -- 340
+< -- 14
++ -- 118
+- -- 112
+* -- 717
+:= -- 1481
+add.period$ -- 68
+call.type$ -- 22
+change.case$ -- 160
+chr.to.int$ -- 22
+cite$ -- 23
+duplicate$ -- 319
+empty$ -- 590
+format.name$ -- 142
+if$ -- 1618
 int.to.chr$ -- 1
 int.to.str$ -- 0
-missing$ -- 28
-newline$ -- 129
-num.names$ -- 75
-pop$ -- 155
+missing$ -- 27
+newline$ -- 114
+num.names$ -- 66
+pop$ -- 147
 preamble$ -- 1
-purify$ -- 190
+purify$ -- 166
 quote$ -- 0
-skip$ -- 263
+skip$ -- 230
 stack$ -- 0
-substring$ -- 717
-swap$ -- 34
+substring$ -- 548
+swap$ -- 31
 text.length$ -- 4
 text.prefix$ -- 0
 top$ -- 0
-type$ -- 142
+type$ -- 120
 warning$ -- 1
-while$ -- 85
+while$ -- 69
 width$ -- 0
-write$ -- 330
+write$ -- 290
 (There was 1 warning)
