@@ -607,32 +607,37 @@ the global mean of the series.
 %
 If $Y_i$ is the current ELAI value, and $Z_i$ is the EWMA statistic associated 
 with this current value, then the initial value $Z_0$ is set to $Y_0$ and for 
-$i\in\{1, 2, 3, ...\}$ the EWMA statistic is expressed as,
+$i\in\{1, 2, 3, ...\}$ the EWMA statistic is expressed as, observation, $Y_i$. 
+The recursive expression of the statistic ensures that all subsequent weights 
+geometrically
 %
 \begin{equation}
 Z_i=\lambda Y_i+(1-\lambda)Z_{i-1}.
 \label{ewmaStat}
 \end{equation}
 %
+
 Above, $\lambda$ is a smoothing parameter that defines the weight 
-$\left( \text{i.e. }0<\lambda\le1\right)$ assigned to the most recent 
-observation, $Y_i$. The recursive expression of the statistic ensures that all 
-subsequent weights geometrically decrease as they move back through the series.
+$\left( \text{i.e. }0<\lambda\le1\right)$ assigned to the most recent decrease 
+as they move back through the series.
 
 %
 %
-\begin{wrapfigure}{r}{0.41\textwidth}
-%\vspace{-0.8cm}
-\includegraphics[width=0.4\textwidth]{./figures/ssRastHardOpt.pdf}
-\caption{ $S_\lambda$ as calculated for ELAI values derived from optimization of the Rastrigin test function. $\hat\lambda$ is shown by the vertical dashed line. }
-\label{bestL}
+\begin{wrapfigure}{r}{0.45\textwidth}
+\vspace{-0.2cm}
+\includegraphics[width=0.45\textwidth]{./figures/ssRastHardOpt.pdf}
+\caption{ 
+$S_\lambda$ as calculated for ELAI values derived under the 
+Rastrigin test function. $\hat\lambda$ is shown by the vertical dashed line. 
+} 
+\label{bestL} 
 \end{wrapfigure}
 %
 %
-
-\cite{boxBook} describes a method 
-for computing optimal choices of $\lambda$ by minimizing the sum of squared 
-forecasting deviations ($S_\lambda$).
+\hspace*{1cm}\hspace*{-1.1cm}
+%
+\cite{boxBook} describes a method for computing optimal choices of $\lambda$ 
+by minimizing the sum of squared forecasting deviations ($S_\lambda$).
 %For each new observation, 
 %\begin{equation}
 %\hat\lambda=\argmin_{\lambda\in(0,1]}\bigg(\sum_i \Big(Y_i-Z_i(\lambda)\Big)^2\bigg).
@@ -986,24 +991,24 @@ example from hydrology.
 %
 %
 
-%
-%\begin{figure}[htb]
-\begin{wrapfigure}{r}{0.48\textwidth}
-%\begin{center}
-        %\label{roseFig}
-	\vspace{-2cm}
-        \includegraphics[width=0.5\textwidth]{./figures/roseContourBW.jpg}
-	%\vspace{-2cm}
-        %\begin{eqnarray}
-	\begin{center}
-        $~~f(x_1, x_2) ~=~ 100\left(x_2-x_1^2\right)^2 + (1-x_1)^2$ \\
-        $\text{Minimum}~:~~ f(1, 1)=0~~~~~~~~~~~~~~~~$%\nonumber
-	\end{center}
-        %\label{roseEq}
-        %\end{eqnarray}  
-%\end{center}
-%\end{figure}
-\end{wrapfigure}
+%%
+%%\begin{figure}[htb]
+%\begin{wrapfigure}{r}{0.48\textwidth}
+%%\begin{center}
+%        %\label{roseFig}
+%	\vspace{-2cm}
+%        \includegraphics[width=0.5\textwidth]{./figures/roseContourBW.jpg}
+%	%\vspace{-2cm}
+%        %\begin{eqnarray}
+%	\begin{center}
+%        $~~f(x_1, x_2) ~=~ 100\left(x_2-x_1^2\right)^2 + (1-x_1)^2$ \\
+%        $\text{Minimum}~:~~ f(1, 1)=0~~~~~~~~~~~~~~~~$%\nonumber
+%	\end{center}
+%        %\label{roseEq}
+%        %\end{eqnarray}  
+%%\end{center}
+%%\end{figure}
+%\end{wrapfigure}
 
 %\clearpage
 %
@@ -1027,7 +1032,7 @@ example illustrates a well-behaved convergence process.
   \caption{Rosenbrock function: Convergence chart on the left, optimization progress on the right.}
 \label{fig:rosenbrock}
 \end{figure}
-\clearpage
+%\clearpage
 %%
 %The left panel shows our convergence chart, with the window indicated by the vertical line.  
 %%
@@ -1064,23 +1069,23 @@ spherical function, $\sum_i x_i^2$, however Rastrigin has been oscillated by
 the cosine function and vertically shifted so that it achieves a global 
 minimum value of 0 at the lowest point of its lowest trough at (0, 0).
 
-%
-%
-\begin{center}
-        \includegraphics[width=0.5\textwidth]{./figures/rastContourBW.jpg}
-        \begin{eqnarray}
-        f(x_1, x_2) &=& \sum_{i=1}^2\left[x_i^2-10\cos(2\pi x_i)\right] + 2(10)\\
-        \label{rastEq}
-        \text{Minimum}&:& f(0, 0)=0\nonumber
-        \end{eqnarray}
-\end{center}
-%
-%
+%%
+%%
+%\begin{center}
+%        \includegraphics[width=0.5\textwidth]{./figures/rastContourBW.jpg}
+%        \begin{eqnarray}
+%        f(x_1, x_2) &=& \sum_{i=1}^2\left[x_i^2-10\cos(2\pi x_i)\right] + 2(10)\\
+%        \label{rastEq}
+%        \text{Minimum}&:& f(0, 0)=0\nonumber
+%        \end{eqnarray}
+%\end{center}
+%%
+%%
 
 %
 Rastrigin is generalizable to arbitrarily many dimensions, but to develop 
 intuition, this example considers Rastrigin over the 2 dimensional square 
-$-2.5\le x_i\le 2.5$.Rastrigin is a highly multimodal function, and as such, 
+$-2.5\le x_i\le 2.5$. Rastrigin is a highly multimodal function, and as such, 
 the many similar modes present a challenge for identifying convergence.The 
 multimodality of this problem increases the variability of the EI criterion, 
 and thus represents a moderately difficult optimization problem in this 
