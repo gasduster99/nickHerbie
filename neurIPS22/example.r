@@ -24,7 +24,7 @@ rastrigin = function(x, p=2){
 }
 
 #create and objective function
-f = rastrigin#rosenbrock
+f = rosenbrock # rastrigin #
 
 #
 #EWMA CONVERGENCE CHART
@@ -99,15 +99,7 @@ while( !isConverged ){
 		L = getLambda(elai, W)
 		#convergence test
 		isConverged = ewmaCC(elai, L, W)
-		
-		#
-		print(L)
-		print(isConverged)
 	}
-	
-	#
-	print(elai)
-	print(i)
 	
 	#index iteration	
 	i = i+1
