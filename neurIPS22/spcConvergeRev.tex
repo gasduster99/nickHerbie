@@ -536,7 +536,7 @@ given by the following relation.
 Using this relation we do not need to transform any of the improvement samples.
 We compute the empirical mean and variance of the unaltered, approximately 
 log-normal, improvement samples, then use relation (\ref{lnRelate}) to 
-directly compute $\psi$ as the Expectation under the Log-normal Approximation 
+directly compute $\omega$ as the Expectation under the Log-normal Approximation 
 to the Improvement (ELAI). The ELAI value is useful for assessing convergence 
 because of the reduced right skew of the log of the posterior predictive 
 improvement distribution. Additionally, the ELAI serves as a computationally 
@@ -582,17 +582,19 @@ the global mean of the series.
 %
 If $Y_i$ is the current ELAI value, and $Z_i$ is the EWMA statistic associated 
 with this current value, then the initial value $Z_0$ is set to $Y_0$ and for 
-$i\in\{1, 2, 3, ...\}$ the EWMA statistic is expressed as, observation, $Y_i$. 
-The recursive expression of the statistic ensures that all subsequent weights 
-geometrically, i.e., $Z_i=\lambda Y_i+(1-\lambda)Z_{i-1},$
+$i\in\{1, 2, 3, ...\}$ the EWMA statistic is expressed as $Z_i=\lambda Y_i+(1-\lambda)Z_{i-1}$.
+%observation, $Y_i$. 
+%The recursive expression of the statistic ensures that all subsequent weights 
+%geometrically, i.e., $Z_i=\lambda Y_i+(1-\lambda)Z_{i-1},$
 %%
 %\begin{equation}
 %Z_i=\lambda Y_i+(1-\lambda)Z_{i-1}.
 %\label{ewmaStat}
 %\end{equation}
 %%
-where $\lambda \in (0,1]$ is a smoothing parameter that defines the weight 
-assigned to the most recent decrease as it moves back through the series.
+Here $\lambda \in (0,1]$ is a smoothing parameter that defines the weight 
+assigned to the most recent observation. The recursive expression of the 
+statistic ensures that all subsequent weights geometrically decrease.
 
 %
 %
@@ -683,10 +685,9 @@ the control limits based on this sampling distribution are seen in Eq. (\ref{EWM
 %the focusing effect of EWMA. % this focusing effect.\frac{\sigma}{\sqrt{n}}~
 %traversing backwards through the series resulting directly from the geometrically decreasing weights.
 Notice that since $\sigma^2_{Z_i}$ has a dependence on $i$, the control limits do as well.
-Looking back through the series brings us away from the focus of the moving 
-average, at $i$, and thus the control limits widen until the limiting case as, 
-$i\rightarrow\infty$, where the control limits are defined by 
-$\mu \pm c ~ \sqrt{\frac{\lambda\sigma^2}{(2-\lambda)n}}$.
+Looking back through the series brings us away from the focus of the moving average, %at $i$
+and thus the control limits widen until the limiting case, $i\rightarrow\infty$, 
+where the control limits are defined by $\mu \pm c ~ \sqrt{\frac{\lambda\sigma^2}{(2-\lambda)n}}$.
 
 %
 %(and furthermore the ELAI distribution as well
@@ -985,13 +986,12 @@ example from hydrology.
 %\clearpage
 %
 The Rosenbrock function \citep{rosePaper}, $f(x_1, x_2) =
-100\left(x_2-x_1^2\right)^2 + (1-x_1)^2$,  was an early test problem in the 
+100\left(x_2-x_1^2\right)^2 + (1-x_1)^2$, was an early test problem in the 
 optimization literature. It combines a narrow, flat parabolic valley with 
-steep walls, and thus it can be difficult for gradient-based
-methods. Convergence is non-trivial to assess, because optimization
-routines can  
-take a while to explore the relatively flat, but non-convex, valley floor for 
-the global minimum. Here we focus on the region $-2\le x_1\le2$, 
+steep walls, and thus it can be difficult for gradient-based methods. 
+Convergence is non-trivial to assess, because optimization routines 
+can take some time to explore the relatively flat, but non-convex, valley 
+floor for the global minimum. Here we focus on the region $-2\le x_1\le2$, 
 $-3\le x_2\le5$. While the region around the mode presents some minor 
 challenges, this problem is unimodal, and thus represents a relatively easier 
 optimization problem in the context of Bayesian optimization, with 
@@ -1016,12 +1016,12 @@ $\hat\lambda\approx 0.5$. Due to the relative simplicity of this problem
 we find that $w=30$ results in a well behaved convergence pattern with a final 
 ELAI variance of $0.35$. Figure~\ref{fig:rosenbrock} shows the result of 
 surrogate model optimization at convergence, as assessed by our method. The 
-right panel shows the best function value ($y$-axis) found so far at each 
-iteration ($x$-axis), and verifies that we have found the global minimum. The 
+right panel shows the best function value \mbox{($y$-axis)} found so far at each 
+iteration \mbox{($x$-axis),} and verifies that we have found the global minimum. The 
 left panel shows the convergence chart, with the control window to the right 
 of the vertical line, and the control limits indicated by the dashed 
-lines. Iteration 74 is the first time that all EWMA points in the control 
-window are observed within the control limits, and thus we declare 
+lines. Iteration 74 is the first time that all EWMA points, in the control 
+window, are observed within the control limits, and thus we declare 
 convergence. This declaration of convergence comes after the global minimum 
 has been found, but not too many iterations later, just enough to establish 
 convergence. Note that the EWMA points generally trend downward until the 
@@ -1076,13 +1076,13 @@ and thus represents a moderately difficult optimization problem.
 %
 
 %so as to separate out the increase noise in the ELAI series from  signal.% the increased noise in the ELAI series to a greater degree, as values more by reflectes the increased use of $\lambda$ as a smoothing parameter, relative to rosebrock.
-We estimate $\hat\lambda \approx 0.4$. The 
-decreased value of $\hat\lambda$, relative to Rosenbrock, increases the 
-smoothing capabilities of the EWMA procedure, as a response to the increased 
-noise in the ELAI series. %The added noise of the ELAI series here comes from 
+We estimate $\hat\lambda \approx 0.4$. The decreased value of $\hat\lambda$, 
+relative to Rosenbrock, increases the smoothing capabilities of the EWMA 
+procedure, as a response to the increased noise in the ELAI series. 
+%The added noise of the ELAI series here comes from 
 %the regular discovery of dramatic new modes as optimization proceeds.
 A larger $w$ is needed to recognize convergence in the presence of increased 
-noise in the ELAI criterion, and $w=60$ was found to work well, with a 
+noise in the ELAI criterion; $w=60$ was found to work well, with a 
 final ELAI variance of $1.71$.
 % Although larger choices of $w$ produce equally consistent identification of convergence, they do so with more function evaluations.
 
@@ -1235,22 +1235,22 @@ $S_\lambda$ estimator to be $\hat\lambda\approx 0.4$.
 
 %
 The convergence chart for monitoring the optimization of the Lockwood case 
-study is shown in the left panel of Figure~(\ref{lock6EWMAEnd}).%, as computed 
-%with $\hat\lambda\approx 0.4$ and $w=93$.
-Convergence in this case does 
-not occur with a dramatic shift in the mean level of the ELAI criterion, but 
-rather convergence occurs as the series stabilizes after large ELAI values 
-move beyond the control limit. Interestingly the last major spike in the ELAI 
-series is observed alongside the discovery of the final major jump in the 
-current best minimum value as seen at about iteration $180$ in the right panel 
-of Figure~(\ref{lock6EWMAEnd}). The EWMA convergence chart identifies 
-convergence as the EWMA statistic associated with this final ELAI spike 
-eventually exits the control window at iteration $270$. The solution shown here 
-corresponds to $f(\bm{x})\approx26696$. % at $\bm{x}\approx[0, 6195, 12988, 3160, 1190, 3163]$. 
-This solution is corroborated as a point of diminishing returns 
-by the analysis of \cite{gramacy2014} on the same problem, as seen in 
-their average EI surrogate modeling behavior. 
+study is shown in the left panel of Figure~(\ref{lock6EWMAEnd}). Convergence 
+in this case does not occur with a dramatic shift in the mean level of the 
+ELAI criterion, but rather convergence occurs as the series stabilizes after 
+large ELAI values move beyond the control limit. Interestingly the last major 
+spike in the ELAI series is observed alongside the discovery of the final 
+major jump in the current best minimum value as seen at about iteration $180$ 
+in the right panel of Figure~(\ref{lock6EWMAEnd}). The EWMA convergence chart 
+identifies convergence as the EWMA statistic associated with this final ELAI 
+spike eventually exits the control window at iteration $270$. The solution 
+shown here corresponds to $f(\bm{x})\approx26696$. This solution is 
+corroborated as a point of diminishing returns by the analysis of 
+\cite{gramacy2014} on the same problem, as seen in their average EI surrogate 
+modeling behavior. 
 
+
+%% at $\bm{x}\approx[0, 6195, 12988, 3160, 1190, 3163]$.
 %gorithms as guided by the EI criterion.
 %In Figure (18, right), after about 210 iterations, the algorithm finds its lowest cost solution to be seen in 500 iterations, corresponding to f (x) ≈ 26696 at x ≈ [0, 6195, 12988, 3160, 1190, 3163]. 
 %Considering Figure (18, left), the EWMA convergence chart identifies this convergence after only about 270 iterations.
