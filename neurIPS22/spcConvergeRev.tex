@@ -103,12 +103,11 @@ Santa Cruz, CA 95064
 %
 \begin{abstract}
 \noindent 
-Bayesian optimization routines may have theoretical convergence
-results, but determining whether a run has converged in practice can
-be a subjective task. This paper provides a framework inspired by
-statistical process control for monitoring an optimization run for convergence.
-An Exponentially Weighted Moving Average chart is adapted for
-automated convergence analysis.
+Bayesian optimization routines may have theoretical convergence results, but 
+determining whether a run has converged in practice can be a subjective task. 
+This paper provides a framework inspired by statistical process control for 
+monitoring an optimization run for convergence. An Exponentially Weighted 
+Moving Average chart is adapted for automated convergence analysis.
 \end{abstract}
 
 % it these measures still subjective. % that can be used to identify convergence. %to track the expected improvement criterion to makeHere we develop a novel approach using ideas originally introduced in the field of statistical process control to define a robust convergence criterion based upon the improvement function. % to remove this subjectivity from the identification of convergence.
@@ -799,7 +798,7 @@ increases directly proportional with the sample variance. Thus we linearly
 extrapolate the choice of $w$ for the Lockwood case study based on a default 
 starting value of 30 (based on sampling conventions) with a slope term 
 structured to make use of the proportionality of $w$ with the observed ELAI 
-variance, $\hat w=\frac{\Delta w}{\Delta \text{V(ELAI)}}\hat v+30$. %Further 
+variance ($\hat v$) so that \mbox{$\hat w=\frac{\Delta w}{\Delta \text{V(ELAI)}}\hat v+30$.} %Further 
 %exploration of the exact form of an estimator of $w$ is left to be discovered, 
 %although the connection of $w$ with sample size calculations is a promising 
 %line of research in itself. 
@@ -1076,17 +1075,15 @@ and thus represents a moderately difficult optimization problem.
 %
 %
 
-
 %so as to separate out the increase noise in the ELAI series from  signal.% the increased noise in the ELAI series to a greater degree, as values more by reflectes the increased use of $\lambda$ as a smoothing parameter, relative to rosebrock.
 We estimate $\hat\lambda \approx 0.4$. The 
 decreased value of $\hat\lambda$, relative to Rosenbrock, increases the 
 smoothing capabilities of the EWMA procedure, as a response to the increased 
 noise in the ELAI series. %The added noise of the ELAI series here comes from 
 %the regular discovery of dramatic new modes as optimization proceeds.
-A larger $w$ is 
-needed to recognize convergence in the presence of increased noise in the ELAI 
-criterion, and $w=50$ was found to work well, with a final 
-ELAI variance of $1.71$.
+A larger $w$ is needed to recognize convergence in the presence of increased 
+noise in the ELAI criterion, and $w=60$ was found to work well, with a 
+final ELAI variance of $1.71$.
 % Although larger choices of $w$ produce equally consistent identification of convergence, they do so with more function evaluations.
 
 %
@@ -1094,7 +1091,7 @@ ELAI variance of $1.71$.
 
 %
 Figure~(\ref{fig:rastrigin}) shows the convergence chart (left) and the 
-optimization progress of the algorithm (right) after 105 iterations of 
+optimization progress of the algorithm (right) after 115 iterations of 
 optimization. Although the variability of the ELAI criterion increases as 
 optimization proceeds, large ELAI values stop arriving after iteration 55, 
 coincidently with the surrogate model's discovery of the Rastrigin's main 

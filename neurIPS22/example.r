@@ -1,4 +1,5 @@
 rm(list=ls())
+
 #
 #EWMA CONVERGENCE OF ROSENBROCK
 #
@@ -8,7 +9,22 @@ library(tgp)
 library(qcc)
 
 #rosenbrock test function
-f = function(x){ 100*(x[,1]^2 - x[,2])^2 + (x[,1] - 1)^2 }
+rosenbrock = function(x){ 100*(x[,1]^2 - x[,2])^2 + (x[,1] - 1)^2 }
+
+#rastrigin test function
+rastrigin = function(x, p=2){
+        #
+        x = matrix(x, ncol=p)
+        out = matrix(NaN, nrow=dim(x)[1], ncol=1)
+        for (i in seq(1, dim(x)[1])){
+                ex = x[i,]
+                out[i] = 10*length(ex)+sum(ex^2-10*cos(2*pi*ex))
+        }
+        return(out)
+}
+
+#create and objective function
+f = rastrigin#rosenbrock
 
 #
 #EWMA CONVERGENCE CHART
@@ -18,28 +34,31 @@ f = function(x){ 100*(x[,1]^2 - x[,2])^2 + (x[,1] - 1)^2 }
 W = 30
 #a flag to monitor convergence
 notConverge = TRUE
+
 #a function to compute lambda
 getLambda = function(ELAI, W){
 	#minimize sum of squared forecasting errors	
 	ssError = function(L, y, W){
 		yLen = length(y)
 		ewmaOut = ewma(y[1:W], lambda=L, newdata=y[W:yLen], plot=F)	
-		#sum((ewmaOut$y[1:yLen]-y)^2)
 		return( sum((ewmaOut$y[1:yLen+1]-y)^2) )
 	}
 	out = optimize(ssError, c(0, 1), rev(ELAI), W)
 	return( out$minimum )
 }
+
 #a function for checking convergence
 ewmaCC = function(ELAI, L, W){	
-	#
-	ewmaOut = ewma(rev(EI)[1:W], lambda=L, newdata=rev(EI)[W:length(EI)], plot=F)
-	#return a list
-		#1)convergence state
-			#out = ewmaOut$y>ewmaOut$limits[,2] | ewmaOut$y<ewmaOut$limits[,1]
-		#2)L
+	#compute the ewma chart on the control window
+	ewmaOut = ewma(rev(ELAI)[1:W], lambda=L, newdata=rev(ELAI)[(W+1):length(ELAI)], plot=F)
+	#check elai against the limits
+        allLimitCheck = rev(ewmaOut$y>ewmaOut$limits[,2] | ewmaOut$y<ewmaOut$limits[,1])
+        A = length(allLimitCheck)
+        outWindow = allLimitCheck[1:(A-W)]   #outside of control window
+        innWindow = allLimitCheck[(A-W+1):A] #inside the control window
+        #
+        return( any(outWindow) & !any(innWindow) )
 }
-
 
 #
 #TGP SURROGATE
@@ -51,48 +70,48 @@ rect = cbind(c(-2, -3), c(2, 5))
 X = lhs(40, rect)
 #2) Compute f(X).
 Z = f(X)
-Zmax = c(min(Z))
-#init
+Zmin = c(min(Z))
+
+#initialize
+i = 1
 elai = c()
 tgpOut = NULL
-#
-#while( notConverge ){
+isConverged = F
+while( !isConverged ){
 	#3-5) Fit Surrogate; Collect candidate set; Compute EI; 
 	tgpOut = optim.step.tgp(f, X=X, Z=Z, rect=rect, prev=tgpOut, improv=c(1,1), trace=T, verb=0)	
 	ex = matrix(tgpOut$X, ncol=2)	
 	#6) Add argmax EI to X.
         X = rbind(X, ex)#
         Z = c(Z, f(ex))
-        Zmax = c(Zmax, min(Z))
-	#
-	#maxI = which( EimprovAll$rank==1 )
+        Zmin = c(Zmin, min(Z))
+	
+	#compute ELAI
 	samp = tgpOut$obj$trace$preds$improv[ tgpOut$obj$improv$rank==1 ][[1]]
 	ei = mean(samp)
 	vi = var(samp)
-	#
-	elai = c(elai, log((ei^2)/(vi+ei^2)^0.5))
+	elai = c(elai, log((ei^2)/(vi+ei^2)^0.5) )
+
+	#7) Check Convergence	
+	#only check after window is filled
+	if(i>W){	
+		#compute lambda
+		L = getLambda(elai, W)
+		#convergence test
+		isConverged = ewmaCC(elai, L, W)
+		
+		#
+		print(L)
+		print(isConverged)
+	}
 	
-        #EimprovAll = tgpOut$obj$improv 
-        #maxSamples = unlist( improvSamples[maxI] )
-        #m = mean(maxSamples)
-        maxes[it] = m
-#	#7) Check Convergence.
-#	notConverge = ewmaCC(ei, W)
-#}
-
-
-#
-#EM = dim(rect)[1]
-##sweeps of optimization
-#M = 60#150#120
-##intializing
-#Zmax = c(min(Z))
-#wSamples = c()
-#samples = c()
-#sLen = NULL
-#maxes = matrix(NaN, nrow=M, ncol=1)
-#out = NULL
-
+	#
+	print(elai)
+	print(i)
+	
+	#index iteration	
+	i = i+1
+}
 
 
 
