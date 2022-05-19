@@ -1417,13 +1417,15 @@ beneficial to stop iterating the routine and reflect upon the results.
   \item Did you specify all the training details (e.g., data splits, hyperparameters, how they were chosen)?
     \answerYes{} 
   \item Did you report error bars (e.g., with respect to the random seed after running experiments multiple times)?
-    \answerTODO{}
+    \answerNo{
+	While we have run replicates, it isn't clear how to measure uncertainty. 
+    }
   \item Did you include the total amount of compute and the type of resources used (e.g., type of GPUs, internal cluster, or cloud provider)?
     \answerNo{
 	Details about computation time will vary between particular implementations of 
-	different Bayesian optimization algorithms, but identification of convergence 
-	of these various algorithms requires a negligible amount of compute. Compute used in the 
-	computation of the Bayesian optimization algorithm itself is irrelevant to the scope of this paper.
+	different Bayesian optimization algorithms. Compute used in the computation 
+	of the Bayesian optimization algorithm itself is irrelevant to the scope of 
+	this paper, and identification of convergence requires a negligible amount of compute.
 	}
 \end{enumerate}
 
@@ -1431,7 +1433,7 @@ beneficial to stop iterating the routine and reflect upon the results.
 \item If you are using existing assets (e.g., code, data, models) or curating/releasing new assets...
 \begin{enumerate}
   \item If your work uses existing assets, did you cite the creators?
-    \answerYes{The Lockwood example is an existing asset and the original author \cite{lockCite} is cited.}
+    \answerYes{The Lockwood example uses an existing asset and the original author \cite{lockCite} is cited.}
   \item Did you mention the license of the assets?
     \answerNo{
 	The Lockwood code does not have a public license. The Lockwood case study 

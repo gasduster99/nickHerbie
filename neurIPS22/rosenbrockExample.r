@@ -11,20 +11,8 @@ library(qcc)
 #rosenbrock test function
 rosenbrock = function(x){ 100*(x[,1]^2 - x[,2])^2 + (x[,1] - 1)^2 }
 
-#rastrigin test function
-rastrigin = function(x, p=2){
-        #
-        x = matrix(x, ncol=p)
-        out = matrix(NaN, nrow=dim(x)[1], ncol=1)
-        for (i in seq(1, dim(x)[1])){
-                ex = x[i,]
-                out[i] = 10*length(ex)+sum(ex^2-10*cos(2*pi*ex))
-        }
-        return(out)
-}
-
 #create and objective function
-f = rastrigin # rosenbrock #
+f = rosenbrock 
 
 #
 #EWMA CONVERGENCE CHART
@@ -32,8 +20,6 @@ f = rastrigin # rosenbrock #
 
 #window size
 W = 30
-#a flag to monitor convergence
-notConverge = TRUE
 
 #a function to compute lambda
 getLambda = function(ELAI, W){

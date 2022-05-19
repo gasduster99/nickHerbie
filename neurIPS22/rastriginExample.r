@@ -8,9 +8,6 @@ rm(list=ls())
 library(tgp)
 library(qcc)
 
-#rosenbrock test function
-rosenbrock = function(x){ 100*(x[,1]^2 - x[,2])^2 + (x[,1] - 1)^2 }
-
 #rastrigin test function
 rastrigin = function(x, p=2){
         #
@@ -24,14 +21,14 @@ rastrigin = function(x, p=2){
 }
 
 #create and objective function
-f = rastrigin # rosenbrock #
+f = rastrigin 
 
 #
 #EWMA CONVERGENCE CHART
 #
 
 #window size
-W = 30
+W = 60
 #a flag to monitor convergence
 notConverge = TRUE
 
@@ -65,7 +62,7 @@ ewmaCC = function(ELAI, L, W){
 #
 
 #define search domain
-rect = cbind(c(-2, -3), c(2, 5))
+rect = cbind(c(-2.5, -2.5), c(2.5, 2.5))
 #1) Collect an initial set, X, from the domain.
 X = lhs(40, rect)
 #2) Compute f(X).
