@@ -341,7 +341,7 @@ surfaces to separate portions of $f$ via a reversible jump MCMC
 algorithm and 
 averaging over the full parameter space to provide smooth predictions except 
 where the data call for a discontinuous prediction. We use the R package 
-\verb|tgp| \citep{tgp, tgp2}. While the treed GPs provide additional
+\verb|tgp| \citep{tgp2}. While the treed GPs provide additional
 modeling flexibility, we emphasize that the approach of this paper can
 be applied to standard GPs as well as any surrogate model that
 provides both predictions and predictive uncertainty.
@@ -698,9 +698,9 @@ values, as optimization proceeds. Convergence often arises as a subtle shift
 of the EI distribution into place. In this context a more traditional $\bar x$ 
 chart will often overlook convergence as a subtle random fluctuation, when in 
 fact it is often this subtle signal that we aim to pick-up. EWMA is among the 
-better techniques for recognizing such subtly shifting means \cite{aerne1991trend,zou2009compare}, 
+better techniques for recognizing such subtly shifting means \citep{aerne1991trend,zou2009compare}, 
 while maintaining the capability to detect abrupt shifts in mean. As 
-convergence approaches the newly arriving $Y_i$ begin to fit into the $i.i.d.$ 
+convergence approaches, the newly arriving $Y_i$ begin to fit into the $i.i.d.$ 
 EWMA framework and the $Z_i$ increasingly begin to fall within the EWMA 
 control limits. EWMA's recognition of such a controlled region in the newly 
 arriving ELAI values, indicates the notion of distributional consistency that 
@@ -1423,9 +1423,11 @@ beneficial to stop iterating the routine and reflect upon the results.
   \item Did you include the total amount of compute and the type of resources used (e.g., type of GPUs, internal cluster, or cloud provider)?
     \answerNo{
 	Details about computation time will vary between particular implementations of 
-	different Bayesian optimization algorithms. Compute used in the computation 
-	of the Bayesian optimization algorithm itself is irrelevant to the scope of 
-	this paper, and identification of convergence requires a negligible amount of compute.
+	different Bayesian optimization algorithms. Computation used in the  
+	Bayesian optimization algorithm itself is not the point of 
+	this paper, and identification of convergence requires a
+        relatively small amount of computation time relative to the
+        optimization routine.
 	}
 \end{enumerate}
 
@@ -1436,7 +1438,7 @@ beneficial to stop iterating the routine and reflect upon the results.
     \answerYes{The Lockwood example uses an existing asset and the original author \cite{lockCite} is cited.}
   \item Did you mention the license of the assets?
     \answerNo{
-	The Lockwood code does not have a public license. The Lockwood case study 
+	We are not aware of a public license for the Lockwood code. The Lockwood case study 
 	is merely used here as an example. The details of the Lockwood code are not 
 	fundamental to our method of determining convergence.
 	}

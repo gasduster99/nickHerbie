@@ -23,25 +23,18 @@ Diwale, S.~S., Lymperopoulos, I., and Jones, C. (2015).
   gaussian processes with transient measurements.
 \newblock In {\em First Indian Control Conference}, number EPFL-CONF-199719.
 
-\bibitem[Gramacy, 2007]{tgp}
-Gramacy, R.~B. (2007).
-\newblock tgp: an r package for bayesian nonstationary, semiparametric
-  nonlinear regression and design by treed gaussian process models.
-\newblock {\em Journal of Statistical Software}, 19(9):1--46.
-
 \bibitem[Gramacy, 2020]{gramacy:2020}
 Gramacy, R.~B. (2020).
 \newblock {\em Surrogates: Gaussian Process Modeling, Design, and Optimization
   for the Applied Sciences}.
 \newblock Chapman \& Hall/CRC.
 
-\bibitem[Gramacy et~al., 2015]{gramacy2014}
+\bibitem[Gramacy et~al., 2016]{gramacy2014}
 Gramacy, R.~B., Gray, G.~A., {Le Digabel}, S., Lee, H. K.~H., Ranjan, P.,
-  Wells, G., and Wild, S.~M. (2015).
+  Wells, G., and Wild, S.~M. (2016).
 \newblock Modeling an augmented lagrangian for blackbox constrained
   optimization.
-\newblock {\em Technometrics}.
-\newblock to appear, preprint arXiv:1403.4890.
+\newblock {\em Technometrics}, 58(1):1--11.
 
 \bibitem[Gramacy and Lee, 2008]{gpJasa}
 Gramacy, R.~B. and Lee, H. K.~H. (2008).
