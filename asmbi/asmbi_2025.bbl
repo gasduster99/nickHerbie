@@ -1,0 +1,43 @@
+\begin{thebibliography}{1}
+\providecommand \doibase [0]{http://dx.doi.org/}%
+
+\bibitem{mockus:1989}
+Mockus J. {\it Bayesian Approach to Global Optimization}.
+\newblock Dordrecht: Kluwer, 1989.
+
+\bibitem{brochu:2010}
+Brochu E, Cora VM, Freitas dN. A Tutorial on Bayesian Optimization of Expensive
+  Cost Functions, with Application to Active User Modeling and Hierarchical
+  Reinforcement Learning. Tech. Rep. 1012.2599, arXiv;  2010.
+
+\bibitem{gramacy:2020}
+Gramacy RB. {\it Surrogates: Gaussian Process Modeling, Design, and
+  Optimization for the Applied Sciences}.
+\newblock Chapman \& Hall/CRC, 2020.
+
+\bibitem{santnerBook}
+Santner TJ, Williams BJ, Notz W. {\it The design and analysis of computer
+  experiments}.
+\newblock New York: Springer, 2003.
+
+\bibitem{gBook}
+Schonlau M, Jones D, Welch W. Global versus local search in constrained
+  optimization of computer models. In: , , No.~34 in IMS Lecture Notes -
+  Monograph Series. JSTOR,  1998\string:11--25.
+
+\bibitem{jonesEIOpt}
+Jones DR, Schonlau M, Welch WJ. Efficient global optimization of expensive
+  black-box functions. {\it Journal of Global Optimization.}
+  1998\string;13(4)\string:455--492.
+
+\bibitem{taddyOpt}
+Taddy MA, Lee HKH, Gray GA, Griffin JD. Bayesian guided pattern search for
+  robust local optimization. {\it Technometrics.}
+  2009\string;51(4)\string:389--401.
+
+\bibitem{windExample}
+Diwale SS, Lymperopoulos I, Jones C. Optimization of an airborne wind energy
+  system using constrained Gaussian processes with transient measurements. In:
+  No.~EPFL-CONF-199719.  2015.
+
+\end{thebibliography}

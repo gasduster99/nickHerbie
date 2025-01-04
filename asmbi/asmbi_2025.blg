@@ -1,0 +1,52 @@
+This is BibTeX, Version 0.99d (TeX Live 2022)
+Capacity: max_strings=200000, hash_size=200000, hash_prime=170003
+The top-level auxiliary file: asmbi_2025.aux
+The style file: WileyNJD-AMA.bst
+Database file #1: spcCite.bib
+`address' is a missing field, not a string, for entry brochu:2010
+while executing---line 1101 of file WileyNJD-AMA.bst
+Warning--there's a number but no series in windExample
+`organization' is a missing field, not a string, for entry windExample
+while executing---line 1101 of file WileyNJD-AMA.bst
+You've used 8 entries,
+            2086 wiz_defined-function locations,
+            580 strings with 5357 characters,
+and the built_in function-call counts, 1553 in all, are:
+= -- 150
+> -- 66
+< -- 1
++ -- 29
+- -- 21
+* -- 148
+:= -- 278
+add.period$ -- 16
+call.type$ -- 8
+change.case$ -- 0
+chr.to.int$ -- 0
+cite$ -- 9
+duplicate$ -- 75
+empty$ -- 159
+format.name$ -- 21
+if$ -- 365
+int.to.chr$ -- 0
+int.to.str$ -- 8
+missing$ -- 10
+newline$ -- 31
+num.names$ -- 8
+pop$ -- 33
+preamble$ -- 1
+purify$ -- 0
+quote$ -- 0
+skip$ -- 10
+stack$ -- 0
+substring$ -- 0
+swap$ -- 6
+text.length$ -- 1
+text.prefix$ -- 0
+top$ -- 0
+type$ -- 0
+warning$ -- 1
+while$ -- 8
+width$ -- 9
+write$ -- 81
+(There were 2 error messages)
