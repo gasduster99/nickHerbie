@@ -1,0 +1,48 @@
+This is BibTeX, Version 0.99d (TeX Live 2020)
+Capacity: max_strings=200000, hash_size=200000, hash_prime=170003
+The top-level auxiliary file: spcConvergeRev.aux
+The style file: apalike.bst
+Database file #1: ./spcCite.bib
+Warning--there's a number but no series in windExample
+You've used 21 entries,
+            1935 wiz_defined-function locations,
+            623 strings with 7422 characters,
+and the built_in function-call counts, 8100 in all, are:
+= -- 790
+> -- 333
+< -- 13
++ -- 116
+- -- 110
+* -- 700
+:= -- 1427
+add.period$ -- 64
+call.type$ -- 21
+change.case$ -- 154
+chr.to.int$ -- 21
+cite$ -- 22
+duplicate$ -- 306
+empty$ -- 570
+format.name$ -- 139
+if$ -- 1565
+int.to.chr$ -- 1
+int.to.str$ -- 0
+missing$ -- 26
+newline$ -- 108
+num.names$ -- 63
+pop$ -- 143
+preamble$ -- 1
+purify$ -- 160
+quote$ -- 0
+skip$ -- 219
+stack$ -- 0
+substring$ -- 536
+swap$ -- 30
+text.length$ -- 4
+text.prefix$ -- 0
+top$ -- 0
+type$ -- 114
+warning$ -- 1
+while$ -- 67
+width$ -- 0
+write$ -- 276
+(There was 1 warning)
